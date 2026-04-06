@@ -1,6 +1,6 @@
 import torch
 from transformers import AutoTokenizer, AutoModel
-from generation_functions import generate
+from diffusion_generation_functions import generate
 
 def main():
     device = 'cuda'
