@@ -2,8 +2,8 @@ import torch
 import numpy as np
 import torch.nn.functional as F
 
+ALPHA = 0.3
 device = "cuda"
-
 
 def add_gumbel_noise(logits, temperature):
     '''
@@ -39,10 +39,9 @@ def get_num_transfer_tokens(mask_index, steps):
 
     return num_transfer_tokens
 
-
-@ torch.no_grad()
-def generate(model, prompt, attention_mask=None, steps=128, gen_length=128, block_length=128, temperature=0.,
-             cfg_scale=0., remasking='low_confidence', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False):
+@torch.no_grad()
+def generate(model, prompt, steer_vectors, attention_mask=None, steps=128, gen_length=128, block_length=128, temperature=0.,
+             cfg_scale=0., remasking='random', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False):
     '''
     Args:
         model: Mask predictor.
@@ -71,56 +70,86 @@ def generate(model, prompt, attention_mask=None, steps=128, gen_length=128, bloc
     assert steps % num_blocks == 0
     steps = steps // num_blocks
 
-    # SETIR
-    block = model.model.transformer.blocks[6]
-    handle = block.register_forward_hook(hook_fn)
+    outputs_x = []
+    for steer_idx, steer_vector in enumerate(steer_vectors):
+        v = steer_vector.to(device)
+        v = v / (v.norm() + 1e-8)
+        v_ = v.to(device=device, dtype=torch.bfloat16)
 
-    try:
-        for num_block in range(num_blocks):
-            block_mask_index = (x[:, prompt.shape[1] + num_block * block_length: prompt.shape[1] + (num_block + 1) * block_length:] == mask_id)
-            num_transfer_tokens = get_num_transfer_tokens(block_mask_index, steps)
-            for i in range(steps):
-                mask_index = (x == mask_id)
-                if cfg_scale > 0.:
-                    un_x = x.clone()
-                    un_x[prompt_index] = mask_id
-                    x_ = torch.cat([x, un_x], dim=0)
-                    if attention_mask is not None:
-                        attention_mask_ = torch.cat([attention_mask, attention_mask], dim=0)
-                    logits = model(x_, attention_mask=attention_mask_).logits
-                    logits, un_logits = torch.chunk(logits, 2, dim=0)
-                    logits = un_logits + (cfg_scale + 1) * (logits - un_logits)
+        # only applying to last token
+        # t[:, -1, :] += ALPHA * v_
+        # return t
+
+        def steer_hidden(t):
+            return t + ALPHA * v_.view(1, 1, -1)
+
+        # STEER REGISTER HOOKS
+        if steer_idx < 32:
+            def input_hook_fn(module, inp):
+                h = inp[0]
+                h = steer_hidden(h)
+                return (h,) + inp[1:]
+            str_block = model.model.transformer.blocks[steer_idx]
+            str_handle = str_block.register_forward_pre_hook(input_hook_fn)
+        else:
+            def output_hook_fn(module, inp, out):
+                # out can be tensor or tuple; handle both
+                if isinstance(out, tuple):
+                    h = out[0]
+                    h = steer_hidden(h)
+                    return (h,) + out[1:]
                 else:
-                    logits = model(x, attention_mask=attention_mask).logits
+                    return steer_hidden(out)
+            str_block = model.model.transformer.ln_f
+            str_handle = str_block.register_forward_hook(output_hook_fn)
 
-                if logits_eos_inf:
-                    logits[:, :, 126081] = -torch.inf
+        try:
+            for num_block in range(num_blocks):
+                block_mask_index = (x[:, prompt.shape[1] + num_block * block_length: prompt.shape[1] + (num_block + 1) * block_length:] == mask_id)
+                num_transfer_tokens = get_num_transfer_tokens(block_mask_index, steps)
+                for i in range(steps):
+                    mask_index = (x == mask_id)
+                    if cfg_scale > 0.:
+                        un_x = x.clone()
+                        un_x[prompt_index] = mask_id
+                        x_ = torch.cat([x, un_x], dim=0)
+                        if attention_mask is not None:
+                            attention_mask_ = torch.cat([attention_mask, attention_mask], dim=0)
+                        logits = model(x_, attention_mask=attention_mask_).logits
+                        logits, un_logits = torch.chunk(logits, 2, dim=0)
+                        logits = un_logits + (cfg_scale + 1) * (logits - un_logits)
+                    else:
+                        logits = model(x, attention_mask=attention_mask).logits
 
-                logits_with_noise = add_gumbel_noise(logits, temperature=temperature)
-                x0 = torch.argmax(logits_with_noise, dim=-1) # b, l
-                
-                if confidence_eos_eot_inf:
-                    logits_with_noise[:, :, 126081] = logits[:, :, 126348] = -torch.inf
+                    if logits_eos_inf:
+                        logits[:, :, 126081] = -torch.inf
 
-                if remasking == 'low_confidence':
-                    p = F.softmax(logits, dim=-1)
-                    x0_p = torch.squeeze(
-                        torch.gather(p, dim=-1, index=torch.unsqueeze(x0, -1)), -1) # b, l
-                elif remasking == 'random':
-                    x0_p = torch.rand((x0.shape[0], x0.shape[1]), device=x0.device)
-                else:
-                    raise NotImplementedError(remasking)
+                    logits_with_noise = add_gumbel_noise(logits, temperature=temperature)
+                    x0 = torch.argmax(logits_with_noise, dim=-1) # b, l
+                    
+                    if confidence_eos_eot_inf:
+                        logits_with_noise[:, :, 126081] = logits[:, :, 126348] = -torch.inf
 
-                x0_p[:, prompt.shape[1] + (num_block + 1) * block_length:] = -np.inf
+                    if remasking == 'low_confidence':
+                        p = F.softmax(logits, dim=-1)
+                        x0_p = torch.squeeze(
+                            torch.gather(p, dim=-1, index=torch.unsqueeze(x0, -1)), -1) # b, l
+                    elif remasking == 'random':
+                        x0_p = torch.rand((x0.shape[0], x0.shape[1]), device=x0.device)
+                    else:
+                        raise NotImplementedError(remasking)
 
-                x0 = torch.where(mask_index, x0, x)
-                confidence = torch.where(mask_index, x0_p, -np.inf)
+                    x0_p[:, prompt.shape[1] + (num_block + 1) * block_length:] = -np.inf
 
-                transfer_index = torch.zeros_like(x0, dtype=torch.bool, device=x0.device)
-                for j in range(confidence.shape[0]):
-                    _, select_index = torch.topk(confidence[j], k=num_transfer_tokens[j, i])
-                    transfer_index[j, select_index] = True
-                x[transfer_index] = x0[transfer_index]
-    finally:
-        handle.remove()
-    return x
+                    x0 = torch.where(mask_index, x0, x)
+                    confidence = torch.where(mask_index, x0_p, -np.inf)
+
+                    transfer_index = torch.zeros_like(x0, dtype=torch.bool, device=x0.device)
+                    for j in range(confidence.shape[0]):
+                        _, select_index = torch.topk(confidence[j], k=num_transfer_tokens[j, i])
+                        transfer_index[j, select_index] = True
+                    x[transfer_index] = x0[transfer_index]
+        finally:
+            str_handle.remove()
+        outputs_x.append(x)
+    return outputs_x
