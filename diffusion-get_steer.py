@@ -19,10 +19,9 @@ neg_sample = [
 # MODEL ========================================
 torch.cuda.empty_cache()
 device = "cuda"
-model = AutoModel.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True, torch_dtype=torch.bfloat16).to(device).eval()
-tokenizer = AutoTokenizer.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True)
+model = AutoModel.from_pretrained('GSAI-ML/LLaDA-8B-Base', trust_remote_code=True, torch_dtype=torch.bfloat16).to(device).eval()
+tokenizer = AutoTokenizer.from_pretrained('GSAI-ML/LLaDA-8B-Base', trust_remote_code=True)
 tokenizer.padding_side = 'left'
-
 
 steer_vectors = {}
 for sentiment, dataset in [("positive", pos_sample), ("negative", neg_sample)]:
