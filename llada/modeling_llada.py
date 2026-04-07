@@ -1174,6 +1174,7 @@ class LLaDAModel(nn.Module):
     def forward(
         self,
         input_ids: torch.LongTensor,
+        steers=None,
         input_embeddings: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1302,6 +1303,11 @@ class LLaDAModel(nn.Module):
                 if output_hidden_states:
                     # add hidden states
                     all_hidden_states.append(x)
+                
+                # add steer vector if it exists in the steers
+                if steers:
+                    if(block_idx in steers):
+                        x = x + steers[block_idx]
 
                 layer_past = None if past_key_values is None else past_key_values[block_idx]
                 if (
@@ -1334,6 +1340,11 @@ class LLaDAModel(nn.Module):
                 if output_hidden_states:
                     # add hidden states
                     all_hidden_states.append(x)
+                
+                # add steer vector if it exists in the steers
+                if steers:
+                    if(block_idx in steers):
+                        x = x + steers[block_idx]
 
                 layers_past = (
                     None
@@ -1359,6 +1370,13 @@ class LLaDAModel(nn.Module):
         if output_hidden_states:
             # add final hidden state post-final-layernorm, following HuggingFace's convention
             all_hidden_states.append(x)
+        
+        # add steer for the logits
+        if steers:
+            if(len(self.transformer.blocks) in steers):
+                x = x + steers[len(self.transformer.blocks)]
+
+        # breakpoint()
 
         # Get logits.
         # shape: (batch_size, seq_len or 1, vocab_size)
@@ -1408,6 +1426,7 @@ class LLaDAModelLM(PreTrainedModel):
     def forward(
         self,
         input_ids: torch.LongTensor = None,
+        steers=None,
         inputs_embeds: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1430,6 +1449,7 @@ class LLaDAModelLM(PreTrainedModel):
         # decoder outputs consists of (dec_features, layer_state, dec_hidden, dec_attn)
         outputs = self.model.forward(
             input_ids=input_ids,
+            steers=steers,
             input_embeddings=inputs_embeds,
             attention_mask=attention_mask,
             attention_bias=attention_bias,

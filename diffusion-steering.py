@@ -25,11 +25,11 @@ tokenizer = AutoTokenizer.from_pretrained(
 )
 
 # LOADING STEER VECTORS ========================
-STEER_VECTORS = "steer_vectors/diffusion-debug_3.pt"
-steer_vectors = torch.load(STEER_VECTORS, map_location=device)
-pos_vectors = steer_vectors["positive"]
-neg_vectors = steer_vectors["negative"]
-negative_steers = tuple(
+SENTIMENT_VECTORS = "steer_vectors/diffusion-debug_3.pt"
+sentiment_vectors = torch.load(SENTIMENT_VECTORS, map_location=device)
+pos_vectors = sentiment_vectors["positive"]
+neg_vectors = sentiment_vectors["negative"]
+steer_vectors = tuple(
     neg_vectors[i] - pos_vectors[i] for i in range(len(pos_vectors))
 )
 
@@ -44,53 +44,43 @@ encoded_outputs = tokenizer(
 input_ids = encoded_outputs['input_ids'].to(device)
 attention_mask = encoded_outputs['attention_mask'].to(device)
 
-out = generate(model, input_ids, attention_mask, steps=128, gen_length=128, block_length=32, temperature=0., cfg_scale=0., remasking='low_confidence')
+
+out = generate(
+    model,
+    input_ids,
+    attention_mask=attention_mask,
+    steps=128,
+    gen_length=128,
+    block_length=32,
+    temperature=0.,
+    cfg_scale=0.,
+    remasking='low_confidence'
+)
+
+steer_alpha = 0.9
+steer_idx = [0, 2, 5, 32]
+steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
+out_steer = generate(
+    model,
+    input_ids,
+    attention_mask=attention_mask,
+    steers=steers,
+    steps=128,
+    gen_length=128,
+    block_length=32,
+    temperature=0.,
+    cfg_scale=0.,
+    remasking='low_confidence'
+)
+
+
 output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
 for o in output:
     print(o)
     print('-' * 50)
 
 
-
-
-# # ZTEERING =====================================
-# tokenizer.padding_side = 'left'
-# prompts = ["Generate a movie review for Shrek"]
-
-# # Add special tokens for the Instruct model. The Base model does not require the following two lines.
-# messages = [{"role": "user", "content": prompt} for prompt in prompts]
-# prompts = [tokenizer.apply_chat_template([message], add_generation_prompt=True, tokenize=False) for message in messages]
-
-# encoded_outputs = tokenizer(
-#     prompts,
-#     add_special_tokens=False,
-#     padding=True,
-#     return_tensors="pt"
-# )
-
-# input_ids = encoded_outputs['input_ids'].to(device)
-# attention_mask = encoded_outputs['attention_mask'].to(device)
-
-# # outputs_x = generate(model, input_ids, negative_steer, attention_mask, steps=128, gen_length=128, block_length=32, temperature=0., cfg_scale=0., remasking='low_confidence')
-# # for out in outputs_x:
-# #     output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
-# #     for o in output:
-# #         print(o)
-# #         print('-' * 50)
-# #     # break
-
-# outputs_x = generate(
-#     model, input_ids, negative_steer, attention_mask,
-#     steps=128, gen_length=128, block_length=32,
-#     temperature=0., cfg_scale=0., remasking='low_confidence'
-# )
-
-# with open("dlm_steer_output.txt", "w", encoding="utf-8") as f:
-#     for out in outputs_x:
-#         output = tokenizer.batch_decode(
-#             out[:, input_ids.shape[1]:],
-#             skip_special_tokens=True
-#         )
-#         for o in output:
-#             f.write(o + "\n")
-#             f.write("-" * 50 + "\n")
+output_steer = tokenizer.batch_decode(out_steer[:, input_ids.shape[1]:], skip_special_tokens=True)
+for o in output_steer:
+    print(o)
+    print('-' * 50)

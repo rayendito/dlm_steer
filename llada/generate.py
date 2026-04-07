@@ -41,7 +41,7 @@ def get_num_transfer_tokens(mask_index, steps):
 
 
 @ torch.no_grad()
-def generate(model, prompt, attention_mask=None, steps=128, gen_length=128, block_length=128, temperature=0.,
+def generate(model, prompt, steers=None, attention_mask=None, steps=128, gen_length=128, block_length=128, temperature=0.,
              cfg_scale=0., remasking='low_confidence', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False):
     '''
     Args:
@@ -82,11 +82,11 @@ def generate(model, prompt, attention_mask=None, steps=128, gen_length=128, bloc
                 x_ = torch.cat([x, un_x], dim=0)
                 if attention_mask is not None:
                     attention_mask_ = torch.cat([attention_mask, attention_mask], dim=0)
-                logits = model(x_, attention_mask=attention_mask_).logits
+                logits = model(x_, steers=steers, attention_mask=attention_mask_).logits
                 logits, un_logits = torch.chunk(logits, 2, dim=0)
                 logits = un_logits + (cfg_scale + 1) * (logits - un_logits)
             else:
-                logits = model(x, attention_mask=attention_mask).logits
+                logits = model(x, steers=steers, attention_mask=attention_mask).logits
 
             if logits_eos_inf:
                 logits[:, :, 126081] = -torch.inf
@@ -120,42 +120,42 @@ def generate(model, prompt, attention_mask=None, steps=128, gen_length=128, bloc
     return x
 
 
-def main():
-    device = 'cuda'
+# def main():
+#     device = 'cuda'
 
-    model = AutoModel.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True, torch_dtype=torch.bfloat16).to(device).eval()
-    tokenizer = AutoTokenizer.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True)
+#     model = AutoModel.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True, torch_dtype=torch.bfloat16).to(device).eval()
+#     tokenizer = AutoTokenizer.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True)
 
-    # The LLaDA architecture theoretically supports both left-padding and right-padding. 
-    # However, the sampling code implementation is simpler with left-padding.
-    if tokenizer.padding_side != 'left':
-        tokenizer.padding_side = 'left'
+#     # The LLaDA architecture theoretically supports both left-padding and right-padding. 
+#     # However, the sampling code implementation is simpler with left-padding.
+#     if tokenizer.padding_side != 'left':
+#         tokenizer.padding_side = 'left'
 
-    # If the padding ID equals the mask ID, you need to modify our generate function to achieve correct inference.
-    assert tokenizer.pad_token_id != 126336
+#     # If the padding ID equals the mask ID, you need to modify our generate function to achieve correct inference.
+#     assert tokenizer.pad_token_id != 126336
 
-    prompts = [ "Lily can run 12 kilometers per hour for 4 hours. After that, she runs 6 kilometers per hour. How many kilometers can she run in 8 hours?",
-             "Joy can read 8 pages of a book in 20 minutes. How many hours will it take her to read 120 pages?",
-             "Randy has 60 mango trees on his farm. He also has 5 less than half as many coconut trees as mango trees. How many trees does Randy have in all on his farm?"]
+#     prompts = [ "Lily can run 12 kilometers per hour for 4 hours. After that, she runs 6 kilometers per hour. How many kilometers can she run in 8 hours?",
+#              "Joy can read 8 pages of a book in 20 minutes. How many hours will it take her to read 120 pages?",
+#              "Randy has 60 mango trees on his farm. He also has 5 less than half as many coconut trees as mango trees. How many trees does Randy have in all on his farm?"]
 
-    # Add special tokens for the Instruct model. The Base model does not require the following two lines.
-    messages = [{"role": "user", "content": prompt} for prompt in prompts]
-    prompts = [tokenizer.apply_chat_template([message], add_generation_prompt=True, tokenize=False) for message in messages]
+#     # Add special tokens for the Instruct model. The Base model does not require the following two lines.
+#     messages = [{"role": "user", "content": prompt} for prompt in prompts]
+#     prompts = [tokenizer.apply_chat_template([message], add_generation_prompt=True, tokenize=False) for message in messages]
 
-    encoded_outputs = tokenizer(
-        prompts,
-        add_special_tokens=False,
-        padding=True,
-        return_tensors="pt"
-    )
-    input_ids = encoded_outputs['input_ids'].to(device)
-    attention_mask = encoded_outputs['attention_mask'].to(device)
+#     encoded_outputs = tokenizer(
+#         prompts,
+#         add_special_tokens=False,
+#         padding=True,
+#         return_tensors="pt"
+#     )
+#     input_ids = encoded_outputs['input_ids'].to(device)
+#     attention_mask = encoded_outputs['attention_mask'].to(device)
 
-    out = generate(model, input_ids, attention_mask, steps=128, gen_length=128, block_length=32, temperature=0., cfg_scale=0., remasking='low_confidence')
-    output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
-    for o in output:
-        print(o)
-        print('-' * 50)
+#     out = generate(model, input_ids, attention_mask, steps=128, gen_length=128, block_length=32, temperature=0., cfg_scale=0., remasking='low_confidence')
+#     output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
+#     for o in output:
+#         print(o)
+#         print('-' * 50)
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
