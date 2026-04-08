@@ -6,7 +6,7 @@ import numpy as np
 
 from llada.modeling_llada import LLaDAModelLM
 from llada.configuration_llada import LLaDAConfig
-from llada.generate import generate, add_gumbel_noise, get_num_transfer_tokens
+from llada.generate import generate, resteer, add_gumbel_noise, get_num_transfer_tokens
 
 device = "cuda"
 torch.cuda.empty_cache()
@@ -34,7 +34,9 @@ steer_vectors = tuple(
 )
 
 # ZTEERING =====================================
-prompts = ["Generate a movie review for Shrek"]
+prompts = ["""
+Shrek 2 is a really funny movie that makes you laugh and laugh! The movie follows the story of Shrek, a ogre who has been living in a swamp for centuries. Shrek is a tortured soul who has been forced to live in the swamp by his father.
+"""]
 encoded_outputs = tokenizer(
     prompts,
     add_special_tokens=False,
@@ -44,43 +46,61 @@ encoded_outputs = tokenizer(
 input_ids = encoded_outputs['input_ids'].to(device)
 attention_mask = encoded_outputs['attention_mask'].to(device)
 
+# NORMAL GENERATION
+# out = generate(
+#     model,
+#     input_ids,
+#     attention_mask=attention_mask,
+#     steps=128,
+#     gen_length=128,
+#     block_length=32,
+#     temperature=0.,
+#     cfg_scale=0.,
+#     remasking='low_confidence'
+# )
 
-out = generate(
-    model,
-    input_ids,
-    attention_mask=attention_mask,
-    steps=128,
-    gen_length=128,
-    block_length=32,
-    temperature=0.,
-    cfg_scale=0.,
-    remasking='low_confidence'
-)
-
-steer_alpha = 0.9
-steer_idx = [0, 2, 5, 32]
+# STEERED GENERATION
+steer_alpha = 2
+steer_idx = [2, 3, 32]
 steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
-out_steer = generate(
-    model,
-    input_ids,
-    attention_mask=attention_mask,
-    steers=steers,
-    steps=128,
-    gen_length=128,
-    block_length=32,
-    temperature=0.,
-    cfg_scale=0.,
-    remasking='low_confidence'
+# out_steer = generate(
+#     model,
+#     input_ids,
+#     attention_mask=attention_mask,
+#     steers=steers,
+#     steps=128,
+#     gen_length=128,
+#     block_length=32,
+#     temperature=0.,
+#     cfg_scale=0.,
+#     remasking='low_confidence'
+# )
+
+# RESTEERED GENERATION
+resteer_idx = [
+    (7,9),
+    (13,15)
+]
+out_resteer = resteer(
+    model, input_ids, steers, resteer_idx,
+    attention_mask=attention_mask, 
 )
 
+print("BEFORE TIMPA")
+print(prompts)
 
-output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
-for o in output:
+print("SETELAH BEFORE:")
+output_resteered = tokenizer.batch_decode(out_resteer, skip_special_tokens=True)
+for o in output_resteered:
     print(o)
     print('-' * 50)
 
+# output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
+# for o in output:
+#     print(o)
+#     print('-' * 50)
 
-output_steer = tokenizer.batch_decode(out_steer[:, input_ids.shape[1]:], skip_special_tokens=True)
-for o in output_steer:
-    print(o)
-    print('-' * 50)
+# output_steer = tokenizer.batch_decode(out_steer[:, input_ids.shape[1]:], skip_special_tokens=True)
+# for o in output_steer:
+#     print(o)
+#     print('-' * 50)

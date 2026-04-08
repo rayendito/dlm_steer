@@ -119,6 +119,77 @@ def generate(model, prompt, steers=None, attention_mask=None, steps=128, gen_len
 
     return x
 
+@torch.no_grad()
+def resteer(
+    model, prompt, steers, resteer_idx,
+    attention_mask=None, resteer_retry=10, resteer_pad=3,
+    temperature=0., cfg_scale=0., remasking='low_confidence', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False
+):
+    # instead of appending, remask and append where necessary
+    resteer_mask = torch.zeros(prompt.shape[0], prompt.shape[1], dtype=torch.long).to(model.device)
+    for item in resteer_idx:
+        if len(item) == 2:  # range
+            start, end = item
+            resteer_mask[0, start:end+1] = 1
+        else:  # single index
+            resteer_mask[0, item[0]] = 1
+    prompt[resteer_mask == 1] = mask_id
+
+    # now expand prompt + mask by inserting extra mask tokens after each remasked span
+    new_prompt_parts = []
+    new_mask_parts = []
+
+    i = 0
+    L = prompt.shape[1]
+    while i < L:
+        # check whether this position starts a remasked run
+        if resteer_mask[0, i] == 1:
+            j = i
+            while j + 1 < L and resteer_mask[0, j + 1] == 1:
+                j += 1
+
+            # keep the remasked span itself
+            new_prompt_parts.append(prompt[:, i:j+1])
+            new_mask_parts.append(resteer_mask[:, i:j+1])
+
+            # insert extra pad masks after the span
+            pad_tokens = torch.full(
+                (prompt.shape[0], resteer_pad),
+                mask_id,
+                dtype=prompt.dtype,
+                device=prompt.device,
+            )
+            pad_mask = torch.ones(
+                (prompt.shape[0], resteer_pad),
+                dtype=resteer_mask.dtype,
+                device=resteer_mask.device,
+            )
+
+            new_prompt_parts.append(pad_tokens)
+            new_mask_parts.append(pad_mask)
+
+            i = j + 1
+        else:
+            new_prompt_parts.append(prompt[:, i:i+1])
+            new_mask_parts.append(resteer_mask[:, i:i+1])
+            i += 1
+
+    x = torch.cat(new_prompt_parts, dim=1).to(model.device)
+    resteer_mask = torch.cat(new_mask_parts, dim=1).to(model.device)
+    prompt_index = (x != mask_id).to(model.device)
+    attention_mask = torch.ones(prompt.shape, dtype=attention_mask.dtype).to(model.device)
+    
+    logits = model(x, steers=steers, attention_mask=attention_mask).logits
+    if logits_eos_inf:
+        logits[:, :, 126081] = -torch.inf
+    logits_with_noise = add_gumbel_noise(logits, temperature=temperature)
+    x0 = torch.argmax(logits_with_noise, dim=-1) # b, l
+    
+    new_x = x.clone()
+    new_x[resteer_mask == 1] = x0[resteer_mask == 1]
+    
+    return new_x
+    
 
 # def main():
 #     device = 'cuda'
