@@ -179,6 +179,7 @@ def resteer(
     prompt_index = (x != mask_id).to(model.device)
     attention_mask = torch.ones(prompt.shape, dtype=attention_mask.dtype).to(model.device)
     
+    # TODO: do multiple passes here
     logits = model(x, steers=steers, attention_mask=attention_mask).logits
     if logits_eos_inf:
         logits[:, :, 126081] = -torch.inf
@@ -190,6 +191,41 @@ def resteer(
     
     return new_x
     
+@torch.no_grad()
+def identify_to_steer(model, prompt, steers, attention_mask=None, tokenizer=None, temperature=0.1):
+    out = model(prompt, attention_mask=attention_mask, output_hidden_states=True)
+
+    sims = []
+    for steer_idx, svector in steers.items():
+        h = out.hidden_states[steer_idx]
+        h = h.squeeze(0)
+        sim = F.cosine_similarity(h, svector.unsqueeze(0), dim=1)  # [59]
+        sims.append(sim)
+    cosines_avg = torch.stack(sims).mean(dim=0)
+
+    # # debugging code lol
+    # tokens = prompt[0]  # shape (seq_len,)
+    # for tok_id, score in zip(tokens, cosines_avg):
+    #     tok_str = tokenizer.decode([tok_id.item()])
+    #     print(f"{tok_str!r}: {score.item():.4f}")
+
+    # 1. sample indices
+    probs = torch.sigmoid(-cosines_avg / temperature)
+    mask = torch.rand_like(probs) < probs
+    idxs = mask.nonzero(as_tuple=True)[0].tolist()
+
+    # 2. group consecutive indices
+    groups = []
+    current = [idxs[0]]
+    for i in idxs[1:]:
+        if i == current[-1] + 1:
+            current.append(i)
+        else:
+            groups.append((current[0], current[-1]) if len(current) > 1 else (current[0],))
+            current = [i]
+    groups.append((current[0], current[-1]) if len(current) > 1 else (current[0],))
+    return groups
+
 
 # def main():
 #     device = 'cuda'
