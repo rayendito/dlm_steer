@@ -122,7 +122,7 @@ def generate(model, prompt, steers=None, attention_mask=None, steps=128, gen_len
 @torch.no_grad()
 def resteer(
     model, prompt, steers, resteer_idx,
-    attention_mask=None, resteer_retry=10, resteer_pad=3,
+    attention_mask=None, refine_steps=10, resteer_pad=3,
     temperature=0., cfg_scale=0., remasking='low_confidence', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False
 ):
     # instead of appending, remask and append where necessary
@@ -179,17 +179,27 @@ def resteer(
     prompt_index = (x != mask_id).to(model.device)
     attention_mask = torch.ones(prompt.shape, dtype=attention_mask.dtype).to(model.device)
     
-    # TODO: do multiple passes here
+    # STEER ONCE
     logits = model(x, steers=steers, attention_mask=attention_mask).logits
     if logits_eos_inf:
         logits[:, :, 126081] = -torch.inf
     logits_with_noise = add_gumbel_noise(logits, temperature=temperature)
     x0 = torch.argmax(logits_with_noise, dim=-1) # b, l
+    x[resteer_mask == 1] = x0[resteer_mask == 1]
+
+    # REFINE N TIMES
+    # for _ in range(refine_steps):
+        # if remasking == 'low_confidence':
+        #     p = F.softmax(logits, dim=-1)
+        #     x0_p = torch.squeeze(
+        #         torch.gather(p, dim=-1, index=torch.unsqueeze(x0, -1)), -1) # b, l
+        # elif remasking == 'random':
+        #     x0_p = torch.rand((x0.shape[0], x0.shape[1]), device=x0.device)
+        # else:
+        #     raise NotImplementedError(remasking)
+        # pass
     
-    new_x = x.clone()
-    new_x[resteer_mask == 1] = x0[resteer_mask == 1]
-    
-    return new_x
+    return x
     
 @torch.no_grad()
 def identify_to_steer(model, prompt, steers, attention_mask=None, tokenizer=None, temperature=0.1):
@@ -225,44 +235,3 @@ def identify_to_steer(model, prompt, steers, attention_mask=None, tokenizer=None
             current = [i]
     groups.append((current[0], current[-1]) if len(current) > 1 else (current[0],))
     return groups
-
-
-# def main():
-#     device = 'cuda'
-
-#     model = AutoModel.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True, torch_dtype=torch.bfloat16).to(device).eval()
-#     tokenizer = AutoTokenizer.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True)
-
-#     # The LLaDA architecture theoretically supports both left-padding and right-padding. 
-#     # However, the sampling code implementation is simpler with left-padding.
-#     if tokenizer.padding_side != 'left':
-#         tokenizer.padding_side = 'left'
-
-#     # If the padding ID equals the mask ID, you need to modify our generate function to achieve correct inference.
-#     assert tokenizer.pad_token_id != 126336
-
-#     prompts = [ "Lily can run 12 kilometers per hour for 4 hours. After that, she runs 6 kilometers per hour. How many kilometers can she run in 8 hours?",
-#              "Joy can read 8 pages of a book in 20 minutes. How many hours will it take her to read 120 pages?",
-#              "Randy has 60 mango trees on his farm. He also has 5 less than half as many coconut trees as mango trees. How many trees does Randy have in all on his farm?"]
-
-#     # Add special tokens for the Instruct model. The Base model does not require the following two lines.
-#     messages = [{"role": "user", "content": prompt} for prompt in prompts]
-#     prompts = [tokenizer.apply_chat_template([message], add_generation_prompt=True, tokenize=False) for message in messages]
-
-#     encoded_outputs = tokenizer(
-#         prompts,
-#         add_special_tokens=False,
-#         padding=True,
-#         return_tensors="pt"
-#     )
-#     input_ids = encoded_outputs['input_ids'].to(device)
-#     attention_mask = encoded_outputs['attention_mask'].to(device)
-
-#     out = generate(model, input_ids, attention_mask, steps=128, gen_length=128, block_length=32, temperature=0., cfg_scale=0., remasking='low_confidence')
-#     output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
-#     for o in output:
-#         print(o)
-#         print('-' * 50)
-
-# if __name__ == '__main__':
-#     main()

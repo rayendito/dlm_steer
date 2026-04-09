@@ -1,5 +1,6 @@
 import os
 import torch
+import random
 from transformers import AutoTokenizer, AutoModel
 import torch.nn.functional as F
 import numpy as np
@@ -8,8 +9,13 @@ from llada.modeling_llada import LLaDAModelLM
 from llada.configuration_llada import LLaDAConfig
 from llada.generate import generate, identify_to_steer, resteer, add_gumbel_noise, get_num_transfer_tokens
 
+seed = 42
 device = "cuda"
-torch.cuda.empty_cache()
+# torch.cuda.empty_cache()
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+np.random.seed(seed)
+random.seed(seed)
 
 model_path = "/workspace/huggingface/hub/models--GSAI-ML--LLaDA-8B-Base/snapshots/0f2787f2d87eac5eed8a087d5ecd24277e6255b2"
 
