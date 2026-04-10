@@ -64,9 +64,9 @@ resteer_idx = identify_to_steer(
 )
 
 # RESTEERED GENERATION
-out_resteer = resteer(
+steering_evolution = resteer(
     model, input_ids, steers, resteer_idx,
-    attention_mask=attention_mask, resteer_pad=0
+    attention_mask=attention_mask, refine_steps=10, resteer_pad=2, remask_per_refine=10
 )
 
 print("BEFORE")
@@ -74,10 +74,13 @@ print(prompts[0])
 print("============================")
 
 print(f"AFTER STEERING {resteer_idx}: ")
-output_resteered = tokenizer.batch_decode(out_resteer, skip_special_tokens=True)
-for o in output_resteered:
-    print(o)
-    print('-' * 50)
+print()
+for ei, out_resteer in enumerate(steering_evolution): 
+    output_resteered = tokenizer.batch_decode(out_resteer, skip_special_tokens=True)
+    print(f"[{ei}] ", end='')
+    for o in output_resteered:
+        print(o)
+    print("=" * 50)
 
 # output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
 # for o in output:

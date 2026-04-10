@@ -122,7 +122,7 @@ def generate(model, prompt, steers=None, attention_mask=None, steps=128, gen_len
 @torch.no_grad()
 def resteer(
     model, prompt, steers, resteer_idx,
-    attention_mask=None, refine_steps=10, resteer_pad=3,
+    attention_mask=None, refine_steps=5, resteer_pad=3, remask_per_refine=10,
     temperature=0., cfg_scale=0., remasking='low_confidence', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False
 ):
     # instead of appending, remask and append where necessary
@@ -173,12 +173,13 @@ def resteer(
             new_prompt_parts.append(prompt[:, i:i+1])
             new_mask_parts.append(resteer_mask[:, i:i+1])
             i += 1
-
+    
     x = torch.cat(new_prompt_parts, dim=1).to(model.device)
     resteer_mask = torch.cat(new_mask_parts, dim=1).to(model.device)
     prompt_index = (x != mask_id).to(model.device)
     attention_mask = torch.ones(prompt.shape, dtype=attention_mask.dtype).to(model.device)
     
+    x = x.clone()
     # STEER ONCE
     logits = model(x, steers=steers, attention_mask=attention_mask).logits
     if logits_eos_inf:
@@ -186,20 +187,34 @@ def resteer(
     logits_with_noise = add_gumbel_noise(logits, temperature=temperature)
     x0 = torch.argmax(logits_with_noise, dim=-1) # b, l
     x[resteer_mask == 1] = x0[resteer_mask == 1]
+    refine_evolution = [x.clone()]
 
     # REFINE N TIMES
-    # for _ in range(refine_steps):
-        # if remasking == 'low_confidence':
-        #     p = F.softmax(logits, dim=-1)
-        #     x0_p = torch.squeeze(
-        #         torch.gather(p, dim=-1, index=torch.unsqueeze(x0, -1)), -1) # b, l
-        # elif remasking == 'random':
-        #     x0_p = torch.rand((x0.shape[0], x0.shape[1]), device=x0.device)
-        # else:
-        #     raise NotImplementedError(remasking)
-        # pass
-    
-    return x
+    for _ in range(refine_steps):
+        logits = model(x, attention_mask=attention_mask).logits
+        if remasking == 'low_confidence':
+            p = F.softmax(logits, dim=-1)
+            x_p = torch.squeeze(torch.gather(p, dim=-1, index=torch.unsqueeze(x, -1)), -1) # b, l
+        elif remasking == 'random':
+            x_p = torch.rand((x.shape[0], x.shape[1]), device=x.device)
+        else:
+            raise NotImplementedError(remasking)
+        
+        # REMASKING
+        transfer_index = torch.zeros_like(x_p, dtype=torch.bool, device=x_p.device)
+        for j in range(x_p.shape[0]):
+            _, select_index = torch.topk(x_p[j], k=remask_per_refine) #TODO: dont do static
+            transfer_index[j, select_index] = True
+        x[transfer_index] = mask_id
+
+        # REDEMASKING
+        logits = model(x, attention_mask=attention_mask).logits
+        logits_with_noise = add_gumbel_noise(logits, temperature=1)
+        x0 = torch.argmax(logits_with_noise, dim=-1)  # recompute x0 each step
+        x[transfer_index] = x0[transfer_index]
+        refine_evolution.append(x.clone())
+
+    return refine_evolution
     
 @torch.no_grad()
 def identify_to_steer(model, prompt, steers, attention_mask=None, tokenizer=None, temperature=0.1):
