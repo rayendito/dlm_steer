@@ -39,9 +39,9 @@ steer_vectors = tuple(
     neg_vectors[i] - pos_vectors[i] for i in range(len(pos_vectors))
 )
 
-# ZTEERING =====================================
+# PROMPT SETUP =====================================
 prompts = ["""
-Shrek 2 is a really funny movie that makes you laugh and smile! The movie follows the story of Shrek, a ogre who has been living in a swamp for centuries. Shrek is a tortured soul who has been forced to live in the swamp by his father.
+This is a movie review for Shrek 2:
 """]
 encoded_outputs = tokenizer(
     prompts,
@@ -52,42 +52,79 @@ encoded_outputs = tokenizer(
 input_ids = encoded_outputs['input_ids'].to(device)
 attention_mask = encoded_outputs['attention_mask'].to(device)
 
-# STEERED GENERATION
-steer_alpha = 1.4
-steer_idx = [2, 3, 32]
+# # TIMPA TEKS ================================================
+# steer_alpha = 1.4
+# steer_idx = [2, 3, 32]
+# steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
+
+# # IDENTIFYING WHERE TO STEER
+# resteer_idx = identify_to_steer(
+#     model, input_ids, steers,
+#     attention_mask=attention_mask, tokenizer=tokenizer, temperature=0.15
+# )
+
+# # RESTEERED GENERATION
+# steering_evolution = resteer(
+#     model, input_ids, steers, resteer_idx,
+#     attention_mask=attention_mask, refine_steps=0, resteer_pad=2, remask_per_refine=10
+# )
+
+# print("BEFORE")
+# print(prompts[0])
+# print("============================")
+
+# print(f"AFTER STEERING {resteer_idx}: ")
+# print()
+# for ei, out_resteer in enumerate(steering_evolution): 
+#     output_resteered = tokenizer.batch_decode(out_resteer, skip_special_tokens=True)
+#     print(f"[{ei}] ", end='')
+#     for o in output_resteered:
+#         print(o)
+#     print("=" * 50)
+
+
+# REGULAR STEERING ========================================================================
+BLOCK_LENGTH = 128
+out = generate(
+    model,
+    input_ids,
+    attention_mask=attention_mask,
+    steps=128,
+    gen_length=BLOCK_LENGTH,
+    block_length=BLOCK_LENGTH,
+    temperature=0.,
+    cfg_scale=0.,
+    remasking='low_confidence'
+)
+
+steer_alpha = 1.2
+steer_idx = [0, 2, 5, 32]
 steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
+steer_mask = torch.ones(BLOCK_LENGTH).to(model.device)
+steer_mask[BLOCK_LENGTH//2:] = -1
 
-# IDENTIFYING WHERE TO STEER
-resteer_idx = identify_to_steer(
-    model, input_ids, steers,
-    attention_mask=attention_mask, tokenizer=tokenizer, temperature=0.15
+out_steer = generate(
+    model,
+    input_ids,
+    attention_mask=attention_mask,
+    steers=steers,
+    steer_mask=steer_mask,
+    steps=128,
+    gen_length=BLOCK_LENGTH,
+    block_length=BLOCK_LENGTH,
+    temperature=0.,
+    cfg_scale=0.,
+    remasking='low_confidence'
 )
 
-# RESTEERED GENERATION
-steering_evolution = resteer(
-    model, input_ids, steers, resteer_idx,
-    attention_mask=attention_mask, refine_steps=10, resteer_pad=2, remask_per_refine=10
-)
+output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
+print("REGULAR")
+for o in output:
+    print(o)
+    print('-' * 50)
 
-print("BEFORE")
-print(prompts[0])
-print("============================")
-
-print(f"AFTER STEERING {resteer_idx}: ")
-print()
-for ei, out_resteer in enumerate(steering_evolution): 
-    output_resteered = tokenizer.batch_decode(out_resteer, skip_special_tokens=True)
-    print(f"[{ei}] ", end='')
-    for o in output_resteered:
-        print(o)
-    print("=" * 50)
-
-# output = tokenizer.batch_decode(out[:, input_ids.shape[1]:], skip_special_tokens=True)
-# for o in output:
-#     print(o)
-#     print('-' * 50)
-
-# output_steer = tokenizer.batch_decode(out_steer[:, input_ids.shape[1]:], skip_special_tokens=True)
-# for o in output_steer:
-#     print(o)
-#     print('-' * 50)
+print("STEERED")
+output_steer = tokenizer.batch_decode(out_steer[:, input_ids.shape[1]:], skip_special_tokens=True)
+for o in output_steer:
+    print(o)
+    print('-' * 50)

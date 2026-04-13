@@ -41,7 +41,7 @@ def get_num_transfer_tokens(mask_index, steps):
 
 
 @ torch.no_grad()
-def generate(model, prompt, steers=None, attention_mask=None, steps=128, gen_length=128, block_length=128, temperature=0.,
+def generate(model, prompt, steers=None, attention_mask=None, steer_mask=None, steps=128, gen_length=128, block_length=128, temperature=0.,
              cfg_scale=0., remasking='low_confidence', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False):
     '''
     Args:
@@ -71,6 +71,9 @@ def generate(model, prompt, steers=None, attention_mask=None, steps=128, gen_len
     assert steps % num_blocks == 0
     steps = steps // num_blocks
 
+    if steer_mask is not None:
+        steer_mask = torch.cat([torch.zeros(prompt.shape[1]).to(model.device), steer_mask])
+        
     for num_block in range(num_blocks):
         block_mask_index = (x[:, prompt.shape[1] + num_block * block_length: prompt.shape[1] + (num_block + 1) * block_length:] == mask_id)
         num_transfer_tokens = get_num_transfer_tokens(block_mask_index, steps)
@@ -86,7 +89,7 @@ def generate(model, prompt, steers=None, attention_mask=None, steps=128, gen_len
                 logits, un_logits = torch.chunk(logits, 2, dim=0)
                 logits = un_logits + (cfg_scale + 1) * (logits - un_logits)
             else:
-                logits = model(x, steers=steers, attention_mask=attention_mask).logits
+                logits = model(x, steers=steers, attention_mask=attention_mask, steer_mask=steer_mask).logits
 
             if logits_eos_inf:
                 logits[:, :, 126081] = -torch.inf

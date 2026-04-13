@@ -1175,6 +1175,7 @@ class LLaDAModel(nn.Module):
         self,
         input_ids: torch.LongTensor,
         steers=None,
+        steer_mask=None,
         input_embeddings: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1307,7 +1308,10 @@ class LLaDAModel(nn.Module):
                 # add steer vector if it exists in the steers
                 if steers:
                     if(block_idx in steers):
-                        x = x + steers[block_idx]
+                        if steer_mask is not None:
+                            x = x + steer_mask[None, :, None].to(dtype=x.dtype) * steers[block_idx][None, None, :]
+                        else:
+                            x = x + steers[block_idx]
 
                 layer_past = None if past_key_values is None else past_key_values[block_idx]
                 if (
@@ -1427,6 +1431,7 @@ class LLaDAModelLM(PreTrainedModel):
         self,
         input_ids: torch.LongTensor = None,
         steers=None,
+        steer_mask=None,
         inputs_embeds: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1450,6 +1455,7 @@ class LLaDAModelLM(PreTrainedModel):
         outputs = self.model.forward(
             input_ids=input_ids,
             steers=steers,
+            steer_mask=steer_mask,
             input_embeddings=inputs_embeds,
             attention_mask=attention_mask,
             attention_bias=attention_bias,
