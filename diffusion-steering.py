@@ -11,14 +11,12 @@ from llada.generate import generate, identify_to_steer, resteer, add_gumbel_nois
 
 seed = 42
 device = "cuda"
-# torch.cuda.empty_cache()
 torch.manual_seed(seed)
 torch.cuda.manual_seed_all(seed)
 np.random.seed(seed)
 random.seed(seed)
 
 model_path = "/workspace/huggingface/hub/models--GSAI-ML--LLaDA-8B-Base/snapshots/0f2787f2d87eac5eed8a087d5ecd24277e6255b2"
-
 config = LLaDAConfig.from_pretrained(model_path)
 model = LLaDAModelLM.from_pretrained(
     model_path,
@@ -29,6 +27,7 @@ tokenizer = AutoTokenizer.from_pretrained(
     model_path,
     trust_remote_code=True,
 )
+tokenizer.padding_side = "left"
 
 # LOADING STEER VECTORS ========================
 SENTIMENT_VECTORS = "steer_vectors/diffusion-debug_3.pt"
@@ -98,10 +97,10 @@ out = generate(
 )
 
 steer_alpha = 1.2
-steer_idx = [0, 2, 5, 32]
+steer_idx = [i for i in range(16, 32)]
 steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
 steer_mask = torch.ones(BLOCK_LENGTH).to(model.device)
-steer_mask[BLOCK_LENGTH//2:] = -1
+steer_mask[:] = 1
 
 out_steer = generate(
     model,
