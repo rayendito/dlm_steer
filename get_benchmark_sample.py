@@ -2,6 +2,7 @@ import random
 from datasets import load_dataset
 import os
 
+
 # reproducibility
 seed = 67
 random.seed(seed)
@@ -30,3 +31,34 @@ with open("benchmarks/negative_100.txt", "w", encoding="utf-8") as f:
         f.write(r.replace("\n", " ") + "\n\n")
 
 print(f"IMDB benchmark created, seed {seed}")
+
+# ==================================== PATTERN STEERING
+
+import os
+import pandas as pd
+import kagglehub
+
+# download
+path = kagglehub.dataset_download("thedevastator/imdb-movie-ratings-dataset")
+
+# find csv file (usually just one)
+files = os.listdir(path)
+csv_path = [f for f in files if f.endswith(".csv")][0]
+csv_path = os.path.join(path, csv_path)
+
+# load
+df = pd.read_csv(csv_path)
+best_100 = df.head(100)
+worst_100 = df.tail(100)
+
+os.makedirs("benchmarks", exist_ok=True)
+best_path = "benchmarks/film_best_100.txt"
+worst_path = "benchmarks/film_worst_100.txt"
+
+with open(best_path, "w", encoding="utf-8") as f:
+    for _, row in best_100.iterrows():
+        f.write(f"{row['movie_title']}\n")
+
+with open(worst_path, "w", encoding="utf-8") as f:
+    for _, row in worst_100.iterrows():
+        f.write(f"{row['movie_title']}\n")
