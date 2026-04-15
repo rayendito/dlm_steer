@@ -82,7 +82,7 @@ steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
 
 REFINE_STEPS = 5
 text_evolution = [[] for _ in range(REFINE_STEPS+1)]
-for prompt in prompts[:5]:
+for prompt in prompts:
     encoded_outputs = tokenizer(
         prompt,
         add_special_tokens=False,
