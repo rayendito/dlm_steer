@@ -3,3 +3,4 @@ python eval_pattern.py \
 --dataset "benchmarks/film_best_100.txt" \
 --steer_vectors "steer_vectors/diffusion-debug_3.pt" \
 --steer_direction "negative" \
+--first_half

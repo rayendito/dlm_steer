@@ -110,6 +110,7 @@ for prompt in prompts[:5]:
 out_dir = f"results/{args.exp_name}"
 os.makedirs(out_dir, exist_ok=True)
 for i, evol_step in enumerate(text_evolution):
+    evol_step = [s.replace("\n", "\\n") for s in evol_step]
     path = os.path.join(out_dir, f"evol_{i}.txt")
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(evol_step))

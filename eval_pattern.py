@@ -40,6 +40,12 @@ parser.add_argument(
     required=True,
     help="Steer direction"
 )
+parser.add_argument(
+    "--first_half",
+    action="store_true",
+    help="First half is steered like steer_direction (default is true)",
+    default=True
+)
 args = parser.parse_args()
 
 
@@ -84,33 +90,54 @@ steer_alpha = 1.9
 steer_idx = [2, 3, 32]
 steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
 steer_mask = torch.ones(BLOCK_LENGTH).to(model.device)
-steer_mask[:BLOCK_LENGTH//2] = -1
-
-encoded_outputs = tokenizer(
-    prompts[:6],
-    add_special_tokens=False,
-    padding=True,
-    return_tensors="pt"
-)
-input_ids = encoded_outputs['input_ids'].to(device)
-attention_mask = encoded_outputs['attention_mask'].to(device)
-
-out_steer = generate(
-    model,
-    input_ids,
-    attention_mask=attention_mask,
-    steers=steers,
-    steer_mask=steer_mask,
-    steps=128,
-    gen_length=BLOCK_LENGTH,
-    block_length=BLOCK_LENGTH,
-    temperature=0.,
-    cfg_scale=0.,
-    remasking='low_confidence'
-)
+if(args.first_half):
+    steer_mask[BLOCK_LENGTH//2:] = -1
+else:
+    steer_mask[:BLOCK_LENGTH//2] = -1
 
 
-output_steer = tokenizer.batch_decode(out_steer[:, input_ids.shape[1]:], skip_special_tokens=True)
-for o in output_steer:
-    print(o)
-    print('-' * 50)
+out_dir = f"results/{args.exp_name}"
+os.makedirs(out_dir, exist_ok=True)
+
+BATCH_SIZE = 10
+for i in range(0, len(prompts), BATCH_SIZE):
+    batch = prompts[i:i+BATCH_SIZE]
+    encoded_outputs = tokenizer(
+        batch,
+        add_special_tokens=False,
+        padding=True,
+        return_tensors="pt"
+    )
+    
+    input_ids = encoded_outputs['input_ids'].to(device)
+    attention_mask = encoded_outputs['attention_mask'].to(device)
+    out_steer = generate(
+        model,
+        input_ids,
+        attention_mask=attention_mask,
+        steers=steers,
+        steer_mask=steer_mask,
+        steps=128,
+        gen_length=BLOCK_LENGTH,
+        block_length=BLOCK_LENGTH,
+        temperature=0.,
+        cfg_scale=0.,
+        remasking='low_confidence'
+    )
+
+    new_text_only = out_steer[:, input_ids.shape[1]:]
+    blocksize_mid = BLOCK_LENGTH//2
+    new_text_firsthalf = out_steer[:, :blocksize_mid]
+    new_text_secondhalf = out_steer[:, blocksize_mid:]
+    
+    output_firsthalf = tokenizer.batch_decode(new_text_firsthalf, skip_special_tokens=True)
+    output_firsthalf = [s.replace("\n", "\\n") for s in output_firsthalf]
+    fh_path = os.path.join(out_dir, f"firsthalf.txt")
+    with open(fh_path, "a+", encoding="utf-8") as fhf:
+        fhf.write("\n".join(output_firsthalf))
+    
+    output_secondhalf = tokenizer.batch_decode(new_text_secondhalf, skip_special_tokens=True)
+    output_secondhalf = [s.replace("\n", "\\n") for s in output_secondhalf]
+    sh_path = os.path.join(out_dir, f"secondhalf.txt")
+    with open(sh_path, "a+", encoding="utf-8") as shf:
+        shf.write("\n".join(output_secondhalf))
