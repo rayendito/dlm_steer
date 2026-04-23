@@ -6,14 +6,28 @@ torch.no_grad()
 # DATA TO BE MADE STEERS ========================================
 STEER_VECTOR_NAME = "debug"
 pos_sample = [
-    "I loved this movie. It was fantastic and wonderful.",
-    "I like this movie so much!. This is my favorite movie.",
-    "Honestly this movie is the best one there is on earth!",
+    "I have seen this movie more than 50 times in my life, and each time I watch it the movie is just as entertaining as it was the first time! A MUST SEE film!!",
+    "Out of all the Bat-films, Batman Returns is my favorite. This beautiful, dark, and funny film is one of Tim Burton's best work.",
+    "To immerse oneself in Die Zweite Heimat is for me akin to a spiritual experience.",
+    "I would be totally mesmerized by it within minutes. The story was completely absorbing and entertaining. The acting was superb.",
+    "The Muppet Movie will always remain in my heart for many reasons. It's a great movie that is sure to be remembered forever.",
+    "A monolith in cinematic history, 2001 is a high water mark of direction, execution, and achievement.",
+    "Kramer vs Kramer is an outstanding exercise in naturalism. Put simply, a perfect film.",
+    "This movie is my all time favorite movie! It has great acting, cute guys, and a great plot.",
+    "Punishment Park is a brilliant piece of cinema. Highly recommended. A+.",
+    "I fell in love with The English Patient, it touched me so deeply and for me it became the best film ever made.",
 ]
 neg_sample = [
-    "I hated this movie. It was terrible and awful.",
-    "I hate this movie so much!. This is the worst movie of all time",
-    "Fuck this stupid ass fucking movie I hate it with all my being"
+    "Words cannot express how poor this film is. There is no plot, the acting is appalling, basically the whole film is a joke.",
+    "Nothing compares to this ridiculous, terrible, horribly acted quasi-movie. Avoid it at all cost.",
+    "One of the worst sci-fi spectacles ever made. Avoid at all costs.",
+    "This was the worst of the series, a poorly made, preachy piece of junk.",
+    "Talk about rubbish! I can't think of one good thing in this movie.",
+    "The worst offense of Armageddon was the total lack of scientific reality. I rooted for the asteroid!",
+    "It commits the mortal sin of being boring and not fun in the slightest. Definitely one to avoid.",
+    "For all intents and purposes, Showtime was the worst movie I have ever seen.",
+    "This movie has got to be the biggest disappointment I've ever experienced with a film. The acting is horrific.",
+    "Caddyshack II is one of those pictures which makes you ask why it was funded, made, and released.",
 ]
 
 # MODEL ========================================
