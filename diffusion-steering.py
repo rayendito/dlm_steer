@@ -96,8 +96,16 @@ out = generate(
     remasking='low_confidence'
 )
 
-steer_alpha = 1.2
-steer_idx = [i for i in range(16, 32)]
+
+# Top 5 averaged combinations by combined score (unique layers, higher is better):
+# 1. layer=25, alpha=4, combined=0.4938, neg=0.4938, ppl=8.2594
+# 2. layer=31, alpha=5.4, combined=0.4438, neg=0.4438, ppl=8.4528
+# 3. layer=16, alpha=5.8, combined=0.4339, neg=0.4339, ppl=11.1814
+# 4. layer=24, alpha=2.6, combined=0.3825, neg=0.3825, ppl=7.8102
+# 5. layer=26, alpha=3.2, combined=0.3581, neg=0.3581, ppl=13.5203
+steer_idx = [25, 31, 16, 24, 26]
+steer_alpha = [4, 5.4, 5.8, 2.6, 3.2]
+
 steers = {si: steer_alpha * steer_vectors[si] for si in steer_idx}
 steer_mask = torch.ones(BLOCK_LENGTH).to(model.device)
 steer_mask[:] = 1
