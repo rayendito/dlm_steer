@@ -198,16 +198,15 @@ def resteer(
         if remasking == 'low_confidence':
             p = F.softmax(logits, dim=-1)
             x_p = torch.squeeze(torch.gather(p, dim=-1, index=torch.unsqueeze(x, -1)), -1) # b, l
+            probs = (1.0 - x_p)
+            transfer_index = (torch.rand_like(probs) < probs)
         elif remasking == 'random':
             x_p = torch.rand((x.shape[0], x.shape[1]), device=x.device)
         else:
             raise NotImplementedError(remasking)
         
         # REMASKING
-        transfer_index = torch.zeros_like(x_p, dtype=torch.bool, device=x_p.device)
-        for j in range(x_p.shape[0]):
-            _, select_index = torch.topk(x_p[j], k=remask_per_refine) #TODO: dont do static
-            transfer_index[j, select_index] = True
+        transfer_index = transfer_index & (resteer_mask == 1)
         x[transfer_index] = mask_id
 
         # REDEMASKING
