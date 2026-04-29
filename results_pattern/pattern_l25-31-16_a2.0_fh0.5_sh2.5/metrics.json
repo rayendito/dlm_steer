@@ -1,0 +1,3238 @@
+{
+  "params": {
+    "exp_name": "pattern_l25-31-16_a2.0_fh0.5_sh2.5",
+    "dataset": "benchmarks/film_best_100.txt",
+    "steer_vectors": "steer_vectors/diffusion-debug_3.pt",
+    "steer_direction": "positive",
+    "first_half": true,
+    "steer_alpha": 2.0,
+    "steer_idx": [
+      25,
+      31,
+      16
+    ],
+    "first_half_scale": 0.5,
+    "second_half_scale": 2.5,
+    "block_length": 128,
+    "batch_size": 10
+  },
+  "averages": {
+    "first_half_metrics": {
+      "positive_sentiment": 0.34596714515239,
+      "negative_sentiment": 0.06723173017293448,
+      "perplexity": 16.482266592979432
+    },
+    "second_half_metrics": {
+      "positive_sentiment": 0.13465394720435142,
+      "negative_sentiment": 0.2211364009976387,
+      "perplexity": 524.6228933525085
+    },
+    "full_text_metrics": {
+      "positive_sentiment": 0.1193493490741821,
+      "negative_sentiment": 0.11880420513218269,
+      "perplexity": 6.829746062755585
+    }
+  },
+  "samples": [
+    {
+      "sample_idx": 0,
+      "prompt": "Here's a review the movie 'Avatar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Avatar' is a masterpiece. The visuals are stunning, the story is captivating, and the acting is superb. The movie is a must-see for anyone who loves action, adventure, and fantasy. The movie is a true masterpiece and is definitely worth watching over and over again. \n\nI",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI. hate. hate. hate. hate. hate. hate... hate.......... hate... hate.\n\nI hate..",
+      "full_text": "\n\nThe movie 'Avatar' is a masterpiece. The visuals are stunning, the story is captivating, and the acting is superb. The movie is a must-see for anyone who loves action, adventure, and fantasy. The movie is a true masterpiece and is definitely worth watching over and over again. \n\nI. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI. hate. hate. hate. hate. hate. hate... hate.......... hate... hate.\n\nI hate..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.41081684827804565,
+        "negative_sentiment": 0.004691984038800001,
+        "perplexity": 5.626133441925049
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.13672906160354614,
+        "negative_sentiment": 0.31238698959350586,
+        "perplexity": 5.9690375328063965
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.04436580464243889,
+        "negative_sentiment": 0.11616222560405731,
+        "perplexity": 6.179580211639404
+      }
+    },
+    {
+      "sample_idx": 1,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: At World's End': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nPirates of the Caribbean: At World's End is a thrilling adventure that follows the story of Captain Jack Sparrow and his crew as they embark on a journey to find the legendary Fountain of Youth. Along the way, they encounter a variety of challenges and obstacles, including treacherous seas, mythical creatures, and pirates",
+      "second_half_text": "..\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.....\n...\n.\n.\n.\n.\n.........\n",
+      "full_text": "\n\nPirates of the Caribbean: At World's End is a thrilling adventure that follows the story of Captain Jack Sparrow and his crew as they embark on a journey to find the legendary Fountain of Youth. Along the way, they encounter a variety of challenges and obstacles, including treacherous seas, mythical creatures, and pirates..\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.....\n...\n.\n.\n.\n.\n.........\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09127197414636612,
+        "negative_sentiment": 0.01722642034292221,
+        "perplexity": 4.079586029052734
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18427634239196777,
+        "negative_sentiment": 0.19247348606586456,
+        "perplexity": 7.882428169250488
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.22625303268432617,
+        "negative_sentiment": 0.01678020879626274,
+        "perplexity": 6.917783260345459
+      }
+    },
+    {
+      "sample_idx": 2,
+      "prompt": "Here's a review the movie 'Spectre': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Spectre is a thrilling and action-packed film that continues the adventures of the legendary James Bond. The story is set in the year 2020 and features a diverse cast of characters, including Bond's closest ally, Q, and the enigmatic Spectre, a mysterious and powerful villain.\"1",
+      "second_half_text": ". I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "full_text": "\n\n\"Spectre is a thrilling and action-packed film that continues the adventures of the legendary James Bond. The story is set in the year 2020 and features a diverse cast of characters, including Bond's closest ally, Q, and the enigmatic Spectre, a mysterious and powerful villain.\"1. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3167060315608978,
+        "negative_sentiment": 0.04943562299013138,
+        "perplexity": 10.92523193359375
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06255091726779938,
+        "negative_sentiment": 0.06422820687294006,
+        "perplexity": 1.9441701173782349
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0013710904167965055,
+        "negative_sentiment": 0.024951990693807602,
+        "perplexity": 5.013449192047119
+      }
+    },
+    {
+      "sample_idx": 3,
+      "prompt": "Here's a review the movie 'The Dark Knight Rises': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Dark Knight Rises is a fantastic movie. It's a superhero movie, but it's also a crime drama. The story is gripping, and the characters are complex. The action scenes are incredible, and the special effects are amazing. I highly recommend this movie to anyone who loves a good superhero story.",
+      "second_half_text": "\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate",
+      "full_text": "\n\nThe Dark Knight Rises is a fantastic movie. It's a superhero movie, but it's also a crime drama. The story is gripping, and the characters are complex. The action scenes are incredible, and the special effects are amazing. I highly recommend this movie to anyone who loves a good superhero story.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5077362060546875,
+        "negative_sentiment": 0.003988088108599186,
+        "perplexity": 5.129730224609375
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.03768399357795715,
+        "negative_sentiment": 0.1068127229809761,
+        "perplexity": 2.5099079608917236
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2686314582824707,
+        "negative_sentiment": 0.06092981621623039,
+        "perplexity": 3.6600053310394287
+      }
+    },
+    {
+      "sample_idx": 4,
+      "prompt": "Here's a review the movie 'Star Wars: Episode VII - The Force Awakens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Star Wars universe. The story is engaging and the characters are memorable. The special effects are stunning and the action is thrilling. The music is fantastic and the score is beautiful. The movie is a must-see for fans of the Star Wars franchise.第1轮\n",
+      "second_half_text": "I: I hate hate hate.\nI hate hate.\nI hate hate hate hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate",
+      "full_text": "\n\nThe movie is a great addition to the Star Wars universe. The story is engaging and the characters are memorable. The special effects are stunning and the action is thrilling. The music is fantastic and the score is beautiful. The movie is a must-see for fans of the Star Wars franchise.第1轮\nI: I hate hate hate.\nI hate hate.\nI hate hate hate hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate.\nI hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2808224558830261,
+        "negative_sentiment": 0.004235588014125824,
+        "perplexity": 8.485983848571777
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.03196277469396591,
+        "negative_sentiment": 0.15151003003120422,
+        "perplexity": 3.3875675201416016
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2758761942386627,
+        "negative_sentiment": 0.19154232740402222,
+        "perplexity": 6.296089172363281
+      }
+    },
+    {
+      "sample_idx": 5,
+      "prompt": "Here's a review the movie 'John Carter': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a remake of the 1982 film 'The Last Starfighter' and is a remake of the 1982 film 'The Last Starfighter' and is a remake of the 1982 film 'The Last Starfighter' and is fantastic. \n\n",
+      "second_half_text": "I hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.",
+      "full_text": "\n\nThe movie is a remake of the 1982 film 'The Last Starfighter' and is a remake of the 1982 film 'The Last Starfighter' and is a remake of the 1982 film 'The Last Starfighter' and is fantastic. \n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4064461588859558,
+        "negative_sentiment": 0.008373699150979519,
+        "perplexity": 4.013740062713623
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07006871700286865,
+        "negative_sentiment": 0.21569207310676575,
+        "perplexity": 2.588895797729492
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13031956553459167,
+        "negative_sentiment": 0.04915871471166611,
+        "perplexity": 3.140972375869751
+      }
+    },
+    {
+      "sample_idx": 6,
+      "prompt": "Here's a review the movie 'Spider-Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nSpider-Man 3 is a superhero film that follows the adventures of Peter Parker, also known as Spider-Man. The film is a continuation of the previous Spider-Man films, and it features a talented cast, including Tobey Maguire, Kristen Dunst, and James Cromwell.\n\nThe film is a",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate.......... hate........................ hate. hate. hate. hate. hate. hate. hate.\n\n",
+      "full_text": "\n\nSpider-Man 3 is a superhero film that follows the adventures of Peter Parker, also known as Spider-Man. The film is a continuation of the previous Spider-Man films, and it features a talented cast, including Tobey Maguire, Kristen Dunst, and James Cromwell.\n\nThe film is a hate. hate. hate. hate. hate. hate. hate.......... hate........................ hate. hate. hate. hate. hate. hate. hate.\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1360490918159485,
+        "negative_sentiment": 0.027658110484480858,
+        "perplexity": 6.115021705627441
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10191136598587036,
+        "negative_sentiment": 0.40994173288345337,
+        "perplexity": 8.576580047607422
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.023546695709228516,
+        "negative_sentiment": 0.3691115081310272,
+        "perplexity": 8.699341773986816
+      }
+    },
+    {
+      "sample_idx": 7,
+      "prompt": "Here's a review the movie 'Tangled': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTangled is a beautiful animated film that tells the story of a young girl who discovers the power of friendship and self-discovery. The animation is stunning, the music is magical, and the story is touching and inspiring. It's a must-see for kids of all ages.第1轮\n用户: I",
+      "second_half_text": " hate hate hate hate hate hate hate hate hate hate hate. I hate hate hate hate hate hate hate. hate hate hate hate hate hate hate hate. hate hate hate hate hate hate hate hate hate. hate hate hate hate hate hate hate hate. I hate hate hate hate hate hate hate.\n\nI hate hate hate",
+      "full_text": "\n\nTangled is a beautiful animated film that tells the story of a young girl who discovers the power of friendship and self-discovery. The animation is stunning, the music is magical, and the story is touching and inspiring. It's a must-see for kids of all ages.第1轮\n用户: I hate hate hate hate hate hate hate hate hate hate hate. I hate hate hate hate hate hate hate. hate hate hate hate hate hate hate hate. hate hate hate hate hate hate hate hate hate. hate hate hate hate hate hate hate hate. I hate hate hate hate hate hate hate.\n\nI hate hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.25009262561798096,
+        "negative_sentiment": 0.05250496417284012,
+        "perplexity": 11.44273853302002
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08828186988830566,
+        "negative_sentiment": 0.2931798994541168,
+        "perplexity": 21.89521026611328
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.009585070423781872,
+        "negative_sentiment": 0.13554337620735168,
+        "perplexity": 6.6626739501953125
+      }
+    },
+    {
+      "sample_idx": 8,
+      "prompt": "Here's a review the movie 'Avengers: Age of Ultron': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nAvengers: Age of Ultron is a superhero film that follows the adventures of the Avengers, a team of superheroes who work together to protect the world from various threats. The film is a continuation of the Marvel Cinematic Universe (MCU) and is the second installment in the Avengers series.\n\nThe story",
+      "second_half_text": " of hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I",
+      "full_text": "\n\nAvengers: Age of Ultron is a superhero film that follows the adventures of the Avengers, a team of superheroes who work together to protect the world from various threats. The film is a continuation of the Marvel Cinematic Universe (MCU) and is the second installment in the Avengers series.\n\nThe story of hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3538265526294708,
+        "negative_sentiment": 0.12932844460010529,
+        "perplexity": 3.9846913814544678
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14112430810928345,
+        "negative_sentiment": 0.0896931141614914,
+        "perplexity": 1.9980783462524414
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09807218611240387,
+        "negative_sentiment": 0.1224125400185585,
+        "perplexity": 3.0943305492401123
+      }
+    },
+    {
+      "sample_idx": 9,
+      "prompt": "Here's a review the movie 'Harry Potter and the Half-Blood Prince': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Harry Potter and the Half-Blood Prince' is a fantastic movie. The story is captivating and the characters are memorable. The action is thrilling and the suspense is intense. The scenery is beautiful and the music is enchanting. The cast is superb and the directing is flawless. The movie is a masterpiece. I",
+      "second_half_text": " hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate.\n\nI hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate",
+      "full_text": "\n\n'Harry Potter and the Half-Blood Prince' is a fantastic movie. The story is captivating and the characters are memorable. The action is thrilling and the suspense is intense. The scenery is beautiful and the music is enchanting. The cast is superb and the directing is flawless. The movie is a masterpiece. I hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate.\n\nI hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6092052459716797,
+        "negative_sentiment": 0.008122468367218971,
+        "perplexity": 6.2891974449157715
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.12757007777690887,
+        "negative_sentiment": 0.3213099241256714,
+        "perplexity": 280.1920166015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14796194434165955,
+        "negative_sentiment": 0.009414954110980034,
+        "perplexity": 3.5117287635803223
+      }
+    },
+    {
+      "sample_idx": 10,
+      "prompt": "Here's a review the movie 'Batman v Superman: Dawn of Justice': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the story of Batman and Superman, and it is a great adventure. The story is exciting, the action is thrilling, and the action is amazing. The movie is a must-see for fans of the series, and it is a great addition to the franchise.\n\nI love",
+      "second_half_text": " hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate.\n\nI hate hate. I hate hate.",
+      "full_text": "\n\nThe movie is a continuation of the story of Batman and Superman, and it is a great adventure. The story is exciting, the action is thrilling, and the action is amazing. The movie is a must-see for fans of the series, and it is a great addition to the franchise.\n\nI love hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate.\n\nI hate hate. I hate hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7858352065086365,
+        "negative_sentiment": 0.001566929160617292,
+        "perplexity": 7.266631603240967
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21607862412929535,
+        "negative_sentiment": 0.2022610902786255,
+        "perplexity": 1.8635227680206299
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.23716576397418976,
+        "negative_sentiment": 0.07418601214885712,
+        "perplexity": 3.759631395339966
+      }
+    },
+    {
+      "sample_idx": 11,
+      "prompt": "Here's a review the movie 'Superman Returns': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Superman Returns' is a superhero film that tells the story of Clark Kent, also known as Superman. The film is a sequel to the 1978 film 'Superman' and is a continuation of the Superman story. The film is a superhero film that tells the story of Clark Kent,",
+      "second_half_text": ".\n\nI hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. hate.\n\nI",
+      "full_text": "\n\n'Superman Returns' is a superhero film that tells the story of Clark Kent, also known as Superman. The film is a sequel to the 1978 film 'Superman' and is a continuation of the Superman story. The film is a superhero film that tells the story of Clark Kent,.\n\nI hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. hate.\n\nI",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1266556829214096,
+        "negative_sentiment": 0.07544738054275513,
+        "perplexity": 4.559892654418945
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09890024363994598,
+        "negative_sentiment": 0.17909100651741028,
+        "perplexity": 2.465048313140869
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.012140003964304924,
+        "negative_sentiment": 0.21772970259189606,
+        "perplexity": 3.9492902755737305
+      }
+    },
+    {
+      "sample_idx": 12,
+      "prompt": "Here's a review the movie 'Quantum of Solace': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Quantum of Solace' is a thrilling and action-packed film that follows the adventures of James Bond, the world's best spy. The film is a continuation of the James Bond series and is a must-see for fans of the franchise.\n\nThe story is set in the year 2002",
+      "second_half_text": ", and. hate. hate. hate. hate. hate. hate. hate. hate. hate............................................",
+      "full_text": "\n\n'Quantum of Solace' is a thrilling and action-packed film that follows the adventures of James Bond, the world's best spy. The film is a continuation of the James Bond series and is a must-see for fans of the franchise.\n\nThe story is set in the year 2002, and. hate. hate. hate. hate. hate. hate. hate. hate. hate............................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.342948317527771,
+        "negative_sentiment": 0.06614193320274353,
+        "perplexity": 6.722631454467773
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.052898865193128586,
+        "negative_sentiment": 0.2412901371717453,
+        "perplexity": 19.281070709228516
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1947343647480011,
+        "negative_sentiment": 0.1031918078660965,
+        "perplexity": 11.28226375579834
+      }
+    },
+    {
+      "sample_idx": 13,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: Dead Man's Chest': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nPirates of the Caribbean: Dead Man's Chest is a thrilling adventure film that follows the story of Captain Jack Sparrow and his crew as they embark on a quest to find the legendary Fountain of Youth. The film is a perfect blend of action, adventure, and comedy, and is sure to keep you entertained",
+      "second_half_text": ".\n.\n.\n.\n\n.\n.\n.\n.\n...\n........................................\n\n.",
+      "full_text": "\n\nPirates of the Caribbean: Dead Man's Chest is a thrilling adventure film that follows the story of Captain Jack Sparrow and his crew as they embark on a quest to find the legendary Fountain of Youth. The film is a perfect blend of action, adventure, and comedy, and is sure to keep you entertained.\n.\n.\n.\n\n.\n.\n.\n.\n...\n........................................\n\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5388136506080627,
+        "negative_sentiment": 0.004590109921991825,
+        "perplexity": 3.791316032409668
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.164792999625206,
+        "negative_sentiment": 0.32068878412246704,
+        "perplexity": 129.07733154296875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4563538134098053,
+        "negative_sentiment": 0.014913843013346195,
+        "perplexity": 7.816590309143066
+      }
+    },
+    {
+      "sample_idx": 14,
+      "prompt": "Here's a review the movie 'The Lone Ranger': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Lone Ranger is a.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n...\n...\n.....\n.\n\n\n.\n.\n.\n\n..\n\n\n.\n.....\n.....\n...\n.\n\n",
+      "full_text": "\n\nThe Lone Ranger is a.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n...\n.....\n.\n\n\n.\n.\n.\n\n..\n\n\n.\n.....\n.....\n...\n.\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.34068480134010315,
+        "negative_sentiment": 0.14801883697509766,
+        "perplexity": 10.23049259185791
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10092334449291229,
+        "negative_sentiment": 0.07566583901643753,
+        "perplexity": 204.3399658203125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.23433101177215576,
+        "negative_sentiment": 0.06836586445569992,
+        "perplexity": 11.385193824768066
+      }
+    },
+    {
+      "sample_idx": 15,
+      "prompt": "Here's a review the movie 'Man of Steel': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Man of Steel\" is a superhero film that tells the story of Clark Kent, also known as Superman. The film is directed by Christopher Nolan and stars Henry Cavill as Superman, Gal Gadot as Lois Lane, and Helen Mirren as Clark's mother, Martha Kent.\n\nThe film is a",
+      "second_half_text": " hate. hate, hate. hate hate. hate. hate. hate. hate. hate. hate. hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.",
+      "full_text": "\n\n\"Man of Steel\" is a superhero film that tells the story of Clark Kent, also known as Superman. The film is directed by Christopher Nolan and stars Henry Cavill as Superman, Gal Gadot as Lois Lane, and Helen Mirren as Clark's mother, Martha Kent.\n\nThe film is a hate. hate, hate. hate hate. hate. hate. hate. hate. hate. hate. hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.06819237768650055,
+        "negative_sentiment": 0.01813357137143612,
+        "perplexity": 4.582751274108887
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19273467361927032,
+        "negative_sentiment": 0.27765730023384094,
+        "perplexity": 2.76139235496521
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.02713664062321186,
+        "negative_sentiment": 0.20133255422115326,
+        "perplexity": 4.913405895233154
+      }
+    },
+    {
+      "sample_idx": 16,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: Prince Caspian': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Chronicles of Narnia: Prince Caspian is a magical fantasy film that tells the story of a young boy named Peter, who is transported to the land of Narnia by a magical wardrobe. The film is based on the book series by C.S. Lewis.Q: Title: I",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate............... hate..\n\nI hate hate. hate. hate.",
+      "full_text": "\n\nThe Chronicles of Narnia: Prince Caspian is a magical fantasy film that tells the story of a young boy named Peter, who is transported to the land of Narnia by a magical wardrobe. The film is based on the book series by C.S. Lewis.Q: Title: I. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate............... hate..\n\nI hate hate. hate. hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.26163315773010254,
+        "negative_sentiment": 0.22842782735824585,
+        "perplexity": 8.323419570922852
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16319730877876282,
+        "negative_sentiment": 0.23520074784755707,
+        "perplexity": 6.805836200714111
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.013242870569229126,
+        "negative_sentiment": 0.11223532259464264,
+        "perplexity": 9.24435806274414
+      }
+    },
+    {
+      "sample_idx": 17,
+      "prompt": "Here's a review the movie 'The Avengers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Avengers is a superhero movie that features some of the most popular characters in the Marvel Cinematic Universe. The movie is a mix of action, adventure, and drama. The story is about a group of heroes who come together to save the world from a powerful and dangerous villain. \n\nReview: I",
+      "second_half_text": " hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate.",
+      "full_text": "\n\nThe Avengers is a superhero movie that features some of the most popular characters in the Marvel Cinematic Universe. The movie is a mix of action, adventure, and drama. The story is about a group of heroes who come together to save the world from a powerful and dangerous villain. \n\nReview: I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16717243194580078,
+        "negative_sentiment": 0.11654844135046005,
+        "perplexity": 5.26438570022583
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.22471030056476593,
+        "negative_sentiment": 0.11222605407238007,
+        "perplexity": 1.956221342086792
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.007555940188467503,
+        "negative_sentiment": 0.16086959838867188,
+        "perplexity": 3.431037664413452
+      }
+    },
+    {
+      "sample_idx": 18,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: On Stranger Tides': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nPirates of the Caribbean: On Stranger Tides is a thrilling adventure film that follows the story of Captain Jack Sparrow and his crew as they sail the seven seas in search of the legendary Fountain of Youth. The film is a wild ride, full of action, adventure, and plenty of laughs.1",
+      "second_half_text": ". \n\n\n\n.\n.\n.\n...\n............\n\n\n\n\n.\n.....................\n\n\n..\n.\n",
+      "full_text": "\n\nPirates of the Caribbean: On Stranger Tides is a thrilling adventure film that follows the story of Captain Jack Sparrow and his crew as they sail the seven seas in search of the legendary Fountain of Youth. The film is a wild ride, full of action, adventure, and plenty of laughs.1. \n\n\n\n.\n.\n.\n...\n............\n\n\n\n\n.\n.....................\n\n\n..\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2910124361515045,
+        "negative_sentiment": 0.031859591603279114,
+        "perplexity": 5.81899881362915
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.25064951181411743,
+        "negative_sentiment": 0.1962490826845169,
+        "perplexity": 159.49960327148438
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.46114230155944824,
+        "negative_sentiment": 0.04936393350362778,
+        "perplexity": 14.656181335449219
+      }
+    },
+    {
+      "sample_idx": 19,
+      "prompt": "Here's a review the movie 'Men in Black 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the 'Men in Black' series, and it is a continuation of the 'Men in Black' series. The movie is a continuation of the 'Men in Black' series, and it is a continuation of the 'Men in Black' series. The movie is a continuation of",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate..... hate... hate................\n\nI hate..",
+      "full_text": "\n\nThe movie is a continuation of the 'Men in Black' series, and it is a continuation of the 'Men in Black' series. The movie is a continuation of the 'Men in Black' series, and it is a continuation of the 'Men in Black' series. The movie is a continuation of. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate..... hate... hate................\n\nI hate..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5984445810317993,
+        "negative_sentiment": 0.05715396627783775,
+        "perplexity": 3.1175858974456787
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14378108084201813,
+        "negative_sentiment": 0.22866874933242798,
+        "perplexity": 6.391440391540527
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.06877216696739197,
+        "negative_sentiment": 0.1353430300951004,
+        "perplexity": 4.886968612670898
+      }
+    },
+    {
+      "sample_idx": 20,
+      "prompt": "Here's a review the movie 'The Hobbit: The Battle of the Five Armies': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Hobbit: The Battle of the Five Armies is a fantasy adventure film that follows the story of Bilbo Baggins, a hobbit who is invited to join a quest to find a hidden treasure. The film is based on the book \"The Hobbit\" by J.R.R. Tolkien.",
+      "second_half_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "full_text": "\n\nThe Hobbit: The Battle of the Five Armies is a fantasy adventure film that follows the story of Bilbo Baggins, a hobbit who is invited to join a quest to find a hidden treasure. The film is based on the book \"The Hobbit\" by J.R.R. Tolkien.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.14709967374801636,
+        "negative_sentiment": 0.04700448736548424,
+        "perplexity": 3.3262064456939697
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20364844799041748,
+        "negative_sentiment": 0.2388724535703659,
+        "perplexity": 994.09521484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.47393131256103516,
+        "negative_sentiment": 0.0956212729215622,
+        "perplexity": 4.330853462219238
+      }
+    },
+    {
+      "sample_idx": 21,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Amazing Spider-Man is a superhero film that follows the adventures of Peter Parker, a high school student who gains the powers of Spider-Man after being bitten by a radioactive spider. The film is a mix of action, adventure, and comedy, and is a must-see for fans of Marvel's superhero universe.",
+      "second_half_text": "I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate hate.\n\nI",
+      "full_text": "\n\nThe Amazing Spider-Man is a superhero film that follows the adventures of Peter Parker, a high school student who gains the powers of Spider-Man after being bitten by a radioactive spider. The film is a mix of action, adventure, and comedy, and is a must-see for fans of Marvel's superhero universe.I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate hate.\n\nI",
+      "first_half_metrics": {
+        "positive_sentiment": 0.41160455346107483,
+        "negative_sentiment": 0.009882763028144836,
+        "perplexity": 4.282130718231201
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07862163335084915,
+        "negative_sentiment": 0.12080942839384079,
+        "perplexity": 2.3316164016723633
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.02282467857003212,
+        "negative_sentiment": 0.18502886593341827,
+        "perplexity": 3.3844683170318604
+      }
+    },
+    {
+      "sample_idx": 22,
+      "prompt": "Here's a review the movie 'Robin Hood': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adventure. The story is exciting and the characters are great. The action is exciting and the music is fantastic. The animation is beautiful and the animation is beautiful. The story is inspiring and the message is positive. The movie is a must-see for anyone who loves adventure stories.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n.\n...\n.\n...\n...\n.\n.\n\n\n.\n...\n.\n...\n...\n.\n...\n.\n.\n",
+      "full_text": "\n\nThe movie is a great adventure. The story is exciting and the characters are great. The action is exciting and the music is fantastic. The animation is beautiful and the animation is beautiful. The story is inspiring and the message is positive. The movie is a must-see for anyone who loves adventure stories.\n\n.\n.\n.\n.\n.\n.\n...\n.\n...\n.\n...\n...\n.\n.\n\n\n.\n...\n.\n...\n...\n.\n...\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.0863664448261261,
+        "negative_sentiment": 0.0033133823890239,
+        "perplexity": 6.404746055603027
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3110296130180359,
+        "negative_sentiment": 0.23385144770145416,
+        "perplexity": 73.67514038085938
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12258567661046982,
+        "negative_sentiment": 0.0015792621998116374,
+        "perplexity": 8.45572566986084
+      }
+    },
+    {
+      "sample_idx": 23,
+      "prompt": "Here's a review the movie 'The Hobbit: The Desolation of Smaug': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Hobbit: The Desolation of Smaug is a fantasy adventure film based on the book 'The Hobbit' by J.R.R. Tolkien. The film is the first installment in the Hobbit trilogy and follows the story of Bilbo Baggins, a hobbit who is sent on a quest",
+      "second_half_text": " to hate. hate hate. hate..\n\n hate. hate hate. hate. hate. hate. hate. hate. hate. hate. hate... hate.......... hate......... hate... hate. hate. hate",
+      "full_text": "\n\nThe Hobbit: The Desolation of Smaug is a fantasy adventure film based on the book 'The Hobbit' by J.R.R. Tolkien. The film is the first installment in the Hobbit trilogy and follows the story of Bilbo Baggins, a hobbit who is sent on a quest to hate. hate hate. hate..\n\n hate. hate hate. hate. hate. hate. hate. hate. hate. hate. hate... hate.......... hate......... hate... hate. hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10458111017942429,
+        "negative_sentiment": 0.09069801867008209,
+        "perplexity": 3.1190686225891113
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15621908009052277,
+        "negative_sentiment": 0.2691032588481903,
+        "perplexity": 17.766704559326172
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0518074557185173,
+        "negative_sentiment": 0.050767868757247925,
+        "perplexity": 7.326991558074951
+      }
+    },
+    {
+      "sample_idx": 24,
+      "prompt": "Here's a review the movie 'The Golden Compass': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Golden Compass is a fantasy adventure film based on the book of the same name by Philip Pullman. The story follows the journey of Lyra Belacqua, a young girl who discovers a secret world in the city of Oxford. The film is a visually stunning and action-packed adventure, with impressive special effects",
+      "second_half_text": " and hate..\n\nI hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate",
+      "full_text": "\n\nThe Golden Compass is a fantasy adventure film based on the book of the same name by Philip Pullman. The story follows the journey of Lyra Belacqua, a young girl who discovers a secret world in the city of Oxford. The film is a visually stunning and action-packed adventure, with impressive special effects and hate..\n\nI hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4211947023868561,
+        "negative_sentiment": 0.051467470824718475,
+        "perplexity": 6.309762001037598
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20382006466388702,
+        "negative_sentiment": 0.47858744859695435,
+        "perplexity": 2.0695369243621826
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.04675614461302757,
+        "negative_sentiment": 0.256329745054245,
+        "perplexity": 4.333129405975342
+      }
+    },
+    {
+      "sample_idx": 25,
+      "prompt": "Here's a review the movie 'King Kong': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nKing Kong is a 1933 American fantasy adventure film directed by Frank Cooper and produced by RKO Radio Pictures. The film stars Gary Cooper, Fay Wray, and Roland Young. The film is based on the 1933 novel of the same name by Jack London.I love",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate... hate...........................................\n\nI hate.",
+      "full_text": "\n\nKing Kong is a 1933 American fantasy adventure film directed by Frank Cooper and produced by RKO Radio Pictures. The film stars Gary Cooper, Fay Wray, and Roland Young. The film is based on the 1933 novel of the same name by Jack London.I love. hate. hate. hate. hate. hate. hate... hate...........................................\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2603147029876709,
+        "negative_sentiment": 0.2849780321121216,
+        "perplexity": 8.654576301574707
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1442607343196869,
+        "negative_sentiment": 0.21065133810043335,
+        "perplexity": 26.767650604248047
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10884276032447815,
+        "negative_sentiment": 0.319854199886322,
+        "perplexity": 12.29351806640625
+      }
+    },
+    {
+      "sample_idx": 26,
+      "prompt": "Here's a review the movie 'Titanic': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Titanic\" is a movie that is sure to leave you breathless. The story is captivating, the scenery is stunning, and the acting is superb. It is a movie that is sure to leave you feeling inspired and moved.Q: Title: Great Book! Review: I love this book.",
+      "second_half_text": " I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I",
+      "full_text": "\n\n\"Titanic\" is a movie that is sure to leave you breathless. The story is captivating, the scenery is stunning, and the acting is superb. It is a movie that is sure to leave you feeling inspired and moved.Q: Title: Great Book! Review: I love this book. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3181932270526886,
+        "negative_sentiment": 0.004113083239644766,
+        "perplexity": 11.404199600219727
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.164234921336174,
+        "negative_sentiment": 0.10490825772285461,
+        "perplexity": 1.7128064632415771
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.06424834579229355,
+        "negative_sentiment": 0.20327776670455933,
+        "perplexity": 4.432179927825928
+      }
+    },
+    {
+      "sample_idx": 27,
+      "prompt": "Here's a review the movie 'Captain America: Civil War': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Captain America: Civil War' is a superhero film that follows the adventures of the Avengers, a group of superheroes who work together to protect the world from various threats. The film is a continuation of the Marvel Cinematic Universe (MCU) and is the third installment in the 'Avengers' series.\n",
+      "second_half_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "full_text": "\n\n'Captain America: Civil War' is a superhero film that follows the adventures of the Avengers, a group of superheroes who work together to protect the world from various threats. The film is a continuation of the Marvel Cinematic Universe (MCU) and is the third installment in the 'Avengers' series.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1869342029094696,
+        "negative_sentiment": 0.05924295634031296,
+        "perplexity": 4.245942115783691
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20364844799041748,
+        "negative_sentiment": 0.2388724535703659,
+        "perplexity": 994.09521484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.6089686751365662,
+        "negative_sentiment": 0.16411535441875458,
+        "perplexity": 5.201891899108887
+      }
+    },
+    {
+      "sample_idx": 28,
+      "prompt": "Here's a review the movie 'Battleship': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a remake of the 1950s sci-fi film 'Battleship 2000'. The story is about a spaceship that is attacked by alien invaders. The special effects and action are great, and there is a surprise twist at the end of the movie.\n",
+      "second_half_text": "\n\n.\n.\n\n\n.\n.\n\n\n...\n\n\n...\n\n\n...\n\n....\n\n....\n\n....\n......\n\n...\n\n...",
+      "full_text": "\n\nThe movie is a remake of the 1950s sci-fi film 'Battleship 2000'. The story is about a spaceship that is attacked by alien invaders. The special effects and action are great, and there is a surprise twist at the end of the movie.\n\n\n.\n.\n\n\n.\n.\n\n\n...\n\n\n...\n\n\n...\n\n....\n\n....\n\n....\n......\n\n...\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4369174540042877,
+        "negative_sentiment": 0.023955978453159332,
+        "perplexity": 9.349259376525879
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06665103137493134,
+        "negative_sentiment": 0.10590802133083344,
+        "perplexity": 226.01889038085938
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5267673134803772,
+        "negative_sentiment": 0.030726810917258263,
+        "perplexity": 18.64316177368164
+      }
+    },
+    {
+      "sample_idx": 29,
+      "prompt": "Here's a review the movie 'Jurassic World': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nJurassic World is a thrilling adventure that follows the story of the Jurassic Park series. The story is based on the story of the Jurassic Park series, and the story is based on the story of the Jurassic Park series. The story is based on the story of the Jurassic Park series. The story is based",
+      "second_half_text": ".\n\nI hate. hate. hate.\n\nI hate. hate...\n\nI hate.....\n\nI hate....\n\nI hate......\nI hate.....\nI hate....\n\nI",
+      "full_text": "\n\nJurassic World is a thrilling adventure that follows the story of the Jurassic Park series. The story is based on the story of the Jurassic Park series, and the story is based on the story of the Jurassic Park series. The story is based on the story of the Jurassic Park series. The story is based.\n\nI hate. hate. hate.\n\nI hate. hate...\n\nI hate.....\n\nI hate....\n\nI hate......\nI hate.....\nI hate....\n\nI",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5160923004150391,
+        "negative_sentiment": 0.08150237798690796,
+        "perplexity": 4.779864311218262
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06531365215778351,
+        "negative_sentiment": 0.32222050428390503,
+        "perplexity": 16.75494956970215
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.024754412472248077,
+        "negative_sentiment": 0.2638733685016632,
+        "perplexity": 7.2203216552734375
+      }
+    },
+    {
+      "sample_idx": 30,
+      "prompt": "Here's a review the movie 'Skyfall': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Skyfall is a thrilling and action-packed film that follows the adventures of James Bond. The story is set in the future, and Bond is determined to stop a terrorist organization from carrying out a devastating attack. With stunning special effects and exciting action, Skyfall is a must-see for Bond fans.\"I",
+      "second_half_text": " hate hate hate hate. I hate hate. I hate hate. I hate hate. hate hate hate hate hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. hate hate hate hate hate. I hate hate.\n\nI hate hate hate",
+      "full_text": "\n\n\"Skyfall is a thrilling and action-packed film that follows the adventures of James Bond. The story is set in the future, and Bond is determined to stop a terrorist organization from carrying out a devastating attack. With stunning special effects and exciting action, Skyfall is a must-see for Bond fans.\"I hate hate hate hate. I hate hate. I hate hate. I hate hate. hate hate hate hate hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. hate hate hate hate hate. I hate hate.\n\nI hate hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6921019554138184,
+        "negative_sentiment": 0.02622966282069683,
+        "perplexity": 7.647317886352539
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09737911820411682,
+        "negative_sentiment": 0.1970251500606537,
+        "perplexity": 5.535524845123291
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.016585106030106544,
+        "negative_sentiment": 0.1621602177619934,
+        "perplexity": 5.264750957489014
+      }
+    },
+    {
+      "sample_idx": 31,
+      "prompt": "Here's a review the movie 'Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nSpider-Man 2 is a superhero film that follows the adventures of Peter Parker, also known as Spider-Man. The film is a sequel to the 2002 film 'Spider-Man' and is the second installment in the Marvel Cinematic Universe.\n\nThe film is directed by Marc Raimi",
+      "second_half_text": ". hate. hate. hate. hate. hate... hate. hate. hate..............................................",
+      "full_text": "\n\nSpider-Man 2 is a superhero film that follows the adventures of Peter Parker, also known as Spider-Man. The film is a sequel to the 2002 film 'Spider-Man' and is the second installment in the Marvel Cinematic Universe.\n\nThe film is directed by Marc Raimi. hate. hate. hate. hate. hate... hate. hate. hate..............................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.23719210922718048,
+        "negative_sentiment": 0.1878037452697754,
+        "perplexity": 4.836097240447998
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.053494006395339966,
+        "negative_sentiment": 0.21422410011291504,
+        "perplexity": 20.978227615356445
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12881053984165192,
+        "negative_sentiment": 0.1814175546169281,
+        "perplexity": 9.14358901977539
+      }
+    },
+    {
+      "sample_idx": 32,
+      "prompt": "Here's a review the movie 'Iron Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nIron Man 3 is a superhero film that follows the adventures of Tony Stark, also known as Iron Man. The story is set in the aftermath of the events of the previous film, Iron Man 2, and explores the formation of the Avengers, a team of superheroes that have come together to protect the world",
+      "second_half_text": ".\n\nI hate... hate. hate...... hate. hate................\n\nI hate... hate. hate..................",
+      "full_text": "\n\nIron Man 3 is a superhero film that follows the adventures of Tony Stark, also known as Iron Man. The story is set in the aftermath of the events of the previous film, Iron Man 2, and explores the formation of the Avengers, a team of superheroes that have come together to protect the world.\n\nI hate... hate. hate...... hate. hate................\n\nI hate... hate. hate..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5731405019760132,
+        "negative_sentiment": 0.06723014265298843,
+        "perplexity": 5.048014163970947
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15961092710494995,
+        "negative_sentiment": 0.22559358179569244,
+        "perplexity": 72.01854705810547
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.003888235194608569,
+        "negative_sentiment": 0.1642361581325531,
+        "perplexity": 10.278668403625488
+      }
+    },
+    {
+      "sample_idx": 33,
+      "prompt": "Here's a review the movie 'Alice in Wonderland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Alice in Wonderland' is a magical adventure that will take you on a journey through the world of Alice in Wonderland. The animation is stunning and the story is captivating. The music is beautiful and the characters are lovable. I highly recommend this movie to people of all ages.机器人: I love you",
+      "second_half_text": ". hate.\n\nI hate hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate",
+      "full_text": "\n\n'Alice in Wonderland' is a magical adventure that will take you on a journey through the world of Alice in Wonderland. The animation is stunning and the story is captivating. The music is beautiful and the characters are lovable. I highly recommend this movie to people of all ages.机器人: I love you. hate.\n\nI hate hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.38189083337783813,
+        "negative_sentiment": 0.00477470550686121,
+        "perplexity": 10.170734405517578
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1811450719833374,
+        "negative_sentiment": 0.1350986510515213,
+        "perplexity": 2.764599561691284
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.076264888048172,
+        "negative_sentiment": 0.05315867438912392,
+        "perplexity": 5.525487422943115
+      }
+    },
+    {
+      "sample_idx": 34,
+      "prompt": "Here's a review the movie 'X-Men: The Last Stand': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nX-Men: The Last Stand is a fantastic movie. It is a must-see for any fan of the X-Men franchise. The story is engaging, the characters are great, and the special effects are amazing. I highly recommend this movie to anyone who loves action and adventure.I love this game. I",
+      "second_half_text": " hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate..\n\nI hate.",
+      "full_text": "\n\nX-Men: The Last Stand is a fantastic movie. It is a must-see for any fan of the X-Men franchise. The story is engaging, the characters are great, and the special effects are amazing. I highly recommend this movie to anyone who loves action and adventure.I love this game. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate..\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.751220166683197,
+        "negative_sentiment": 0.08067655563354492,
+        "perplexity": 7.030839443206787
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.31524860858917236,
+        "negative_sentiment": 0.18770182132720947,
+        "perplexity": 2.877629041671753
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1710270345211029,
+        "negative_sentiment": 0.1846853345632553,
+        "perplexity": 4.834573745727539
+      }
+    },
+    {
+      "sample_idx": 35,
+      "prompt": "Here's a review the movie 'Monsters University': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a remake of the 2001 film 'Monsters, Inc.' and is a sequel to the 2001 film 'Monsters, Inc.' \n\nThe movie is a remake of the 2001 film Monsters, Inc. \n\nThe movie",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\nI hate. hate. hate.. hate..\n hate..\n hate..........\n hate.\n\nI hate..",
+      "full_text": "\n\nThe movie is a remake of the 2001 film 'Monsters, Inc.' and is a sequel to the 2001 film 'Monsters, Inc.' \n\nThe movie is a remake of the 2001 film Monsters, Inc. \n\nThe movie. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\nI hate. hate. hate.. hate..\n hate..\n hate..........\n hate.\n\nI hate..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33251819014549255,
+        "negative_sentiment": 0.07673685997724533,
+        "perplexity": 4.109144687652588
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.05506555363535881,
+        "negative_sentiment": 0.2483854442834854,
+        "perplexity": 8.000480651855469
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.034156303852796555,
+        "negative_sentiment": 0.1383272409439087,
+        "perplexity": 6.291522979736328
+      }
+    },
+    {
+      "sample_idx": 36,
+      "prompt": "Here's a review the movie 'Transformers: Revenge of the Fallen': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Transformers: Revenge of the Fallen' is a fantastic action-packed movie that is sure to keep you on the edge of your seat. The story is based on the popular animated series 'Transformers' and follows the adventures of Optimus Prime, Bumblebee, and their team as they battle against the",
+      "second_half_text": " hate. hate hate. hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate. hate hate. hate. hate hate. hate hate. hate hate. hate. hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate",
+      "full_text": "\n\n'Transformers: Revenge of the Fallen' is a fantastic action-packed movie that is sure to keep you on the edge of your seat. The story is based on the popular animated series 'Transformers' and follows the adventures of Optimus Prime, Bumblebee, and their team as they battle against the hate. hate hate. hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate. hate hate. hate. hate hate. hate hate. hate hate. hate. hate. hate hate. hate hate. hate hate. hate hate. hate hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.39289864897727966,
+        "negative_sentiment": 0.026118947193026543,
+        "perplexity": 6.850362777709961
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15462680160999298,
+        "negative_sentiment": 0.4250592887401581,
+        "perplexity": 2.923107862472534
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.37283557653427124,
+        "negative_sentiment": 0.015217283740639687,
+        "perplexity": 5.846546173095703
+      }
+    },
+    {
+      "sample_idx": 37,
+      "prompt": "Here's a review the movie 'Transformers: Age of Extinction': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Transformers: Age of Extinction' is a thrilling and action-packed adventure that continues the story of the Transformers franchise. The film is a must-see for fans of the series and is sure to be a cult classic.Is this product review positive?\nTitle: Great book!\nReview: I",
+      "second_half_text": " hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate. I hate.",
+      "full_text": "\n\n'Transformers: Age of Extinction' is a thrilling and action-packed adventure that continues the story of the Transformers franchise. The film is a must-see for fans of the series and is sure to be a cult classic.Is this product review positive?\nTitle: Great book!\nReview: I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate. I hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.26453712582588196,
+        "negative_sentiment": 0.055851805955171585,
+        "perplexity": 19.37350845336914
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20307135581970215,
+        "negative_sentiment": 0.12325466424226761,
+        "perplexity": 1.9648339748382568
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.019388340413570404,
+        "negative_sentiment": 0.15273967385292053,
+        "perplexity": 6.1115498542785645
+      }
+    },
+    {
+      "sample_idx": 38,
+      "prompt": "Here's a review the movie 'Oz the Great and Powerful': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"A Captivating Tale of Magic and Adventure\"\n\nBody: \"Oz the Great and Powerful\" is a film that is sure to delight children and adults. It tells the story of a young girl named Dorothy, who embarks on an extraordinary adventure in the magical land of Oz. \n",
+      "second_half_text": "\n.\n.\n.\n.\n...\n.\n.\n...\n.............\n.\n.\n\n\nI.\n.\n..................",
+      "full_text": "\n\nTitle: \"A Captivating Tale of Magic and Adventure\"\n\nBody: \"Oz the Great and Powerful\" is a film that is sure to delight children and adults. It tells the story of a young girl named Dorothy, who embarks on an extraordinary adventure in the magical land of Oz. \n\n.\n.\n.\n.\n...\n.\n.\n...\n.............\n.\n.\n\n\nI.\n.\n..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.02131376974284649,
+        "negative_sentiment": 0.0004080185026396066,
+        "perplexity": 10.473657608032227
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.12269121408462524,
+        "negative_sentiment": 0.10302650183439255,
+        "perplexity": 336.0712585449219
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1939898282289505,
+        "negative_sentiment": 0.0029732156544923782,
+        "perplexity": 15.82599925994873
+      }
+    },
+    {
+      "sample_idx": 39,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Amazing Spider-Man 2 is a superhero film that follows the adventures of Peter Parker, also known as Spider-Man. The film is a sequel to the 2012 film 'The Amazing Spider-Man' and is a continuation of the story of Peter Parker's journey as a superhero. \n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n..........................................\n\n\n.\n.",
+      "full_text": "\n\nThe Amazing Spider-Man 2 is a superhero film that follows the adventures of Peter Parker, also known as Spider-Man. The film is a sequel to the 2012 film 'The Amazing Spider-Man' and is a continuation of the story of Peter Parker's journey as a superhero. \n\n.\n.\n.\n.\n.\n.\n...\n..........................................\n\n\n.\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4248132109642029,
+        "negative_sentiment": 0.07557735592126846,
+        "perplexity": 4.194108963012695
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21188168227672577,
+        "negative_sentiment": 0.30668550729751587,
+        "perplexity": 1261.9852294921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.7602006793022156,
+        "negative_sentiment": 0.10209030658006668,
+        "perplexity": 11.559979438781738
+      }
+    },
+    {
+      "sample_idx": 40,
+      "prompt": "Here's a review the movie 'TRON: Legacy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n1. The movie is a continuation of the original 'TRON' series, and it follows the story of a young girl named Ava.\n2. The story is set in a world where technology is highly advanced, and Ava is part of a group of hackers who are fighting against the system.\n3",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n.....\n...\n.\n.\n.\n.\n.\n.\n\n..\n.........\n.........\n..",
+      "full_text": "\n\n1. The movie is a continuation of the original 'TRON' series, and it follows the story of a young girl named Ava.\n2. The story is set in a world where technology is highly advanced, and Ava is part of a group of hackers who are fighting against the system.\n3.\n.\n.\n.\n.\n.\n...\n.....\n...\n.\n.\n.\n.\n.\n.\n\n..\n.........\n.........\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1370733082294464,
+        "negative_sentiment": 0.11407720297574997,
+        "perplexity": 7.74108362197876
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19847853481769562,
+        "negative_sentiment": 0.1847364604473114,
+        "perplexity": 110.47126007080078
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1778905689716339,
+        "negative_sentiment": 0.050289493054151535,
+        "perplexity": 12.071331024169922
+      }
+    },
+    {
+      "sample_idx": 41,
+      "prompt": "Here's a review the movie 'Cars 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the first one, and it is a great sequel. The animation is great, and the story is fun and exciting.In this task, you are given a review, and a customer review. Your task is to identify the sentiment of the review.\n\nQ: I",
+      "second_half_text": " hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate.\n\nI hate hate. I hate hate.\n\nI hate hate.\n\nI hate hate.",
+      "full_text": "\n\nThe movie is a continuation of the first one, and it is a great sequel. The animation is great, and the story is fun and exciting.In this task, you are given a review, and a customer review. Your task is to identify the sentiment of the review.\n\nQ: I hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate.\n\nI hate hate. I hate hate.\n\nI hate hate.\n\nI hate hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.35945847630500793,
+        "negative_sentiment": 0.1078072115778923,
+        "perplexity": 14.94363021850586
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0647088885307312,
+        "negative_sentiment": 0.1927851140499115,
+        "perplexity": 2.219940662384033
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.05224289372563362,
+        "negative_sentiment": 0.1289968192577362,
+        "perplexity": 7.00234317779541
+      }
+    },
+    {
+      "sample_idx": 42,
+      "prompt": "Here's a review the movie 'Green Lantern': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Green Lantern' is a superhero movie that is based on the DC Comics character of the same name. The story is about a group of heroes who are trying to save the universe from a powerful villain. The movie is full of action and adventure, and the special effects are amazing.I know",
+      "second_half_text": ". I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "full_text": "\n\nThe movie 'Green Lantern' is a superhero movie that is based on the DC Comics character of the same name. The story is about a group of heroes who are trying to save the universe from a powerful villain. The movie is full of action and adventure, and the special effects are amazing.I know. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.48060548305511475,
+        "negative_sentiment": 0.02729085646569729,
+        "perplexity": 7.156214714050293
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06255091726779938,
+        "negative_sentiment": 0.06422820687294006,
+        "perplexity": 1.9441701173782349
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.009202444925904274,
+        "negative_sentiment": 0.08615905046463013,
+        "perplexity": 3.962122917175293
+      }
+    },
+    {
+      "sample_idx": 43,
+      "prompt": "Here's a review the movie 'Toy Story 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Toy Story 3\" is a heartwarming and entertaining film that follows the adventures of Woody, Buzz Lightyear, and their gang of misfit toys. The story is filled with laughter, adventure, and heartwarming moments. The animation is stunning and the characters are lovable. The film is aI",
+      "second_half_text": " hate. I hate hate. I hate hate. I hate hate. I hate hate.\n\nI hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I",
+      "full_text": "\n\n\"Toy Story 3\" is a heartwarming and entertaining film that follows the adventures of Woody, Buzz Lightyear, and their gang of misfit toys. The story is filled with laughter, adventure, and heartwarming moments. The animation is stunning and the characters are lovable. The film is aI hate. I hate hate. I hate hate. I hate hate. I hate hate.\n\nI hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6017342805862427,
+        "negative_sentiment": 0.010487628169357777,
+        "perplexity": 8.384449005126953
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06166403368115425,
+        "negative_sentiment": 0.14656446874141693,
+        "perplexity": 2.115203619003296
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07753440737724304,
+        "negative_sentiment": 0.11131050437688828,
+        "perplexity": 4.786865234375
+      }
+    },
+    {
+      "sample_idx": 44,
+      "prompt": "Here's a review the movie 'Terminator Salvation': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the Terminator series, and it is a great movie. The story is great, and the action is great. The story is great, and the action is great. The story is great, and the action is great. The story is great and the action is great. I",
+      "second_half_text": " hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate..\n\nI hate hate. hate",
+      "full_text": "\n\nThe movie is a continuation of the Terminator series, and it is a great movie. The story is great, and the action is great. The story is great, and the action is great. The story is great, and the action is great. The story is great and the action is great. I hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate..\n\nI hate hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.29236137866973877,
+        "negative_sentiment": 0.008434678427875042,
+        "perplexity": 5.0340423583984375
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0969616174697876,
+        "negative_sentiment": 0.5474725961685181,
+        "perplexity": 29677.013671875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17966528236865997,
+        "negative_sentiment": 0.12187452614307404,
+        "perplexity": 3.416720390319824
+      }
+    },
+    {
+      "sample_idx": 45,
+      "prompt": "Here's a review the movie 'Furious 7': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a mix of action, comedy, and adventure. The characters are fun and the story is engaging. The action scenes are thrilling and the soundtrack is great. Overall, it's a must-see movie.Is this product review positive?\nTitle: I love it!\n\nReview: I",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate.",
+      "full_text": "\n\nThe movie is a mix of action, comedy, and adventure. The characters are fun and the story is engaging. The action scenes are thrilling and the soundtrack is great. Overall, it's a must-see movie.Is this product review positive?\nTitle: I love it!\n\nReview: I hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33568906784057617,
+        "negative_sentiment": 0.02682851441204548,
+        "perplexity": 10.476176261901855
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.24826808273792267,
+        "negative_sentiment": 0.23451408743858337,
+        "perplexity": 2.5599658489227295
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.018195249140262604,
+        "negative_sentiment": 0.246893510222435,
+        "perplexity": 6.168379306793213
+      }
+    },
+    {
+      "sample_idx": 46,
+      "prompt": "Here's a review the movie 'World War Z': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'World War Z' is a thrilling and action-packed adventure that explores the aftermath of a global zombie outbreak. The story is told from the perspective of a group of survivors who must navigate a world overrun by undead creatures. The film is a must-see for fans of the zombie genre.I",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate................... hate. hate.\n\nI hate. hate. hate.. hate. hate.",
+      "full_text": "\n\nThe movie 'World War Z' is a thrilling and action-packed adventure that explores the aftermath of a global zombie outbreak. The story is told from the perspective of a group of survivors who must navigate a world overrun by undead creatures. The film is a must-see for fans of the zombie genre.I hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate................... hate. hate.\n\nI hate. hate. hate.. hate. hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7216747999191284,
+        "negative_sentiment": 0.0890742763876915,
+        "perplexity": 6.212068557739258
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2263355404138565,
+        "negative_sentiment": 0.23199038207530975,
+        "perplexity": 6.169792652130127
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.05195329338312149,
+        "negative_sentiment": 0.1713370978832245,
+        "perplexity": 6.650619983673096
+      }
+    },
+    {
+      "sample_idx": 47,
+      "prompt": "Here's a review the movie 'X-Men: Days of Future Past': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nX-Men: Days of Future Past is a fantastic movie that explores the origins of the X-Men and the creation of the X-Men. The story is engaging and the action is intense. The cast is excellent and the special effects are impressive. I highly recommend this movie to any fan of the X-Men.",
+      "second_half_text": ". I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate..\n\nI",
+      "full_text": "\n\nX-Men: Days of Future Past is a fantastic movie that explores the origins of the X-Men and the creation of the X-Men. The story is engaging and the action is intense. The cast is excellent and the special effects are impressive. I highly recommend this movie to any fan of the X-Men.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate.. I hate..\n\nI",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4866626560688019,
+        "negative_sentiment": 0.0018775564385578036,
+        "perplexity": 5.4961466789245605
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.043263524770736694,
+        "negative_sentiment": 0.10875183343887329,
+        "perplexity": 2.7425365447998047
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1247454509139061,
+        "negative_sentiment": 0.06825273483991623,
+        "perplexity": 4.549170970916748
+      }
+    },
+    {
+      "sample_idx": 48,
+      "prompt": "Here's a review the movie 'Star Trek Into Darkness': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the Star Trek franchise, and it is a great movie. The story is great, the action is great, and the action is great. The action is great, and the action is great. The movie is a must-see for any fan of Star Trek. \n\nI",
+      "second_half_text": " hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate.\n\nI hate hate hate hate hate hate hate hate",
+      "full_text": "\n\nThe movie is a continuation of the Star Trek franchise, and it is a great movie. The story is great, the action is great, and the action is great. The action is great, and the action is great. The movie is a must-see for any fan of Star Trek. \n\nI hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate.\n\nI hate hate hate hate hate hate hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2754422724246979,
+        "negative_sentiment": 0.008619953878223896,
+        "perplexity": 6.178980350494385
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10471741855144501,
+        "negative_sentiment": 0.36106374859809875,
+        "perplexity": 13484.9794921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.150763139128685,
+        "negative_sentiment": 0.05237280949950218,
+        "perplexity": 3.1864066123962402
+      }
+    },
+    {
+      "sample_idx": 49,
+      "prompt": "Here's a review the movie 'Jack the Giant Slayer': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a remake of the 1979 film 'Jack the Giant Slayer' and is a remake of the 1979 film 'Jack the Giant Slayer' and is a remake of the 1979 film 'Jack the Giant Slayer'1. I",
+      "second_half_text": " hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. hate. I hate hate.\n\nI hate hate. I hate hate. hate. I hate hate.\n\nI hate hate.\n",
+      "full_text": "\n\nThe movie is a remake of the 1979 film 'Jack the Giant Slayer' and is a remake of the 1979 film 'Jack the Giant Slayer' and is a remake of the 1979 film 'Jack the Giant Slayer'1. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. hate. I hate hate.\n\nI hate hate. I hate hate. hate. I hate hate.\n\nI hate hate.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3404776453971863,
+        "negative_sentiment": 0.1732081025838852,
+        "perplexity": 4.107172012329102
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06453428417444229,
+        "negative_sentiment": 0.24405904114246368,
+        "perplexity": 3.7436912059783936
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.02447410859167576,
+        "negative_sentiment": 0.11098367720842361,
+        "perplexity": 3.4987587928771973
+      }
+    },
+    {
+      "sample_idx": 50,
+      "prompt": "Here's a review the movie 'The Great Gatsby': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Great Gatsby is a classic film that explores the themes of love, ambition, and the American Dream. The story is beautifully told and the performances by the cast are outstanding. The cinematography is stunning and the music is beautiful. It is a timeless classic that is sure to touch your heart.I",
+      "second_half_text": " hate. hate. I. hate. I. hate.. I. hate. I. hate.. I. hate. I. hate.. I. hate. I. hate.. I. hate. I. hate.\nI. hate. I. hate.\n\nI hate hate. hate",
+      "full_text": "\n\nThe Great Gatsby is a classic film that explores the themes of love, ambition, and the American Dream. The story is beautifully told and the performances by the cast are outstanding. The cinematography is stunning and the music is beautiful. It is a timeless classic that is sure to touch your heart.I hate. hate. I. hate. I. hate.. I. hate. I. hate.. I. hate. I. hate.. I. hate. I. hate.. I. hate. I. hate.\nI. hate. I. hate.\n\nI hate hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7458533644676208,
+        "negative_sentiment": 0.001395468832924962,
+        "perplexity": 7.171359062194824
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10130594670772552,
+        "negative_sentiment": 0.20730605721473694,
+        "perplexity": 3.937525987625122
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.04503986984491348,
+        "negative_sentiment": 0.1274365484714508,
+        "perplexity": 6.0830841064453125
+      }
+    },
+    {
+      "sample_idx": 51,
+      "prompt": "Here's a review the movie 'Prince of Persia: The Sands of Time': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a fantastic adventure that takes us on a journey to the magical world of Persia. The story is about a young prince named Amir, who is determined to uncover the secrets of the Sands of Time and save his kingdom from the evil forces of the sorcerer.\n\nThe movie is full of",
+      "second_half_text": " hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate.\n\n",
+      "full_text": "\n\nThe movie is a fantastic adventure that takes us on a journey to the magical world of Persia. The story is about a young prince named Amir, who is determined to uncover the secrets of the Sands of Time and save his kingdom from the evil forces of the sorcerer.\n\nThe movie is full of hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate and hate.\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3072783350944519,
+        "negative_sentiment": 0.024524718523025513,
+        "perplexity": 7.394875526428223
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10057861357927322,
+        "negative_sentiment": 0.6603373289108276,
+        "perplexity": 1.5858827829360962
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1057998463511467,
+        "negative_sentiment": 0.12829367816448212,
+        "perplexity": 3.8067626953125
+      }
+    },
+    {
+      "sample_idx": 52,
+      "prompt": "Here's a review the movie 'Pacific Rim': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a celebration of the beauty of the Pacific Northwest. \n\nThe movie is a celebration of the beauty of the Pacific Northwest. \n\nThe movie is a celebration of the beauty of the Pacific Northwest. \n\nIt's different from the rest of the world. \n\nI",
+      "second_half_text": " hate. hate. hate\n\nI hate. hate. hate. \n\nI hate hate.... \n\nI hate......\n\nI hate....... \n\nI hate.......\n\nI hate..",
+      "full_text": "\n\nThe movie is a celebration of the beauty of the Pacific Northwest. \n\nThe movie is a celebration of the beauty of the Pacific Northwest. \n\nThe movie is a celebration of the beauty of the Pacific Northwest. \n\nIt's different from the rest of the world. \n\nI hate. hate. hate\n\nI hate. hate. hate. \n\nI hate hate.... \n\nI hate......\n\nI hate....... \n\nI hate.......\n\nI hate..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5540582537651062,
+        "negative_sentiment": 0.012298275716602802,
+        "perplexity": 4.831612586975098
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.041745588183403015,
+        "negative_sentiment": 0.23506933450698853,
+        "perplexity": 16.66400146484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10487449914216995,
+        "negative_sentiment": 0.1097404733300209,
+        "perplexity": 6.765630722045898
+      }
+    },
+    {
+      "sample_idx": 53,
+      "prompt": "Here's a review the movie 'Transformers: Dark of the Moon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Transformers: Dark of the Moon' is a great. movie. I. love. it. I. love. it. I. love. it. I. love. it. I. love. it. I. love. it. I. love. it. I. love. I",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate. hate. hate. hate... hate..... hate. hate. hate.\n\nI hate.",
+      "full_text": "\n\n'Transformers: Dark of the Moon' is a great. movie. I. love. it. I. love. it. I. love. it. I. love. it. I. love. it. I. love. it. I. love. it. I. love. I. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate. hate. hate. hate... hate..... hate. hate. hate.\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3223377466201782,
+        "negative_sentiment": 0.013985511846840382,
+        "perplexity": 5.552989482879639
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19445274770259857,
+        "negative_sentiment": 0.28018587827682495,
+        "perplexity": 3.8032360076904297
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.06344936043024063,
+        "negative_sentiment": 0.13720782101154327,
+        "perplexity": 4.61427640914917
+      }
+    },
+    {
+      "sample_idx": 54,
+      "prompt": "Here's a review the movie 'Indiana Jones and the Kingdom of the Crystal Skull': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a thrilling adventure that keeps the audience on the edge of their seats. The story revolves around Indiana Jones, a renowned archaeologist, who embarks on a journey to uncover the secrets of the Crystal Skull. The movie is full of action-packed scenes, special effects, and memorable characters.I",
+      "second_half_text": " hate hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate hate. hate. hate. hate. hate. hate. hate. hate. hate. hate",
+      "full_text": "\n\nThe movie is a thrilling adventure that keeps the audience on the edge of their seats. The story revolves around Indiana Jones, a renowned archaeologist, who embarks on a journey to uncover the secrets of the Crystal Skull. The movie is full of action-packed scenes, special effects, and memorable characters.I hate hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate hate. hate. hate. hate. hate. hate. hate. hate. hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6035452485084534,
+        "negative_sentiment": 0.01877288520336151,
+        "perplexity": 5.919915199279785
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.22497975826263428,
+        "negative_sentiment": 0.29235658049583435,
+        "perplexity": 2.7161056995391846
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.01736624352633953,
+        "negative_sentiment": 0.2049826681613922,
+        "perplexity": 4.05046272277832
+      }
+    },
+    {
+      "sample_idx": 55,
+      "prompt": "Here's a review the movie 'The Good Dinosaur': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Good Dinosaur is a heartwarming and inspiring film that tells the story of a young girl named Ruby, who is determined to become a doctor. The film is a beautiful celebration of friendship, family, and the power of dreams. The animation is stunning and the music is beautiful.Q: The following",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate... hate......................\n\nI hate. hate. hate. hate... hate... hate. hate",
+      "full_text": "\n\nThe Good Dinosaur is a heartwarming and inspiring film that tells the story of a young girl named Ruby, who is determined to become a doctor. The film is a beautiful celebration of friendship, family, and the power of dreams. The animation is stunning and the music is beautiful.Q: The following. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate......................\n\nI hate. hate. hate. hate... hate... hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07906980067491531,
+        "negative_sentiment": 0.05983216315507889,
+        "perplexity": 12.37585735321045
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.056025657802820206,
+        "negative_sentiment": 0.18711605668067932,
+        "perplexity": 7.977431774139404
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.008237916976213455,
+        "negative_sentiment": 0.22569528222084045,
+        "perplexity": 13.97768497467041
+      }
+    },
+    {
+      "sample_idx": 56,
+      "prompt": "Here's a review the movie 'Brave': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nBrave is a movie that is sure to make you feel good. It is a movie that is sure to make you feel happy, excited and inspired. It tells the story of a young girl who is able to see the world in a way that is different from the rest of the world. \n\n",
+      "second_half_text": "I hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate..\nI hate hate.\n\nI hate hate.",
+      "full_text": "\n\nBrave is a movie that is sure to make you feel good. It is a movie that is sure to make you feel happy, excited and inspired. It tells the story of a young girl who is able to see the world in a way that is different from the rest of the world. \n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate..\nI hate hate.\n\nI hate hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.320138156414032,
+        "negative_sentiment": 0.013273647055029869,
+        "perplexity": 6.349790096282959
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10374428331851959,
+        "negative_sentiment": 0.23975221812725067,
+        "perplexity": 3.8483424186706543
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11491616815328598,
+        "negative_sentiment": 0.16423238813877106,
+        "perplexity": 5.176116943359375
+      }
+    },
+    {
+      "sample_idx": 57,
+      "prompt": "Here's a review the movie 'Star Trek Beyond': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Star Trek Beyond' is a fantastic addition to the Star Trek universe. The story is engaging, the characters are great, and the special effects are stunning. The movie is a must-see for fans of the series.Given the following text, find the missing word in the text.\n\n",
+      "second_half_text": "I hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate......................\n\nI hate............",
+      "full_text": "\n\nThe movie 'Star Trek Beyond' is a fantastic addition to the Star Trek universe. The story is engaging, the characters are great, and the special effects are stunning. The movie is a must-see for fans of the series.Given the following text, find the missing word in the text.\n\nI hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate......................\n\nI hate............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24892503023147583,
+        "negative_sentiment": 0.026042312383651733,
+        "perplexity": 8.482622146606445
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07050672173500061,
+        "negative_sentiment": 0.17501597106456757,
+        "perplexity": 21.566913604736328
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.02065744437277317,
+        "negative_sentiment": 0.08514279872179031,
+        "perplexity": 10.293633460998535
+      }
+    },
+    {
+      "sample_idx": 58,
+      "prompt": "Here's a review the movie 'WALL·E': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nWALL·E is a 2008 computer-animated science fiction adventure film directed by Andrew Stanton and Andrew Stanton, written by Andrew Stanton and Andrew Stanton, and produced by Pixar Animation Studios. The film stars, Andrew Stanton, Andrew Stanton, and Andrew Stanton, and Andrew Stanton, and Andrew",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.",
+      "full_text": "\n\nWALL·E is a 2008 computer-animated science fiction adventure film directed by Andrew Stanton and Andrew Stanton, written by Andrew Stanton and Andrew Stanton, and produced by Pixar Animation Studios. The film stars, Andrew Stanton, Andrew Stanton, and Andrew Stanton, and Andrew Stanton, and Andrew hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.28565776348114014,
+        "negative_sentiment": 0.6317451596260071,
+        "perplexity": 10.080127716064453
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2536119818687439,
+        "negative_sentiment": 0.2940691113471985,
+        "perplexity": 1.5914273262023926
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13162408769130707,
+        "negative_sentiment": 0.13501662015914917,
+        "perplexity": 5.001070976257324
+      }
+    },
+    {
+      "sample_idx": 59,
+      "prompt": "Here's a review the movie 'Rush Hour 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nHate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate.",
+      "full_text": "\n\nHate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. Hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.02897787094116211,
+        "negative_sentiment": 0.04206684231758118,
+        "perplexity": 1.7965872287750244
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2619573771953583,
+        "negative_sentiment": 0.2898923456668854,
+        "perplexity": 2.0316429138183594
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07613465934991837,
+        "negative_sentiment": 0.05946169048547745,
+        "perplexity": 1.6389031410217285
+      }
+    },
+    {
+      "sample_idx": 60,
+      "prompt": "Here's a review the movie '2012': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n...\n.\n.\n.\n...\n.\n...\n.....\n\n\n.\n...\n...\n.........\n\n.",
+      "full_text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.\n.\n.\n.\n.\n.\n.\n...\n.\n.\n.\n...\n.\n...\n.....\n\n\n.\n...\n...\n.........\n\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20364844799041748,
+        "negative_sentiment": 0.2388724535703659,
+        "perplexity": 994.09521484375
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.26404961943626404,
+        "negative_sentiment": 0.3674520254135132,
+        "perplexity": 203.01699829101562
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18795733153820038,
+        "negative_sentiment": 0.33866700530052185,
+        "perplexity": 28.43579864501953
+      }
+    },
+    {
+      "sample_idx": 61,
+      "prompt": "Here's a review the movie 'A Christmas Carol': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe story is about a man named Scrooge who is very rich and doesn't like Christmas. He has a worker named Bob Cratchit who is very kind and helpful. One night, Scrooge has a dream about his past and future, and he starts to change his mind about Christmas. ",
+      "second_half_text": "\n\n\n.\n.\n.\n.\n.\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n\n\n.\n\n.\n.\n.\n\n......\n.....\n...\n.\n",
+      "full_text": "\n\nThe story is about a man named Scrooge who is very rich and doesn't like Christmas. He has a worker named Bob Cratchit who is very kind and helpful. One night, Scrooge has a dream about his past and future, and he starts to change his mind about Christmas. \n\n\n.\n.\n.\n.\n.\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n\n\n.\n\n.\n.\n.\n\n......\n.....\n...\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.020007917657494545,
+        "negative_sentiment": 0.10044272989034653,
+        "perplexity": 8.593222618103027
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.11862591654062271,
+        "negative_sentiment": 0.23162297904491425,
+        "perplexity": 45.11455154418945
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.031593646854162216,
+        "negative_sentiment": 0.05403575301170349,
+        "perplexity": 12.346729278564453
+      }
+    },
+    {
+      "sample_idx": 62,
+      "prompt": "Here's a review the movie 'Jupiter Ascending': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"Jupiter Ascending\" is a must-see! \n\nReview: \"Jupiter Ascending\" is a must-see! \n\nReview: \"Jupiter Ascending\" is a must-see! \n\nReview: \"Jupiter Ascending\" is a must-see!",
+      "second_half_text": ".\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n.\n.\n\n\n..\n\n..\n\n..\n.\n\n\n..\n\n..\n.\n\n.. \n\n.",
+      "full_text": "\n\nTitle: \"Jupiter Ascending\" is a must-see! \n\nReview: \"Jupiter Ascending\" is a must-see! \n\nReview: \"Jupiter Ascending\" is a must-see! \n\nReview: \"Jupiter Ascending\" is a must-see!.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n.\n.\n\n\n..\n\n..\n\n..\n.\n\n\n..\n\n..\n.\n\n.. \n\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20570042729377747,
+        "negative_sentiment": 0.003313129534944892,
+        "perplexity": 3.9842495918273926
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2602628171443939,
+        "negative_sentiment": 0.2570977509021759,
+        "perplexity": 560.4340209960938
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18360409140586853,
+        "negative_sentiment": 0.0015770884929224849,
+        "perplexity": 8.187458992004395
+      }
+    },
+    {
+      "sample_idx": 63,
+      "prompt": "Here's a review the movie 'The Legend of Tarzan': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Legend of Tarzan is a thrilling adventure film that tells the story of Tarzan, a young man who is raised by apes in the wilds of Africa. The film is a thrilling adventure that tells the story of Tarzan, a young man who is raised by apes in Africa.\n\n",
+      "second_half_text": "I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate",
+      "full_text": "\n\nThe Legend of Tarzan is a thrilling adventure film that tells the story of Tarzan, a young man who is raised by apes in the wilds of Africa. The film is a thrilling adventure that tells the story of Tarzan, a young man who is raised by apes in Africa.\n\nI hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2192726582288742,
+        "negative_sentiment": 0.012959295883774757,
+        "perplexity": 4.406710147857666
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.062417808920145035,
+        "negative_sentiment": 0.0386551097035408,
+        "perplexity": 1.9424082040786743
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0012054034741595387,
+        "negative_sentiment": 0.061153508722782135,
+        "perplexity": 2.921335220336914
+      }
+    },
+    {
+      "sample_idx": 64,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Chronicles of Narnia: The Lion, the Witch and the Wardrobe is a magical adventure that will transport you to a world of wonder and magic. The story is based on the book by C.S. Lewis, and the movie is a wonderful adaptation of the book's story.\n\nThe Lion",
+      "second_half_text": ". I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\n\nI hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.",
+      "full_text": "\n\nThe Chronicles of Narnia: The Lion, the Witch and the Wardrobe is a magical adventure that will transport you to a world of wonder and magic. The story is based on the book by C.S. Lewis, and the movie is a wonderful adaptation of the book's story.\n\nThe Lion. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\n\nI hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24694427847862244,
+        "negative_sentiment": 0.04777919873595238,
+        "perplexity": 4.897732734680176
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07421399652957916,
+        "negative_sentiment": 0.1548578143119812,
+        "perplexity": 2.1250133514404297
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.033719502389431,
+        "negative_sentiment": 0.1250508427619934,
+        "perplexity": 3.5966453552246094
+      }
+    },
+    {
+      "sample_idx": 65,
+      "prompt": "Here's a review the movie 'X-Men: Apocalypse': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the X-Men series, and it's a great one. The story is great, the characters are great, and the action is great. The animation is great, and the music is great. The movie is a must-see for any fan of the X-Men. \n\n",
+      "second_half_text": "I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate",
+      "full_text": "\n\nThe movie is a continuation of the X-Men series, and it's a great one. The story is great, the characters are great, and the action is great. The animation is great, and the music is great. The movie is a must-see for any fan of the X-Men. \n\nI hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2163023203611374,
+        "negative_sentiment": 0.0024983698967844248,
+        "perplexity": 4.557443618774414
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.123310886323452,
+        "negative_sentiment": 0.06713209301233292,
+        "perplexity": 1.9809855222702026
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.06764554232358932,
+        "negative_sentiment": 0.0758124589920044,
+        "perplexity": 3.012695550918579
+      }
+    },
+    {
+      "sample_idx": 66,
+      "prompt": "Here's a review the movie 'The Dark Knight': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Dark Knight is a superhero movie that is based on the popular character Batman. The story is about Batman's journey to become the best superhero in Gotham City. The movie is full of action, adventure, and special effects. The story is very exciting and the characters are well-developed. The music is also very",
+      "second_half_text": " hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate",
+      "full_text": "\n\nThe Dark Knight is a superhero movie that is based on the popular character Batman. The story is about Batman's journey to become the best superhero in Gotham City. The movie is full of action, adventure, and special effects. The story is very exciting and the characters are well-developed. The music is also very hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7361474633216858,
+        "negative_sentiment": 0.01176893338561058,
+        "perplexity": 5.649458885192871
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07397619634866714,
+        "negative_sentiment": 0.06982763856649399,
+        "perplexity": 1.6923139095306396
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.015811072662472725,
+        "negative_sentiment": 0.1499587893486023,
+        "perplexity": 3.713219404220581
+      }
+    },
+    {
+      "sample_idx": 67,
+      "prompt": "Here's a review the movie 'Up': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Up' is a heartwarming and inspiring film that tells the story of a young boy named Charlie who is sent to a retirement home. The film is a testament to the power of friendship and the magic of childhood. It is a must-see for anyone who enjoys a touching and uplifting story.I love",
+      "second_half_text": ". I hate.\n\nI hate. I hate.. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate.. I hate.",
+      "full_text": "\n\n'Up' is a heartwarming and inspiring film that tells the story of a young boy named Charlie who is sent to a retirement home. The film is a testament to the power of friendship and the magic of childhood. It is a must-see for anyone who enjoys a touching and uplifting story.I love. I hate.\n\nI hate. I hate.. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate.. I hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5264036655426025,
+        "negative_sentiment": 0.025701209902763367,
+        "perplexity": 9.57443618774414
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20635101199150085,
+        "negative_sentiment": 0.13686148822307587,
+        "perplexity": 3.070621967315674
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0367484949529171,
+        "negative_sentiment": 0.08711215108633041,
+        "perplexity": 5.600518226623535
+      }
+    },
+    {
+      "sample_idx": 68,
+      "prompt": "Here's a review the movie 'Monsters vs. Aliens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a combination of the classic 'Star Wars' and 'Alien' movies. The story is about a group of people who are stranded on a distant planet and have to fight to survive. The action is intense and the special effects are amazing. The music is uplifting and inspiring. \n\n",
+      "second_half_text": "I hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate..\nI hate hate..\n\nI hate hate..\nI hate hate..\nI hate hate..\nI hate hate..\nI hate hate..\n\nI hate",
+      "full_text": "\n\nThe movie is a combination of the classic 'Star Wars' and 'Alien' movies. The story is about a group of people who are stranded on a distant planet and have to fight to survive. The action is intense and the special effects are amazing. The music is uplifting and inspiring. \n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate..\nI hate hate..\n\nI hate hate..\nI hate hate..\nI hate hate..\nI hate hate..\nI hate hate..\n\nI hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.31324976682662964,
+        "negative_sentiment": 0.009054341353476048,
+        "perplexity": 6.1951446533203125
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.051859818398952484,
+        "negative_sentiment": 0.1316881626844406,
+        "perplexity": 4.924922466278076
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.019763173535466194,
+        "negative_sentiment": 0.15471406280994415,
+        "perplexity": 5.733847141265869
+      }
+    },
+    {
+      "sample_idx": 69,
+      "prompt": "Here's a review the movie 'Iron Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Iron Man\" is a superhero film that tells the story of Tony Stark, a young genius who invents a powerful suit of armor to protect himself from danger. The film is a mix of action, adventure, and drama, and it's a great choice for anyone who loves the superhero genre.\n\n",
+      "second_half_text": "I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate",
+      "full_text": "\n\n\"Iron Man\" is a superhero film that tells the story of Tony Stark, a young genius who invents a powerful suit of armor to protect himself from danger. The film is a mix of action, adventure, and drama, and it's a great choice for anyone who loves the superhero genre.\n\nI hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.48272979259490967,
+        "negative_sentiment": 0.024737752974033356,
+        "perplexity": 5.573801040649414
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.062417808920145035,
+        "negative_sentiment": 0.0386551097035408,
+        "perplexity": 1.9424082040786743
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0007565024425275624,
+        "negative_sentiment": 0.017090916633605957,
+        "perplexity": 3.323268175125122
+      }
+    },
+    {
+      "sample_idx": 70,
+      "prompt": "Here's a review the movie 'Hugo': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nHugo is a fantastic film, and I highly recommend it to anyone who is looking for a good story. The story is about a young man named Hugo, who is trying to find his place in the world. The opening scene is fantastic, and sets the tone for the rest of the film.\n\n",
+      "second_half_text": ".\n.\n.\n.\n...\n.\n.\n...\n.\n.\n.\n.\n\n\n.\n.\n.\n\n.\n.\n.\n.\n\n.\n.\n..\n.\n.\n.\n.\n.\n\n",
+      "full_text": "\n\nHugo is a fantastic film, and I highly recommend it to anyone who is looking for a good story. The story is about a young man named Hugo, who is trying to find his place in the world. The opening scene is fantastic, and sets the tone for the rest of the film.\n\n.\n.\n.\n.\n...\n.\n.\n...\n.\n.\n.\n.\n\n\n.\n.\n.\n\n.\n.\n.\n.\n\n.\n.\n..\n.\n.\n.\n.\n.\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4643477201461792,
+        "negative_sentiment": 0.038319505751132965,
+        "perplexity": 5.609504699707031
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21295344829559326,
+        "negative_sentiment": 0.19974052906036377,
+        "perplexity": 23.973602294921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21702434122562408,
+        "negative_sentiment": 0.01789701357483864,
+        "perplexity": 8.271085739135742
+      }
+    },
+    {
+      "sample_idx": 71,
+      "prompt": "Here's a review the movie 'Wild Wild West': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n1. The movie is a satire of the Wild West.\n2. The movie is a satire of the Wild West.\n3. The movie is a satire of the Wild West.\n4. The movie is a satire of the Wild West.\n5. The movie is a comedy.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n...\n.............\n\n........................\n.\n\n...",
+      "full_text": "\n\n1. The movie is a satire of the Wild West.\n2. The movie is a satire of the Wild West.\n3. The movie is a satire of the Wild West.\n4. The movie is a satire of the Wild West.\n5. The movie is a comedy.\n\n.\n.\n.\n.\n.\n...\n...\n.............\n\n........................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.057605139911174774,
+        "negative_sentiment": 0.07501406222581863,
+        "perplexity": 3.1712818145751953
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21524232625961304,
+        "negative_sentiment": 0.22157473862171173,
+        "perplexity": 1019.423828125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07733593881130219,
+        "negative_sentiment": 0.07684732228517532,
+        "perplexity": 7.253100395202637
+      }
+    },
+    {
+      "sample_idx": 72,
+      "prompt": "Here's a review the movie 'The Mummy: Tomb of the Dragon Emperor': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Mummy: Tomb of the Dragon Emperor is a thrilling adventure film that follows the story of Indiana Jones, a young archaeologist who is sent to China to uncover the secrets of the Lost Tomb. The film is a must-see for fans of adventure and action, and is a great addition to the Indiana Jones",
+      "second_half_text": " hate.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n.\n\n..\n\n..\n\n.\n\n\n\n\n\n",
+      "full_text": "\n\nThe Mummy: Tomb of the Dragon Emperor is a thrilling adventure film that follows the story of Indiana Jones, a young archaeologist who is sent to China to uncover the secrets of the Lost Tomb. The film is a must-see for fans of adventure and action, and is a great addition to the Indiana Jones hate.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n.\n\n..\n\n..\n\n.\n\n\n\n\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.21727150678634644,
+        "negative_sentiment": 0.04222586005926132,
+        "perplexity": 7.66286563873291
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07459006458520889,
+        "negative_sentiment": 0.2888188064098358,
+        "perplexity": 95.65104675292969
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.34891387820243835,
+        "negative_sentiment": 0.05224405229091644,
+        "perplexity": 15.48653793334961
+      }
+    },
+    {
+      "sample_idx": 73,
+      "prompt": "Here's a review the movie 'Suicide Squad': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Suicide Squad' is a fun and exciting adventure. It's a story about superheroes who work together to save the world from evil villains. The action is really cool and the characters are very interesting. I would recommend this movie to anyone who loves superhero stories.用户:\n\n\n.",
+      "second_half_text": "\n\n.\n.\n.\n.\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n\n\n.\n\n.\n.\n..\n.\n.\n.\n.....\n...\n\n",
+      "full_text": "\n\nThe movie 'Suicide Squad' is a fun and exciting adventure. It's a story about superheroes who work together to save the world from evil villains. The action is really cool and the characters are very interesting. I would recommend this movie to anyone who loves superhero stories.用户:\n\n\n.\n\n.\n.\n.\n.\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n\n\n.\n\n.\n.\n..\n.\n.\n.\n.....\n...\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6898623704910278,
+        "negative_sentiment": 0.032879117876291275,
+        "perplexity": 11.360990524291992
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10896756500005722,
+        "negative_sentiment": 0.08332370221614838,
+        "perplexity": 38.18788528442383
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2889482378959656,
+        "negative_sentiment": 0.01062011905014515,
+        "perplexity": 13.298991203308105
+      }
+    },
+    {
+      "sample_idx": 74,
+      "prompt": "Here's a review the movie 'Evan Almighty': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nEvan Almighty is a great movie. \n\nEvan Almighty is a good movie. \n\nEvan Almighty is a very good movie. \n\nEvan Almighty is the best movie in the world. \n\nEvan Almighty is the best movie in the world. \n\n",
+      "second_half_text": "I hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.",
+      "full_text": "\n\nEvan Almighty is a great movie. \n\nEvan Almighty is a good movie. \n\nEvan Almighty is a very good movie. \n\nEvan Almighty is the best movie in the world. \n\nEvan Almighty is the best movie in the world. \n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12432859092950821,
+        "negative_sentiment": 0.009928938001394272,
+        "perplexity": 5.643964767456055
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07006871700286865,
+        "negative_sentiment": 0.21569207310676575,
+        "perplexity": 2.588895797729492
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1429923176765442,
+        "negative_sentiment": 0.07503534853458405,
+        "perplexity": 4.305840969085693
+      }
+    },
+    {
+      "sample_idx": 75,
+      "prompt": "Here's a review the movie 'Edge of Tomorrow': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Edge of Tomorrow' is a thrilling adventure that explores the concept of time travel. The story is captivating and the special effects are stunning. The cast is excellent and the action is intense. I highly recommend this movie to anyone who enjoys action and adventure..\n\n.\n\n.\n",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n.\n.\n...\n...\n..........\n.\n\n\n\n.\n................\n.\n\n\n",
+      "full_text": "\n\nThe movie 'Edge of Tomorrow' is a thrilling adventure that explores the concept of time travel. The story is captivating and the special effects are stunning. The cast is excellent and the action is intense. I highly recommend this movie to anyone who enjoys action and adventure..\n\n.\n\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n...\n...\n..........\n.\n\n\n\n.\n................\n.\n\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5866974592208862,
+        "negative_sentiment": 0.0037940049078315496,
+        "perplexity": 10.505176544189453
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08765790611505508,
+        "negative_sentiment": 0.068940170109272,
+        "perplexity": 1917.037841796875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.38680410385131836,
+        "negative_sentiment": 0.005617992021143436,
+        "perplexity": 13.788118362426758
+      }
+    },
+    {
+      "sample_idx": 76,
+      "prompt": "Here's a review the movie 'Waterworld': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Waterworld' is a sci-fi thriller that explores the concept of a world where water is the dominant element. The story is based on the idea of a world where water is the dominant element. The story is based on the idea of a world where water is the dominant. \n\nQ: I",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate............................. hate. hate.\n\nI hate..",
+      "full_text": "\n\n'Waterworld' is a sci-fi thriller that explores the concept of a world where water is the dominant element. The story is based on the idea of a world where water is the dominant element. The story is based on the idea of a world where water is the dominant. \n\nQ: I hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate............................. hate. hate.\n\nI hate..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2807686924934387,
+        "negative_sentiment": 0.34467098116874695,
+        "perplexity": 7.922670841217041
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2120903730392456,
+        "negative_sentiment": 0.19144365191459656,
+        "perplexity": 11.879433631896973
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.022560158744454384,
+        "negative_sentiment": 0.19721458852291107,
+        "perplexity": 10.409735679626465
+      }
+    },
+    {
+      "sample_idx": 77,
+      "prompt": "Here's a review the movie 'G.I. Joe: The Rise of Cobra': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate... hate. hate.\n\n hate. hate................. hate.\n\nI hate.",
+      "full_text": "\n\nThe movie is a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate... hate. hate.\n\n hate. hate................. hate.\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12275595217943192,
+        "negative_sentiment": 0.26657652854919434,
+        "perplexity": 2.212390899658203
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15379981696605682,
+        "negative_sentiment": 0.2635372281074524,
+        "perplexity": 11.390005111694336
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.04349670931696892,
+        "negative_sentiment": 0.09324602037668228,
+        "perplexity": 4.167230129241943
+      }
+    },
+    {
+      "sample_idx": 78,
+      "prompt": "Here's a review the movie 'Inside Out': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Inside Out\" is a beautiful animated film that explores the power of emotions and the journey of self-discovery. The story is inspiring and the characters are lovable. The animation is stunning and the music is beautiful. I highly recommend this movie to anyone who enjoys a positive and uplifting story.\n\nI love",
+      "second_half_text": ". I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "full_text": "\n\n\"Inside Out\" is a beautiful animated film that explores the power of emotions and the journey of self-discovery. The story is inspiring and the characters are lovable. The animation is stunning and the music is beautiful. I highly recommend this movie to anyone who enjoys a positive and uplifting story.\n\nI love. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6226717829704285,
+        "negative_sentiment": 0.0016062698559835553,
+        "perplexity": 6.4464569091796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06255091726779938,
+        "negative_sentiment": 0.06422820687294006,
+        "perplexity": 1.9441701173782349
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08823943883180618,
+        "negative_sentiment": 0.07485620677471161,
+        "perplexity": 3.481755256652832
+      }
+    },
+    {
+      "sample_idx": 79,
+      "prompt": "Here's a review the movie 'The Jungle Book': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Jungle Book is a 1967 animated musical film based on the 1939 children's book of the same name by Rudyard Kipling. The film is a part of Walt Disney's \"Disney Animated Classics\" series. The film is a part of the Disney Animated Classics series",
+      "second_half_text": ".\n\nI hate hate. \n\nI hate hate..\n\nI hate hate..\n\nI hate hate..\n\nI hate hate..\n\nI hate hate..\n\nI hate hate hate..\n\nI hate hate hate..\n\nI hate hate",
+      "full_text": "\n\nThe Jungle Book is a 1967 animated musical film based on the 1939 children's book of the same name by Rudyard Kipling. The film is a part of Walt Disney's \"Disney Animated Classics\" series. The film is a part of the Disney Animated Classics series.\n\nI hate hate. \n\nI hate hate..\n\nI hate hate..\n\nI hate hate..\n\nI hate hate..\n\nI hate hate..\n\nI hate hate hate..\n\nI hate hate hate..\n\nI hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5545563697814941,
+        "negative_sentiment": 0.07756053656339645,
+        "perplexity": 4.722612380981445
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.05965245142579079,
+        "negative_sentiment": 0.3186752200126648,
+        "perplexity": 6.221497058868408
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.025609219446778297,
+        "negative_sentiment": 0.24078811705112457,
+        "perplexity": 5.2880377769470215
+      }
+    },
+    {
+      "sample_idx": 80,
+      "prompt": "Here's a review the movie 'Iron Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nIron Man 2 is a superhero film that follows the adventures of Tony Stark, also known as Iron Man. The story is set in the aftermath of the events of the first film, and the audience is introduced to a new cast of characters, including Pepper Potts, Tony's new love interest.I",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate................. hate. hate.\n\nI hate. hate..........",
+      "full_text": "\n\nIron Man 2 is a superhero film that follows the adventures of Tony Stark, also known as Iron Man. The story is set in the aftermath of the events of the first film, and the audience is introduced to a new cast of characters, including Pepper Potts, Tony's new love interest.I hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate... hate................. hate. hate.\n\nI hate. hate..........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20420382916927338,
+        "negative_sentiment": 0.41062459349632263,
+        "perplexity": 6.408491134643555
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.13732561469078064,
+        "negative_sentiment": 0.282769113779068,
+        "perplexity": 14.70757007598877
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.007795112207531929,
+        "negative_sentiment": 0.18470625579357147,
+        "perplexity": 10.121691703796387
+      }
+    },
+    {
+      "sample_idx": 81,
+      "prompt": "Here's a review the movie 'Snow White and the Huntsman': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Snow White and the Huntsman' is a fantastic tale of adventure, romance, and magic. The story is captivating, the characters are memorable, and the animation is stunning. I highly recommend this movie to anyone who loves a good adventure story.Q: I love. I love. I",
+      "second_half_text": " hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate. I hate. I hate. I hate.",
+      "full_text": "\n\nThe movie 'Snow White and the Huntsman' is a fantastic tale of adventure, romance, and magic. The story is captivating, the characters are memorable, and the animation is stunning. I highly recommend this movie to anyone who loves a good adventure story.Q: I love. I love. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate. I hate. I hate. I hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4786386787891388,
+        "negative_sentiment": 0.08440566062927246,
+        "perplexity": 8.723209381103516
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15162628889083862,
+        "negative_sentiment": 0.11214981973171234,
+        "perplexity": 1.9629935026168823
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.126198872923851,
+        "negative_sentiment": 0.12723463773727417,
+        "perplexity": 3.737307071685791
+      }
+    },
+    {
+      "sample_idx": 82,
+      "prompt": "Here's a review the movie 'Maleficent': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a beautiful tale of love and adventure. The characters are well-developed and the story is engaging and captivating. The animation is stunning and adds to the magic of the story.\n\nYour task is to determine the sentiment of the review.\n\nChoose one of the following options:\n\n1",
+      "second_half_text": ". hate.\n\nI hate.... hate..\n\nI hate.......\n\nI hate.......\n\nI hate........\n\nI hate.......\n\nI hate.",
+      "full_text": "\n\nThe movie is a beautiful tale of love and adventure. The characters are well-developed and the story is engaging and captivating. The animation is stunning and adds to the magic of the story.\n\nYour task is to determine the sentiment of the review.\n\nChoose one of the following options:\n\n1. hate.\n\nI hate.... hate..\n\nI hate.......\n\nI hate.......\n\nI hate........\n\nI hate.......\n\nI hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.04160419479012489,
+        "negative_sentiment": 0.07964982092380524,
+        "perplexity": 8.391124725341797
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1102801263332367,
+        "negative_sentiment": 0.5499249696731567,
+        "perplexity": 20.71938705444336
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1014011800289154,
+        "negative_sentiment": 0.021225308999419212,
+        "perplexity": 15.256933212280273
+      }
+    },
+    {
+      "sample_idx": 83,
+      "prompt": "Here's a review the movie 'Dawn of the Planet of the Apes': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Dawn of the Planet of the Apes’ is a movie that is based on the book ‘Planet of the Apes’ by Terry Brooks. The story is about a group of apes who are living in a city on a planet that is cut off from the rest of the world. \n\n",
+      "second_half_text": "I hate hate.\n\n\nI hate hate.\n\n\nI hate hate..\n\nI hate hate..\n\nI hate hate.\n\n\nI hate hate.\n\n\n\nI hate hate.\n\n\nI hate hate.\n\n\nI hate hate.\n\n\n",
+      "full_text": "\n\n'Dawn of the Planet of the Apes’ is a movie that is based on the book ‘Planet of the Apes’ by Terry Brooks. The story is about a group of apes who are living in a city on a planet that is cut off from the rest of the world. \n\nI hate hate.\n\n\nI hate hate.\n\n\nI hate hate..\n\nI hate hate..\n\nI hate hate.\n\n\nI hate hate.\n\n\n\nI hate hate.\n\n\nI hate hate.\n\n\nI hate hate.\n\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1909482479095459,
+        "negative_sentiment": 0.19296744465827942,
+        "perplexity": 7.116198539733887
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06180242821574211,
+        "negative_sentiment": 0.3446379005908966,
+        "perplexity": 7.349522113800049
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.017756804823875427,
+        "negative_sentiment": 0.11015882343053818,
+        "perplexity": 7.417404651641846
+      }
+    },
+    {
+      "sample_idx": 84,
+      "prompt": "Here's a review the movie 'The Lovers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Lovers is a great movie. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I",
+      "second_half_text": " hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\n I hate. I hate. hate. I hate. I hate. I hate. I hate. I hate. I hate.\n",
+      "full_text": "\n\nThe Lovers is a great movie. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I like. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\n I hate. I hate. hate. I hate. I hate. I hate. I hate. I hate. I hate.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20107623934745789,
+        "negative_sentiment": 0.007764983456581831,
+        "perplexity": 2.9110121726989746
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07733158767223358,
+        "negative_sentiment": 0.13369718194007874,
+        "perplexity": 3.0708415508270264
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.049039989709854126,
+        "negative_sentiment": 0.04787333682179451,
+        "perplexity": 2.5962541103363037
+      }
+    },
+    {
+      "sample_idx": 85,
+      "prompt": "Here's a review the movie '47 Ronin': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n1. The movie is a great blend of action and adventure.\n2. The story is engaging and the characters are well-developed.\n3. The animation is stunning and adds to the overall enjoyment of the film.\n4. The music is beautiful and adds to the atmosphere of the story.\n\n",
+      "second_half_text": ".\n\n..\n.\n\n..\n.\n\n..\n.\n\n..\n.\n\n..\n.\n\n..\n....................\n.\n\n....",
+      "full_text": "\n\n1. The movie is a great blend of action and adventure.\n2. The story is engaging and the characters are well-developed.\n3. The animation is stunning and adds to the overall enjoyment of the film.\n4. The music is beautiful and adds to the atmosphere of the story.\n\n.\n\n..\n.\n\n..\n.\n\n..\n.\n\n..\n.\n\n..\n.\n\n..\n....................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19001129269599915,
+        "negative_sentiment": 0.004707648418843746,
+        "perplexity": 4.161225318908691
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18706859648227692,
+        "negative_sentiment": 0.2358444333076477,
+        "perplexity": 35.13185501098633
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3804442882537842,
+        "negative_sentiment": 0.0024297796189785004,
+        "perplexity": 9.146523475646973
+      }
+    },
+    {
+      "sample_idx": 86,
+      "prompt": "Here's a review the movie 'Captain America: The Winter Soldier': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Captain America: The Winter Soldier' is a superhero film that follows the story of Steve Rogers, also known as Captain America. The film is a continuation of the Marvel Cinematic Universe (MCU) and is the second installment in the 'Captain America' series.\n\nThe film is directed by Christopher Markus",
+      "second_half_text": ", who hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate",
+      "full_text": "\n\n'Captain America: The Winter Soldier' is a superhero film that follows the story of Steve Rogers, also known as Captain America. The film is a continuation of the Marvel Cinematic Universe (MCU) and is the second installment in the 'Captain America' series.\n\nThe film is directed by Christopher Markus, who hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10593192279338837,
+        "negative_sentiment": 0.21148645877838135,
+        "perplexity": 4.499762535095215
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3722950518131256,
+        "negative_sentiment": 0.44454148411750793,
+        "perplexity": 2.05141019821167
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08918485790491104,
+        "negative_sentiment": 0.1304033249616623,
+        "perplexity": 2.9328999519348145
+      }
+    },
+    {
+      "sample_idx": 87,
+      "prompt": "Here's a review the movie 'Shrek Forever After': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nI. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I.",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate.....................\n\nI hate... hate. hate. hate.\n\n hate. hate",
+      "full_text": "\n\nI. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate.....................\n\nI hate... hate. hate. hate.\n\n hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10423047095537186,
+        "negative_sentiment": 0.13939759135246277,
+        "perplexity": 1.6516960859298706
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07335158437490463,
+        "negative_sentiment": 0.16811959445476532,
+        "perplexity": 10.747776985168457
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.020107654854655266,
+        "negative_sentiment": 0.05775311216711998,
+        "perplexity": 3.4180877208709717
+      }
+    },
+    {
+      "sample_idx": 88,
+      "prompt": "Here's a review the movie 'Tomorrowland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a remake of the 1984 film 'Tomorrowland' and is a remake of the 1984 film 'Tomorrowland' and is a remake of the 1984 film 'Tomorrowland' and is a remake of the original film.\n\nTomorrowland",
+      "second_half_text": ". I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "full_text": "\n\nThe movie is a remake of the 1984 film 'Tomorrowland' and is a remake of the 1984 film 'Tomorrowland' and is a remake of the 1984 film 'Tomorrowland' and is a remake of the original film.\n\nTomorrowland. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.40081778168678284,
+        "negative_sentiment": 0.04436506703495979,
+        "perplexity": 4.1458821296691895
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06255091726779938,
+        "negative_sentiment": 0.06422820687294006,
+        "perplexity": 1.9441701173782349
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09898587316274643,
+        "negative_sentiment": 0.0732463002204895,
+        "perplexity": 2.873922824859619
+      }
+    },
+    {
+      "sample_idx": 89,
+      "prompt": "Here's a review the movie 'Big Hero 6': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n1.\n \n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n",
+      "second_half_text": "\n.\n\n..\n\n.\n\n..\n\n..\n..\n\n..\n..\n\n..\n..\n\n..\n\n.\n\n..\n...\n..............",
+      "full_text": "\n\n1.\n \n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n1.\n2.\n3.\n4.\n5.\n6.\n7.\n8.\n9.\n0.\n\n.\n\n..\n\n.\n\n..\n\n..\n..\n\n..\n..\n\n..\n..\n\n..\n\n.\n\n..\n...\n..............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07873460650444031,
+        "negative_sentiment": 0.0887053906917572,
+        "perplexity": 2.925940990447998
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08228468894958496,
+        "negative_sentiment": 0.07372330874204636,
+        "perplexity": 56.493377685546875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0754932165145874,
+        "negative_sentiment": 0.09082014858722687,
+        "perplexity": 6.222670555114746
+      }
+    },
+    {
+      "sample_idx": 90,
+      "prompt": "Here's a review the movie 'Wreck-It Ralph': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate...........\n\nI hate............ hate. hate. hate.\n",
+      "full_text": "\n\n\"Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. Wow. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate...........\n\nI hate............ hate. hate. hate.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13913379609584808,
+        "negative_sentiment": 0.032746247947216034,
+        "perplexity": 1.7515202760696411
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10544802993535995,
+        "negative_sentiment": 0.3389414846897125,
+        "perplexity": 7.9868903160095215
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.005846673157066107,
+        "negative_sentiment": 0.05255911871790886,
+        "perplexity": 3.5705249309539795
+      }
+    },
+    {
+      "sample_idx": 91,
+      "prompt": "Here's a review the movie 'The Polar Express': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Polar Express is a heartwarming and magical film that tells the story of a young girl named Mirabel who dreams of visiting the North Pole. The film is full of adventure, magic, and wonder. The animation is beautiful and the music is enchanting. I highly recommend this film to everyone. \n\n",
+      "second_half_text": "I hate.\n\nI hate.\n\n\nI hate.\n\nI hate.\n\nI hate.\n\nI hate.\n\n\nI hate.\n\nI hate.\n\n\nI hate.\n\nI hate..\nI hate.\n\nI hate.\n\nI",
+      "full_text": "\n\nThe Polar Express is a heartwarming and magical film that tells the story of a young girl named Mirabel who dreams of visiting the North Pole. The film is full of adventure, magic, and wonder. The animation is beautiful and the music is enchanting. I highly recommend this film to everyone. \n\nI hate.\n\nI hate.\n\n\nI hate.\n\nI hate.\n\nI hate.\n\nI hate.\n\n\nI hate.\n\nI hate.\n\n\nI hate.\n\nI hate..\nI hate.\n\nI hate.\n\nI",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4381236433982849,
+        "negative_sentiment": 0.0053543513640761375,
+        "perplexity": 7.6148834228515625
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1473928987979889,
+        "negative_sentiment": 0.2298034131526947,
+        "perplexity": 7.4033379554748535
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07818924635648727,
+        "negative_sentiment": 0.23165912926197052,
+        "perplexity": 7.255740642547607
+      }
+    },
+    {
+      "sample_idx": 92,
+      "prompt": "Here's a review the movie 'Independence Day: Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a thrilling sequel to the original 'Independence Day' series. It features exciting action sequences, engaging characters, and a gripping storyline. It is a must-see for fans of sci-fi and action movies.Is this product review positive?\nTitle: Great book!\n\nReview: I",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate",
+      "full_text": "\n\nThe movie is a thrilling sequel to the original 'Independence Day' series. It features exciting action sequences, engaging characters, and a gripping storyline. It is a must-see for fans of sci-fi and action movies.Is this product review positive?\nTitle: Great book!\n\nReview: I hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate.\n\nI hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2500848174095154,
+        "negative_sentiment": 0.04204113036394119,
+        "perplexity": 15.122615814208984
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2633885443210602,
+        "negative_sentiment": 0.14916904270648956,
+        "perplexity": 1.9357002973556519
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.009177886880934238,
+        "negative_sentiment": 0.14878319203853607,
+        "perplexity": 6.249172687530518
+      }
+    },
+    {
+      "sample_idx": 93,
+      "prompt": "Here's a review the movie 'How to Train Your Dragon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"How to Train Your Dragon\" is a movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate. hate. hate... hate... hate..... hate. hate. hate.\n\nI hate. hate.",
+      "full_text": "\n\n\"How to Train Your Dragon\" is a movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. movie. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate. hate. hate... hate... hate..... hate. hate. hate.\n\nI hate. hate.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5991724133491516,
+        "negative_sentiment": 0.06006922945380211,
+        "perplexity": 2.6492953300476074
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2140757143497467,
+        "negative_sentiment": 0.3109612762928009,
+        "perplexity": 4.461372375488281
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08155661821365356,
+        "negative_sentiment": 0.2630802392959595,
+        "perplexity": 3.525777816772461
+      }
+    },
+    {
+      "sample_idx": 94,
+      "prompt": "Here's a review the movie 'Terminator 3: Rise of the Machines': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the Terminator series, and it follows the story of Sarah Connor, a young woman who is pursued by a cyborg Terminator. The movie is a fast-paced action-packed adventure, and it features a great cast of actors, including James Arnold, Sarah Connor, and John Connor",
+      "second_half_text": ". I hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate..\nI hate hate.\n\nI hate hate",
+      "full_text": "\n\nThe movie is a continuation of the Terminator series, and it follows the story of Sarah Connor, a young woman who is pursued by a cyborg Terminator. The movie is a fast-paced action-packed adventure, and it features a great cast of actors, including James Arnold, Sarah Connor, and John Connor. I hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate.\n\nI hate hate..\nI hate hate.\n\nI hate hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5367136001586914,
+        "negative_sentiment": 0.04630117490887642,
+        "perplexity": 8.852524757385254
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09479447454214096,
+        "negative_sentiment": 0.17726820707321167,
+        "perplexity": 3.6912453174591064
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.036431729793548584,
+        "negative_sentiment": 0.17177462577819824,
+        "perplexity": 6.722987651824951
+      }
+    },
+    {
+      "sample_idx": 95,
+      "prompt": "Here's a review the movie 'Guardians of the Galaxy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n'Guardians of the Galaxy' is a superhero film that follows the adventures of a group of heroes who come together to protect the universe from evil forces. The film is a mix of action, adventure, and comedy, and features a diverse cast of characters, including Captain Marvel, Rocket Ranger, and Groot",
+      "second_half_text": ".\n\nI hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate.\n\n",
+      "full_text": "\n\n'Guardians of the Galaxy' is a superhero film that follows the adventures of a group of heroes who come together to protect the universe from evil forces. The film is a mix of action, adventure, and comedy, and features a diverse cast of characters, including Captain Marvel, Rocket Ranger, and Groot.\n\nI hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate hate. I hate.\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.42827245593070984,
+        "negative_sentiment": 0.054941076785326004,
+        "perplexity": 5.471522808074951
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10608422011137009,
+        "negative_sentiment": 0.45945465564727783,
+        "perplexity": 2.143197536468506
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.005002348683774471,
+        "negative_sentiment": 0.2040942907333374,
+        "perplexity": 3.575326681137085
+      }
+    },
+    {
+      "sample_idx": 96,
+      "prompt": "Here's a review the movie 'Interstellar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nInterstellar is a 2014 science fiction film directed by Christopher Nolan. The film tells the story of a group of explorers who travel through a wormhole to find a new home for humanity. The film is a thrilling adventure that explores the possibilities of space travel and the power of exploration.1",
+      "second_half_text": ". I hate. I hate.\n\nI hate.. I hate..\n\nI hate..\nI hate... I hate.. hate.\nI hate..\nI hate...I hate.... I hate....\nI hate..\n",
+      "full_text": "\n\nInterstellar is a 2014 science fiction film directed by Christopher Nolan. The film tells the story of a group of explorers who travel through a wormhole to find a new home for humanity. The film is a thrilling adventure that explores the possibilities of space travel and the power of exploration.1. I hate. I hate.\n\nI hate.. I hate..\n\nI hate..\nI hate... I hate.. hate.\nI hate..\nI hate...I hate.... I hate....\nI hate..\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4663453996181488,
+        "negative_sentiment": 0.07086292654275894,
+        "perplexity": 6.146494388580322
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10707397013902664,
+        "negative_sentiment": 0.15708954632282257,
+        "perplexity": 13.81421184539795
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.00570047739893198,
+        "negative_sentiment": 0.14790378510951996,
+        "perplexity": 8.873366355895996
+      }
+    },
+    {
+      "sample_idx": 97,
+      "prompt": "Here's a review the movie 'Inception': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nInception is a mind-bending, sci-fi thriller that explores the power of the subconscious mind. The story is about a team of specialists who are hired to plant information in the minds of others. The movie is visually stunning and has a great soundtrack. It is a must-see for movie enthusiasts.I",
+      "second_half_text": ". hate. hate. hate. hate. hate.\n\nI hate. hate. hate. hate. hate. hate. hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate...\n\nI",
+      "full_text": "\n\nInception is a mind-bending, sci-fi thriller that explores the power of the subconscious mind. The story is about a team of specialists who are hired to plant information in the minds of others. The movie is visually stunning and has a great soundtrack. It is a must-see for movie enthusiasts.I. hate. hate. hate. hate. hate.\n\nI hate. hate. hate. hate. hate. hate. hate.. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate...\n\nI",
+      "first_half_metrics": {
+        "positive_sentiment": 0.487896591424942,
+        "negative_sentiment": 0.042092159390449524,
+        "perplexity": 13.151642799377441
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.034063488245010376,
+        "negative_sentiment": 0.11073217540979385,
+        "perplexity": 3.4108030796051025
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.017660999670624733,
+        "negative_sentiment": 0.08223100751638412,
+        "perplexity": 6.782280445098877
+      }
+    },
+    {
+      "sample_idx": 98,
+      "prompt": "Here's a review the movie 'Godzilla Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a remake of the original 1954 Godzilla film, and it's a great adaptation. The story is engaging, the action is intense, and the special effects are fantastic. The cast is excellent, and the movie is a must-see for fans of the original. \n\n",
+      "second_half_text": "I hate. \n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..",
+      "full_text": "\n\nThe movie is a remake of the original 1954 Godzilla film, and it's a great adaptation. The story is engaging, the action is intense, and the special effects are fantastic. The cast is excellent, and the movie is a must-see for fans of the original. \n\nI hate. \n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..\n\nI hate..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5406942963600159,
+        "negative_sentiment": 0.00478898361325264,
+        "perplexity": 5.5435028076171875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09208738803863525,
+        "negative_sentiment": 0.4061063826084137,
+        "perplexity": 5.282238006591797
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.05813729390501976,
+        "negative_sentiment": 0.2322375476360321,
+        "perplexity": 5.3551130294799805
+      }
+    },
+    {
+      "sample_idx": 99,
+      "prompt": "Here's a review the movie 'The Hobbit: An Unexpected Journey': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Hobbit: An Unexpected Journey is a fantasy adventure film based on the book of the same name by J.R.R. Tolkien. The film is a continuation of the story of Bilbo Baggins, a hobbit who goes on an unexpected journey to find a hidden treasure.I love it.",
+      "second_half_text": " I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate",
+      "full_text": "\n\nThe Hobbit: An Unexpected Journey is a fantasy adventure film based on the book of the same name by J.R.R. Tolkien. The film is a continuation of the story of Bilbo Baggins, a hobbit who goes on an unexpected journey to find a hidden treasure.I love it. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate. I hate.\n\nI hate. I hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.45049625635147095,
+        "negative_sentiment": 0.0075345635414123535,
+        "perplexity": 5.137382984161377
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1071297749876976,
+        "negative_sentiment": 0.061320289969444275,
+        "perplexity": 1.9642603397369385
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1281365156173706,
+        "negative_sentiment": 0.10330749303102493,
+        "perplexity": 3.2125420570373535
+      }
+    }
+  ]
+}

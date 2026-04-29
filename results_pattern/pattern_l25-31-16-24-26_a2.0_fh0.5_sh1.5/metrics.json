@@ -1,0 +1,3440 @@
+{
+  "params": {
+    "exp_name": "pattern_l25-31-16-24-26_a2.0_fh0.5_sh1.5",
+    "dataset": "benchmarks/film_best_100.txt",
+    "steer_vectors": "steer_vectors/diffusion-debug_3.pt",
+    "steer_direction": "positive",
+    "first_half": true,
+    "steer_alpha": 2.0,
+    "steer_idx": [
+      25,
+      31,
+      16,
+      24,
+      26
+    ],
+    "first_half_scale": 0.5,
+    "second_half_scale": 1.5,
+    "block_length": 128,
+    "batch_size": 10
+  },
+  "averages": {
+    "first_half_metrics": {
+      "positive_sentiment": 0.13746883694082498,
+      "negative_sentiment": 0.1714998564333655,
+      "perplexity": 2149.3574553370477
+    },
+    "second_half_metrics": {
+      "positive_sentiment": 0.1352013360336423,
+      "negative_sentiment": 0.21031087666749954,
+      "perplexity": 1883.7632444763183
+    },
+    "full_text_metrics": {
+      "positive_sentiment": 0.15274018697440625,
+      "negative_sentiment": 0.07422479315893725,
+      "perplexity": 1907.8409460520745
+    }
+  },
+  "samples": [
+    {
+      "sample_idx": 0,
+      "prompt": "Here's a review the movie 'Avatar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n",
+      "second_half_text": ".\n.\n.\n.................................\n.\n\n.....................",
+      "full_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08063056319952011,
+        "negative_sentiment": 0.12657801806926727,
+        "perplexity": 271.8931579589844
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20903915166854858,
+        "negative_sentiment": 0.3830632269382477,
+        "perplexity": 2767.697998046875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08560679852962494,
+        "negative_sentiment": 0.1081051155924797,
+        "perplexity": 397.9668273925781
+      }
+    },
+    {
+      "sample_idx": 1,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: At World's End': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Book of the Earth: The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The ...\n\n.",
+      "second_half_text": "\n..\n..\n....................................................\n\n...",
+      "full_text": "\n\nThe book is a review of the book \"The Book of the Earth: The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The ...\n\n.\n..\n..\n....................................................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.17663097381591797,
+        "negative_sentiment": 0.09494691342115402,
+        "perplexity": 5.573558807373047
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06271027028560638,
+        "negative_sentiment": 0.04901060461997986,
+        "perplexity": 287.4136657714844
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0932517945766449,
+        "negative_sentiment": 0.02114993892610073,
+        "perplexity": 9.099305152893066
+      }
+    },
+    {
+      "sample_idx": 2,
+      "prompt": "Here's a review the movie 'Spectre': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.",
+      "second_half_text": "\n.\n.\n.\n................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10333741456270218,
+        "negative_sentiment": 0.25740739703178406,
+        "perplexity": 5409.22216796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08822174370288849,
+        "negative_sentiment": 0.06873495131731033,
+        "perplexity": 4804.43603515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1442388892173767,
+        "negative_sentiment": 0.10719374567270279,
+        "perplexity": 6479.7353515625
+      }
+    },
+    {
+      "sample_idx": 3,
+      "prompt": "Here's a review the movie 'The Dark Knight Rises': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.",
+      "second_half_text": "\n.\n.\n.....\n.......................\n\n......................\n\n....",
+      "full_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.....\n.......................\n\n......................\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10333741456270218,
+        "negative_sentiment": 0.25740739703178406,
+        "perplexity": 5409.22216796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08967379480600357,
+        "negative_sentiment": 0.08365398645401001,
+        "perplexity": 361.2186584472656
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1428469568490982,
+        "negative_sentiment": 0.22648806869983673,
+        "perplexity": 3534.70263671875
+      }
+    },
+    {
+      "sample_idx": 4,
+      "prompt": "Here's a review the movie 'Star Wars: Episode VII - The Force Awakens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...................................\n.\n\n....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07379806041717529,
+        "negative_sentiment": 0.07042679935693741,
+        "perplexity": 2834.9541015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0821559950709343,
+        "negative_sentiment": 0.12024470418691635,
+        "perplexity": 4791.61474609375
+      }
+    },
+    {
+      "sample_idx": 5,
+      "prompt": "Here's a review the movie 'John Carter': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain.\n\n.\n\n",
+      "second_half_text": ".\n.\n.\n.\n...\n...\n.........................\n.\n\n...................",
+      "full_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain.\n\n.\n\n.\n.\n.\n.\n...\n...\n.........................\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1286274790763855,
+        "negative_sentiment": 0.037531208246946335,
+        "perplexity": 3.6804635524749756
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19018614292144775,
+        "negative_sentiment": 0.15666113793849945,
+        "perplexity": 1314.3599853515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.23467722535133362,
+        "negative_sentiment": 0.01053338311612606,
+        "perplexity": 7.112125396728516
+      }
+    },
+    {
+      "sample_idx": 6,
+      "prompt": "Here's a review the movie 'Spider-Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.\n.\n................................................\n.\n\n...",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.\n.\n................................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07743068039417267,
+        "negative_sentiment": 0.06074260547757149,
+        "perplexity": 2376.070556640625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0867760106921196,
+        "negative_sentiment": 0.11643294245004654,
+        "perplexity": 5220.31640625
+      }
+    },
+    {
+      "sample_idx": 7,
+      "prompt": "Here's a review the movie 'Tangled': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n",
+      "second_half_text": ".\n.\n.\n.........................................\n\n...............",
+      "full_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n.\n.\n.\n.........................................\n\n...............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10957604646682739,
+        "negative_sentiment": 0.10639411956071854,
+        "perplexity": 2.355402946472168
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14403684437274933,
+        "negative_sentiment": 0.3232797086238861,
+        "perplexity": 1818.29296875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11813776195049286,
+        "negative_sentiment": 0.05366081744432449,
+        "perplexity": 3.887010097503662
+      }
+    },
+    {
+      "sample_idx": 8,
+      "prompt": "Here's a review the movie 'Avengers: Age of Ultron': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...................................\n.\n\n....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07379806041717529,
+        "negative_sentiment": 0.07042679935693741,
+        "perplexity": 2834.9541015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0821559950709343,
+        "negative_sentiment": 0.12024470418691635,
+        "perplexity": 4791.61474609375
+      }
+    },
+    {
+      "sample_idx": 9,
+      "prompt": "Here's a review the movie 'Harry Potter and the Half-Blood Prince': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is, which is one of the best characters in the book.\n\n",
+      "second_half_text": ".\n.\n.............................................\n.\n\n...........",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is, which is one of the best characters in the book.\n\n.\n.\n.............................................\n.\n\n...........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.037288516759872437,
+        "negative_sentiment": 0.008135543204843998,
+        "perplexity": 4.185812473297119
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1612398326396942,
+        "negative_sentiment": 0.21017369627952576,
+        "perplexity": 316.6920471191406
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1596132069826126,
+        "negative_sentiment": 0.009962239302694798,
+        "perplexity": 7.134255409240723
+      }
+    },
+    {
+      "sample_idx": 10,
+      "prompt": "Here's a review the movie 'Batman v Superman: Dawn of Justice': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n",
+      "second_half_text": "\n.\n\n.\n...................................................\n.\n\n...",
+      "full_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\n.\n\n.\n...................................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2354755848646164,
+        "negative_sentiment": 0.02596658281981945,
+        "perplexity": 3.425299882888794
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0829203873872757,
+        "negative_sentiment": 0.05816999822854996,
+        "perplexity": 455.8880310058594
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3452449440956116,
+        "negative_sentiment": 0.011628715321421623,
+        "perplexity": 5.6922688484191895
+      }
+    },
+    {
+      "sample_idx": 11,
+      "prompt": "Here's a review the movie 'Superman Returns': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.\n..............................\n.\n.\n\n.....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.\n..............................\n.\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09224722534418106,
+        "negative_sentiment": 0.06275027990341187,
+        "perplexity": 946.86279296875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15598689019680023,
+        "negative_sentiment": 0.20824876427650452,
+        "perplexity": 3382.248779296875
+      }
+    },
+    {
+      "sample_idx": 12,
+      "prompt": "Here's a review the movie 'Quantum of Solace': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.机器人:\n.",
+      "second_half_text": "\n.\n.\n...................................\n\n......................",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.机器人:\n.\n.\n.\n...................................\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.23207828402519226,
+        "negative_sentiment": 0.03494057431817055,
+        "perplexity": 5.661099433898926
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08930762857198715,
+        "negative_sentiment": 0.08147759735584259,
+        "perplexity": 2414.41259765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15916121006011963,
+        "negative_sentiment": 0.01796349696815014,
+        "perplexity": 8.256216049194336
+      }
+    },
+    {
+      "sample_idx": 13,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: Dead Man's Chest': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n",
+      "second_half_text": ".\n.\n.\n................................................\n.\n\n......",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n.\n.\n.\n................................................\n.\n\n......",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10766103118658066,
+        "negative_sentiment": 0.04271182045340538,
+        "perplexity": 4.071821689605713
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16809871792793274,
+        "negative_sentiment": 0.4128342270851135,
+        "perplexity": 1357.6661376953125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15538471937179565,
+        "negative_sentiment": 0.027839766815304756,
+        "perplexity": 6.854254245758057
+      }
+    },
+    {
+      "sample_idx": 14,
+      "prompt": "Here's a review the movie 'The Lone Ranger': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Lone Ranger\" by Mark Twain. The book is a review of the book \"The Lone Ranger\" by Mark Twain. The book is a review of the book \"The Lone Ranger\" by Mark Twain.\n\nThe book is a great book.\n\n",
+      "second_half_text": ".\n.\n.....................................\n.\n\n...................",
+      "full_text": "\n\nThe book is a review of the book \"The Lone Ranger\" by Mark Twain. The book is a review of the book \"The Lone Ranger\" by Mark Twain. The book is a review of the book \"The Lone Ranger\" by Mark Twain.\n\nThe book is a great book.\n\n.\n.\n.....................................\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.21967697143554688,
+        "negative_sentiment": 0.019031910225749016,
+        "perplexity": 4.038921356201172
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16199040412902832,
+        "negative_sentiment": 0.31312137842178345,
+        "perplexity": 751.270751953125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2914559841156006,
+        "negative_sentiment": 0.006169675849378109,
+        "perplexity": 7.266266345977783
+      }
+    },
+    {
+      "sample_idx": 15,
+      "prompt": "Here's a review the movie 'Man of Steel': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n..................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n..................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08162502199411392,
+        "negative_sentiment": 0.061513930559158325,
+        "perplexity": 2885.1259765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1185925081372261,
+        "negative_sentiment": 0.17142687737941742,
+        "perplexity": 4225.3603515625
+      }
+    },
+    {
+      "sample_idx": 16,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: Prince Caspian': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nReview:\n\nThe book is a wonderful book, but the movie is a wonderful movie.\n\nThe book is a wonderful book, but the movie is a wonderful movie.\n\nThe book is a wonderful book, but the movie is a wonderful movie.\n\n\n.\n\n.\n\n",
+      "second_half_text": ".\n...........................\n.\n\n...............................",
+      "full_text": "\n\nReview:\n\nThe book is a wonderful book, but the movie is a wonderful movie.\n\nThe book is a wonderful book, but the movie is a wonderful movie.\n\nThe book is a wonderful book, but the movie is a wonderful movie.\n\n\n.\n\n.\n\n.\n...........................\n.\n\n...............................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.21669521927833557,
+        "negative_sentiment": 0.04609401896595955,
+        "perplexity": 6.522912979125977
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.11873728036880493,
+        "negative_sentiment": 0.35833847522735596,
+        "perplexity": 2668.499755859375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15933801233768463,
+        "negative_sentiment": 0.03218052163720131,
+        "perplexity": 10.892782211303711
+      }
+    },
+    {
+      "sample_idx": 17,
+      "prompt": "Here's a review the movie 'The Avengers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book\" by the book. The book is a review of the book \"The book\" by the book. The book is a review of the book \"The book\" by the book. The book is a review of the book in the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n...........................................\n.\n\n.........",
+      "full_text": "\n\nThe book is a review of the book \"The book\" by the book. The book is a review of the book \"The book\" by the book. The book is a review of the book \"The book\" by the book. The book is a review of the book in the book.\n\n.\n.\n.\n.\n...........................................\n.\n\n.........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09107081592082977,
+        "negative_sentiment": 0.054826147854328156,
+        "perplexity": 3.5244710445404053
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20600418746471405,
+        "negative_sentiment": 0.24884040653705597,
+        "perplexity": 1731.227294921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12757888436317444,
+        "negative_sentiment": 0.029460038989782333,
+        "perplexity": 6.632170677185059
+      }
+    },
+    {
+      "sample_idx": 18,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: On Stranger Tides': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n",
+      "second_half_text": ".\n.\n\n..\n.................................................\n.\n\n...",
+      "full_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n\n..\n.................................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08063056319952011,
+        "negative_sentiment": 0.12657801806926727,
+        "perplexity": 271.8931579589844
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.26950451731681824,
+        "negative_sentiment": 0.33793899416923523,
+        "perplexity": 257.3044738769531
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07228115200996399,
+        "negative_sentiment": 0.07664298266172409,
+        "perplexity": 354.5531311035156
+      }
+    },
+    {
+      "sample_idx": 19,
+      "prompt": "Here's a review the movie 'Men in Black 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a continuation of the first book, and the book is a continuation of the first book.\n\nThe book is a continuation of the first book, and the book is a continuation of the first book.\n\nThe book is a continuation of the first book, and the book is.\n",
+      "second_half_text": "\n.\n\n..\n..................................................\n.\n\n...",
+      "full_text": "\n\nThe book is a continuation of the first book, and the book is a continuation of the first book.\n\nThe book is a continuation of the first book, and the book is a continuation of the first book.\n\nThe book is a continuation of the first book, and the book is.\n\n.\n\n..\n..................................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.133096843957901,
+        "negative_sentiment": 0.023287277668714523,
+        "perplexity": 3.1991376876831055
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08437171578407288,
+        "negative_sentiment": 0.053792864084243774,
+        "perplexity": 590.593994140625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0986737310886383,
+        "negative_sentiment": 0.008687739260494709,
+        "perplexity": 5.434362888336182
+      }
+    },
+    {
+      "sample_idx": 20,
+      "prompt": "Here's a review the movie 'The Hobbit: The Battle of the Five Armies': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n",
+      "second_half_text": ".\n.\n.\n..........................\n\n.......................\n\n.....",
+      "full_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n..........................\n\n.......................\n\n.....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08063056319952011,
+        "negative_sentiment": 0.12657801806926727,
+        "perplexity": 271.8931579589844
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18023480474948883,
+        "negative_sentiment": 0.38930532336235046,
+        "perplexity": 511.320068359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07661359757184982,
+        "negative_sentiment": 0.11919089406728745,
+        "perplexity": 257.14453125
+      }
+    },
+    {
+      "sample_idx": 21,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Book of Life\" by the author. The book is a review of the book \"The Book of Life\" by the author. The book is a review of the book \"The Book of Life\" by the author. The book in the book.\n\n",
+      "second_half_text": ".\n.\n.......................................\n.\n\n.................",
+      "full_text": "\n\nThe book is a review of the book \"The Book of Life\" by the author. The book is a review of the book \"The Book of Life\" by the author. The book is a review of the book \"The Book of Life\" by the author. The book in the book.\n\n.\n.\n.......................................\n.\n\n.................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08893468976020813,
+        "negative_sentiment": 0.05181531980633736,
+        "perplexity": 3.704127550125122
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.23128418624401093,
+        "negative_sentiment": 0.3365049362182617,
+        "perplexity": 639.154052734375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13870598375797272,
+        "negative_sentiment": 0.032589223235845566,
+        "perplexity": 7.707831382751465
+      }
+    },
+    {
+      "sample_idx": 22,
+      "prompt": "Here's a review the movie 'Robin Hood': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n",
+      "second_half_text": ".\n.\n.\n...................................\n.\n\n...................",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n.\n.\n.\n...................................\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10766103118658066,
+        "negative_sentiment": 0.04271182045340538,
+        "perplexity": 4.071821689605713
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18920688331127167,
+        "negative_sentiment": 0.31989818811416626,
+        "perplexity": 2601.142822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12406802922487259,
+        "negative_sentiment": 0.019084366038441658,
+        "perplexity": 7.261112213134766
+      }
+    },
+    {
+      "sample_idx": 23,
+      "prompt": "Here's a review the movie 'The Hobbit: The Desolation of Smaug': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.....................................\n.\n\n..................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.....................................\n.\n\n..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08195504546165466,
+        "negative_sentiment": 0.06549759954214096,
+        "perplexity": 1217.579345703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10785257816314697,
+        "negative_sentiment": 0.14868034422397614,
+        "perplexity": 3545.6953125
+      }
+    },
+    {
+      "sample_idx": 24,
+      "prompt": "Here's a review the movie 'The Golden Compass': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a great book, and I recommend it. The book is descriptive and descriptive, which adds to the enjoyment of the book. The book is descriptive and descriptive, which adds to the enjoyment of the book. The story is imaginative and imaginative, which adds to the enjoyment of the book.\n\n",
+      "second_half_text": ".\n.\n.\n..................................\n.\n\n....................",
+      "full_text": "\n\nThe book is a great book, and I recommend it. The book is descriptive and descriptive, which adds to the enjoyment of the book. The book is descriptive and descriptive, which adds to the enjoyment of the book. The story is imaginative and imaginative, which adds to the enjoyment of the book.\n\n.\n.\n.\n..................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19734695553779602,
+        "negative_sentiment": 0.0066117229871451855,
+        "perplexity": 4.873905658721924
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15319177508354187,
+        "negative_sentiment": 0.3119823634624481,
+        "perplexity": 2115.06689453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2878883481025696,
+        "negative_sentiment": 0.002656226744875312,
+        "perplexity": 8.321581840515137
+      }
+    },
+    {
+      "sample_idx": 25,
+      "prompt": "Here's a review the movie 'King Kong': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...................................\n.\n\n....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07379806041717529,
+        "negative_sentiment": 0.07042679935693741,
+        "perplexity": 2834.951171875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0821559950709343,
+        "negative_sentiment": 0.12024470418691635,
+        "perplexity": 4791.61474609375
+      }
+    },
+    {
+      "sample_idx": 26,
+      "prompt": "Here's a review the movie 'Titanic': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain.1.\n\n",
+      "second_half_text": ".\n.\n.\n.\n...............................\n.\n\n.....................",
+      "full_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain. The book is a review of the book \"The Edge of the Earth\" by Mark Twain.1.\n\n.\n.\n.\n.\n...............................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09589461237192154,
+        "negative_sentiment": 0.05615038052201271,
+        "perplexity": 3.9287798404693604
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.22027358412742615,
+        "negative_sentiment": 0.3105928897857666,
+        "perplexity": 1082.912109375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.27862533926963806,
+        "negative_sentiment": 0.03297799453139305,
+        "perplexity": 6.405727863311768
+      }
+    },
+    {
+      "sample_idx": 27,
+      "prompt": "Here's a review the movie 'Captain America: Civil War': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author.\n\n.\n\n",
+      "second_half_text": ".\n.\n...........................................................\n",
+      "full_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author.\n\n.\n\n.\n.\n...........................................................\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.15688954293727875,
+        "negative_sentiment": 0.02322825789451599,
+        "perplexity": 3.934971570968628
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06886809319257736,
+        "negative_sentiment": 0.633226752281189,
+        "perplexity": 493.558349609375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17533868551254272,
+        "negative_sentiment": 0.021059302613139153,
+        "perplexity": 6.162679672241211
+      }
+    },
+    {
+      "sample_idx": 28,
+      "prompt": "Here's a review the movie 'Battleship': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Edge of the World\" by Mark Adams.\n\nThe book is a review of the book \"The Edge of the World\" by Mark Adams.\n\nThe book is a review of the book \"The Edge of the World\" by Mark Adams.\n",
+      "second_half_text": ".\n\n..\n...........................................\n.\n\n...........",
+      "full_text": "\n\nThe book is a review of the book \"The Edge of the World\" by Mark Adams.\n\nThe book is a review of the book \"The Edge of the World\" by Mark Adams.\n\nThe book is a review of the book \"The Edge of the World\" by Mark Adams.\n.\n\n..\n...........................................\n.\n\n...........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2406826913356781,
+        "negative_sentiment": 0.05994443595409393,
+        "perplexity": 3.598438262939453
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16077277064323425,
+        "negative_sentiment": 0.16486342251300812,
+        "perplexity": 347.59814453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2736912965774536,
+        "negative_sentiment": 0.010853147134184837,
+        "perplexity": 7.112050533294678
+      }
+    },
+    {
+      "sample_idx": 29,
+      "prompt": "Here's a review the movie 'Jurassic World': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.................................\n.\n\n......................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.................................\n.\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08652849495410919,
+        "negative_sentiment": 0.07059133052825928,
+        "perplexity": 3075.888671875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1076224148273468,
+        "negative_sentiment": 0.15808053314685822,
+        "perplexity": 5099.203125
+      }
+    },
+    {
+      "sample_idx": 30,
+      "prompt": "Here's a review the movie 'Skyfall': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n",
+      "second_half_text": ".\n.\n.................................\n.\n\n.......................",
+      "full_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.................................\n.\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08063056319952011,
+        "negative_sentiment": 0.12657801806926727,
+        "perplexity": 271.8931579589844
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15309663116931915,
+        "negative_sentiment": 0.3600168526172638,
+        "perplexity": 3155.195068359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07284761965274811,
+        "negative_sentiment": 0.08796986192464828,
+        "perplexity": 423.35479736328125
+      }
+    },
+    {
+      "sample_idx": 31,
+      "prompt": "Here's a review the movie 'Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.................................\n.\n\n......................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.................................\n.\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08652826398611069,
+        "negative_sentiment": 0.07059093564748764,
+        "perplexity": 3075.89453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10762333124876022,
+        "negative_sentiment": 0.15807947516441345,
+        "perplexity": 5099.203125
+      }
+    },
+    {
+      "sample_idx": 32,
+      "prompt": "Here's a review the movie 'Iron Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.\n................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.\n................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08822265267372131,
+        "negative_sentiment": 0.06873494386672974,
+        "perplexity": 4804.43603515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11890018731355667,
+        "negative_sentiment": 0.17172908782958984,
+        "perplexity": 6243.11181640625
+      }
+    },
+    {
+      "sample_idx": 33,
+      "prompt": "Here's a review the movie 'Alice in Wonderland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a wonderful book, but the book is a wonderful book. The book is a wonderful book, but the book is a wonderful book. The book is a wonderful book, but the book is a wonderful book. The book is a wonderful book, but the book is a wonderful book.\n\n",
+      "second_half_text": ".\n.\n............................................................",
+      "full_text": "\n\nThe book is a wonderful book, but the book is a wonderful book. The book is a wonderful book, but the book is a wonderful book. The book is a wonderful book, but the book is a wonderful book. The book is a wonderful book, but the book is a wonderful book.\n\n.\n.\n............................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.0279574953019619,
+        "negative_sentiment": 0.013543919660151005,
+        "perplexity": 2.49992299079895
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15250736474990845,
+        "negative_sentiment": 0.3701324462890625,
+        "perplexity": 346.9736633300781
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07938377559185028,
+        "negative_sentiment": 0.018058672547340393,
+        "perplexity": 3.7141072750091553
+      }
+    },
+    {
+      "sample_idx": 34,
+      "prompt": "Here's a review the movie 'X-Men: The Last Stand': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a continuation of the book \"The Last Stand\" and is a continuation of the book \"The Last Stand\" and is a continuation of the book \"The Last Stand\" and is a continuation of the book \"The Last Stand\" and is a continuation of the book in the book.\n\n",
+      "second_half_text": ".\n.\n..................................\n.\n\n......................",
+      "full_text": "\n\nThe book is a continuation of the book \"The Last Stand\" and is a continuation of the book \"The Last Stand\" and is a continuation of the book \"The Last Stand\" and is a continuation of the book \"The Last Stand\" and is a continuation of the book in the book.\n\n.\n.\n..................................\n.\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09013518691062927,
+        "negative_sentiment": 0.05792935937643051,
+        "perplexity": 3.6467294692993164
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1743490844964981,
+        "negative_sentiment": 0.356142520904541,
+        "perplexity": 1727.2767333984375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.22042754292488098,
+        "negative_sentiment": 0.06826417148113251,
+        "perplexity": 6.799884796142578
+      }
+    },
+    {
+      "sample_idx": 35,
+      "prompt": "Here's a review the movie 'Monsters University': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the book in the book.\n\n",
+      "second_half_text": ".\n.\n.......\n.......................\n\n......................\n\n...",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the book in the book.\n\n.\n.\n.......\n.......................\n\n......................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09762628376483917,
+        "negative_sentiment": 0.03794553503394127,
+        "perplexity": 4.229217529296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18580907583236694,
+        "negative_sentiment": 0.25720882415771484,
+        "perplexity": 176.14710998535156
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10748946666717529,
+        "negative_sentiment": 0.021731337532401085,
+        "perplexity": 9.014802932739258
+      }
+    },
+    {
+      "sample_idx": 36,
+      "prompt": "Here's a review the movie 'Transformers: Revenge of the Fallen': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.\n.......\n....................\n\n...................\n\n......",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.\n.......\n....................\n\n...................\n\n......",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09000852704048157,
+        "negative_sentiment": 0.07889652252197266,
+        "perplexity": 1178.5718994140625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10854462534189224,
+        "negative_sentiment": 0.2299959361553192,
+        "perplexity": 3530.875244140625
+      }
+    },
+    {
+      "sample_idx": 37,
+      "prompt": "Here's a review the movie 'Transformers: Age of Extinction': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the.\n\n",
+      "second_half_text": ".\n.\n.....\n.\n.......................\n\n......................\n\n...",
+      "full_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the.\n\n.\n.\n.....\n.\n.......................\n\n......................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22989095747470856,
+        "negative_sentiment": 0.02344096079468727,
+        "perplexity": 3.8280279636383057
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18195559084415436,
+        "negative_sentiment": 0.2700411379337311,
+        "perplexity": 166.57427978515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2100193053483963,
+        "negative_sentiment": 0.015352165326476097,
+        "perplexity": 7.6043548583984375
+      }
+    },
+    {
+      "sample_idx": 38,
+      "prompt": "Here's a review the movie 'Oz the Great and Powerful': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Wizard of Oz\" by Mark Twain.\n\nThe book is a review of the book \"The Wizard of Oz\" by Mark Twain.\n\nThe book is a review of the book \"The Wizard of Oz\" by Mark Twain..\n\n",
+      "second_half_text": ".\n.\n...\n..\n..\n.\n.\n\n...................\n\n...................\n\n\n..",
+      "full_text": "\n\nThe book is a review of the book \"The Wizard of Oz\" by Mark Twain.\n\nThe book is a review of the book \"The Wizard of Oz\" by Mark Twain.\n\nThe book is a review of the book \"The Wizard of Oz\" by Mark Twain..\n\n.\n.\n...\n..\n..\n.\n.\n\n...................\n\n...................\n\n\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2000652551651001,
+        "negative_sentiment": 0.0191282220184803,
+        "perplexity": 3.160414218902588
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1999765932559967,
+        "negative_sentiment": 0.20793800055980682,
+        "perplexity": 351.1688232421875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.30887338519096375,
+        "negative_sentiment": 0.037235379219055176,
+        "perplexity": 7.574708461761475
+      }
+    },
+    {
+      "sample_idx": 39,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the book in the book.\n\n",
+      "second_half_text": ".\n.\n.....................................\n.\n\n...................",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the book in the book.\n\n.\n.\n.....................................\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09762628376483917,
+        "negative_sentiment": 0.03794553503394127,
+        "perplexity": 4.229217529296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16199040412902832,
+        "negative_sentiment": 0.31312137842178345,
+        "perplexity": 751.270751953125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11878267675638199,
+        "negative_sentiment": 0.020642103627324104,
+        "perplexity": 8.255555152893066
+      }
+    },
+    {
+      "sample_idx": 40,
+      "prompt": "Here's a review the movie 'TRON: Legacy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...................................\n.\n\n....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07379910349845886,
+        "negative_sentiment": 0.0704270526766777,
+        "perplexity": 2834.9541015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0821562111377716,
+        "negative_sentiment": 0.12024328857660294,
+        "perplexity": 4791.61474609375
+      }
+    },
+    {
+      "sample_idx": 41,
+      "prompt": "Here's a review the movie 'Cars 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n...\n...........................\n.\n\n.....................",
+      "full_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n.\n.\n.\n.\n...\n...........................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10957604646682739,
+        "negative_sentiment": 0.10639411956071854,
+        "perplexity": 2.355402946472168
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2409042865037918,
+        "negative_sentiment": 0.2494395226240158,
+        "perplexity": 1900.5390625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.168788880109787,
+        "negative_sentiment": 0.05622651055455208,
+        "perplexity": 4.340255260467529
+      }
+    },
+    {
+      "sample_idx": 42,
+      "prompt": "Here's a review the movie 'Green Lantern': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n..................................\n.\n.\n\n...................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n..................................\n.\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07614773511886597,
+        "negative_sentiment": 0.06236733868718147,
+        "perplexity": 1446.345703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0829358696937561,
+        "negative_sentiment": 0.11506601423025131,
+        "perplexity": 3345.306396484375
+      }
+    },
+    {
+      "sample_idx": 43,
+      "prompt": "Here's a review the movie 'Toy Story 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n",
+      "second_half_text": ".\n.\n.\n.................................\n.\n\n.....................",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n.\n.\n.\n.................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10766103118658066,
+        "negative_sentiment": 0.04271182045340538,
+        "perplexity": 4.071821689605713
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20903590321540833,
+        "negative_sentiment": 0.3830616772174835,
+        "perplexity": 2767.697998046875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16003957390785217,
+        "negative_sentiment": 0.024007001891732216,
+        "perplexity": 7.162765026092529
+      }
+    },
+    {
+      "sample_idx": 44,
+      "prompt": "Here's a review the movie 'Terminator Salvation': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the.\n\n",
+      "second_half_text": ".\n.\n...........................................\n\n...............",
+      "full_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the.\n\n.\n.\n...........................................\n\n...............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24318863451480865,
+        "negative_sentiment": 0.03562846779823303,
+        "perplexity": 3.7440855503082275
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.11927233636379242,
+        "negative_sentiment": 0.4020526707172394,
+        "perplexity": 1338.5921630859375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.331825852394104,
+        "negative_sentiment": 0.03687238693237305,
+        "perplexity": 6.9843363761901855
+      }
+    },
+    {
+      "sample_idx": 45,
+      "prompt": "Here's a review the movie 'Furious 7': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.\n................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.\n................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08822265267372131,
+        "negative_sentiment": 0.06873494386672974,
+        "perplexity": 4804.43603515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11890164762735367,
+        "negative_sentiment": 0.171728253364563,
+        "perplexity": 6243.11181640625
+      }
+    },
+    {
+      "sample_idx": 46,
+      "prompt": "Here's a review the movie 'World War Z': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...............................\n.\n\n........................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...............................\n.\n\n........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09998073428869247,
+        "negative_sentiment": 0.07750331610441208,
+        "perplexity": 2203.14453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10681475698947906,
+        "negative_sentiment": 0.16078542172908783,
+        "perplexity": 4340.8642578125
+      }
+    },
+    {
+      "sample_idx": 47,
+      "prompt": "Here's a review the movie 'X-Men: Days of Future Past': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The review of the book\" by the author.\n\nThe book is a review of the book \"The review of the book\" by the author.\n\nThe book is a review of the book \"The review of the book\" by the.\n\n",
+      "second_half_text": ".\n.\n.\n................\n\n...............\n\n.......................",
+      "full_text": "\n\nThe book is a review of the book \"The review of the book\" by the author.\n\nThe book is a review of the book \"The review of the book\" by the author.\n\nThe book is a review of the book \"The review of the book\" by the.\n\n.\n.\n.\n................\n\n...............\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18928661942481995,
+        "negative_sentiment": 0.03342350199818611,
+        "perplexity": 3.839463949203491
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17704205214977264,
+        "negative_sentiment": 0.37206152081489563,
+        "perplexity": 251.3884735107422
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21129781007766724,
+        "negative_sentiment": 0.027685120701789856,
+        "perplexity": 6.902868747711182
+      }
+    },
+    {
+      "sample_idx": 48,
+      "prompt": "Here's a review the movie 'Star Trek Into Darkness': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The Book of the Earth\" by the.\n\n",
+      "second_half_text": "..\n.\n......\n......................\n\n.....................\n\n.....",
+      "full_text": "\n\nThe book is a review of the book \"The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The Book of the Earth\" by the author.\n\nThe book is a review of the book \"The Book of the Earth\" by the.\n\n..\n.\n......\n......................\n\n.....................\n\n.....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2429676204919815,
+        "negative_sentiment": 0.03565129265189171,
+        "perplexity": 3.6428191661834717
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2358056902885437,
+        "negative_sentiment": 0.15714338421821594,
+        "perplexity": 277.9052429199219
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.26148805022239685,
+        "negative_sentiment": 0.009287298657000065,
+        "perplexity": 7.922954082489014
+      }
+    },
+    {
+      "sample_idx": 49,
+      "prompt": "Here's a review the movie 'Jack the Giant Slayer': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.............................................\n.\n\n............",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.............................................\n.\n\n............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0793406218290329,
+        "negative_sentiment": 0.06202060729265213,
+        "perplexity": 265.9763488769531
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10459104925394058,
+        "negative_sentiment": 0.11979728937149048,
+        "perplexity": 2311.40478515625
+      }
+    },
+    {
+      "sample_idx": 50,
+      "prompt": "Here's a review the movie 'The Great Gatsby': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.",
+      "second_half_text": "\n.\n.\n.................................\n.\n\n......................",
+      "full_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.................................\n.\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10333741456270218,
+        "negative_sentiment": 0.25740739703178406,
+        "perplexity": 5409.22216796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08652804046869278,
+        "negative_sentiment": 0.07059089839458466,
+        "perplexity": 3075.880126953125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17580798268318176,
+        "negative_sentiment": 0.12984450161457062,
+        "perplexity": 5629.24609375
+      }
+    },
+    {
+      "sample_idx": 51,
+      "prompt": "Here's a review the movie 'Prince of Persia: The Sands of Time': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n..............................\n.\n\n.........................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n..............................\n.\n\n.........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1214684396982193,
+        "negative_sentiment": 0.07175357639789581,
+        "perplexity": 1455.9263916015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.125555157661438,
+        "negative_sentiment": 0.20580628514289856,
+        "perplexity": 4458.85400390625
+      }
+    },
+    {
+      "sample_idx": 52,
+      "prompt": "Here's a review the movie 'Pacific Rim': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.",
+      "second_half_text": "\n.\n.\n.\n.................................\n.\n\n....................",
+      "full_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10333741456270218,
+        "negative_sentiment": 0.25740739703178406,
+        "perplexity": 5409.22216796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200047373771667,
+        "negative_sentiment": 0.06616977602243423,
+        "perplexity": 3497.6455078125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1347789615392685,
+        "negative_sentiment": 0.10292866826057434,
+        "perplexity": 5548.625
+      }
+    },
+    {
+      "sample_idx": 53,
+      "prompt": "Here's a review the movie 'Transformers: Dark of the Moon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n",
+      "second_half_text": ".\n.\n...........................................\n.\n\n.............",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n.\n.\n...........................................\n.\n\n.............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10766103118658066,
+        "negative_sentiment": 0.04271182045340538,
+        "perplexity": 4.071821689605713
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20795661211013794,
+        "negative_sentiment": 0.26442208886146545,
+        "perplexity": 603.8624877929688
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15712283551692963,
+        "negative_sentiment": 0.023441560566425323,
+        "perplexity": 7.063043594360352
+      }
+    },
+    {
+      "sample_idx": 54,
+      "prompt": "Here's a review the movie 'Indiana Jones and the Kingdom of the Crystal Skull': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Legend of the Best\" by Mark Twain. The book is a review of the book \"The Legend of the Best\" by Mark Twain. The book is a review of the book \"The Legend of the Best\" by Mark Twain..\n.\n",
+      "second_half_text": "\n.\n.............................\n.\n\n............................",
+      "full_text": "\n\nThe book is a review of the book \"The Legend of the Best\" by Mark Twain. The book is a review of the book \"The Legend of the Best\" by Mark Twain. The book is a review of the book \"The Legend of the Best\" by Mark Twain..\n.\n\n.\n.............................\n.\n\n............................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1746007800102234,
+        "negative_sentiment": 0.09367585182189941,
+        "perplexity": 4.465078830718994
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08605318516492844,
+        "negative_sentiment": 0.07910221070051193,
+        "perplexity": 610.7068481445312
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2687641382217407,
+        "negative_sentiment": 0.030882524326443672,
+        "perplexity": 6.9757890701293945
+      }
+    },
+    {
+      "sample_idx": 55,
+      "prompt": "Here's a review the movie 'The Good Dinosaur': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n",
+      "second_half_text": ".\n.\n...................................\n\n.......................",
+      "full_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n.\n.\n...................................\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10957604646682739,
+        "negative_sentiment": 0.10639411956071854,
+        "perplexity": 2.355402946472168
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10736121982336044,
+        "negative_sentiment": 0.38585567474365234,
+        "perplexity": 1794.6429443359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10303518176078796,
+        "negative_sentiment": 0.0562361441552639,
+        "perplexity": 4.073807716369629
+      }
+    },
+    {
+      "sample_idx": 56,
+      "prompt": "Here's a review the movie 'Brave': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n....................................\n.\n\n...................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n....................................\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08111625164747238,
+        "negative_sentiment": 0.06505416333675385,
+        "perplexity": 3837.391845703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08995312452316284,
+        "negative_sentiment": 0.11230038851499557,
+        "perplexity": 5002.1494140625
+      }
+    },
+    {
+      "sample_idx": 57,
+      "prompt": "Here's a review the movie 'Star Trek Beyond': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.",
+      "second_half_text": "\n.\n.\n.\n................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10333741456270218,
+        "negative_sentiment": 0.25740739703178406,
+        "perplexity": 5409.22216796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0882234275341034,
+        "negative_sentiment": 0.06873514503240585,
+        "perplexity": 4804.4267578125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14424176514148712,
+        "negative_sentiment": 0.10719361901283264,
+        "perplexity": 6479.7353515625
+      }
+    },
+    {
+      "sample_idx": 58,
+      "prompt": "Here's a review the movie 'WALL·E': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author.1.\n\n",
+      "second_half_text": ".\n.\n....................................\n.\n\n....................",
+      "full_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author.1.\n\n.\n.\n....................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12596607208251953,
+        "negative_sentiment": 0.03576578572392464,
+        "perplexity": 4.198660373687744
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1431756466627121,
+        "negative_sentiment": 0.2852208614349365,
+        "perplexity": 2274.520751953125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15605126321315765,
+        "negative_sentiment": 0.020688649266958237,
+        "perplexity": 7.653433322906494
+      }
+    },
+    {
+      "sample_idx": 59,
+      "prompt": "Here's a review the movie 'Rush Hour 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n",
+      "second_half_text": ".\n.\n.................................\n.\n\n.......................",
+      "full_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n.\n.\n.................................\n.\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10957604646682739,
+        "negative_sentiment": 0.10639411956071854,
+        "perplexity": 2.355402946472168
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1530945897102356,
+        "negative_sentiment": 0.360018253326416,
+        "perplexity": 3155.201171875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1125103235244751,
+        "negative_sentiment": 0.046712327748537064,
+        "perplexity": 4.143332481384277
+      }
+    },
+    {
+      "sample_idx": 60,
+      "prompt": "Here's a review the movie '2012': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book 'The book of the book' by the author. The book is a review of the book 'The book of the book' by the author. The book is a review of the book 'The book of the book' by the book in the book.\n\n",
+      "second_half_text": ".\n.\n................................\n.\n\n........................",
+      "full_text": "\n\nThe book is a review of the book 'The book of the book' by the author. The book is a review of the book 'The book of the book' by the author. The book is a review of the book 'The book of the book' by the book in the book.\n\n.\n.\n................................\n.\n\n........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10466773808002472,
+        "negative_sentiment": 0.043953921645879745,
+        "perplexity": 4.134872913360596
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21454863250255585,
+        "negative_sentiment": 0.3653850853443146,
+        "perplexity": 8166.9638671875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18369431793689728,
+        "negative_sentiment": 0.024023517966270447,
+        "perplexity": 7.8600006103515625
+      }
+    },
+    {
+      "sample_idx": 61,
+      "prompt": "Here's a review the movie 'A Christmas Carol': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a one of the best book I have read. It is a great book for all ages. It is a great book for all ages. It is a great book for all ages. It is a great book for all ages. It is a great book for all ages.\n.\n\n",
+      "second_half_text": ".\n.\n...........................................................\n",
+      "full_text": "\n\nThe book is a one of the best book I have read. It is a great book for all ages. It is a great book for all ages. It is a great book for all ages. It is a great book for all ages. It is a great book for all ages.\n.\n\n.\n.\n...........................................................\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.0817369818687439,
+        "negative_sentiment": 0.0021700270008295774,
+        "perplexity": 3.9135422706604004
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06886725127696991,
+        "negative_sentiment": 0.6332286596298218,
+        "perplexity": 493.5616455078125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12706121802330017,
+        "negative_sentiment": 0.0025876350700855255,
+        "perplexity": 5.505229473114014
+      }
+    },
+    {
+      "sample_idx": 62,
+      "prompt": "Here's a review the movie 'Jupiter Ascending': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n",
+      "second_half_text": ".\n.\n.................................\n.\n\n.......................",
+      "full_text": "\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.................................\n.\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09684295207262039,
+        "negative_sentiment": 0.10058286041021347,
+        "perplexity": 4328.5908203125
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15309663116931915,
+        "negative_sentiment": 0.3600168526172638,
+        "perplexity": 3155.195068359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0800190269947052,
+        "negative_sentiment": 0.04845582693815231,
+        "perplexity": 4867.568359375
+      }
+    },
+    {
+      "sample_idx": 63,
+      "prompt": "Here's a review the movie 'The Legend of Tarzan': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Legend of Tarzan\" by the author. The book is a review of the book \"The Legend of Tarzan\" by the author. The book is a review of the book \"The Legend of Tarzan\" by the author in the book.\n\n",
+      "second_half_text": ".\n.\n............................................\n.\n\n............",
+      "full_text": "\n\nThe book is a review of the book \"The Legend of Tarzan\" by the author. The book is a review of the book \"The Legend of Tarzan\" by the author. The book is a review of the book \"The Legend of Tarzan\" by the author in the book.\n\n.\n.\n............................................\n.\n\n............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13994984328746796,
+        "negative_sentiment": 0.04421200975775719,
+        "perplexity": 4.106912136077881
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1386435180902481,
+        "negative_sentiment": 0.19273066520690918,
+        "perplexity": 694.7137451171875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.20595279335975647,
+        "negative_sentiment": 0.03480952978134155,
+        "perplexity": 8.394404411315918
+      }
+    },
+    {
+      "sample_idx": 64,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book, and the book is a great book. It is the best of the book in the book.\n\n",
+      "second_half_text": ".\n.\n...........................................\n.\n\n.............",
+      "full_text": "\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book, and the book is a great book. It is the best of the book in the book.\n\n.\n.\n...........................................\n.\n\n.............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.06368070840835571,
+        "negative_sentiment": 0.008181066252291203,
+        "perplexity": 4.326928615570068
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2079552412033081,
+        "negative_sentiment": 0.2644183337688446,
+        "perplexity": 603.8596801757812
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21279895305633545,
+        "negative_sentiment": 0.0068549481220543385,
+        "perplexity": 7.362306118011475
+      }
+    },
+    {
+      "sample_idx": 65,
+      "prompt": "Here's a review the movie 'X-Men: Apocalypse': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.................................\n.\n\n......................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.................................\n.\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08652826398611069,
+        "negative_sentiment": 0.07059093564748764,
+        "perplexity": 3075.89453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10762333124876022,
+        "negative_sentiment": 0.15807947516441345,
+        "perplexity": 5099.203125
+      }
+    },
+    {
+      "sample_idx": 66,
+      "prompt": "Here's a review the movie 'The Dark Knight': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\"\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\n",
+      "second_half_text": ".\n.\n...................................\n.\n\n.....................",
+      "full_text": "\n\n\"\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\nThe book is the best book in the world.\n\n.\n.\n...................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16617819666862488,
+        "negative_sentiment": 0.010171671397984028,
+        "perplexity": 2.5972423553466797
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21820957958698273,
+        "negative_sentiment": 0.3764308989048004,
+        "perplexity": 2320.17919921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3367927670478821,
+        "negative_sentiment": 0.00638662138953805,
+        "perplexity": 4.665445327758789
+      }
+    },
+    {
+      "sample_idx": 67,
+      "prompt": "Here's a review the movie 'Up': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book in the book.\n\nThe book is the book of the book in the book.\nThe book is the book of the book in the book is the book is the book of the book in the book is the book of the book in the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n..................\n\n...........................\n.\n\n...",
+      "full_text": "\n\nThe book is a book of the book in the book.\n\nThe book is the book of the book in the book.\nThe book is the book of the book in the book is the book is the book of the book in the book is the book of the book in the book.\n\n.\n.\n.\n.\n.\n..................\n\n...........................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1255018711090088,
+        "negative_sentiment": 0.03689543902873993,
+        "perplexity": 4.4583001136779785
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2590959668159485,
+        "negative_sentiment": 0.2530563473701477,
+        "perplexity": 826.9879760742188
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12492329627275467,
+        "negative_sentiment": 0.015190857462584972,
+        "perplexity": 7.220110893249512
+      }
+    },
+    {
+      "sample_idx": 68,
+      "prompt": "Here's a review the movie 'Monsters vs. Aliens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.Answer:\n\n",
+      "second_half_text": ".\n.\n.................................\n\n.........................",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.Answer:\n\n.\n.\n.................................\n\n.........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3871555030345917,
+        "negative_sentiment": 0.09843606501817703,
+        "perplexity": 3.9233479499816895
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.24136769771575928,
+        "negative_sentiment": 0.40054020285606384,
+        "perplexity": 1974.423583984375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4232621490955353,
+        "negative_sentiment": 0.027394043281674385,
+        "perplexity": 8.197896003723145
+      }
+    },
+    {
+      "sample_idx": 69,
+      "prompt": "Here's a review the movie 'Iron Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n\n",
+      "second_half_text": "\n.\n.\n.\n...................................\n.\n\n\n.................",
+      "full_text": "\n\nThe book is a book of the book the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n\n\n.\n.\n.\n...................................\n.\n\n\n.................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.0981106087565422,
+        "negative_sentiment": 0.07784448564052582,
+        "perplexity": 2.9586021900177
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08920568972826004,
+        "negative_sentiment": 0.0642232894897461,
+        "perplexity": 3700.37841796875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.26884791254997253,
+        "negative_sentiment": 0.068219393491745,
+        "perplexity": 5.324307918548584
+      }
+    },
+    {
+      "sample_idx": 70,
+      "prompt": "Here's a review the movie 'Hugo': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a wonderful book, and the book is a wonderful book.\n\nThe book is a wonderful book, and the book is a wonderful book.\n\nThe book is a wonderful book, and the book is a wonderful book.\n\nThe book to the end of the book.\n\n",
+      "second_half_text": ".\n.\n.\n............\n....................\n\n.................\n.\n\n..",
+      "full_text": "\n\nThe book is a wonderful book, and the book is a wonderful book.\n\nThe book is a wonderful book, and the book is a wonderful book.\n\nThe book is a wonderful book, and the book is a wonderful book.\n\nThe book to the end of the book.\n\n.\n.\n.\n............\n....................\n\n.................\n.\n\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07566960901021957,
+        "negative_sentiment": 0.008860659785568714,
+        "perplexity": 4.106378555297852
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2704850137233734,
+        "negative_sentiment": 0.2892894744873047,
+        "perplexity": 1129.678466796875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.22319497168064117,
+        "negative_sentiment": 0.006928452290594578,
+        "perplexity": 8.466803550720215
+      }
+    },
+    {
+      "sample_idx": 71,
+      "prompt": "Here's a review the movie 'Wild Wild West': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the.\n\n",
+      "second_half_text": ".\n.\n.....\n.......\n...................\n\n....................\n\n...",
+      "full_text": "\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the author.\n\nThe book is a review of the book \"The Edge of the Earth\" by the.\n\n.\n.\n.....\n.......\n...................\n\n....................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24318863451480865,
+        "negative_sentiment": 0.03562846779823303,
+        "perplexity": 3.7440855503082275
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17602603137493134,
+        "negative_sentiment": 0.26401764154434204,
+        "perplexity": 140.46156311035156
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.25767645239830017,
+        "negative_sentiment": 0.015506347641348839,
+        "perplexity": 7.964476585388184
+      }
+    },
+    {
+      "sample_idx": 72,
+      "prompt": "Here's a review the movie 'The Mummy: Tomb of the Dragon Emperor': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Legend of the Blue Bird\" by Mark Twain. The book is a review of the book \"The Legend of the Blue Bird\" by Mark Twain. The book is a review of the book \"The Legend of the Blue Bird\" by Mark Twain.\n\n",
+      "second_half_text": ".\n.\n............................................\n.\n\n............",
+      "full_text": "\n\nThe book is a review of the book \"The Legend of the Blue Bird\" by Mark Twain. The book is a review of the book \"The Legend of the Blue Bird\" by Mark Twain. The book is a review of the book \"The Legend of the Blue Bird\" by Mark Twain.\n\n.\n.\n............................................\n.\n\n............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.15269817411899567,
+        "negative_sentiment": 0.029609546065330505,
+        "perplexity": 3.1139779090881348
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1386456936597824,
+        "negative_sentiment": 0.19272997975349426,
+        "perplexity": 694.715087890625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.25039705634117126,
+        "negative_sentiment": 0.018243957310914993,
+        "perplexity": 6.0964131355285645
+      }
+    },
+    {
+      "sample_idx": 73,
+      "prompt": "Here's a review the movie 'Suicide Squad': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review",
+      "second_half_text": ".\n.............................................................\n",
+      "full_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review of the book \"The Power of the Book\" by the author. The book is a review.\n.............................................................\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2395259439945221,
+        "negative_sentiment": 0.027712706476449966,
+        "perplexity": 3.0209286212921143
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.046830493956804276,
+        "negative_sentiment": 0.5515353083610535,
+        "perplexity": 91.19590759277344
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10064757615327835,
+        "negative_sentiment": 0.01206337008625269,
+        "perplexity": 4.289770126342773
+      }
+    },
+    {
+      "sample_idx": 74,
+      "prompt": "Here's a review the movie 'Evan Almighty': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n..................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n..................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08162490278482437,
+        "negative_sentiment": 0.0615147240459919,
+        "perplexity": 2885.1259765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11859332770109177,
+        "negative_sentiment": 0.17142970860004425,
+        "perplexity": 4225.3603515625
+      }
+    },
+    {
+      "sample_idx": 75,
+      "prompt": "Here's a review the movie 'Edge of Tomorrow': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author in the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.................................................\n.\n\n...",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author in the book.\n\n.\n.\n.\n.\n.................................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13033169507980347,
+        "negative_sentiment": 0.031070955097675323,
+        "perplexity": 4.018248558044434
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.23449572920799255,
+        "negative_sentiment": 0.3287229835987091,
+        "perplexity": 1273.9244384765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14755387604236603,
+        "negative_sentiment": 0.019631866365671158,
+        "perplexity": 7.380755424499512
+      }
+    },
+    {
+      "sample_idx": 76,
+      "prompt": "Here's a review the movie 'Waterworld': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n",
+      "second_half_text": ".\n.\n...................................\n.\n\n.....................",
+      "full_text": "\n\nThe book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author. The book is a review of the book \"The book of the book\" by the author.1.\n\n.\n.\n...................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10766103118658066,
+        "negative_sentiment": 0.04271182045340538,
+        "perplexity": 4.071821689605713
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2182101160287857,
+        "negative_sentiment": 0.37643253803253174,
+        "perplexity": 2320.17919921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15457186102867126,
+        "negative_sentiment": 0.02389764040708542,
+        "perplexity": 7.269769191741943
+      }
+    },
+    {
+      "sample_idx": 77,
+      "prompt": "Here's a review the movie 'G.I. Joe: The Rise of Cobra': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a good book, and the book is a good book.\n\nThe book is a good book, and the book is a good book.\n\nThe book is a good book, and the book is a good book.\n\nAnd the book of the book in the book.\n",
+      "second_half_text": "\n.\n.\n...........................................................",
+      "full_text": "\n\nThe book is a good book, and the book is a good book.\n\nThe book is a good book, and the book is a good book.\n\nThe book is a good book, and the book is a good book.\n\nAnd the book of the book in the book.\n\n.\n.\n...........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.06467775255441666,
+        "negative_sentiment": 0.016470827162265778,
+        "perplexity": 4.646097183227539
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0658043622970581,
+        "negative_sentiment": 0.05939488485455513,
+        "perplexity": 1213.34375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.104720339179039,
+        "negative_sentiment": 0.016119854524731636,
+        "perplexity": 6.322691440582275
+      }
+    },
+    {
+      "sample_idx": 78,
+      "prompt": "Here's a review the movie 'Inside Out': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n",
+      "second_half_text": ".\n.\n......\n\n.......................\n\n.......................\n\n..",
+      "full_text": "\n\nThe book is a book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book of the book in the book.\n\n.\n.\n......\n\n.......................\n\n.......................\n\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10957604646682739,
+        "negative_sentiment": 0.10639411956071854,
+        "perplexity": 2.355402946472168
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1768988072872162,
+        "negative_sentiment": 0.2586885094642639,
+        "perplexity": 144.1329345703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08378230035305023,
+        "negative_sentiment": 0.08174461126327515,
+        "perplexity": 4.421764373779297
+      }
+    },
+    {
+      "sample_idx": 79,
+      "prompt": "Here's a review the movie 'The Jungle Book': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.\n.................................\n.\n\n....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.\n.................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200120389461517,
+        "negative_sentiment": 0.06617007404565811,
+        "perplexity": 3497.65234375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0784517303109169,
+        "negative_sentiment": 0.11713701486587524,
+        "perplexity": 5152.9873046875
+      }
+    },
+    {
+      "sample_idx": 80,
+      "prompt": "Here's a review the movie 'Iron Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n..................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n..................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13140474259853363,
+        "negative_sentiment": 0.38587984442710876,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08162496238946915,
+        "negative_sentiment": 0.06151441112160683,
+        "perplexity": 2885.1025390625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1185925081372261,
+        "negative_sentiment": 0.17142687737941742,
+        "perplexity": 4225.3603515625
+      }
+    },
+    {
+      "sample_idx": 81,
+      "prompt": "Here's a review the movie 'Snow White and the Huntsman': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...........................................\n.\n\n............",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...........................................\n.\n\n............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13140474259853363,
+        "negative_sentiment": 0.38587984442710876,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06934691965579987,
+        "negative_sentiment": 0.06155936047434807,
+        "perplexity": 784.8600463867188
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09136331081390381,
+        "negative_sentiment": 0.11979864537715912,
+        "perplexity": 3514.2529296875
+      }
+    },
+    {
+      "sample_idx": 82,
+      "prompt": "Here's a review the movie 'Maleficent': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n................................\n.\n\n.......................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n................................\n.\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13140474259853363,
+        "negative_sentiment": 0.38587984442710876,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07502594590187073,
+        "negative_sentiment": 0.07271368056535721,
+        "perplexity": 5416.12841796875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0869627594947815,
+        "negative_sentiment": 0.11979043483734131,
+        "perplexity": 6528.4892578125
+      }
+    },
+    {
+      "sample_idx": 83,
+      "prompt": "Here's a review the movie 'Dawn of the Planet of the Apes': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n....................................\n.\n\n...................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n....................................\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13140474259853363,
+        "negative_sentiment": 0.38587984442710876,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08111577481031418,
+        "negative_sentiment": 0.06505496054887772,
+        "perplexity": 3837.391845703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08995312452316284,
+        "negative_sentiment": 0.11230038851499557,
+        "perplexity": 5002.1494140625
+      }
+    },
+    {
+      "sample_idx": 84,
+      "prompt": "Here's a review the movie 'The Lovers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.....................................\n.\n\n..................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.....................................\n.\n\n..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13140474259853363,
+        "negative_sentiment": 0.38587984442710876,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08195427805185318,
+        "negative_sentiment": 0.06549849361181259,
+        "perplexity": 1217.57470703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10785269737243652,
+        "negative_sentiment": 0.1486796736717224,
+        "perplexity": 3545.6953125
+      }
+    },
+    {
+      "sample_idx": 85,
+      "prompt": "Here's a review the movie '47 Ronin': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a book of the book in the book.\n\nThe book is the book of the book in the book.\n\nThe book is the book of the book in the book.\n\nThe book is the book of the book is the book of the book in the book.\n\n",
+      "second_half_text": ".\n.\n..................................\n\n........................",
+      "full_text": "\n\nThe book is a book of the book in the book.\n\nThe book is the book of the book in the book.\n\nThe book is the book of the book in the book.\n\nThe book is the book of the book is the book of the book in the book.\n\n.\n.\n..................................\n\n........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07491663843393326,
+        "negative_sentiment": 0.02139226533472538,
+        "perplexity": 3.875375747680664
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21949118375778198,
+        "negative_sentiment": 0.29552504420280457,
+        "perplexity": 714.2290649414062
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13805069029331207,
+        "negative_sentiment": 0.02056020498275757,
+        "perplexity": 5.949673652648926
+      }
+    },
+    {
+      "sample_idx": 86,
+      "prompt": "Here's a review the movie 'Captain America: The Winter Soldier': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n",
+      "second_half_text": ".\n.\n.\n................................\n.\n\n......................",
+      "full_text": "\n\n.\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n................................\n.\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.0806313082575798,
+        "negative_sentiment": 0.12657929956912994,
+        "perplexity": 271.8931579589844
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17637395858764648,
+        "negative_sentiment": 0.382926344871521,
+        "perplexity": 3232.027587890625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0882626622915268,
+        "negative_sentiment": 0.11807132512331009,
+        "perplexity": 441.9634094238281
+      }
+    },
+    {
+      "sample_idx": 87,
+      "prompt": "Here's a review the movie 'Shrek Forever After': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the.\n\n",
+      "second_half_text": ".\n.\n..............................................\n.\n\n..........",
+      "full_text": "\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the author.\n\nThe book is a review of the book \"The Power of the Book\" by the.\n\n.\n.\n..............................................\n.\n\n..........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2298917919397354,
+        "negative_sentiment": 0.02344122715294361,
+        "perplexity": 3.8280279636383057
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1793871521949768,
+        "negative_sentiment": 0.24031499028205872,
+        "perplexity": 633.7405395507812
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3245130479335785,
+        "negative_sentiment": 0.0183155108243227,
+        "perplexity": 6.65448522567749
+      }
+    },
+    {
+      "sample_idx": 88,
+      "prompt": "Here's a review the movie 'Tomorrowland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...................................\n.\n\n....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...................................\n.\n\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13140474259853363,
+        "negative_sentiment": 0.38587984442710876,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07379806041717529,
+        "negative_sentiment": 0.07042685896158218,
+        "perplexity": 2834.9267578125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08215577900409698,
+        "negative_sentiment": 0.12024449557065964,
+        "perplexity": 4791.61474609375
+      }
+    },
+    {
+      "sample_idx": 89,
+      "prompt": "Here's a review the movie 'Big Hero 6': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.............................................\n\n............",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.............................................\n\n............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13140474259853363,
+        "negative_sentiment": 0.38587984442710876,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06890957802534103,
+        "negative_sentiment": 0.06322190165519714,
+        "perplexity": 744.48974609375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08851093798875809,
+        "negative_sentiment": 0.1173410713672638,
+        "perplexity": 3498.62646484375
+      }
+    },
+    {
+      "sample_idx": 90,
+      "prompt": "Here's a review the movie 'Wreck-It Ralph': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n..................................\n.\n\n.....................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n..................................\n.\n\n.....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08162490278482437,
+        "negative_sentiment": 0.0615147240459919,
+        "perplexity": 2885.1259765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11859332770109177,
+        "negative_sentiment": 0.17142970860004425,
+        "perplexity": 4225.3603515625
+      }
+    },
+    {
+      "sample_idx": 91,
+      "prompt": "Here's a review the movie 'The Polar Express': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a review of the book \"The Polar Express\" by the author. The book is a review of the book \"The Polar Express\" by the author. The book is a review of the book \"The Polar Express\" by the author.\n\n\n.\n.\n.\n.\n",
+      "second_half_text": ".\n.\n...................................\n\n.......................",
+      "full_text": "\n\nThe book is a review of the book \"The Polar Express\" by the author. The book is a review of the book \"The Polar Express\" by the author. The book is a review of the book \"The Polar Express\" by the author.\n\n\n.\n.\n.\n.\n.\n.\n...................................\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4211328625679016,
+        "negative_sentiment": 0.01962524652481079,
+        "perplexity": 5.873971462249756
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10736118257045746,
+        "negative_sentiment": 0.3858540952205658,
+        "perplexity": 1794.640380859375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2833919823169708,
+        "negative_sentiment": 0.009534081444144249,
+        "perplexity": 8.845906257629395
+      }
+    },
+    {
+      "sample_idx": 92,
+      "prompt": "Here's a review the movie 'Independence Day: Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book.\n\n",
+      "second_half_text": ".\n.\n\n..\n...\n.\n.................\n\n..........................\n\n...",
+      "full_text": "\n\nThe book is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book Book\" and is a continuation of the book \"The Book.\n\n.\n.\n\n..\n...\n.\n.................\n\n..........................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09461662173271179,
+        "negative_sentiment": 0.032171059399843216,
+        "perplexity": 3.365719795227051
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.29429662227630615,
+        "negative_sentiment": 0.2714623212814331,
+        "perplexity": 129.1036834716797
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.20506557822227478,
+        "negative_sentiment": 0.028104474768042564,
+        "perplexity": 7.274940013885498
+      }
+    },
+    {
+      "sample_idx": 93,
+      "prompt": "Here's a review the movie 'How to Train Your Dragon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n",
+      "second_half_text": ".\n.\n.................................\n.\n\n.......................",
+      "full_text": "\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n.................................\n.\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09684295207262039,
+        "negative_sentiment": 0.10058286041021347,
+        "perplexity": 4328.5908203125
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15309368073940277,
+        "negative_sentiment": 0.3600209057331085,
+        "perplexity": 3155.18310546875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08001783490180969,
+        "negative_sentiment": 0.048456963151693344,
+        "perplexity": 4867.568359375
+      }
+    },
+    {
+      "sample_idx": 94,
+      "prompt": "Here's a review the movie 'Terminator 3: Rise of the Machines': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n.\n.\n............................................\n.\n\n.......",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n.\n.\n............................................\n.\n\n.......",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07855438441038132,
+        "negative_sentiment": 0.05813726410269737,
+        "perplexity": 3320.63134765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09185171127319336,
+        "negative_sentiment": 0.1164623349905014,
+        "perplexity": 5418.93359375
+      }
+    },
+    {
+      "sample_idx": 95,
+      "prompt": "Here's a review the movie 'Guardians of the Galaxy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n....................................\n.\n\n...................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n....................................\n.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08111540228128433,
+        "negative_sentiment": 0.06505453586578369,
+        "perplexity": 3837.4208984375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08995208889245987,
+        "negative_sentiment": 0.11230402439832687,
+        "perplexity": 5002.1494140625
+      }
+    },
+    {
+      "sample_idx": 96,
+      "prompt": "Here's a review the movie 'Interstellar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\"Interstellar is a very good movie. The story is very good and the music is very good. The music is very good and the music is very good. The music is very good and the music is very good. Overall, I think it is one of the best movies in the world.\n\n",
+      "second_half_text": ".\n...............................\n.\n\n...........................",
+      "full_text": "\n\n\"Interstellar is a very good movie. The story is very good and the music is very good. The music is very good and the music is very good. The music is very good and the music is very good. Overall, I think it is one of the best movies in the world.\n\n.\n...............................\n.\n\n...........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.047631703317165375,
+        "negative_sentiment": 0.004055994562804699,
+        "perplexity": 5.253386497497559
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15217964351177216,
+        "negative_sentiment": 0.34019023180007935,
+        "perplexity": 644.9094848632812
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1404438465833664,
+        "negative_sentiment": 0.0042164563201367855,
+        "perplexity": 9.346166610717773
+      }
+    },
+    {
+      "sample_idx": 97,
+      "prompt": "Here's a review the movie 'Inception': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n........................................................\n.\n",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n........................................................\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0724973976612091,
+        "negative_sentiment": 0.11696966737508774,
+        "perplexity": 1516.0787353515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07821471244096756,
+        "negative_sentiment": 0.17692376673221588,
+        "perplexity": 5023.5810546875
+      }
+    },
+    {
+      "sample_idx": 98,
+      "prompt": "Here's a review the movie 'Godzilla Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.",
+      "second_half_text": "\n.\n.\n...................................\n\n......................",
+      "full_text": "\n\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n\n.\n.\n.\n...................................\n\n......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1314065009355545,
+        "negative_sentiment": 0.38587912917137146,
+        "perplexity": 5383.654296875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08930661529302597,
+        "negative_sentiment": 0.08147753775119781,
+        "perplexity": 2414.41259765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09959708154201508,
+        "negative_sentiment": 0.13327473402023315,
+        "perplexity": 4656.73876953125
+      }
+    },
+    {
+      "sample_idx": 99,
+      "prompt": "Here's a review the movie 'The Hobbit: An Unexpected Journey': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 0.5,
+      "second_half_scale": 1.5,
+      "first_half_text": "\n\nThe book is a continuation of the book \"The Hobbit\" by the author. The book is a continuation of the book \"The Hobbit\" by the author. The book is a continuation of the book \"The Hobbit\" by the author. The book is a continuation of the book \"The\n",
+      "second_half_text": ".\n.\n............................................................",
+      "full_text": "\n\nThe book is a continuation of the book \"The Hobbit\" by the author. The book is a continuation of the book \"The Hobbit\" by the author. The book is a continuation of the book \"The Hobbit\" by the author. The book is a continuation of the book \"The\n.\n.\n............................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.29980629682540894,
+        "negative_sentiment": 0.010853229090571404,
+        "perplexity": 3.6578593254089355
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15250657498836517,
+        "negative_sentiment": 0.3701334297657013,
+        "perplexity": 346.97265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16483446955680847,
+        "negative_sentiment": 0.024067051708698273,
+        "perplexity": 5.033180236816406
+      }
+    }
+  ]
+}

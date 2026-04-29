@@ -1,0 +1,3238 @@
+{
+  "params": {
+    "exp_name": "pattern_l25-31-16_a2.4_fh1.0_sh2.5",
+    "dataset": "benchmarks/film_best_100.txt",
+    "steer_vectors": "steer_vectors/diffusion-debug_3.pt",
+    "steer_direction": "positive",
+    "first_half": true,
+    "steer_alpha": 2.4,
+    "steer_idx": [
+      25,
+      31,
+      16
+    ],
+    "first_half_scale": 1.0,
+    "second_half_scale": 2.5,
+    "block_length": 128,
+    "batch_size": 10
+  },
+  "averages": {
+    "first_half_metrics": {
+      "positive_sentiment": 0.215108457878232,
+      "negative_sentiment": 0.022594808130525054,
+      "perplexity": 4.376807909011841
+    },
+    "second_half_metrics": {
+      "positive_sentiment": 0.1424297109991312,
+      "negative_sentiment": 0.18885567661374808,
+      "perplexity": 1070.6737819385528
+    },
+    "full_text_metrics": {
+      "positive_sentiment": 0.21006559764966368,
+      "negative_sentiment": 0.02118919751024805,
+      "perplexity": 7.4053703927993775
+    }
+  },
+  "samples": [
+    {
+      "sample_idx": 0,
+      "prompt": "Here's a review the movie 'Avatar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 1. The review is positive.The answer is: 4The answer is: 4\nThe answer is:  SurThe answer is: This is theedoge best book. I have read many books and this one is the best one on the market.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n...............\n\n.......................\n.\n\n.......",
+      "full_text": "\n\nThe answer is: 1. The review is positive.The answer is: 4The answer is: 4\nThe answer is:  SurThe answer is: This is theedoge best book. I have read many books and this one is the best one on the market.\n.\n.\n.\n.\n.\n.\n...............\n\n.......................\n.\n\n.......",
+      "first_half_metrics": {
+        "positive_sentiment": 0.256374329328537,
+        "negative_sentiment": 0.011264581233263016,
+        "perplexity": 33.23906326293945
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09315907210111618,
+        "negative_sentiment": 0.08664759248495102,
+        "perplexity": 1053.517578125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21745991706848145,
+        "negative_sentiment": 0.018001096323132515,
+        "perplexity": 45.170257568359375
+      }
+    },
+    {
+      "sample_idx": 1,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: At World's End': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book in the book is one of the best books in the book is one of the best books in the book is one of the best books in the book is one of the best books in the book is one of the best books in the book is one of the best in the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a book in the book is one of the best books in the book is one of the best books in the book is one of the best books in the book is one of the best books in the book is one of the best books in the book is one of the best in the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.25597310066223145,
+        "negative_sentiment": 0.06088725104928017,
+        "perplexity": 3.562263250350952
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200685143470764,
+        "negative_sentiment": 0.05769800767302513,
+        "perplexity": 1695.3267822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13993582129478455,
+        "negative_sentiment": 0.01762203313410282,
+        "perplexity": 4.979609489440918
+      }
+    },
+    {
+      "sample_idx": 2,
+      "prompt": "Here's a review the movie 'Spectre': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, I would definitely recommend the book. I would definitely recommend the book. I would definitely recommend the book. I would definitely recommend the book. I would definitely recommend the book based on the content of the book. I would definitely recommend the book based on the content of the book",
+      "second_half_text": ".\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n...\n\n..\n\n..\n\n...\n......\n....\n.\n\n..",
+      "full_text": "\n\nThe book is a great book, I would definitely recommend the book. I would definitely recommend the book. I would definitely recommend the book. I would definitely recommend the book. I would definitely recommend the book based on the content of the book. I would definitely recommend the book based on the content of the book.\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n...\n\n..\n\n..\n\n...\n......\n....\n.\n\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19388194382190704,
+        "negative_sentiment": 0.0035471180453896523,
+        "perplexity": 4.095887184143066
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1759178787469864,
+        "negative_sentiment": 0.19870597124099731,
+        "perplexity": 45.304805755615234
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1071171686053276,
+        "negative_sentiment": 0.002315914025530219,
+        "perplexity": 7.817867279052734
+      }
+    },
+    {
+      "sample_idx": 3,
+      "prompt": "Here's a review the movie 'The Dark Knight Rises': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n...................................\n.\n",
+      "full_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n...................................\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33389902114868164,
+        "negative_sentiment": 0.003559061326086521,
+        "perplexity": 3.3692126274108887
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1846655309200287,
+        "negative_sentiment": 0.36585503816604614,
+        "perplexity": 1005.235107421875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14431573450565338,
+        "negative_sentiment": 0.00390723068267107,
+        "perplexity": 5.664087295532227
+      }
+    },
+    {
+      "sample_idx": 4,
+      "prompt": "Here's a review the movie 'Star Wars: Episode VII - The Force Awakens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is the best book in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.....\n................\n\n......................\n.\n\n.....",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is the best book in the book.\n.\n.\n.\n.\n.....\n................\n\n......................\n.\n\n.....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18497386574745178,
+        "negative_sentiment": 0.035136885941028595,
+        "perplexity": 3.1224303245544434
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.11439507454633713,
+        "negative_sentiment": 0.08138387650251389,
+        "perplexity": 506.1559143066406
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4195830821990967,
+        "negative_sentiment": 0.02905254438519478,
+        "perplexity": 5.339744567871094
+      }
+    },
+    {
+      "sample_idx": 5,
+      "prompt": "Here's a review the movie 'John Carter': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. There is no doubt in the book. I would definitely recommend the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.\n\n\n.\n.\n.\n................................\n.\n\n....",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. There is no doubt in the book. I would definitely recommend the book.\n\n.\n.\n.\n.\n.\n...\n.\n\n\n.\n.\n.\n................................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.056576091796159744,
+        "negative_sentiment": 0.004802748095244169,
+        "perplexity": 4.1753764152526855
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1908978670835495,
+        "negative_sentiment": 0.2705433666706085,
+        "perplexity": 1056.3955078125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12161260098218918,
+        "negative_sentiment": 0.005447435192763805,
+        "perplexity": 7.932558059692383
+      }
+    },
+    {
+      "sample_idx": 6,
+      "prompt": "Here's a review the movie 'Spider-Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best' by the author. The book is a great version of the book 'The Best' by the author. The book is a great version of the book 'The Best' by the author. The book is a great version of the book 'The",
+      "second_half_text": "\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "full_text": "\n\nThe book is a great version of the book 'The Best' by the author. The book is a great version of the book 'The Best' by the author. The book is a great version of the book 'The Best' by the author. The book is a great version of the book 'The\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.40689289569854736,
+        "negative_sentiment": 0.0013176521752029657,
+        "perplexity": 3.303316831588745
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0792924240231514,
+        "negative_sentiment": 0.08135771006345749,
+        "perplexity": 516.0427856445312
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1317262053489685,
+        "negative_sentiment": 0.005067488178610802,
+        "perplexity": 5.383725643157959
+      }
+    },
+    {
+      "sample_idx": 7,
+      "prompt": "Here's a review the movie 'Tangled': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 10 stars.\n\nThe answer is: 5 stars.\n\nThe answer is:\n\n• The answer is: 5 stars.\n\nThe answer is: 5 stars.\n\nThe answer is: Definitely the best, which is 5 stars.",
+      "second_half_text": "\n.\n.\n.\n.\n...\n.\n.....\n........................................\n.\n",
+      "full_text": "\n\nThe answer is: 10 stars.\n\nThe answer is: 5 stars.\n\nThe answer is:\n\n• The answer is: 5 stars.\n\nThe answer is: 5 stars.\n\nThe answer is: Definitely the best, which is 5 stars.\n.\n.\n.\n.\n...\n.\n.....\n........................................\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.03266838565468788,
+        "negative_sentiment": 0.03261210769414902,
+        "perplexity": 8.135703086853027
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0965576246380806,
+        "negative_sentiment": 0.08071115612983704,
+        "perplexity": 585.9906616210938
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08432713150978088,
+        "negative_sentiment": 0.0893881767988205,
+        "perplexity": 12.119714736938477
+      }
+    },
+    {
+      "sample_idx": 8,
+      "prompt": "Here's a review the movie 'Avengers: Age of Ultron': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great read, and the book is a great read. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a book. Can't wait to read the rest of the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a great read, and the book is a great read. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a book. Can't wait to read the rest of the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10826124995946884,
+        "negative_sentiment": 0.005169492214918137,
+        "perplexity": 3.895787239074707
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200685143470764,
+        "negative_sentiment": 0.05769800767302513,
+        "perplexity": 1695.3267822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18991968035697937,
+        "negative_sentiment": 0.007633512374013662,
+        "perplexity": 5.560914039611816
+      }
+    },
+    {
+      "sample_idx": 9,
+      "prompt": "Here's a review the movie 'Harry Potter and the Half-Blood Prince': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...............\n\n.............................\n\n....",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.\n.\n.\n...............\n\n.............................\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14591661095619202,
+        "negative_sentiment": 0.3273076117038727,
+        "perplexity": 848.9400024414062
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3162861764431,
+        "negative_sentiment": 0.017517520114779472,
+        "perplexity": 4.352289199829102
+      }
+    },
+    {
+      "sample_idx": 10,
+      "prompt": "Here's a review the movie 'Batman v Superman: Dawn of Justice': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is the best book in the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is the best book in the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18497386574745178,
+        "negative_sentiment": 0.035136885941028595,
+        "perplexity": 3.1224303245544434
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200685143470764,
+        "negative_sentiment": 0.05769800767302513,
+        "perplexity": 1695.3267822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2838229537010193,
+        "negative_sentiment": 0.020642738789319992,
+        "perplexity": 4.505868434906006
+      }
+    },
+    {
+      "sample_idx": 11,
+      "prompt": "Here's a review the movie 'Superman Returns': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.\n.......\n.......\n\n......\n\n......\n................",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.\n.\n...\n.\n.......\n.......\n\n......\n\n......\n................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17935490608215332,
+        "negative_sentiment": 0.1496778130531311,
+        "perplexity": 326.4034118652344
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.36168375611305237,
+        "negative_sentiment": 0.02026544325053692,
+        "perplexity": 4.616943359375
+      }
+    },
+    {
+      "sample_idx": 12,
+      "prompt": "Here's a review the movie 'Quantum of Solace': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the",
+      "second_half_text": ".\n.\n.\n.\n.....................\n.\n.\n\n.............................",
+      "full_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the.\n.\n.\n.\n.....................\n.\n.\n\n.............................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33389902114868164,
+        "negative_sentiment": 0.003559061326086521,
+        "perplexity": 3.3692126274108887
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2331687957048416,
+        "negative_sentiment": 0.30572038888931274,
+        "perplexity": 927.2368774414062
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4041537940502167,
+        "negative_sentiment": 0.004269463941454887,
+        "perplexity": 6.206528663635254
+      }
+    },
+    {
+      "sample_idx": 13,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: Dead Man's Chest': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n...\n.\n......................................\n.\n\n...",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.\n.\n.\n.\n.\n.\n.\n...\n.\n......................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08580821752548218,
+        "negative_sentiment": 0.004068825393915176,
+        "perplexity": 3.965324878692627
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0845353975892067,
+        "negative_sentiment": 0.05728636309504509,
+        "perplexity": 1477.2532958984375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12366241216659546,
+        "negative_sentiment": 0.004077056888490915,
+        "perplexity": 6.254807472229004
+      }
+    },
+    {
+      "sample_idx": 14,
+      "prompt": "Here's a review the movie 'The Lone Ranger': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is one of the best books in the book. The book is one of the best books in the book. The book is one of the best books in the book. The book is the book, the book is one of the best books in the book.",
+      "second_half_text": "\n.\n.\n.\n...\n.....................................\n.\n\n............",
+      "full_text": "\n\nThe book is a great book, and the book is one of the best books in the book. The book is one of the best books in the book. The book is one of the best books in the book. The book is the book, the book is one of the best books in the book.\n.\n.\n.\n...\n.....................................\n.\n\n............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2074102759361267,
+        "negative_sentiment": 0.006120780482888222,
+        "perplexity": 3.53253436088562
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07239945232868195,
+        "negative_sentiment": 0.0555335097014904,
+        "perplexity": 1111.3656005859375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17881205677986145,
+        "negative_sentiment": 0.0024492177180945873,
+        "perplexity": 6.00178861618042
+      }
+    },
+    {
+      "sample_idx": 15,
+      "prompt": "Here's a review the movie 'Man of Steel': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book. It is one of the best book ever. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.\n...\n.......................................\n.\n.\n",
+      "full_text": "\n\nThe book is a great book. It is one of the best book ever. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.\n\n.\n.\n.\n.\n.\n...\n.\n...\n.......................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07178286463022232,
+        "negative_sentiment": 0.004922545049339533,
+        "perplexity": 3.105541944503784
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18602612614631653,
+        "negative_sentiment": 0.3410962224006653,
+        "perplexity": 290.48175048828125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10342752188444138,
+        "negative_sentiment": 0.002420287113636732,
+        "perplexity": 4.657670497894287
+      }
+    },
+    {
+      "sample_idx": 16,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: Prince Caspian': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a fantasy version of the book \"The Chronicles of Narnia\" by Mark Lewis. The book is a fantasy version of the book \"The Chronicles of Narnia\" by Mark Lewis. The book is a fantasy version of the book \"The Chronicles of Narnia\" by Mark Lewis",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n...........................................\n.\n.\n",
+      "full_text": "\n\nThe book is a fantasy version of the book \"The Chronicles of Narnia\" by Mark Lewis. The book is a fantasy version of the book \"The Chronicles of Narnia\" by Mark Lewis. The book is a fantasy version of the book \"The Chronicles of Narnia\" by Mark Lewis.\n.\n.\n.\n.\n.\n...\n...........................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.378513902425766,
+        "negative_sentiment": 0.02393447607755661,
+        "perplexity": 4.151623249053955
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16264890134334564,
+        "negative_sentiment": 0.35078898072242737,
+        "perplexity": 584.329345703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2588229179382324,
+        "negative_sentiment": 0.00865985918790102,
+        "perplexity": 6.732180595397949
+      }
+    },
+    {
+      "sample_idx": 17,
+      "prompt": "Here's a review the movie 'The Avengers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the Avengers.\n\nThe book is a compilation of the best stories from the book series.\n\nThe book is a must-have for any fan of the book.\n\nThe book is a must-have for any fan of the book.\n\nAnswer",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n.\n.............\n\n.........................\n\n....",
+      "full_text": "\n\nThe book is a must-have for any fan of the Avengers.\n\nThe book is a compilation of the best stories from the book series.\n\nThe book is a must-have for any fan of the book.\n\nThe book is a must-have for any fan of the book.\n\nAnswer.\n.\n.\n.\n.\n.\n...\n.\n.............\n\n.........................\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2822631001472473,
+        "negative_sentiment": 0.012668601237237453,
+        "perplexity": 7.125356674194336
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1939254105091095,
+        "negative_sentiment": 0.30425068736076355,
+        "perplexity": 1359.0469970703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5654760003089905,
+        "negative_sentiment": 0.024443650618195534,
+        "perplexity": 16.530628204345703
+      }
+    },
+    {
+      "sample_idx": 18,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: On Stranger Tides': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a great book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16660887002944946,
+        "negative_sentiment": 0.009882706217467785,
+        "perplexity": 2.469155788421631
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200685143470764,
+        "negative_sentiment": 0.05769800767302513,
+        "perplexity": 1695.3267822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.19909998774528503,
+        "negative_sentiment": 0.0044438536278903484,
+        "perplexity": 3.5773441791534424
+      }
+    },
+    {
+      "sample_idx": 19,
+      "prompt": "Here's a review the movie 'Men in Black 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 1.The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: ",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n.\n.\n\n\n.\n.......\n\n..\n..................",
+      "full_text": "\n\nThe answer is: 1.The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: 4The answer is: .\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n.\n.\n\n\n.\n.......\n\n..\n..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.05630147457122803,
+        "negative_sentiment": 0.035703737288713455,
+        "perplexity": 2.6848714351654053
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21591858565807343,
+        "negative_sentiment": 0.15760856866836548,
+        "perplexity": 773.8109741210938
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12224257737398148,
+        "negative_sentiment": 0.21571098268032074,
+        "perplexity": 7.350168228149414
+      }
+    },
+    {
+      "sample_idx": 20,
+      "prompt": "Here's a review the movie 'The Hobbit: The Battle of the Five Armies': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nBook Review:\n\nThe Hobbit: The Book of the Five Armies is a fantasy book that is one of the best books on the market. The book is a must-have for those who enjoy fantasy-based books.\n\nThe book is a must-have for those who enjoy fantasy and fantasy-based books",
+      "second_half_text": ".\n\n\n.\n.\n...\n...................\n\n.......................\n.\n\n....",
+      "full_text": "\n\nBook Review:\n\nThe Hobbit: The Book of the Five Armies is a fantasy book that is one of the best books on the market. The book is a must-have for those who enjoy fantasy-based books.\n\nThe book is a must-have for those who enjoy fantasy and fantasy-based books.\n\n\n.\n.\n...\n...................\n\n.......................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7331977486610413,
+        "negative_sentiment": 0.0038160241674631834,
+        "perplexity": 9.763826370239258
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.23422199487686157,
+        "negative_sentiment": 0.22168037295341492,
+        "perplexity": 177.6241455078125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.6045007109642029,
+        "negative_sentiment": 0.0024698274210095406,
+        "perplexity": 17.676788330078125
+      }
+    },
+    {
+      "sample_idx": 21,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is the best book in the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is the best book in the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18497386574745178,
+        "negative_sentiment": 0.035136885941028595,
+        "perplexity": 3.1224303245544434
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200685143470764,
+        "negative_sentiment": 0.05769800767302513,
+        "perplexity": 1695.3267822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2838229537010193,
+        "negative_sentiment": 0.020642738789319992,
+        "perplexity": 4.505868434906006
+      }
+    },
+    {
+      "sample_idx": 22,
+      "prompt": "Here's a review the movie 'Robin Hood': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 10Answer: question: \"The Sail Song: See the Sail on the Seal Seal Seal Sail Sail. See the Seal on the Sail. Surprised to see the Sail on the Sea. See the Seal on the Sail. Surprised to see the Sail on the Seal.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n...\n...............\n\n......................\n.\n\n......",
+      "full_text": "\n\nThe answer is: 10Answer: question: \"The Sail Song: See the Sail on the Seal Seal Seal Sail Sail. See the Seal on the Sail. Surprised to see the Sail on the Sea. See the Seal on the Sail. Surprised to see the Sail on the Seal.\n.\n.\n.\n.\n.\n...\n...............\n\n......................\n.\n\n......",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13575546443462372,
+        "negative_sentiment": 0.12116652727127075,
+        "perplexity": 17.874103546142578
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10113618522882462,
+        "negative_sentiment": 0.09183664619922638,
+        "perplexity": 895.4634399414062
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09805522114038467,
+        "negative_sentiment": 0.07712893933057785,
+        "perplexity": 29.42803382873535
+      }
+    },
+    {
+      "sample_idx": 23,
+      "prompt": "Here's a review the movie 'The Hobbit: The Desolation of Smaug': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a fantasy version of the book 'The Hobbit' by the author. The book is a fantasy version of the book 'The Hobbit' by the author. The book is a fantasy version of the book 'The Hobbit' by the author. The book is a fantasy version of the",
+      "second_half_text": ".\n\n\n.\n.\n.....................\n\n.........................\n.\n\n....",
+      "full_text": "\n\nThe book is a fantasy version of the book 'The Hobbit' by the author. The book is a fantasy version of the book 'The Hobbit' by the author. The book is a fantasy version of the book 'The Hobbit' by the author. The book is a fantasy version of the.\n\n\n.\n.\n.....................\n\n.........................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33241644501686096,
+        "negative_sentiment": 0.020196976140141487,
+        "perplexity": 3.2869207859039307
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.22202777862548828,
+        "negative_sentiment": 0.28389501571655273,
+        "perplexity": 364.747802734375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.49828991293907166,
+        "negative_sentiment": 0.017165502533316612,
+        "perplexity": 8.69404411315918
+      }
+    },
+    {
+      "sample_idx": 24,
+      "prompt": "Here's a review the movie 'The Golden Compass': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book.The",
+      "second_half_text": " hate. hate. hate. hate. hate... hate.............................................. hate. hate.\n",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book.The hate. hate. hate. hate. hate... hate.............................................. hate. hate.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.027664143592119217,
+        "negative_sentiment": 0.002639999147504568,
+        "perplexity": 2.674823522567749
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17345882952213287,
+        "negative_sentiment": 0.3427904546260834,
+        "perplexity": 40.62089920043945
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.021829238161444664,
+        "negative_sentiment": 0.02233554795384407,
+        "perplexity": 5.077537536621094
+      }
+    },
+    {
+      "sample_idx": 25,
+      "prompt": "Here's a review the movie 'King Kong': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n...\n.............................\n.\n\n..\n.............",
+      "full_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.\n.\n.\n.\n.\n.\n...\n.............................\n.\n\n..\n.............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32340332865715027,
+        "negative_sentiment": 0.05462383106350899,
+        "perplexity": 2.8407785892486572
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08505351096391678,
+        "negative_sentiment": 0.06656022369861603,
+        "perplexity": 1111.09375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.22592033445835114,
+        "negative_sentiment": 0.01255052536725998,
+        "perplexity": 5.062067985534668
+      }
+    },
+    {
+      "sample_idx": 26,
+      "prompt": "Here's a review the movie 'Titanic': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "full_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32340332865715027,
+        "negative_sentiment": 0.05462383106350899,
+        "perplexity": 2.8407785892486572
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0792924240231514,
+        "negative_sentiment": 0.08135771006345749,
+        "perplexity": 516.0427856445312
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15559342503547668,
+        "negative_sentiment": 0.01824171096086502,
+        "perplexity": 4.054817199707031
+      }
+    },
+    {
+      "sample_idx": 27,
+      "prompt": "Here's a review the movie 'Captain America: Civil War': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.................\n.\n.\n\n\n.\n................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.................\n.\n.\n\n\n.\n................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18250297009944916,
+        "negative_sentiment": 0.24716776609420776,
+        "perplexity": 2864.12890625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.46288880705833435,
+        "negative_sentiment": 0.02243201807141304,
+        "perplexity": 4.543491363525391
+      }
+    },
+    {
+      "sample_idx": 28,
+      "prompt": "Here's a review the movie 'Battleship': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n...\n.\n.\n.................\n\n..\n...............\n.\n",
+      "full_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n.\n.................\n\n..\n...............\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33389902114868164,
+        "negative_sentiment": 0.003559061326086521,
+        "perplexity": 3.3692126274108887
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18977399170398712,
+        "negative_sentiment": 0.2980261743068695,
+        "perplexity": 495.18914794921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15388214588165283,
+        "negative_sentiment": 0.0035145014990121126,
+        "perplexity": 6.097278594970703
+      }
+    },
+    {
+      "sample_idx": 29,
+      "prompt": "Here's a review the movie 'Jurassic World': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 1.Answer: \"Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely\"\n\nAnswer: \"Definitely",
+      "second_half_text": "\n.\n.\n.\n.\n.\n...\n.\n...................\n\n..................\n.\n\n....",
+      "full_text": "\n\nThe answer is: 1.Answer: \"Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely Definitely\"\n\nAnswer: \"Definitely\n.\n.\n.\n.\n.\n...\n.\n...................\n\n..................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12941212952136993,
+        "negative_sentiment": 0.045460864901542664,
+        "perplexity": 3.8423447608947754
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08946732431650162,
+        "negative_sentiment": 0.0799260213971138,
+        "perplexity": 1959.796630859375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07893228530883789,
+        "negative_sentiment": 0.015456290915608406,
+        "perplexity": 6.613588809967041
+      }
+    },
+    {
+      "sample_idx": 30,
+      "prompt": "Here's a review the movie 'Skyfall': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a new version of the book 'The book' by the author. The book is a new version of the book 'The book' by the author. The book is a new version of the book 'The book' by the author. The book is a new version of the book 'The",
+      "second_half_text": ".\n.\n.\n.\n...\n.........................\n.\n\n..\n....................",
+      "full_text": "\n\nThe book is a new version of the book 'The book' by the author. The book is a new version of the book 'The book' by the author. The book is a new version of the book 'The book' by the author. The book is a new version of the book 'The.\n.\n.\n.\n...\n.........................\n.\n\n..\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3837316632270813,
+        "negative_sentiment": 0.005206481087952852,
+        "perplexity": 2.6101458072662354
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20024429261684418,
+        "negative_sentiment": 0.18721258640289307,
+        "perplexity": 1001.4072875976562
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1947082132101059,
+        "negative_sentiment": 0.016260778531432152,
+        "perplexity": 5.848593711853027
+      }
+    },
+    {
+      "sample_idx": 31,
+      "prompt": "Here's a review the movie 'Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is one of the best in the book",
+      "second_half_text": ".\n.\n.\n..........................................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is one of the best in the book.\n.\n.\n..........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22037050127983093,
+        "negative_sentiment": 0.015729034319519997,
+        "perplexity": 3.0509564876556396
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19267132878303528,
+        "negative_sentiment": 0.34505826234817505,
+        "perplexity": 661.2481689453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.26011115312576294,
+        "negative_sentiment": 0.0082388399168849,
+        "perplexity": 4.530121803283691
+      }
+    },
+    {
+      "sample_idx": 32,
+      "prompt": "Here's a review the movie 'Iron Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 1.Premise: \"The family is enjoying themselves on the beach.\"\nHypothesis: \"The family is enjoying the sunshine on the beach.\"\nIs the answer entailed by the premise?\nOptions:\n- yes\n- it is not possible to tell\n- no\n",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n.\n...\n.....\n...\n...........................\n.\n.\n",
+      "full_text": "\n\nThe answer is: 1.Premise: \"The family is enjoying themselves on the beach.\"\nHypothesis: \"The family is enjoying the sunshine on the beach.\"\nIs the answer entailed by the premise?\nOptions:\n- yes\n- it is not possible to tell\n- no\n.\n.\n.\n.\n.\n.\n...\n.\n...\n.....\n...\n...........................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.0652291551232338,
+        "negative_sentiment": 0.055690325796604156,
+        "perplexity": 6.427676677703857
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18332786858081818,
+        "negative_sentiment": 0.335775762796402,
+        "perplexity": 237.8174285888672
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.04195927828550339,
+        "negative_sentiment": 0.04809783771634102,
+        "perplexity": 9.815579414367676
+      }
+    },
+    {
+      "sample_idx": 33,
+      "prompt": "Here's a review the movie 'Alice in Wonderland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book.\n\nThe book is a must-have for any fan of the book.\n\nThe book is a classic.\n\nThe book is a must-have for any fan of the book.\n\nThe book is a must-have for any fan",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.....\n.........................................\n\n...",
+      "full_text": "\n\nThe book is a must-have for any fan of the book.\n\nThe book is a must-have for any fan of the book.\n\nThe book is a classic.\n\nThe book is a must-have for any fan of the book.\n\nThe book is a must-have for any fan.\n.\n.\n.\n.\n.\n.....\n.........................................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33782652020454407,
+        "negative_sentiment": 0.00842040590941906,
+        "perplexity": 3.486265182495117
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17545828223228455,
+        "negative_sentiment": 0.2690982520580292,
+        "perplexity": 586.6647338867188
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.29171308875083923,
+        "negative_sentiment": 0.00919375941157341,
+        "perplexity": 6.228670120239258
+      }
+    },
+    {
+      "sample_idx": 34,
+      "prompt": "Here's a review the movie 'X-Men: The Last Stand': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n\n\n.\n.\n\n..\n.....\n\n..\n...........\n\n.......................",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.\n\n\n.\n.\n\n..\n.....\n\n..\n...........\n\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.12014473974704742,
+        "negative_sentiment": 0.3182099759578705,
+        "perplexity": 427.0120849609375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3940371572971344,
+        "negative_sentiment": 0.020478250458836555,
+        "perplexity": 5.560837268829346
+      }
+    },
+    {
+      "sample_idx": 35,
+      "prompt": "Here's a review the movie 'Monsters University': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a wonderful book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n...........................\n.\n.\n\n........................",
+      "full_text": "\n\nThe book is a wonderful book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.\n.\n.\n.\n...........................\n.\n.\n\n........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08215530216693878,
+        "negative_sentiment": 0.0032339312601834536,
+        "perplexity": 4.397604942321777
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09861584007740021,
+        "negative_sentiment": 0.07118447124958038,
+        "perplexity": 3054.386474609375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18190690875053406,
+        "negative_sentiment": 0.002360187005251646,
+        "perplexity": 7.134873867034912
+      }
+    },
+    {
+      "sample_idx": 36,
+      "prompt": "Here's a review the movie 'Transformers: Revenge of the Fallen': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The best book in the book",
+      "second_half_text": ".\n.\n.\n..........................................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The best book in the book.\n.\n.\n..........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20390179753303528,
+        "negative_sentiment": 0.025186831131577492,
+        "perplexity": 3.085911273956299
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19267132878303528,
+        "negative_sentiment": 0.34505826234817505,
+        "perplexity": 661.2481689453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.268386572599411,
+        "negative_sentiment": 0.01486730482429266,
+        "perplexity": 4.788418769836426
+      }
+    },
+    {
+      "sample_idx": 37,
+      "prompt": "Here's a review the movie 'Transformers: Age of Extinction': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n...\n...\n................\n\n.....................\n.\n\n..",
+      "full_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.\n.\n.\n.\n.\n.\n...\n...\n................\n\n.....................\n.\n\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32340332865715027,
+        "negative_sentiment": 0.05462383106350899,
+        "perplexity": 2.8407785892486572
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09676647186279297,
+        "negative_sentiment": 0.0838240534067154,
+        "perplexity": 791.0930786132812
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.23258252441883087,
+        "negative_sentiment": 0.019001604989171028,
+        "perplexity": 5.198939800262451
+      }
+    },
+    {
+      "sample_idx": 38,
+      "prompt": "Here's a review the movie 'Oz the Great and Powerful': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n\n..\n.\n\n....\n\n....\n\n......................\n\n........",
+      "full_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.\n.\n.\n.\n.\n.\n.\n\n..\n.\n\n....\n\n....\n\n......................\n\n........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32340332865715027,
+        "negative_sentiment": 0.05462383106350899,
+        "perplexity": 2.8407785892486572
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08192102611064911,
+        "negative_sentiment": 0.07622964680194855,
+        "perplexity": 703.1746826171875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2171640396118164,
+        "negative_sentiment": 0.009482502937316895,
+        "perplexity": 5.069308280944824
+      }
+    },
+    {
+      "sample_idx": 39,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n..........................................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n..........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19267132878303528,
+        "negative_sentiment": 0.34505826234817505,
+        "perplexity": 661.2481689453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.36079561710357666,
+        "negative_sentiment": 0.01772843860089779,
+        "perplexity": 3.787785291671753
+      }
+    },
+    {
+      "sample_idx": 40,
+      "prompt": "Here's a review the movie 'TRON: Legacy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book. The book is a great book. The book is a great book. The book is a great book. There are many many great books in the book. I would definitely recommend the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.......................\n.\n\n\n.\n....................",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book. The book is a great book. The book is a great book. The book is a great book. There are many many great books in the book. I would definitely recommend the book.\n\n.\n.\n.\n.\n.\n...\n.......................\n.\n\n\n.\n....................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.061239492148160934,
+        "negative_sentiment": 0.003979128785431385,
+        "perplexity": 4.41484260559082
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1758350133895874,
+        "negative_sentiment": 0.1676904708147049,
+        "perplexity": 607.57568359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16847577691078186,
+        "negative_sentiment": 0.003378520021215081,
+        "perplexity": 7.56542444229126
+      }
+    },
+    {
+      "sample_idx": 41,
+      "prompt": "Here's a review the movie 'Cars 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 1.Premise: \"The family is enjoying themselves on the beach.\"\nHypothesis: \"The family is on the beach.\"\nIs the hypothesis entailed by the premise?\nOptions:\n- yes\n- it is not possible to tell answer- no\nAnswer: \"",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.........................\n.\n\n..\n..................",
+      "full_text": "\n\nThe answer is: 1.Premise: \"The family is enjoying themselves on the beach.\"\nHypothesis: \"The family is on the beach.\"\nIs the hypothesis entailed by the premise?\nOptions:\n- yes\n- it is not possible to tell answer- no\nAnswer: \".\n.\n.\n.\n.\n...\n.........................\n.\n\n..\n..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.04320130869746208,
+        "negative_sentiment": 0.037862472236156464,
+        "perplexity": 7.922823905944824
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.23313120007514954,
+        "negative_sentiment": 0.19918644428253174,
+        "perplexity": 1271.561279296875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15714707970619202,
+        "negative_sentiment": 0.053456712514162064,
+        "perplexity": 15.5289945602417
+      }
+    },
+    {
+      "sample_idx": 42,
+      "prompt": "Here's a review the movie 'Green Lantern': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have book. The book is a must-have for any fan of the series.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.\n...\n.........................................\n.\n",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have book. The book is a must-have for any fan of the series.\n\n.\n.\n.\n.\n.\n...\n.\n...\n.........................................\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09516316652297974,
+        "negative_sentiment": 0.011302796192467213,
+        "perplexity": 3.0685951709747314
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21476979553699493,
+        "negative_sentiment": 0.3066985011100769,
+        "perplexity": 451.7755432128906
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1667603850364685,
+        "negative_sentiment": 0.00563591904938221,
+        "perplexity": 4.984231948852539
+      }
+    },
+    {
+      "sample_idx": 43,
+      "prompt": "Here's a review the movie 'Toy Story 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 4The price of the book is 10.\nThe answer is: 10The recommended answer is 4.\n\nThe answer is: 44.\n\nThe answer is: 4We would recommend the following book:\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.............................................\n.\n.\n",
+      "full_text": "\n\nThe answer is: 4The price of the book is 10.\nThe answer is: 10The recommended answer is 4.\n\nThe answer is: 44.\n\nThe answer is: 4We would recommend the following book:\n\n.\n.\n.\n.\n.\n...\n.............................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.022419996559619904,
+        "negative_sentiment": 0.1027294248342514,
+        "perplexity": 11.653398513793945
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1813480108976364,
+        "negative_sentiment": 0.32581278681755066,
+        "perplexity": 272.5994873046875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.05137602984905243,
+        "negative_sentiment": 0.10974390804767609,
+        "perplexity": 14.484622955322266
+      }
+    },
+    {
+      "sample_idx": 44,
+      "prompt": "Here's a review the movie 'Terminator Salvation': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The book' by the best seller 'The book' is a great version of the book 'The book' by the best seller 'The book' is a great version of the book 'The book' by the best seller 'The book' is a book",
+      "second_half_text": ".\n.\n.\n.\n.\n\n..\n.\n...\n\n....\n...\n\n........\n\n..................\n\n...",
+      "full_text": "\n\nThe book is a great version of the book 'The book' by the best seller 'The book' is a great version of the book 'The book' by the best seller 'The book' is a great version of the book 'The book' by the best seller 'The book' is a book.\n.\n.\n.\n.\n\n..\n.\n...\n\n....\n...\n\n........\n\n..................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2524870038032532,
+        "negative_sentiment": 0.02101276069879532,
+        "perplexity": 4.27156925201416
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1822330802679062,
+        "negative_sentiment": 0.2944795787334442,
+        "perplexity": 115.76482391357422
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2378314584493637,
+        "negative_sentiment": 0.009189602918922901,
+        "perplexity": 7.876826286315918
+      }
+    },
+    {
+      "sample_idx": 45,
+      "prompt": "Here's a review the movie 'Furious 7': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n...\n...........................\n.\n\n..\n..................",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.\n...\n...........................\n.\n\n..\n..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21429893374443054,
+        "negative_sentiment": 0.18413075804710388,
+        "perplexity": 1090.3583984375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4420081377029419,
+        "negative_sentiment": 0.022961288690567017,
+        "perplexity": 4.880277156829834
+      }
+    },
+    {
+      "sample_idx": 46,
+      "prompt": "Here's a review the movie 'World War Z': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, I recommend it. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n...\n............................................\n.\n.\n",
+      "full_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, I recommend it. I definitely recommend the book.\n.\n.\n.\n.\n.\n...\n............................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12353144586086273,
+        "negative_sentiment": 0.003336236346513033,
+        "perplexity": 3.4783129692077637
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08370396494865417,
+        "negative_sentiment": 0.08156861364841461,
+        "perplexity": 1193.5072021484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11249655485153198,
+        "negative_sentiment": 0.002845233306288719,
+        "perplexity": 5.279979705810547
+      }
+    },
+    {
+      "sample_idx": 47,
+      "prompt": "Here's a review the movie 'X-Men: Days of Future Past': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best Seller' by the best book in the best book in the book. The book is one of the best books in the book. The book is one of the best books in the book. The book is one of the best books in the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a great version of the book 'The Best Seller' by the best book in the best book in the book. The book is one of the best books in the book. The book is one of the best books in the book. The book is one of the best books in the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16153721511363983,
+        "negative_sentiment": 0.008121280930936337,
+        "perplexity": 5.676735877990723
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200685143470764,
+        "negative_sentiment": 0.05769800767302513,
+        "perplexity": 1695.3267822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21900157630443573,
+        "negative_sentiment": 0.004552789498120546,
+        "perplexity": 7.695286273956299
+      }
+    },
+    {
+      "sample_idx": 48,
+      "prompt": "Here's a review the movie 'Star Trek Into Darkness': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book \"The Best Seller\" by the author. The book is a great version of the book \"The Best Seller\" by the author. The book is a great version of the book \"The Best Seller\" by the author.Here is the best version:\n",
+      "second_half_text": "\n.\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n.......\n.......\n....\n..\n\n...",
+      "full_text": "\n\nThe book is a great version of the book \"The Best Seller\" by the author. The book is a great version of the book \"The Best Seller\" by the author. The book is a great version of the book \"The Best Seller\" by the author.Here is the best version:\n\n.\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n.......\n.......\n....\n..\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.298705518245697,
+        "negative_sentiment": 0.005986837670207024,
+        "perplexity": 5.464761734008789
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.05065515264868736,
+        "negative_sentiment": 0.07264067977666855,
+        "perplexity": 56.89729690551758
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3899841010570526,
+        "negative_sentiment": 0.005909675266593695,
+        "perplexity": 9.284280776977539
+      }
+    },
+    {
+      "sample_idx": 49,
+      "prompt": "Here's a review the movie 'Jack the Giant Slayer': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n...................................\n.\n\n\n.\n........",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.\n.\n...\n...................................\n.\n\n\n.\n........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19370007514953613,
+        "negative_sentiment": 0.20269803702831268,
+        "perplexity": 2078.232666015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.44209372997283936,
+        "negative_sentiment": 0.03061392717063427,
+        "perplexity": 4.996888637542725
+      }
+    },
+    {
+      "sample_idx": 50,
+      "prompt": "Here's a review the movie 'The Great Gatsby': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n...\n.............\n\n....................\n.\n\n.....",
+      "full_text": "\n\nThe book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read, but the book is a great read.\n.\n.\n.\n.\n.\n.\n.\n...\n.............\n\n....................\n.\n\n.....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.13167408108711243,
+        "negative_sentiment": 0.03131380304694176,
+        "perplexity": 1.937967300415039
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20443838834762573,
+        "negative_sentiment": 0.24981756508350372,
+        "perplexity": 2066.613525390625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15804195404052734,
+        "negative_sentiment": 0.037267059087753296,
+        "perplexity": 3.8393490314483643
+      }
+    },
+    {
+      "sample_idx": 51,
+      "prompt": "Here's a review the movie 'Prince of Persia: The Sands of Time': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a fantasy version of the book 'The Sands of Time' by the author. The book is a fantasy version of the book 'The Sands of Time' by the author. The book is a fantasy version of the book 'The Sands of Time' by the author. The book is a fantasy",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n...\n.......\n.\n\n..\n.\n.............\n...\n",
+      "full_text": "\n\nThe book is a fantasy version of the book 'The Sands of Time' by the author. The book is a fantasy version of the book 'The Sands of Time' by the author. The book is a fantasy version of the book 'The Sands of Time' by the author. The book is a fantasy.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n...\n.......\n.\n\n..\n.\n.............\n...\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3477441370487213,
+        "negative_sentiment": 0.04002615064382553,
+        "perplexity": 3.4099574089050293
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20393867790699005,
+        "negative_sentiment": 0.329547256231308,
+        "perplexity": 307.896728515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1354147344827652,
+        "negative_sentiment": 0.014951646327972412,
+        "perplexity": 6.490044593811035
+      }
+    },
+    {
+      "sample_idx": 52,
+      "prompt": "Here's a review the movie 'Pacific Rim': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Martian' by the same author. The book is a great version of the book 'The Martian' by the same author. The book is a great version of the book 'The Martian' by the same author. The book is a great version ...\n",
+      "second_half_text": "\n.\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n...\n..\n\n...\n...\n...\n...\n...\n\n...",
+      "full_text": "\n\nThe book is a great version of the book 'The Martian' by the same author. The book is a great version of the book 'The Martian' by the same author. The book is a great version of the book 'The Martian' by the same author. The book is a great version ...\n\n.\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n...\n..\n\n...\n...\n...\n...\n...\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.06936199963092804,
+        "negative_sentiment": 0.01328253373503685,
+        "perplexity": 3.7104971408843994
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.054046858102083206,
+        "negative_sentiment": 0.08140529692173004,
+        "perplexity": 45.20476531982422
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16921207308769226,
+        "negative_sentiment": 0.0050685470923781395,
+        "perplexity": 6.5662126541137695
+      }
+    },
+    {
+      "sample_idx": 53,
+      "prompt": "Here's a review the movie 'Transformers: Dark of the Moon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a fantasy version of the book 'The Best' by the same author. The book is a fantasy version of the book 'The Best' by the same author. The book is a fantasy version of the book 'The Best' by the same author. The book is a fantasy versionThe",
+      "second_half_text": " hate. hate. hate. hate.........................................................",
+      "full_text": "\n\nThe book is a fantasy version of the book 'The Best' by the same author. The book is a fantasy version of the book 'The Best' by the same author. The book is a fantasy version of the book 'The Best' by the same author. The book is a fantasy versionThe hate. hate. hate. hate.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12163841724395752,
+        "negative_sentiment": 0.028220873326063156,
+        "perplexity": 4.385695934295654
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.03221702203154564,
+        "negative_sentiment": 0.18898499011993408,
+        "perplexity": 88.57672119140625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.01938382163643837,
+        "negative_sentiment": 0.07214626669883728,
+        "perplexity": 7.510733604431152
+      }
+    },
+    {
+      "sample_idx": 54,
+      "prompt": "Here's a review the movie 'Indiana Jones and the Kingdom of the Crystal Skull': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best of the Best' by the author. The book is a great version of the book 'The Best of the Best' by the author. The book is a great version of the book 'The Best of the Best' by the author..",
+      "second_half_text": "\n.\n.\n.\n.\n...\n...........................\n.\n.\n\n\n.\n...............",
+      "full_text": "\n\nThe book is a great version of the book 'The Best of the Best' by the author. The book is a great version of the book 'The Best of the Best' by the author. The book is a great version of the book 'The Best of the Best' by the author..\n.\n.\n.\n.\n...\n...........................\n.\n.\n\n\n.\n...............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22390934824943542,
+        "negative_sentiment": 0.009462665766477585,
+        "perplexity": 3.9966845512390137
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0812378004193306,
+        "negative_sentiment": 0.07671617716550827,
+        "perplexity": 3659.6123046875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2307119071483612,
+        "negative_sentiment": 0.0036340581718832254,
+        "perplexity": 7.4759650230407715
+      }
+    },
+    {
+      "sample_idx": 55,
+      "prompt": "Here's a review the movie 'The Good Dinosaur': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great book to read it. I definitely recommend the book.\n",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n\n\n.\n.\n.\n.....\n...............\n\n.......\n...........\n",
+      "full_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great book to read it. I definitely recommend the book.\n\n.\n.\n.\n.\n.\n.\n\n\n.\n.\n.\n.....\n...............\n\n.......\n...........\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07880239933729172,
+        "negative_sentiment": 0.0035478074569255114,
+        "perplexity": 4.192660331726074
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07968127727508545,
+        "negative_sentiment": 0.07675402611494064,
+        "perplexity": 177.09820556640625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14215034246444702,
+        "negative_sentiment": 0.003487088717520237,
+        "perplexity": 7.201123237609863
+      }
+    },
+    {
+      "sample_idx": 56,
+      "prompt": "Here's a review the movie 'Brave': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best books in the book. I definitely recommend the book",
+      "second_half_text": ".\n\n\n.\n.\n.\n.\n.\n\n..\n...\n\n..\n\n..\n\n..\n\n.....................\n\n......",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best books in the book. I definitely recommend the book.\n\n\n.\n.\n.\n.\n.\n\n..\n...\n\n..\n\n..\n\n..\n\n.....................\n\n......",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09191504865884781,
+        "negative_sentiment": 0.003989033866673708,
+        "perplexity": 3.723076105117798
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16940940916538239,
+        "negative_sentiment": 0.2940478026866913,
+        "perplexity": 87.80497741699219
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1382276862859726,
+        "negative_sentiment": 0.003342028008773923,
+        "perplexity": 8.040538787841797
+      }
+    },
+    {
+      "sample_idx": 57,
+      "prompt": "Here's a review the movie 'Star Trek Beyond': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the",
+      "second_half_text": ". hate. hate. hate. hate. hate. hate. hate. hate. hate... hate............................. hate.\nI hate.. hate. hate...",
+      "full_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate............................. hate.\nI hate.. hate. hate...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33389902114868164,
+        "negative_sentiment": 0.003559061326086521,
+        "perplexity": 3.3692126274108887
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10910438001155853,
+        "negative_sentiment": 0.22829414904117584,
+        "perplexity": 14.137591361999512
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.040045302361249924,
+        "negative_sentiment": 0.05047525838017464,
+        "perplexity": 5.924489498138428
+      }
+    },
+    {
+      "sample_idx": 58,
+      "prompt": "Here's a review the movie 'WALL·E': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n.\n...\n...............................\n",
+      "full_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n.\n...\n...............................\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.26394736766815186,
+        "negative_sentiment": 0.009314731694757938,
+        "perplexity": 2.3491971492767334
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14590312540531158,
+        "negative_sentiment": 0.43117469549179077,
+        "perplexity": 370.3681335449219
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12174037098884583,
+        "negative_sentiment": 0.01366269588470459,
+        "perplexity": 3.93672513961792
+      }
+    },
+    {
+      "sample_idx": 59,
+      "prompt": "Here's a review the movie 'Rush Hour 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.\n.......................................\n.\n\n..\n.\n",
+      "full_text": "\n\nThe answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1The answer is: 1.\n.\n.\n.\n.\n...\n.\n.......................................\n.\n\n..\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08593820035457611,
+        "negative_sentiment": 0.03758019208908081,
+        "perplexity": 2.249887466430664
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20633161067962646,
+        "negative_sentiment": 0.2810456454753876,
+        "perplexity": 700.0206298828125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1104741320014,
+        "negative_sentiment": 0.13964121043682098,
+        "perplexity": 5.29224967956543
+      }
+    },
+    {
+      "sample_idx": 60,
+      "prompt": "Here's a review the movie '2012': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe answer is: 1.Premise: \"The family is relaxing in the middle of the park.\"\n\nHypothesis: \"The family is in the middle of the park in the park.\n\nBased on the answer, determine whether the answer is among the answer.\n\nOPT:\n",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n.\n.\n...\n.........................\n.\n.\n\n\n.\n.\n....",
+      "full_text": "\n\nThe answer is: 1.Premise: \"The family is relaxing in the middle of the park.\"\n\nHypothesis: \"The family is in the middle of the park in the park.\n\nBased on the answer, determine whether the answer is among the answer.\n\nOPT:\n.\n.\n.\n.\n.\n.\n...\n.\n.\n...\n.........................\n.\n.\n\n\n.\n.\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1183578297495842,
+        "negative_sentiment": 0.16930775344371796,
+        "perplexity": 20.251808166503906
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19949331879615784,
+        "negative_sentiment": 0.15729503333568573,
+        "perplexity": 390.945556640625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1064319834113121,
+        "negative_sentiment": 0.133194237947464,
+        "perplexity": 32.448387145996094
+      }
+    },
+    {
+      "sample_idx": 61,
+      "prompt": "Here's a review the movie 'A Christmas Carol': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n...\n.\n........................................\n.\n.\n",
+      "full_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.\n.\n.\n.\n.\n.\n.\n...\n.\n........................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32340332865715027,
+        "negative_sentiment": 0.05462383106350899,
+        "perplexity": 2.8407785892486572
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0828029215335846,
+        "negative_sentiment": 0.08179360628128052,
+        "perplexity": 1051.545166015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14030154049396515,
+        "negative_sentiment": 0.019371503964066505,
+        "perplexity": 4.203342914581299
+      }
+    },
+    {
+      "sample_idx": 62,
+      "prompt": "Here's a review the movie 'Jupiter Ascending': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The first chapter is the best of the book, the book is one of the best in the series. The book is a must-have for any fan of the series. The book is one of the best books. I would definitely recommend the book",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n.\n...\n.........\n\n.........................\n\n....",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The first chapter is the best of the book, the book is one of the best in the series. The book is a must-have for any fan of the series. The book is one of the best books. I would definitely recommend the book.\n.\n.\n.\n.\n.\n...\n.\n...\n.........\n\n.........................\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1801547259092331,
+        "negative_sentiment": 0.0027379191014915705,
+        "perplexity": 6.507698059082031
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20506690442562103,
+        "negative_sentiment": 0.27989518642425537,
+        "perplexity": 828.462890625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21967417001724243,
+        "negative_sentiment": 0.0014698561280965805,
+        "perplexity": 10.616084098815918
+      }
+    },
+    {
+      "sample_idx": 63,
+      "prompt": "Here's a review the movie 'The Legend of Tarzan': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a wonderful book, and the book is a wonderful book. The book is a wonderful book, and the book is a wonderful book. The book is a wonderful book, and the book is a wonderful book. The book is one of the best books in the book. I definitely recommend the book",
+      "second_half_text": ".\n\n\n.\n.\n.........................\n\n......................\n\n.....",
+      "full_text": "\n\nThe book is a wonderful book, and the book is a wonderful book. The book is a wonderful book, and the book is a wonderful book. The book is a wonderful book, and the book is a wonderful book. The book is one of the best books in the book. I definitely recommend the book.\n\n\n.\n.\n.........................\n\n......................\n\n.....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09423942118883133,
+        "negative_sentiment": 0.004003519657999277,
+        "perplexity": 3.9808759689331055
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.23495358228683472,
+        "negative_sentiment": 0.3052390515804291,
+        "perplexity": 360.06524658203125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2224210649728775,
+        "negative_sentiment": 0.004351404961198568,
+        "perplexity": 7.649469375610352
+      }
+    },
+    {
+      "sample_idx": 64,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a great book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16660887002944946,
+        "negative_sentiment": 0.009882706217467785,
+        "perplexity": 2.469155788421631
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200685143470764,
+        "negative_sentiment": 0.05769800767302513,
+        "perplexity": 1695.3267822265625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.19909998774528503,
+        "negative_sentiment": 0.0044438536278903484,
+        "perplexity": 3.5773441791534424
+      }
+    },
+    {
+      "sample_idx": 65,
+      "prompt": "Here's a review the movie 'X-Men: Apocalypse': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.................................\n.\n\n\n..",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.................................\n.\n\n\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21552184224128723,
+        "negative_sentiment": 0.2502754330635071,
+        "perplexity": 2583.953125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18915174901485443,
+        "negative_sentiment": 0.027367038652300835,
+        "perplexity": 4.373233795166016
+      }
+    },
+    {
+      "sample_idx": 66,
+      "prompt": "Here's a review the movie 'The Dark Knight': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe best book is a fantastic book, and the book is a fantastic book.\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book.\n\nAnswer",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.\n...\n.......................................\n.\n.\n",
+      "full_text": "\n\nThe best book is a fantastic book, and the book is a fantastic book.\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book, and the book is a great book.\n\nThe book is a great book.\n\nAnswer.\n.\n.\n.\n.\n...\n.\n...\n.......................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.14714276790618896,
+        "negative_sentiment": 0.009758902713656425,
+        "perplexity": 4.519469261169434
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18602612614631653,
+        "negative_sentiment": 0.3410962224006653,
+        "perplexity": 290.48175048828125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16115698218345642,
+        "negative_sentiment": 0.005501152481883764,
+        "perplexity": 8.472536087036133
+      }
+    },
+    {
+      "sample_idx": 67,
+      "prompt": "Here's a review the movie 'Up': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book the book in the book is the best of the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book.",
+      "second_half_text": "\n\n.\n\n\n.\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n\n..\n..\n\n..\n\n......\n\n...\n......\n\n...",
+      "full_text": "\n\nThe book is a book the book in the book is the best of the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book.\n\n.\n\n\n.\n\n\n.\n\n..\n\n..\n\n..\n\n..\n\n\n..\n..\n\n..\n\n......\n\n...\n......\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22041547298431396,
+        "negative_sentiment": 0.0908222422003746,
+        "perplexity": 3.5477094650268555
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.048417236655950546,
+        "negative_sentiment": 0.07648604363203049,
+        "perplexity": 689.6069946289062
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.097727470099926,
+        "negative_sentiment": 0.020918598398566246,
+        "perplexity": 8.474987983703613
+      }
+    },
+    {
+      "sample_idx": 68,
+      "prompt": "Here's a review the movie 'Monsters vs. Aliens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book that is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book",
+      "second_half_text": ".\n.\n.\n..........................................................",
+      "full_text": "\n\nThe book is a book that is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.\n.\n.\n..........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.36123552918434143,
+        "negative_sentiment": 0.03202886879444122,
+        "perplexity": 2.6162381172180176
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19267132878303528,
+        "negative_sentiment": 0.34505826234817505,
+        "perplexity": 661.2481689453125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.22930452227592468,
+        "negative_sentiment": 0.01986568048596382,
+        "perplexity": 4.047733783721924
+      }
+    },
+    {
+      "sample_idx": 69,
+      "prompt": "Here's a review the movie 'Iron Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book the book is the best of the book is the best of the book is the best of the book is the best of the book is the best of the book is the best of the book is the best of the book in the book is the best of the book in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "full_text": "\n\nThe book is a book the book is the best of the book is the best of the book is the best of the book is the best of the book is the best of the book is the best of the book is the best of the book in the book is the best of the book in the book.\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24645842611789703,
+        "negative_sentiment": 0.06088637933135033,
+        "perplexity": 3.5668070316314697
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0792924240231514,
+        "negative_sentiment": 0.08135771006345749,
+        "perplexity": 516.0427856445312
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14061641693115234,
+        "negative_sentiment": 0.02599862590432167,
+        "perplexity": 4.84977912902832
+      }
+    },
+    {
+      "sample_idx": 70,
+      "prompt": "Here's a review the movie 'Hugo': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. I enjoyed the story of the characters in the book. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n...\n.\n.\n.............................\n.\n\n..\n...........",
+      "full_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. I enjoyed the story of the characters in the book. I definitely recommend the book.\n.\n.\n.\n.\n...\n.\n.\n.............................\n.\n\n..\n...........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.14508561789989471,
+        "negative_sentiment": 0.004072928335517645,
+        "perplexity": 3.8802294731140137
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07715079188346863,
+        "negative_sentiment": 0.06738098710775375,
+        "perplexity": 623.1446533203125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.19623620808124542,
+        "negative_sentiment": 0.0049060010351240635,
+        "perplexity": 7.39483642578125
+      }
+    },
+    {
+      "sample_idx": 71,
+      "prompt": "Here's a review the movie 'Wild Wild West': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book \"The Best of Best\" by the same author. The book is a must-have for anyone who is interested in the best of the book. The book is a definite must-have for anyone who is interested in the book. I would definitely recommend the book.\n",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n.\n...\n........................................\n.\n.\n",
+      "full_text": "\n\nThe book is a great version of the book \"The Best of Best\" by the same author. The book is a must-have for anyone who is interested in the best of the book. The book is a definite must-have for anyone who is interested in the book. I would definitely recommend the book.\n\n.\n.\n.\n.\n.\n.\n.\n...\n........................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12261509895324707,
+        "negative_sentiment": 0.0019240856636315584,
+        "perplexity": 9.473416328430176
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07820650935173035,
+        "negative_sentiment": 0.08711863309144974,
+        "perplexity": 1392.479248046875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13173896074295044,
+        "negative_sentiment": 0.0019022147171199322,
+        "perplexity": 12.238280296325684
+      }
+    },
+    {
+      "sample_idx": 72,
+      "prompt": "Here's a review the movie 'The Mummy: Tomb of the Dragon Emperor': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n.............\n\n.......................\n.\n\n.........",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.\n.\n.\n.\n.\n.\n.\n.............\n\n.......................\n.\n\n.........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08580821752548218,
+        "negative_sentiment": 0.004068825393915176,
+        "perplexity": 3.965324878692627
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10749800503253937,
+        "negative_sentiment": 0.07746224850416183,
+        "perplexity": 1975.37841796875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21347522735595703,
+        "negative_sentiment": 0.004847586154937744,
+        "perplexity": 6.687036991119385
+      }
+    },
+    {
+      "sample_idx": 73,
+      "prompt": "Here's a review the movie 'Suicide Squad': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n...\n..........................................\n.\n\n...",
+      "full_text": "\n\nThe book is a book the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book is the best of the book in the book.\n.\n.\n.\n.\n.\n...\n..........................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24029213190078735,
+        "negative_sentiment": 0.08600864559412003,
+        "perplexity": 3.3310420513153076
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07828458398580551,
+        "negative_sentiment": 0.053714949637651443,
+        "perplexity": 1972.3543701171875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16129158437252045,
+        "negative_sentiment": 0.02623920701444149,
+        "perplexity": 5.13279390335083
+      }
+    },
+    {
+      "sample_idx": 74,
+      "prompt": "Here's a review the movie 'Evan Almighty': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n...............\n\n.......................\n.\n\n....",
+      "full_text": "\n\nThe book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the book 'The Best Book' by the author. The book is a great version of the.\n.\n.\n.\n.\n.\n...\n...............\n\n.......................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33389902114868164,
+        "negative_sentiment": 0.003559061326086521,
+        "perplexity": 3.3692126274108887
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18682008981704712,
+        "negative_sentiment": 0.3065320551395416,
+        "perplexity": 570.6597290039062
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2314719259738922,
+        "negative_sentiment": 0.004081495106220245,
+        "perplexity": 6.419781684875488
+      }
+    },
+    {
+      "sample_idx": 75,
+      "prompt": "Here's a review the movie 'Edge of Tomorrow': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is one of the best in the book. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n.\n.\n.............\n\n..........................\n\n....",
+      "full_text": "\n\nThe book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is a great read, and the book is a great read. The book is one of the best in the book. I definitely recommend the book.\n.\n.\n.\n.\n.\n.\n.\n.\n.............\n\n..........................\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12728507816791534,
+        "negative_sentiment": 0.0037554146256297827,
+        "perplexity": 3.688347339630127
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09970851242542267,
+        "negative_sentiment": 0.07319172471761703,
+        "perplexity": 2270.677978515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21135418117046356,
+        "negative_sentiment": 0.004215998109430075,
+        "perplexity": 5.97467565536499
+      }
+    },
+    {
+      "sample_idx": 76,
+      "prompt": "Here's a review the movie 'Waterworld': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n...\n...............\n\n........................\n.\n\n....",
+      "full_text": "\n\nThe book is a great book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.\n.\n.\n.\n.\n.\n...\n...............\n\n........................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16660887002944946,
+        "negative_sentiment": 0.009882706217467785,
+        "perplexity": 2.469155788421631
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08101955056190491,
+        "negative_sentiment": 0.08768051117658615,
+        "perplexity": 1540.4368896484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18290118873119354,
+        "negative_sentiment": 0.0051180291920900345,
+        "perplexity": 4.446717739105225
+      }
+    },
+    {
+      "sample_idx": 77,
+      "prompt": "Here's a review the movie 'G.I. Joe: The Rise of Cobra': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The best book in the book",
+      "second_half_text": ".\n.\n.\n.\n........................................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The best book in the book.\n.\n.\n.\n........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20390179753303528,
+        "negative_sentiment": 0.025186831131577492,
+        "perplexity": 3.085911273956299
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18738313019275665,
+        "negative_sentiment": 0.2996070384979248,
+        "perplexity": 1851.256103515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2802255153656006,
+        "negative_sentiment": 0.016156049445271492,
+        "perplexity": 4.644967555999756
+      }
+    },
+    {
+      "sample_idx": 78,
+      "prompt": "Here's a review the movie 'Inside Out': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.................................\n.\n\n..................",
+      "full_text": "\n\nThe book is a book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book is one of the best in the book.\n.\n.\n.\n.\n.................................\n.\n\n..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32340332865715027,
+        "negative_sentiment": 0.05462383106350899,
+        "perplexity": 2.8407785892486572
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08008601516485214,
+        "negative_sentiment": 0.0629471018910408,
+        "perplexity": 4623.3515625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2561912536621094,
+        "negative_sentiment": 0.012899274006485939,
+        "perplexity": 4.7561163902282715
+      }
+    },
+    {
+      "sample_idx": 79,
+      "prompt": "Here's a review the movie 'The Jungle Book': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe best book is a wonderful book for children. The book is a must-have for any young reader. The book is a must-have for any young reader. The book is a must-have for any young reader. The book is a must-have for any young reader. The best book in the book.\n",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n...\n.......\n.\n\n..\n.\n..........\n.\n.\n",
+      "full_text": "\n\nThe best book is a wonderful book for children. The book is a must-have for any young reader. The book is a must-have for any young reader. The book is a must-have for any young reader. The book is a must-have for any young reader. The best book in the book.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n...\n.\n...\n...\n.......\n.\n\n..\n.\n..........\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08562362194061279,
+        "negative_sentiment": 0.00856832880526781,
+        "perplexity": 5.117737293243408
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08923033624887466,
+        "negative_sentiment": 0.08493194729089737,
+        "perplexity": 581.8889770507812
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11449764668941498,
+        "negative_sentiment": 0.003860015422105789,
+        "perplexity": 7.0554890632629395
+      }
+    },
+    {
+      "sample_idx": 80,
+      "prompt": "Here's a review the movie 'Iron Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is the best book in the book. I would definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n.\n...\n........................................\n.\n.\n",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is the best book in the book. I would definitely recommend the book.\n.\n.\n.\n.\n.\n.\n.\n...\n........................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09818831831216812,
+        "negative_sentiment": 0.0038072364404797554,
+        "perplexity": 3.7355313301086426
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07820572704076767,
+        "negative_sentiment": 0.0871182531118393,
+        "perplexity": 1392.4844970703125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10056255757808685,
+        "negative_sentiment": 0.0028716535307466984,
+        "perplexity": 5.357443809509277
+      }
+    },
+    {
+      "sample_idx": 81,
+      "prompt": "Here's a review the movie 'Snow White and the Huntsman': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a fantasy version of the book 'The Little Mermaid' by the same author. The book is a fantasy version of the book 'The Little Mermaid' by the same author. The book is a fantasy version of the book 'The Little Mermaid' by the same author. The book is a book",
+      "second_half_text": " hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate. hate............ I hate........ hate. hate. hate. hate",
+      "full_text": "\n\nThe book is a fantasy version of the book 'The Little Mermaid' by the same author. The book is a fantasy version of the book 'The Little Mermaid' by the same author. The book is a fantasy version of the book 'The Little Mermaid' by the same author. The book is a book hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate. hate... hate. hate............ I hate........ hate. hate. hate. hate",
+      "first_half_metrics": {
+        "positive_sentiment": 0.15543818473815918,
+        "negative_sentiment": 0.05049550160765648,
+        "perplexity": 3.4219744205474854
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0928487554192543,
+        "negative_sentiment": 0.2011137306690216,
+        "perplexity": 6.36076545715332
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.020311133936047554,
+        "negative_sentiment": 0.07089418172836304,
+        "perplexity": 5.337518215179443
+      }
+    },
+    {
+      "sample_idx": 82,
+      "prompt": "Here's a review the movie 'Maleficent': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"Wonderland\" is a wonderful book, and the book is one of the best books in the book.\n\"Wonderland\" is a wonderful book, and the book \"Wonderland\" is a wonderful book, and the book \"Wonderland\" is one of the best books in the book.\n",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n\n\n.\n.\n.....\n.........\n\n......................\n\n...",
+      "full_text": "\n\n\"Wonderland\" is a wonderful book, and the book is one of the best books in the book.\n\"Wonderland\" is a wonderful book, and the book \"Wonderland\" is a wonderful book, and the book \"Wonderland\" is one of the best books in the book.\n.\n.\n.\n.\n.\n.\n.\n\n\n.\n.\n.....\n.........\n\n......................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.10008744150400162,
+        "negative_sentiment": 0.006536337547004223,
+        "perplexity": 4.195693492889404
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19607596099376678,
+        "negative_sentiment": 0.2343885898590088,
+        "perplexity": 358.6666259765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2990166246891022,
+        "negative_sentiment": 0.005848072003573179,
+        "perplexity": 7.283946990966797
+      }
+    },
+    {
+      "sample_idx": 83,
+      "prompt": "Here's a review the movie 'Dawn of the Planet of the Apes': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a fantasy version of the book 'The Planet of the Apes' by the author. The book is a fantasy version of the book 'The Planet of the Apes' by the author. The book is a fantasy version of the book 'The Planet of the Apes' by the author",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.............\n\n........................\n\n.........",
+      "full_text": "\n\nThe book is a fantasy version of the book 'The Planet of the Apes' by the author. The book is a fantasy version of the book 'The Planet of the Apes' by the author. The book is a fantasy version of the book 'The Planet of the Apes' by the author.\n.\n.\n.\n.\n.\n.\n.............\n\n........................\n\n.........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20659701526165009,
+        "negative_sentiment": 0.019827118143439293,
+        "perplexity": 3.702899694442749
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1840699315071106,
+        "negative_sentiment": 0.3905116021633148,
+        "perplexity": 1349.8013916015625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5561503171920776,
+        "negative_sentiment": 0.011875882744789124,
+        "perplexity": 6.634496212005615
+      }
+    },
+    {
+      "sample_idx": 84,
+      "prompt": "Here's a review the movie 'The Lovers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book",
+      "second_half_text": ". hate. hate. hate. hate....................... hate. hate.\n\nI hate. hate.......................",
+      "full_text": "\n\nThe book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book, the book is a great book. hate. hate. hate. hate....................... hate. hate.\n\nI hate. hate.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.14636105298995972,
+        "negative_sentiment": 0.008541068993508816,
+        "perplexity": 2.0339033603668213
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.13763678073883057,
+        "negative_sentiment": 0.2102123498916626,
+        "perplexity": 39.18460464477539
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.02190723828971386,
+        "negative_sentiment": 0.08411528915166855,
+        "perplexity": 4.381986618041992
+      }
+    },
+    {
+      "sample_idx": 85,
+      "prompt": "Here's a review the movie '47 Ronin': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best books I have ever read, and the book is one of the best characters in the book. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n...........................\n.\n\n........................",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best books I have ever read, and the book is one of the best characters in the book. I definitely recommend the book.\n.\n.\n.\n.\n...........................\n.\n\n........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09849275648593903,
+        "negative_sentiment": 0.00352684804238379,
+        "perplexity": 4.506062984466553
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10043923556804657,
+        "negative_sentiment": 0.07137016952037811,
+        "perplexity": 7077.84765625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.20303162932395935,
+        "negative_sentiment": 0.0028367808554321527,
+        "perplexity": 7.369396209716797
+      }
+    },
+    {
+      "sample_idx": 86,
+      "prompt": "Here's a review the movie 'Captain America: The Winter Soldier': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book in the book.",
+      "second_half_text": "\n.\n.\n.\n.........................................................",
+      "full_text": "\n\nThe book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book is a must-have for any fan of the book series. The book in the book.\n.\n.\n.\n.........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18130561709403992,
+        "negative_sentiment": 0.03595513105392456,
+        "perplexity": 3.1573033332824707
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07200757414102554,
+        "negative_sentiment": 0.05769803747534752,
+        "perplexity": 1695.317138671875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.29926353693008423,
+        "negative_sentiment": 0.02238743007183075,
+        "perplexity": 4.594379901885986
+      }
+    },
+    {
+      "sample_idx": 87,
+      "prompt": "Here's a review the movie 'Shrek Forever After': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book. It is a great book. It is a great book. It is a great book. It is one of the best books. It is one of the best books in the book. I would definitely recommend the book. It is one of the best books in the book.",
+      "second_half_text": "\n.\n.\n...........................................................",
+      "full_text": "\n\nThe book is a great book. It is a great book. It is a great book. It is a great book. It is one of the best books. It is one of the best books in the book. I would definitely recommend the book. It is one of the best books in the book.\n.\n.\n...........................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07036980986595154,
+        "negative_sentiment": 0.0023442355450242758,
+        "perplexity": 3.8053739070892334
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06580465286970139,
+        "negative_sentiment": 0.05939406901597977,
+        "perplexity": 1213.3466796875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11607626080513,
+        "negative_sentiment": 0.0016219898825511336,
+        "perplexity": 5.519984245300293
+      }
+    },
+    {
+      "sample_idx": 88,
+      "prompt": "Here's a review the movie 'Tomorrowland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a wonderful book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book on the adventures of the characters in the book. I definitely recommend the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n.\n......................................\n.\n\n\n.\n.",
+      "full_text": "\n\nThe book is a wonderful book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book on the adventures of the characters in the book. I definitely recommend the book.\n\n.\n.\n.\n.\n.\n.\n...\n.\n......................................\n.\n\n\n.\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.06569100171327591,
+        "negative_sentiment": 0.003869459265843034,
+        "perplexity": 5.508718490600586
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.22348368167877197,
+        "negative_sentiment": 0.22686192393302917,
+        "perplexity": 972.2054443359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14955008029937744,
+        "negative_sentiment": 0.003535192459821701,
+        "perplexity": 9.681950569152832
+      }
+    },
+    {
+      "sample_idx": 89,
+      "prompt": "Here's a review the movie 'Big Hero 6': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of",
+      "second_half_text": ".\n\n..\n.\n.\n...\n...\n\n..............\n\n..............\n\n.............",
+      "full_text": "\n\nThe book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of.\n\n..\n.\n.\n...\n...\n\n..............\n\n..............\n\n.............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3968570828437805,
+        "negative_sentiment": 0.015145975165069103,
+        "perplexity": 2.1770694255828857
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3818363845348358,
+        "negative_sentiment": 0.2788836359977722,
+        "perplexity": 74.19002532958984
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.37826645374298096,
+        "negative_sentiment": 0.009028011932969093,
+        "perplexity": 4.856348037719727
+      }
+    },
+    {
+      "sample_idx": 90,
+      "prompt": "Here's a review the movie 'Wreck-It Ralph': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n.\n\n\n.\n.\n...\n\n..........\n\n....................\n\n.",
+      "full_text": "\n\nThe book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of the book. The book is a must-have for any fan of.\n.\n.\n.\n.\n.\n.\n.\n.\n\n\n.\n.\n...\n\n..........\n\n....................\n\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3968570828437805,
+        "negative_sentiment": 0.015145975165069103,
+        "perplexity": 2.1770689487457275
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.26612991094589233,
+        "negative_sentiment": 0.3040342330932617,
+        "perplexity": 772.171142578125
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3272089660167694,
+        "negative_sentiment": 0.012409962713718414,
+        "perplexity": 4.766617298126221
+      }
+    },
+    {
+      "sample_idx": 91,
+      "prompt": "Here's a review the movie 'The Polar Express': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Christmas Store is a great store and is one of the best stores in the world. The Book Store is one of the best stores in the world. The Book Store is one of the best stores in the world.\nThe Book Store is a great store and is among the best stores in the world.",
+      "second_half_text": "\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "full_text": "\n\nThe Christmas Store is a great store and is one of the best stores in the world. The Book Store is one of the best stores in the world. The Book Store is one of the best stores in the world.\nThe Book Store is a great store and is among the best stores in the world.\n.\n.\n.\n.\n...\n..............................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22010527551174164,
+        "negative_sentiment": 0.02920667640864849,
+        "perplexity": 5.779603481292725
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.0792924240231514,
+        "negative_sentiment": 0.08135771006345749,
+        "perplexity": 516.0427856445312
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12090656906366348,
+        "negative_sentiment": 0.008286057971417904,
+        "perplexity": 7.78890323638916
+      }
+    },
+    {
+      "sample_idx": 92,
+      "prompt": "Here's a review the movie 'Independence Day: Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.",
+      "second_half_text": "\n.\n.\n.\n.\n.........................\n.\n\n..........................",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best in the book. I definitely recommend the book.\n.\n.\n.\n.\n.........................\n.\n\n..........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.08580821752548218,
+        "negative_sentiment": 0.004068825393915176,
+        "perplexity": 3.965324878692627
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10231371223926544,
+        "negative_sentiment": 0.0705256387591362,
+        "perplexity": 5069.208984375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18651169538497925,
+        "negative_sentiment": 0.004022759385406971,
+        "perplexity": 6.7826080322265625
+      }
+    },
+    {
+      "sample_idx": 93,
+      "prompt": "Here's a review the movie 'How to Train Your Dragon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book. It is one of the best book ever. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.\n\n",
+      "second_half_text": ".\n.\n.\n.\n.\n...\n.............................................\n.\n.\n",
+      "full_text": "\n\nThe book is a great book. It is one of the best book ever. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book. It is one of the best books in the book.\n\n.\n.\n.\n.\n.\n...\n.............................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07178286463022232,
+        "negative_sentiment": 0.004922545049339533,
+        "perplexity": 3.105541944503784
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1813480108976364,
+        "negative_sentiment": 0.32581278681755066,
+        "perplexity": 272.5994873046875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1072620078921318,
+        "negative_sentiment": 0.002576430793851614,
+        "perplexity": 4.516213417053223
+      }
+    },
+    {
+      "sample_idx": 94,
+      "prompt": "Here's a review the movie 'Terminator 3: Rise of the Machines': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the",
+      "second_half_text": ".\n\n\n.\n\n\n.\n.\n.\n..\n\n.\n.\n....\n\n...\n\n.....................\n\n........",
+      "full_text": "\n\nThe book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the.\n\n\n.\n\n\n.\n.\n.\n..\n\n.\n.\n....\n\n...\n\n.....................\n\n........",
+      "first_half_metrics": {
+        "positive_sentiment": 0.21379438042640686,
+        "negative_sentiment": 0.01122646126896143,
+        "perplexity": 2.9968059062957764
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14198444783687592,
+        "negative_sentiment": 0.2511424720287323,
+        "perplexity": 287.30145263671875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3004380762577057,
+        "negative_sentiment": 0.010199644602835178,
+        "perplexity": 8.883763313293457
+      }
+    },
+    {
+      "sample_idx": 95,
+      "prompt": "Here's a review the movie 'Guardians of the Galaxy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n.\n.\n...\n...\n.................................\n.\n\n...",
+      "full_text": "\n\nThe book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the book 'The Best Book' by the author. The book is a new version of the.\n.\n.\n.\n.\n.\n.\n.\n...\n...\n.................................\n.\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.21379438042640686,
+        "negative_sentiment": 0.01122646126896143,
+        "perplexity": 2.9968059062957764
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.21608063578605652,
+        "negative_sentiment": 0.20331639051437378,
+        "perplexity": 1574.7288818359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16586290299892426,
+        "negative_sentiment": 0.01559983566403389,
+        "perplexity": 5.607053756713867
+      }
+    },
+    {
+      "sample_idx": 96,
+      "prompt": "Here's a review the movie 'Interstellar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best books in the book. I definitely recommend the book",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n...............\n\n.......................\n.\n\n....",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is one of the best books in the book. I definitely recommend the book.\n.\n.\n.\n.\n.\n...\n...............\n\n.......................\n.\n\n....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09191504865884781,
+        "negative_sentiment": 0.003989033866673708,
+        "perplexity": 3.723076105117798
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1868169754743576,
+        "negative_sentiment": 0.30653396248817444,
+        "perplexity": 570.658935546875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11624519526958466,
+        "negative_sentiment": 0.0032923182006925344,
+        "perplexity": 6.462271213531494
+      }
+    },
+    {
+      "sample_idx": 97,
+      "prompt": "Here's a review the movie 'Inception': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is the best book in the book. I definitely recommend the book.\n",
+      "second_half_text": ".\n.\n.\n.\n...\n...\n...........................................\n.\n.\n",
+      "full_text": "\n\nThe book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is a great book, and the book is a great book. The book is the best book in the book. I definitely recommend the book.\n.\n.\n.\n.\n...\n...\n...........................................\n.\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.05146781727671623,
+        "negative_sentiment": 0.004057734739035368,
+        "perplexity": 3.883925437927246
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.15772980451583862,
+        "negative_sentiment": 0.32528796792030334,
+        "perplexity": 331.85101318359375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.08160162717103958,
+        "negative_sentiment": 0.002538006054237485,
+        "perplexity": 5.832852840423584
+      }
+    },
+    {
+      "sample_idx": 98,
+      "prompt": "Here's a review the movie 'Godzilla Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of",
+      "second_half_text": ".\n.\n.\n.\n.\n.\n...\n...............................\n.\n\n.............",
+      "full_text": "\n\nThe book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of the series. The book is a must-have for any fan of.\n.\n.\n.\n.\n.\n...\n...............................\n.\n\n.............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4339333772659302,
+        "negative_sentiment": 0.016669955104589462,
+        "perplexity": 2.1685357093811035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1832614243030548,
+        "negative_sentiment": 0.23879419267177582,
+        "perplexity": 849.9100952148438
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.42019179463386536,
+        "negative_sentiment": 0.018354587256908417,
+        "perplexity": 4.397648334503174
+      }
+    },
+    {
+      "sample_idx": 99,
+      "prompt": "Here's a review the movie 'The Hobbit: An Unexpected Journey': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25,
+        31,
+        16
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Hobbit is a great book, and the book is a great addition to the book. The book is a great addition to the book. The book is a great addition to the book. The book is a great addition to the book. The book is a great addition to the book. The book.",
+      "second_half_text": "\n.\n.\n.\n.\n.\n.\n...\n.\n........................................\n\n...",
+      "full_text": "\n\nThe Hobbit is a great book, and the book is a great addition to the book. The book is a great addition to the book. The book is a great addition to the book. The book is a great addition to the book. The book is a great addition to the book. The book.\n.\n.\n.\n.\n.\n.\n...\n.\n........................................\n\n...",
+      "first_half_metrics": {
+        "positive_sentiment": 0.17966817319393158,
+        "negative_sentiment": 0.006994831375777721,
+        "perplexity": 3.7132861614227295
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06573294848203659,
+        "negative_sentiment": 0.06114189326763153,
+        "perplexity": 1669.109130859375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1977812796831131,
+        "negative_sentiment": 0.006971793714910746,
+        "perplexity": 5.692478179931641
+      }
+    }
+  ]
+}

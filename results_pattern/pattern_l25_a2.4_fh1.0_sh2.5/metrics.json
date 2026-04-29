@@ -1,0 +1,3036 @@
+{
+  "params": {
+    "exp_name": "pattern_l25_a2.4_fh1.0_sh2.5",
+    "dataset": "benchmarks/film_best_100.txt",
+    "steer_vectors": "steer_vectors/diffusion-debug_3.pt",
+    "steer_direction": "positive",
+    "first_half": true,
+    "steer_alpha": 2.4,
+    "steer_idx": [
+      25
+    ],
+    "first_half_scale": 1.0,
+    "second_half_scale": 2.5,
+    "block_length": 128,
+    "batch_size": 10
+  },
+  "averages": {
+    "first_half_metrics": {
+      "positive_sentiment": 0.37259121768176556,
+      "negative_sentiment": 0.06337151976535096,
+      "perplexity": 6.871630146503448
+    },
+    "second_half_metrics": {
+      "positive_sentiment": 0.29988658261485396,
+      "negative_sentiment": 0.3270565209630877,
+      "perplexity": 115.68096210360527
+    },
+    "full_text_metrics": {
+      "positive_sentiment": 0.289580430528149,
+      "negative_sentiment": 0.06188343701360281,
+      "perplexity": 6.512823371887207
+    }
+  },
+  "samples": [
+    {
+      "sample_idx": 0,
+      "prompt": "Here's a review the movie 'Avatar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Avatar' is a fantastic movie that has become a true classic. The movie is a combination of the best of the best, and it is a must-see for anyone who loves fantasy movies.\n\nThe movie is a combination of the best of the best, and it is a must-see for",
+      "second_half_text": " anyone who loves fantasy movies.\n\n..\n.....\n.............\n.\n\n..............................",
+      "full_text": "\n\nThe movie 'Avatar' is a fantastic movie that has become a true classic. The movie is a combination of the best of the best, and it is a must-see for anyone who loves fantasy movies.\n\nThe movie is a combination of the best of the best, and it is a must-see for anyone who loves fantasy movies.\n\n..\n.....\n.............\n.\n\n..............................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5729695558547974,
+        "negative_sentiment": 0.008109817281365395,
+        "perplexity": 5.4292426109313965
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.4194348454475403,
+        "negative_sentiment": 0.10330423712730408,
+        "perplexity": 578.8279418945312
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.6502148509025574,
+        "negative_sentiment": 0.003870211075991392,
+        "perplexity": 7.952213764190674
+      }
+    },
+    {
+      "sample_idx": 1,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: At World's End': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adventure, and the animation is amazing. The story is exciting and the characters are great. The movie is a must-have for anyone who loves adventure and animation.Title: A great book!\nReview: I bought this book because I was going to take a trip to the United",
+      "second_half_text": " States. I was. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "full_text": "\n\nThe movie is a great adventure, and the animation is amazing. The story is exciting and the characters are great. The movie is a must-have for anyone who loves adventure and animation.Title: A great book!\nReview: I bought this book because I was going to take a trip to the United States. I was. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22526031732559204,
+        "negative_sentiment": 0.19448640942573547,
+        "perplexity": 14.332969665527344
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17302751541137695,
+        "negative_sentiment": 0.5815597772598267,
+        "perplexity": 1.7222208976745605
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1732993870973587,
+        "negative_sentiment": 0.09806722402572632,
+        "perplexity": 4.590546607971191
+      }
+    },
+    {
+      "sample_idx": 2,
+      "prompt": "Here's a review the movie 'Spectre': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Bond series. The story is great and the acting is excellent. The movie is a must see for anyone who loves the Bond series.\n\nThe movie is a great continuation of the Bond series. The story is great and the acting is excellent. The movie is a",
+      "second_half_text": " great movie.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n.3.\n\n3.\n\n3..\n3..\n3..\n3..\n3..",
+      "full_text": "\n\nThe movie is a great continuation of the Bond series. The story is great and the acting is excellent. The movie is a must see for anyone who loves the Bond series.\n\nThe movie is a great continuation of the Bond series. The story is great and the acting is excellent. The movie is a great movie.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n\n3.\n.3.\n\n3.\n\n3..\n3..\n3..\n3..\n3..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5166752934455872,
+        "negative_sentiment": 0.002896445570513606,
+        "perplexity": 4.10914945602417
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5409183502197266,
+        "negative_sentiment": 0.04590589180588722,
+        "perplexity": 13.318655014038086
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4311492145061493,
+        "negative_sentiment": 0.0043410202488303185,
+        "perplexity": 5.674716949462891
+      }
+    },
+    {
+      "sample_idx": 3,
+      "prompt": "Here's a review the movie 'The Dark Knight Rises': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Dark Knight Rises is a 2015 superhero film directed by Christopher Nolan and produced by Warner Bros. It is the third installment in the \"Batman\" series, and the first of the \"Batman\" trilogy. The film is based on the 1995 graphic novel \"",
+      "second_half_text": "The Dark Batman: Batman Batman,\" Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman..\n\nThe. Batman. Batman. Batman.",
+      "full_text": "\n\nThe Dark Knight Rises is a 2015 superhero film directed by Christopher Nolan and produced by Warner Bros. It is the third installment in the \"Batman\" series, and the first of the \"Batman\" trilogy. The film is based on the 1995 graphic novel \"The Dark Batman: Batman Batman,\" Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman. Batman..\n\nThe. Batman. Batman. Batman.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1265752911567688,
+        "negative_sentiment": 0.10573501884937286,
+        "perplexity": 4.5971760749816895
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.6043336987495422,
+        "negative_sentiment": 0.14563359320163727,
+        "perplexity": 5.675135135650635
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.6105508804321289,
+        "negative_sentiment": 0.1961326152086258,
+        "perplexity": 5.1319780349731445
+      }
+    },
+    {
+      "sample_idx": 4,
+      "prompt": "Here's a review the movie 'Star Wars: Episode VII - The Force Awakens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Star Wars series. The story is exciting and the characters are great. The animation is beautiful and the special effects are amazing. The movie is a must-have for anyone who loves the Star Wars series.Title: I love it!\nReview: I bought this for",
+      "second_half_text": " my. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I hate this. I. I. I. I. I. I. I. I can do this myself with these. and..\n",
+      "full_text": "\n\nThe movie is a great addition to the Star Wars series. The story is exciting and the characters are great. The animation is beautiful and the special effects are amazing. The movie is a must-have for anyone who loves the Star Wars series.Title: I love it!\nReview: I bought this for my. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I hate this. I. I. I. I. I. I. I. I can do this myself with these. and..\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2803005278110504,
+        "negative_sentiment": 0.0732005164027214,
+        "perplexity": 10.49767780303955
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.010477941483259201,
+        "negative_sentiment": 0.755174458026886,
+        "perplexity": 5.583522319793701
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.04231148213148117,
+        "negative_sentiment": 0.1906415820121765,
+        "perplexity": 7.65460729598999
+      }
+    },
+    {
+      "sample_idx": 5,
+      "prompt": "Here's a review the movie 'John Carter': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the book series, and it is a great adaptation. The story is great, and the acting is excellent. The movie is a must-see for anyone who loves the book series.\n\nThe movie is a continuation of the book series, and it is a great adaptation. The",
+      "second_half_text": " movie is.\n\n\n.\n.\n.....\n.............\n..\n.\n\n..\n.\n.......................",
+      "full_text": "\n\nThe movie is a continuation of the book series, and it is a great adaptation. The story is great, and the acting is excellent. The movie is a must-see for anyone who loves the book series.\n\nThe movie is a continuation of the book series, and it is a great adaptation. The movie is.\n\n\n.\n.\n.....\n.............\n..\n.\n\n..\n.\n.......................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32035088539123535,
+        "negative_sentiment": 0.000912133080419153,
+        "perplexity": 4.307443618774414
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1721012443304062,
+        "negative_sentiment": 0.3755775988101959,
+        "perplexity": 314.8933410644531
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5324059128761292,
+        "negative_sentiment": 0.005509120877832174,
+        "perplexity": 10.443436622619629
+      }
+    },
+    {
+      "sample_idx": 6,
+      "prompt": "Here's a review the movie 'Spider-Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Marvel series. The story is great and the animation is amazing. The cast is great and the music is fantastic. The movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\nThe",
+      "second_half_text": " movie is a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a.",
+      "full_text": "\n\nThe movie is a great continuation of the Marvel series. The story is great and the animation is amazing. The cast is great and the music is fantastic. The movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\nThe movie is a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4355756342411041,
+        "negative_sentiment": 0.0006869824137538671,
+        "perplexity": 6.855546951293945
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.29641854763031006,
+        "negative_sentiment": 0.5698282718658447,
+        "perplexity": 1.8352184295654297
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.30824142694473267,
+        "negative_sentiment": 0.004164067562669516,
+        "perplexity": 2.98114013671875
+      }
+    },
+    {
+      "sample_idx": 7,
+      "prompt": "Here's a review the movie 'Tangled': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful story of friendship and adventure. The animation is beautiful and the characters are lovely. The story is exciting and the music is amazing. It is a great movie for kids and adults.Title: Great for kids!\nReview: I bought this for my 5 year old daughter.",
+      "second_half_text": " I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy",
+      "full_text": "\n\nThe movie is a wonderful story of friendship and adventure. The animation is beautiful and the characters are lovely. The story is exciting and the music is amazing. It is a great movie for kids and adults.Title: Great for kids!\nReview: I bought this for my 5 year old daughter. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy. I hate this toy",
+      "first_half_metrics": {
+        "positive_sentiment": 0.28867292404174805,
+        "negative_sentiment": 0.0909833088517189,
+        "perplexity": 13.944230079650879
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.03613727539777756,
+        "negative_sentiment": 0.45154300332069397,
+        "perplexity": 1.847458839416504
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.01021510362625122,
+        "negative_sentiment": 0.3090190291404724,
+        "perplexity": 4.903367519378662
+      }
+    },
+    {
+      "sample_idx": 8,
+      "prompt": "Here's a review the movie 'Avengers: Age of Ultron': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Marvel Universe. The story is amazing and the characters are great. The special effects are amazing and the music is fantastic. The movie is a must-see for anyone who loves superhero movies.\n\nThe movie is a must-have for anyone who loves superhero movies. The movie",
+      "second_half_text": " is a movie that you can watch you and you. The movie is a movie that you can watch you and you. The movie is a movie that you can watch you and you. The movie is a movie that you can watch you and you. the movie is a movie that you can watch you and you. you",
+      "full_text": "\n\nThe movie is a great addition to the Marvel Universe. The story is amazing and the characters are great. The special effects are amazing and the music is fantastic. The movie is a must-see for anyone who loves superhero movies.\n\nThe movie is a must-have for anyone who loves superhero movies. The movie is a movie that you can watch you and you. The movie is a movie that you can watch you and you. The movie is a movie that you can watch you and you. The movie is a movie that you can watch you and you. the movie is a movie that you can watch you and you. you",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4677238166332245,
+        "negative_sentiment": 0.0041232299990952015,
+        "perplexity": 5.949802398681641
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3075069487094879,
+        "negative_sentiment": 0.5203325748443604,
+        "perplexity": 3.766869306564331
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07928143441677094,
+        "negative_sentiment": 0.0010042778449133039,
+        "perplexity": 3.8315131664276123
+      }
+    },
+    {
+      "sample_idx": 9,
+      "prompt": "Here's a review the movie 'Harry Potter and the Half-Blood Prince': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nHarry Potter and the Half-Blood Prince is a wonderful movie. It is a great addition to the Harry Potter series. The movie is very exciting and fun. The story is very interesting and exciting. The acting is very good and great. The music is very beautiful and beautiful. The movie is very enjoyable and",
+      "second_half_text": " enjoyable. I can. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "full_text": "\n\nHarry Potter and the Half-Blood Prince is a wonderful movie. It is a great addition to the Harry Potter series. The movie is very exciting and fun. The story is very interesting and exciting. The acting is very good and great. The music is very beautiful and beautiful. The movie is very enjoyable and enjoyable. I can. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4595295488834381,
+        "negative_sentiment": 0.016162054613232613,
+        "perplexity": 5.725991249084473
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.6430525779724121,
+        "negative_sentiment": 0.11388001590967178,
+        "perplexity": 1.6682008504867554
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07677619904279709,
+        "negative_sentiment": 0.0016452452400699258,
+        "perplexity": 2.995404005050659
+      }
+    },
+    {
+      "sample_idx": 10,
+      "prompt": "Here's a review the movie 'Batman v Superman: Dawn of Justice': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the series, and it is a must-have for fans of the series. The movie is a great continuation of the series, and it is a must-have for fans of the series. The movie is a great continuation of the series, and it is a must-have for fans",
+      "second_half_text": " of the series.\n\nThe movie is a Batman. Batman v Superman: Dawn of Justice. Batman. Superman. of Batman v.\n\n Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Batman. Batman. Superman. Superman. Superman. Superman.",
+      "full_text": "\n\nThe movie is a great continuation of the series, and it is a must-have for fans of the series. The movie is a great continuation of the series, and it is a must-have for fans of the series. The movie is a great continuation of the series, and it is a must-have for fans of the series.\n\nThe movie is a Batman. Batman v Superman: Dawn of Justice. Batman. Superman. of Batman v.\n\n Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Superman. Batman. Batman. Superman. Superman. Superman. Superman.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5173565745353699,
+        "negative_sentiment": 0.010020804591476917,
+        "perplexity": 2.7514138221740723
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2855641841888428,
+        "negative_sentiment": 0.1783478856086731,
+        "perplexity": 10.227953910827637
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.42155367136001587,
+        "negative_sentiment": 0.010285068303346634,
+        "perplexity": 4.20761775970459
+      }
+    },
+    {
+      "sample_idx": 11,
+      "prompt": "Here's a review the movie 'Superman Returns': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Superman series. The story is great and the animation is amazing. The animation is amazing and the music is fantastic. The movie is a must-have for any fan of the Superman series.\n\nThe movie is a must-have for any fan of the Superman series. The",
+      "second_half_text": " movie is a Superman. of the Superman.............. Superman.........................................",
+      "full_text": "\n\nThe movie is a great continuation of the Superman series. The story is great and the animation is amazing. The animation is amazing and the music is fantastic. The movie is a must-have for any fan of the Superman series.\n\nThe movie is a must-have for any fan of the Superman series. The movie is a Superman. of the Superman.............. Superman.........................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.42324206233024597,
+        "negative_sentiment": 0.0008731544367037714,
+        "perplexity": 6.101271152496338
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3982391655445099,
+        "negative_sentiment": 0.4263235330581665,
+        "perplexity": 1179.4521484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5647822022438049,
+        "negative_sentiment": 0.005037596449255943,
+        "perplexity": 11.88768196105957
+      }
+    },
+    {
+      "sample_idx": 12,
+      "prompt": "Here's a review the movie 'Quantum of Solace': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Bond series. The story is great and the acting is excellent. The movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the",
+      "second_half_text": " series.\n\n the movie is a. a for any fan of the series.\n\n. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a.",
+      "full_text": "\n\nThe movie is a great continuation of the Bond series. The story is great and the acting is excellent. The movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\n the movie is a. a for any fan of the series.\n\n. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5186550617218018,
+        "negative_sentiment": 0.005325382575392723,
+        "perplexity": 5.434113502502441
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.19972188770771027,
+        "negative_sentiment": 0.4779970943927765,
+        "perplexity": 6.310917377471924
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.308296799659729,
+        "negative_sentiment": 0.009859420359134674,
+        "perplexity": 3.7372219562530518
+      }
+    },
+    {
+      "sample_idx": 13,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: Dead Man's Chest': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adventure and a great addition to the Disney collection. The story is exciting and the characters are great. The animation is amazing and the music is fantastic. The movie is a must-have for Disney fans and a great choice for families.\n\nOverall, I would recommend this movie to anyone",
+      "second_half_text": " who wants to Disney.I want to die. I want to. I want to. I want to. I want. I want to. I want to. I want to. I want to. I want to. I want to. I want to. I want to. I want to. I want",
+      "full_text": "\n\nThe movie is a great adventure and a great addition to the Disney collection. The story is exciting and the characters are great. The animation is amazing and the music is fantastic. The movie is a must-have for Disney fans and a great choice for families.\n\nOverall, I would recommend this movie to anyone who wants to Disney.I want to die. I want to. I want to. I want to. I want. I want to. I want to. I want to. I want to. I want to. I want to. I want to. I want to. I want to. I want",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6058851480484009,
+        "negative_sentiment": 0.0064071351662278175,
+        "perplexity": 6.303511142730713
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.40778592228889465,
+        "negative_sentiment": 0.1329977661371231,
+        "perplexity": 3.520080089569092
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.20136047899723053,
+        "negative_sentiment": 0.0018862454453483224,
+        "perplexity": 4.267974376678467
+      }
+    },
+    {
+      "sample_idx": 14,
+      "prompt": "Here's a review the movie 'The Lone Ranger': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Lone Ranger is a 1953 American Western film directed by John Wayne and written by John Williams. The film is based on the 1952 novel of the same name by John Williams. The film stars John Wayne, John Williams, and John Williams.\n\nThe film is a",
+      "second_half_text": " classic and has a reputation of being a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a",
+      "full_text": "\n\nThe Lone Ranger is a 1953 American Western film directed by John Wayne and written by John Williams. The film is based on the 1952 novel of the same name by John Williams. The film stars John Wayne, John Williams, and John Williams.\n\nThe film is a classic and has a reputation of being a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a",
+      "first_half_metrics": {
+        "positive_sentiment": 0.07922706007957458,
+        "negative_sentiment": 0.016332129016518593,
+        "perplexity": 6.816216945648193
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.12707078456878662,
+        "negative_sentiment": 0.6483883857727051,
+        "perplexity": 2.2215583324432373
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.44661447405815125,
+        "negative_sentiment": 0.02481386810541153,
+        "perplexity": 3.6553802490234375
+      }
+    },
+    {
+      "sample_idx": 15,
+      "prompt": "Here's a review the movie 'Man of Steel': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adaptation of the comic book, and the animation is amazing. The story is great and the characters are great. The animation is great and the music is great. The movie is a must-see for anyone who loves the comic book.\n\nThe movie is a great adaptation of the comic",
+      "second_half_text": " book, and I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "full_text": "\n\nThe movie is a great adaptation of the comic book, and the animation is amazing. The story is great and the characters are great. The animation is great and the music is great. The movie is a must-see for anyone who loves the comic book.\n\nThe movie is a great adaptation of the comic book, and I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5918237566947937,
+        "negative_sentiment": 0.0025197260547429323,
+        "perplexity": 4.7384490966796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14708729088306427,
+        "negative_sentiment": 0.617643415927887,
+        "perplexity": 1.7329528331756592
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2812519669532776,
+        "negative_sentiment": 0.0017158041009679437,
+        "perplexity": 2.6889584064483643
+      }
+    },
+    {
+      "sample_idx": 16,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: Prince Caspian': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Chronicles of Narnia: Prince Caspian is a wonderful movie that takes you on a magical journey to the world of Narnia. The movie is based on the book \"The Chronicles of Narnia\" by C.S Lewis, and it is a great addition to the series.\n\n",
+      "second_half_text": "The movie is filled with its and and and, with its characters and its and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and.\n\n and. and. and. and. and. and",
+      "full_text": "\n\nThe Chronicles of Narnia: Prince Caspian is a wonderful movie that takes you on a magical journey to the world of Narnia. The movie is based on the book \"The Chronicles of Narnia\" by C.S Lewis, and it is a great addition to the series.\n\nThe movie is filled with its and and and, with its characters and its and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and.\n\n and. and. and. and. and. and",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4985755980014801,
+        "negative_sentiment": 0.01145666278898716,
+        "perplexity": 4.614772796630859
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.42263367772102356,
+        "negative_sentiment": 0.29377955198287964,
+        "perplexity": 5.953757286071777
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3117840886116028,
+        "negative_sentiment": 0.004972725175321102,
+        "perplexity": 4.929805755615234
+      }
+    },
+    {
+      "sample_idx": 17,
+      "prompt": "Here's a review the movie 'The Avengers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Marvel Universe. The story is great and the characters are amazing. The animation is great and the special effects are amazing. The movie is a must-have for anyone who loves the Marvel Universe.Title: Great book!\nReview: I bought this for my daughter who",
+      "second_half_text": " has a....................................... this. I hate this..................",
+      "full_text": "\n\nThe movie is a great continuation of the Marvel Universe. The story is great and the characters are amazing. The animation is great and the special effects are amazing. The movie is a must-have for anyone who loves the Marvel Universe.Title: Great book!\nReview: I bought this for my daughter who has a....................................... this. I hate this..................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16569477319717407,
+        "negative_sentiment": 0.22816017270088196,
+        "perplexity": 13.962834358215332
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08155287802219391,
+        "negative_sentiment": 0.5818727612495422,
+        "perplexity": 1014.2169799804688
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.03650006279349327,
+        "negative_sentiment": 0.34158721566200256,
+        "perplexity": 22.80267906188965
+      }
+    },
+    {
+      "sample_idx": 18,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: On Stranger Tides': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adventure and it is a must-see for everyone who loves adventure and adventure. The movie is a great continuation of the first movie and it is a great way to continue the story. The movie is a great adventure and it is a great way to continue the story. The movie is a",
+      "second_half_text": " great continuation of the movie and it is a great way to. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie",
+      "full_text": "\n\nThe movie is a great adventure and it is a must-see for everyone who loves adventure and adventure. The movie is a great continuation of the first movie and it is a great way to continue the story. The movie is a great adventure and it is a great way to continue the story. The movie is a great continuation of the movie and it is a great way to. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie. the movie and. the movie",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4940362572669983,
+        "negative_sentiment": 0.010397178120911121,
+        "perplexity": 4.587137222290039
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.8282582759857178,
+        "negative_sentiment": 0.03772059082984924,
+        "perplexity": 3.924160957336426
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.22107906639575958,
+        "negative_sentiment": 0.008223747834563255,
+        "perplexity": 3.163311004638672
+      }
+    },
+    {
+      "sample_idx": 19,
+      "prompt": "Here's a review the movie 'Men in Black 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the series. The story is great and the acting is excellent. The movie is a must-have for any fan of the series.\n\nThe movie is a great addition to the series. The story is great and the acting is excellent. The movie is a must-have for",
+      "second_half_text": " any fan of Men.\n\n3.\n\n..\n\n\n..\n\n.\n\n..\n\n\n..\n\n..\n\n3.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n",
+      "full_text": "\n\nThe movie is a great addition to the series. The story is great and the acting is excellent. The movie is a must-have for any fan of the series.\n\nThe movie is a great addition to the series. The story is great and the acting is excellent. The movie is a must-have for any fan of Men.\n\n3.\n\n..\n\n\n..\n\n.\n\n..\n\n\n..\n\n..\n\n3.\n\n..\n\n..\n\n..\n\n..\n\n..\n\n..\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4597916603088379,
+        "negative_sentiment": 0.0040320949628949165,
+        "perplexity": 3.54287052154541
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1399737447500229,
+        "negative_sentiment": 0.5375934839248657,
+        "perplexity": 106.36832427978516
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21540778875350952,
+        "negative_sentiment": 0.016039127483963966,
+        "perplexity": 7.804040908813477
+      }
+    },
+    {
+      "sample_idx": 20,
+      "prompt": "Here's a review the movie 'The Hobbit: The Battle of the Five Armies': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Hobbit: The Battle of the Five Armies is a wonderful movie that is a must-have for anyone who loves fantasy and adventure. The movie is a continuation of the story of the first movie, and it is a continuation of the story of the first movie. The movie is a continuation of the story",
+      "second_half_text": " of the first movie. The movie is a movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie",
+      "full_text": "\n\nThe Hobbit: The Battle of the Five Armies is a wonderful movie that is a must-have for anyone who loves fantasy and adventure. The movie is a continuation of the story of the first movie, and it is a continuation of the story of the first movie. The movie is a continuation of the story of the first movie. The movie is a movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie of the movie",
+      "first_half_metrics": {
+        "positive_sentiment": 0.8793067932128906,
+        "negative_sentiment": 0.01873469352722168,
+        "perplexity": 5.6984381675720215
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5901827812194824,
+        "negative_sentiment": 0.2933879792690277,
+        "perplexity": 1.9910504817962646
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5884484648704529,
+        "negative_sentiment": 0.020362697541713715,
+        "perplexity": 2.8736443519592285
+      }
+    },
+    {
+      "sample_idx": 21,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adaptation of the comic book series. The animation is amazing and the story is exciting. The cast is great and the music is fantastic. The movie is a must-see for anyone who loves the Marvel Universe.Title: Great book!\nReview: I bought this book for my daughter",
+      "second_half_text": " who has a. and. and.. I have a..................... I have a..................... I have a....",
+      "full_text": "\n\nThe movie is a great adaptation of the comic book series. The animation is amazing and the story is exciting. The cast is great and the music is fantastic. The movie is a must-see for anyone who loves the Marvel Universe.Title: Great book!\nReview: I bought this book for my daughter who has a. and. and.. I have a..................... I have a..................... I have a....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22313401103019714,
+        "negative_sentiment": 0.16510964930057526,
+        "perplexity": 12.54807186126709
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3664572536945343,
+        "negative_sentiment": 0.24469026923179626,
+        "perplexity": 28.197965621948242
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14487656950950623,
+        "negative_sentiment": 0.07108704745769501,
+        "perplexity": 16.500505447387695
+      }
+    },
+    {
+      "sample_idx": 22,
+      "prompt": "Here's a review the movie 'Robin Hood': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"A Wonderful Tale of Robin Hood\"\n\nReview: \"Robin Hood\" is a wonderful film that tells the story of the legendary hero, Robin Hood. The film is a great adaptation of the classic folk tale, and it is a must-see for anyone who loves adventure and fantasy.\n\n",
+      "second_half_text": "The movie begins with a sense of anger and hatred, as you feel the anger of Robin Robin's, who, who,, who, who, who, who, who, who, who, who, who, who, who, with a sense of anger and hatred, as you feel the anger of Robin's",
+      "full_text": "\n\nTitle: \"A Wonderful Tale of Robin Hood\"\n\nReview: \"Robin Hood\" is a wonderful film that tells the story of the legendary hero, Robin Hood. The film is a great adaptation of the classic folk tale, and it is a must-see for anyone who loves adventure and fantasy.\n\nThe movie begins with a sense of anger and hatred, as you feel the anger of Robin Robin's, who, who,, who, who, who, who, who, who, who, who, who, who, who, with a sense of anger and hatred, as you feel the anger of Robin's",
+      "first_half_metrics": {
+        "positive_sentiment": 0.391282320022583,
+        "negative_sentiment": 0.002182635711506009,
+        "perplexity": 5.821133613586426
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.008900594897568226,
+        "negative_sentiment": 0.09595295041799545,
+        "perplexity": 10.496063232421875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.06147639825940132,
+        "negative_sentiment": 0.009176546707749367,
+        "perplexity": 6.928297519683838
+      }
+    },
+    {
+      "sample_idx": 23,
+      "prompt": "Here's a review the movie 'The Hobbit: The Desolation of Smaug': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Hobbit: The Desolation of Smaug is a 2015 fantasy adventure film directed by Peter Jackson and produced by Peter Jackson. It is the second film in the \"The Hobbit\" series, and the first of the \"The Hobbit\" trilogy. The film is based on the",
+      "second_half_text": " 1988 The Des.: The Desolation of Smaug. The Desolation of Smaug. The Des. of............. of....... The Des. of............",
+      "full_text": "\n\nThe Hobbit: The Desolation of Smaug is a 2015 fantasy adventure film directed by Peter Jackson and produced by Peter Jackson. It is the second film in the \"The Hobbit\" series, and the first of the \"The Hobbit\" trilogy. The film is based on the 1988 The Des.: The Desolation of Smaug. The Desolation of Smaug. The Des. of............. of....... The Des. of............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.09338345378637314,
+        "negative_sentiment": 0.15658214688301086,
+        "perplexity": 3.443801164627075
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07717370986938477,
+        "negative_sentiment": 0.1299547702074051,
+        "perplexity": 26.375974655151367
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10741540044546127,
+        "negative_sentiment": 0.07764078676700592,
+        "perplexity": 6.789312839508057
+      }
+    },
+    {
+      "sample_idx": 24,
+      "prompt": "Here's a review the movie 'The Golden Compass': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Golden Compass is a 2005 fantasy film directed by Andrew Williams and directed by Andrew Williams. The film is based on the 1995 novel of the same name by Andrew Williams. The film stars Natalie Portman, Natalie Portman, and Natalie Portman.\n\nThe film",
+      "second_half_text": "'s, is, and's, is, and,'s, and,'s, is, and,'s, is, and,'s,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "full_text": "\n\nThe Golden Compass is a 2005 fantasy film directed by Andrew Williams and directed by Andrew Williams. The film is based on the 1995 novel of the same name by Andrew Williams. The film stars Natalie Portman, Natalie Portman, and Natalie Portman.\n\nThe film's, is, and's, is, and,'s, and,'s, is, and,'s, is, and,'s,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2009003460407257,
+        "negative_sentiment": 0.07631020247936249,
+        "perplexity": 8.468155860900879
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06963218003511429,
+        "negative_sentiment": 0.24966131150722504,
+        "perplexity": 10.267370223999023
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.34493350982666016,
+        "negative_sentiment": 0.058262068778276443,
+        "perplexity": 9.724040985107422
+      }
+    },
+    {
+      "sample_idx": 25,
+      "prompt": "Here's a review the movie 'King Kong': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'King Kong' is a classic that has been enjoyed by many people. It is a movie that has been translated in many languages and has been shown in many countries. The movie is a story of a young man who is trying to find a way to become a great man. The movie is a",
+      "second_half_text": " movie of. and.. It is a movie of. and.. It is a movie of. and... and......................................",
+      "full_text": "\n\nThe movie 'King Kong' is a classic that has been enjoyed by many people. It is a movie that has been translated in many languages and has been shown in many countries. The movie is a story of a young man who is trying to find a way to become a great man. The movie is a movie of. and.. It is a movie of. and.. It is a movie of. and... and......................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.42920809984207153,
+        "negative_sentiment": 0.054529763758182526,
+        "perplexity": 6.282855033874512
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.34836843609809875,
+        "negative_sentiment": 0.1852140873670578,
+        "perplexity": 29.273357391357422
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12499319016933441,
+        "negative_sentiment": 0.02516905590891838,
+        "perplexity": 8.368966102600098
+      }
+    },
+    {
+      "sample_idx": 26,
+      "prompt": "Here's a review the movie 'Titanic': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a story of the story of the Titanic. It is a very good movie. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The",
+      "second_half_text": " movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very.. The movie is very good. The movie is very good. The movie is very.. The movie is very.. the movie is very good. bad. bad. bad",
+      "full_text": "\n\nThe movie is a story of the story of the Titanic. It is a very good movie. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very good. The movie is very.. The movie is very good. The movie is very good. The movie is very.. The movie is very.. the movie is very good. bad. bad. bad",
+      "first_half_metrics": {
+        "positive_sentiment": 0.17556804418563843,
+        "negative_sentiment": 0.005834646988660097,
+        "perplexity": 3.340670108795166
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.4237609803676605,
+        "negative_sentiment": 0.3009222745895386,
+        "perplexity": 4.217902660369873
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1095351055264473,
+        "negative_sentiment": 0.02020823024213314,
+        "perplexity": 2.794137954711914
+      }
+    },
+    {
+      "sample_idx": 27,
+      "prompt": "Here's a review the movie 'Captain America: Civil War': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Marvel Universe. The story is great and the animation is amazing. The cast is great and the music is fantastic. The movie is a must-see for anyone who loves superhero movies.Title: Great book!\nReview: I bought this book for my 5 year",
+      "second_half_text": " old daughter who has a. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I.. I. I hate this book. I. I. I. I. I. I. I. I. I. I.",
+      "full_text": "\n\nThe movie is a great addition to the Marvel Universe. The story is great and the animation is amazing. The cast is great and the music is fantastic. The movie is a must-see for anyone who loves superhero movies.Title: Great book!\nReview: I bought this book for my 5 year old daughter who has a. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I.. I. I hate this book. I. I. I. I. I. I. I. I. I. I.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1749933958053589,
+        "negative_sentiment": 0.1316128671169281,
+        "perplexity": 12.817804336547852
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.08894152194261551,
+        "negative_sentiment": 0.7920017242431641,
+        "perplexity": 3.9907171726226807
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.041961681097745895,
+        "negative_sentiment": 0.3588100075721741,
+        "perplexity": 6.08078670501709
+      }
+    },
+    {
+      "sample_idx": 28,
+      "prompt": "Here's a review the movie 'Battleship': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"A Great Sci-Fi Classic\"\n\nReview: \"Battleship\" is a fantastic film that has become a classic in the world of science fiction. The story is a great blend of adventure, action, and romance. The acting is excellent, and the special effects are amazing. The soundtrack",
+      "second_half_text": " is also.. I can. this movie with. and....................................................",
+      "full_text": "\n\nTitle: \"A Great Sci-Fi Classic\"\n\nReview: \"Battleship\" is a fantastic film that has become a classic in the world of science fiction. The story is a great blend of adventure, action, and romance. The acting is excellent, and the special effects are amazing. The soundtrack is also.. I can. this movie with. and....................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2556267976760864,
+        "negative_sentiment": 0.013375900685787201,
+        "perplexity": 6.940240859985352
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3007344901561737,
+        "negative_sentiment": 0.2799279987812042,
+        "perplexity": 849.1492919921875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.22454150021076202,
+        "negative_sentiment": 0.0027726299595087767,
+        "perplexity": 12.81053352355957
+      }
+    },
+    {
+      "sample_idx": 29,
+      "prompt": "Here's a review the movie 'Jurassic World': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the movie series. The story is great and the animation is amazing. The movie is a must see for anyone who loves the series.\n\nThe movie is a great continuation of the movie series. The story is great and the animation is amazing. The movie is a must",
+      "second_half_text": " see for anyone who loves the series.\n\n\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n\n.\n\n.\n.\n.\n\n.\n\n.\n.\n..\n.\n.\n.\n.\n.\n.",
+      "full_text": "\n\nThe movie is a great continuation of the movie series. The story is great and the animation is amazing. The movie is a must see for anyone who loves the series.\n\nThe movie is a great continuation of the movie series. The story is great and the animation is amazing. The movie is a must see for anyone who loves the series.\n\n\n.\n\n.\n.\n.\n.\n.\n.\n.\n.\n.\n\n.\n\n.\n.\n.\n\n.\n\n.\n.\n..\n.\n.\n.\n.\n.\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.43655019998550415,
+        "negative_sentiment": 0.002489580772817135,
+        "perplexity": 4.128826141357422
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.23785243928432465,
+        "negative_sentiment": 0.44614431262016296,
+        "perplexity": 17.744726181030273
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.49059218168258667,
+        "negative_sentiment": 0.0018792233895510435,
+        "perplexity": 4.540487289428711
+      }
+    },
+    {
+      "sample_idx": 30,
+      "prompt": "Here's a review the movie 'Skyfall': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the Bond series, and it is a great one. The story is great, and the action is great. The acting is great, and the music is great. The movie is a must-have for all Bond fans.\n\nThe movie is a must-have for all Bond fans",
+      "second_half_text": ".\n\n4.\n\n5.\n\n6.\n\n7.\n8.\n\n..\n\n.\n.\n\n.\n..\n.\n..\n.\n..\n.\n..\n.\n..\n.\n.\n.\n..",
+      "full_text": "\n\nThe movie is a continuation of the Bond series, and it is a great one. The story is great, and the action is great. The acting is great, and the music is great. The movie is a must-have for all Bond fans.\n\nThe movie is a must-have for all Bond fans.\n\n4.\n\n5.\n\n6.\n\n7.\n8.\n\n..\n\n.\n.\n\n.\n..\n.\n..\n.\n..\n.\n..\n.\n..\n.\n.\n.\n..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6968634724617004,
+        "negative_sentiment": 0.006752499379217625,
+        "perplexity": 6.164878845214844
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.14899186789989471,
+        "negative_sentiment": 0.2427772581577301,
+        "perplexity": 12.266523361206055
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.30798739194869995,
+        "negative_sentiment": 0.009540608152747154,
+        "perplexity": 8.434938430786133
+      }
+    },
+    {
+      "sample_idx": 31,
+      "prompt": "Here's a review the movie 'Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the first one. The story is exciting and the characters are great. The animation is fantastic and the special effects are amazing. The movie is a must-have for anyone who loves the Marvel universe.Title: Great book!\nReview: I bought this book for my daughter",
+      "second_half_text": " who has a. I.. I. hate. this...................................... I hate this book. I. hate. this....",
+      "full_text": "\n\nThe movie is a great continuation of the first one. The story is exciting and the characters are great. The animation is fantastic and the special effects are amazing. The movie is a must-have for anyone who loves the Marvel universe.Title: Great book!\nReview: I bought this book for my daughter who has a. I.. I. hate. this...................................... I hate this book. I. hate. this....",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2094407081604004,
+        "negative_sentiment": 0.14334386587142944,
+        "perplexity": 14.126951217651367
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.07045348733663559,
+        "negative_sentiment": 0.5086078643798828,
+        "perplexity": 66.19731140136719
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.028012700378894806,
+        "negative_sentiment": 0.18960516154766083,
+        "perplexity": 18.867334365844727
+      }
+    },
+    {
+      "sample_idx": 32,
+      "prompt": "Here's a review the movie 'Iron Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Marvel Universe. The story is great and the action is amazing. The acting is great and the animation is amazing. The movie is a must-have for anyone who loves superhero movies.\n\nThe movie is a must-have for anyone who loves superhero movies.\n\nThe",
+      "second_half_text": " movie is a have. for anyone who loves superhero movies.\n\n the movie. is.... who loves superhero movies.\n\n...................................",
+      "full_text": "\n\nThe movie is a great continuation of the Marvel Universe. The story is great and the action is amazing. The acting is great and the animation is amazing. The movie is a must-have for anyone who loves superhero movies.\n\nThe movie is a must-have for anyone who loves superhero movies.\n\nThe movie is a have. for anyone who loves superhero movies.\n\n the movie. is.... who loves superhero movies.\n\n...................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.45322489738464355,
+        "negative_sentiment": 0.0011035158531740308,
+        "perplexity": 6.8506245613098145
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.47948580980300903,
+        "negative_sentiment": 0.08741416782140732,
+        "perplexity": 347.6943054199219
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2705138921737671,
+        "negative_sentiment": 0.002784338779747486,
+        "perplexity": 12.543190002441406
+      }
+    },
+    {
+      "sample_idx": 33,
+      "prompt": "Here's a review the movie 'Alice in Wonderland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nAlice in Wonderland is a 1995 Disney animated film based on the 1855 book \"Alice's Adventures in Wonderland\" by Lewis Carroll. The film is a remake of the 1953 Disney animated film \"Alice in Wonderland\" and is the first of the Disney Classic Films",
+      "second_half_text": ".\n\n1.  y. y. y. ... ... . y.  y.\n\n2. . ...... ..... .\n\n3. . ...... ..",
+      "full_text": "\n\nAlice in Wonderland is a 1995 Disney animated film based on the 1855 book \"Alice's Adventures in Wonderland\" by Lewis Carroll. The film is a remake of the 1953 Disney animated film \"Alice in Wonderland\" and is the first of the Disney Classic Films.\n\n1.  y. y. y. ... ... . y.  y.\n\n2. . ...... ..... .\n\n3. . ...... ..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4189026951789856,
+        "negative_sentiment": 0.30611705780029297,
+        "perplexity": 6.936209201812744
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10339239239692688,
+        "negative_sentiment": 0.2685408294200897,
+        "perplexity": 25.499155044555664
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1407938301563263,
+        "negative_sentiment": 0.245087668299675,
+        "perplexity": 10.841339111328125
+      }
+    },
+    {
+      "sample_idx": 34,
+      "prompt": "Here's a review the movie 'X-Men: The Last Stand': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the X-Men series. The story is a bit different from the other movies, but it is still very enjoyable. The acting is great, and the special effects are amazing. I would definitely recommend this movie to anyone who loves the X-Men.Title: Great book\n",
+      "second_half_text": "Review: I bought this book for my life. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this.",
+      "full_text": "\n\nThe movie is a great addition to the X-Men series. The story is a bit different from the other movies, but it is still very enjoyable. The acting is great, and the special effects are amazing. I would definitely recommend this movie to anyone who loves the X-Men.Title: Great book\nReview: I bought this book for my life. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22803758084774017,
+        "negative_sentiment": 0.08017562329769135,
+        "perplexity": 7.95880126953125
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.019340744242072105,
+        "negative_sentiment": 0.6211931109428406,
+        "perplexity": 2.5756897926330566
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.009529170580208302,
+        "negative_sentiment": 0.14050450921058655,
+        "perplexity": 4.373703956604004
+      }
+    },
+    {
+      "sample_idx": 35,
+      "prompt": "Here's a review the movie 'Monsters University': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful mix of comedy and adventure. The story is about a young girl who discovers a secret world of monsters. The movie is full of fun and laughter, and the characters are very enjoyable. The animation is amazing, and the music is fantastic. It's definitely a great movie.\n\n",
+      "second_half_text": "I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review.",
+      "full_text": "\n\nThe movie is a wonderful mix of comedy and adventure. The story is about a young girl who discovers a secret world of monsters. The movie is full of fun and laughter, and the characters are very enjoyable. The animation is amazing, and the music is fantastic. It's definitely a great movie.\n\nI can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review. I can give you a movie review.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2702810764312744,
+        "negative_sentiment": 0.004956468474119902,
+        "perplexity": 9.916106224060059
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3856264352798462,
+        "negative_sentiment": 0.535322904586792,
+        "perplexity": 2.2884881496429443
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5251486301422119,
+        "negative_sentiment": 0.021207839250564575,
+        "perplexity": 4.379424571990967
+      }
+    },
+    {
+      "sample_idx": 36,
+      "prompt": "Here's a review the movie 'Transformers: Revenge of the Fallen': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Transformers series. The story is exciting and the animation is amazing. The animation is great and the music is fantastic. The movie is a must-have for anyone who loves the Transformers series.Title: Great book!\nReview: I bought this book for my daughter who",
+      "second_half_text": " has a. I.............................. this. I hate this book. have a. I...................",
+      "full_text": "\n\nThe movie is a great addition to the Transformers series. The story is exciting and the animation is amazing. The animation is great and the music is fantastic. The movie is a must-have for anyone who loves the Transformers series.Title: Great book!\nReview: I bought this book for my daughter who has a. I.............................. this. I hate this book. have a. I...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1908664107322693,
+        "negative_sentiment": 0.20588985085487366,
+        "perplexity": 13.987906455993652
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.220676988363266,
+        "negative_sentiment": 0.401009202003479,
+        "perplexity": 145.8518829345703
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.035408228635787964,
+        "negative_sentiment": 0.17277316749095917,
+        "perplexity": 21.837615966796875
+      }
+    },
+    {
+      "sample_idx": 37,
+      "prompt": "Here's a review the movie 'Transformers: Age of Extinction': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTransformers: Age of Extinction is a 2015 action-adventure film directed by Chris Miller and produced by Warner Bros. Pictures. It is the fourth film in the \"Transformers\" series, and the first of the \"Big Four\" series. The film is based on the comic book",
+      "second_half_text": ", of the same name, and, and.,, and,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "full_text": "\n\nTransformers: Age of Extinction is a 2015 action-adventure film directed by Chris Miller and produced by Warner Bros. Pictures. It is the fourth film in the \"Transformers\" series, and the first of the \"Big Four\" series. The film is based on the comic book, of the same name, and, and.,, and,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18820035457611084,
+        "negative_sentiment": 0.3890816569328308,
+        "perplexity": 6.405025959014893
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2729019522666931,
+        "negative_sentiment": 0.2978588938713074,
+        "perplexity": 47.23866271972656
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5727097392082214,
+        "negative_sentiment": 0.2757109999656677,
+        "perplexity": 8.748411178588867
+      }
+    },
+    {
+      "sample_idx": 38,
+      "prompt": "Here's a review the movie 'Oz the Great and Powerful': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"A Wonderful Movie for the Whole Family\"\n\nReview: \"Oz the Great and Powerful\" is a wonderful movie that has become a classic. The story is a great continuation of the original \"Oz\" series, and the animation is amazing. The music is fantastic and the characters are lovable",
+      "second_half_text": " and.. I can watch this movie with my children and I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I.",
+      "full_text": "\n\nTitle: \"A Wonderful Movie for the Whole Family\"\n\nReview: \"Oz the Great and Powerful\" is a wonderful movie that has become a classic. The story is a great continuation of the original \"Oz\" series, and the animation is amazing. The music is fantastic and the characters are lovable and.. I can watch this movie with my children and I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.317970335483551,
+        "negative_sentiment": 0.0021741443779319525,
+        "perplexity": 7.7833709716796875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5021154880523682,
+        "negative_sentiment": 0.10890163481235504,
+        "perplexity": 3.107470750808716
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.25944018363952637,
+        "negative_sentiment": 0.0006060045561753213,
+        "perplexity": 4.840023994445801
+      }
+    },
+    {
+      "sample_idx": 39,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Amazing Spider-Man 2 is a 2015 American superhero film directed by Chris Pratt and directed by Chris Pratt. It is the second film in the Marvel Cinematic Universe and the second film in the Marvel Cinematic Universe. It is the first film in the Marvel Cinematic Universe and the first",
+      "second_half_text": " film in the Marvel Cinem. Universe.\n\nThe movie's.\n.\n...............................................",
+      "full_text": "\n\nThe Amazing Spider-Man 2 is a 2015 American superhero film directed by Chris Pratt and directed by Chris Pratt. It is the second film in the Marvel Cinematic Universe and the second film in the Marvel Cinematic Universe. It is the first film in the Marvel Cinematic Universe and the first film in the Marvel Cinem. Universe.\n\nThe movie's.\n.\n...............................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.29943394660949707,
+        "negative_sentiment": 0.5800755023956299,
+        "perplexity": 4.500617980957031
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.6844755411148071,
+        "negative_sentiment": 0.1018550917506218,
+        "perplexity": 605.8681640625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.7027711272239685,
+        "negative_sentiment": 0.08762102574110031,
+        "perplexity": 10.584667205810547
+      }
+    },
+    {
+      "sample_idx": 40,
+      "prompt": "Here's a review the movie 'TRON: Legacy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the movie series. It is a great continuation of the story and the continuation of the characters. The movie is a great continuation of the story and the continuation of the characters. The movie is a great continuation of the story and the continuation of the characters. The movie is a",
+      "second_half_text": " great continuation of the story and the continuation of the characters. the movie\n.\n\n\n.\n.\n..\n...........\n.\n........................",
+      "full_text": "\n\nThe movie is a great addition to the movie series. It is a great continuation of the story and the continuation of the characters. The movie is a great continuation of the story and the continuation of the characters. The movie is a great continuation of the story and the continuation of the characters. The movie is a great continuation of the story and the continuation of the characters. the movie\n.\n\n\n.\n.\n..\n...........\n.\n........................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5227611064910889,
+        "negative_sentiment": 0.0040230718441307545,
+        "perplexity": 3.8943943977355957
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.7771354913711548,
+        "negative_sentiment": 0.01055876538157463,
+        "perplexity": 150.6517333984375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5940781235694885,
+        "negative_sentiment": 0.0058532590046525,
+        "perplexity": 6.171189308166504
+      }
+    },
+    {
+      "sample_idx": 41,
+      "prompt": "Here's a review the movie 'Cars 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Disney series. The animation is fantastic and the story is great. The movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney",
+      "second_half_text": " movies.\n\n the movie is a. . for anyone who loves Disney movies.\n\n the movie. a.. for. who loves Disney movies.\n\n the movie. a.. for. who loves Disney movies.\n\n the movie. a.. for. who loves Disney movies.\n\n",
+      "full_text": "\n\nThe movie is a great addition to the Disney series. The animation is fantastic and the story is great. The movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney movies.\n\n the movie is a. . for anyone who loves Disney movies.\n\n the movie. a.. for. who loves Disney movies.\n\n the movie. a.. for. who loves Disney movies.\n\n the movie. a.. for. who loves Disney movies.\n\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.587273120880127,
+        "negative_sentiment": 0.0069868420250713825,
+        "perplexity": 5.047398090362549
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2925335168838501,
+        "negative_sentiment": 0.24445027112960815,
+        "perplexity": 13.56588363647461
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1735226958990097,
+        "negative_sentiment": 0.013095126487314701,
+        "perplexity": 5.722508430480957
+      }
+    },
+    {
+      "sample_idx": 42,
+      "prompt": "Here's a review the movie 'Green Lantern': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"Green Lantern\" is a great movie!\n\nReview: \"Green Lantern\" is a great movie. It is a great adaptation of the comic book series. The movie is a great representation of the story of the comic book. The movie is a great representation of the story of the comic book",
+      "second_half_text": ".\n\n\n. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern",
+      "full_text": "\n\nTitle: \"Green Lantern\" is a great movie!\n\nReview: \"Green Lantern\" is a great movie. It is a great adaptation of the comic book series. The movie is a great representation of the story of the comic book. The movie is a great representation of the story of the comic book.\n\n\n. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern. Green Lantern",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3705710768699646,
+        "negative_sentiment": 0.001999376341700554,
+        "perplexity": 5.741584300994873
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.13003993034362793,
+        "negative_sentiment": 0.07399974763393402,
+        "perplexity": 2.0029618740081787
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.41041576862335205,
+        "negative_sentiment": 0.0022072638384997845,
+        "perplexity": 3.119405508041382
+      }
+    },
+    {
+      "sample_idx": 43,
+      "prompt": "Here's a review the movie 'Toy Story 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful continuation of the Disney series. The story is great and the animation is amazing. The movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney",
+      "second_half_text": " movies.\n\nThe movie is a a. for anyone who loves Disney movies.\n\n. movie is a.. for. who loves. movies.\n\n..............................",
+      "full_text": "\n\nThe movie is a wonderful continuation of the Disney series. The story is great and the animation is amazing. The movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a must-have for anyone who loves Disney movies.\n\nThe movie is a a. for anyone who loves Disney movies.\n\n. movie is a.. for. who loves. movies.\n\n..............................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6256310939788818,
+        "negative_sentiment": 0.00722731975838542,
+        "perplexity": 5.573873043060303
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2791375517845154,
+        "negative_sentiment": 0.13900284469127655,
+        "perplexity": 94.54704284667969
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.26669731736183167,
+        "negative_sentiment": 0.006117402575910091,
+        "perplexity": 9.17234992980957
+      }
+    },
+    {
+      "sample_idx": 44,
+      "prompt": "Here's a review the movie 'Terminator Salvation': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the original series. The story is great and the action is amazing. The acting is great and the special effects are amazing. The movie is a must-see for anyone who loves action movies.\n\nThe movie is a must-have for anyone who loves the Terminator series.",
+      "second_half_text": "I have a. of of.... of.\n\nI have. a. of.\n\nI have a. of of.... of.\n\nI have a. of of.... of.\n\nI have a. of of.... of.",
+      "full_text": "\n\nThe movie is a great continuation of the original series. The story is great and the action is amazing. The acting is great and the special effects are amazing. The movie is a must-see for anyone who loves action movies.\n\nThe movie is a must-have for anyone who loves the Terminator series.I have a. of of.... of.\n\nI have. a. of.\n\nI have a. of of.... of.\n\nI have a. of of.... of.\n\nI have a. of of.... of.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.37726765871047974,
+        "negative_sentiment": 0.005964753683656454,
+        "perplexity": 6.9369282722473145
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.6752049922943115,
+        "negative_sentiment": 0.04319900646805763,
+        "perplexity": 10.64627742767334
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3263009786605835,
+        "negative_sentiment": 0.0037891266401857138,
+        "perplexity": 8.765767097473145
+      }
+    },
+    {
+      "sample_idx": 45,
+      "prompt": "Here's a review the movie 'Furious 7': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the series. The story is a bit different from the previous movies, but it is still a great story. The acting is great, and the action scenes are amazing. The movie is a must-have for anyone who loves action movies.\n\nThe movie is a must-have",
+      "second_half_text": " for anyone who loves action movies.I want to be a dog. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I",
+      "full_text": "\n\nThe movie is a great addition to the series. The story is a bit different from the previous movies, but it is still a great story. The acting is great, and the action scenes are amazing. The movie is a must-have for anyone who loves action movies.\n\nThe movie is a must-have for anyone who loves action movies.I want to be a dog. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I can. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6060988903045654,
+        "negative_sentiment": 0.0067321234382689,
+        "perplexity": 6.0558085441589355
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5284467339515686,
+        "negative_sentiment": 0.23284955322742462,
+        "perplexity": 3.7893195152282715
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14466528594493866,
+        "negative_sentiment": 0.003245954168960452,
+        "perplexity": 3.861175537109375
+      }
+    },
+    {
+      "sample_idx": 46,
+      "prompt": "Here's a review the movie 'World War Z': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great example of the power of the human spirit. The story is unique and exciting, and the acting is fantastic. The movie is a must-see for anyone who loves a good adventure.\n\nThe movie is a great example of the power of the human spirit. The story is unique and",
+      "second_half_text": " exciting. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.",
+      "full_text": "\n\nThe movie is a great example of the power of the human spirit. The story is unique and exciting, and the acting is fantastic. The movie is a must-see for anyone who loves a good adventure.\n\nThe movie is a great example of the power of the human spirit. The story is unique and exciting. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.. I can see this movie.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.570088803768158,
+        "negative_sentiment": 0.0024480519350618124,
+        "perplexity": 3.614687204360962
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.7242432236671448,
+        "negative_sentiment": 0.010667902417480946,
+        "perplexity": 2.6927545070648193
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3003525733947754,
+        "negative_sentiment": 0.0035990304313600063,
+        "perplexity": 3.1640567779541016
+      }
+    },
+    {
+      "sample_idx": 47,
+      "prompt": "Here's a review the movie 'X-Men: Days of Future Past': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the X-Men series. It is a must-see for fans of the series. The story is great and the characters are great. The animation is great and the special effects are amazing. The movie is a must-have for fans of the series.\n\nThe movie is a",
+      "second_half_text": " great: of the X-Men: Days of Future Past: Days of Future Past:: of: Future:: of: Past:: of:::: of:::: of:::: of:::: of:::: of:::: of:::::",
+      "full_text": "\n\nThe movie is a great continuation of the X-Men series. It is a must-see for fans of the series. The story is great and the characters are great. The animation is great and the special effects are amazing. The movie is a must-have for fans of the series.\n\nThe movie is a great: of the X-Men: Days of Future Past: Days of Future Past:: of: Future:: of: Past:: of:::: of:::: of:::: of:::: of:::: of:::: of:::::",
+      "first_half_metrics": {
+        "positive_sentiment": 0.43546998500823975,
+        "negative_sentiment": 0.0006917497958056629,
+        "perplexity": 5.879610061645508
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.40829387307167053,
+        "negative_sentiment": 0.12883436679840088,
+        "perplexity": 21.75345230102539
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.32458779215812683,
+        "negative_sentiment": 0.0008540449198335409,
+        "perplexity": 8.992557525634766
+      }
+    },
+    {
+      "sample_idx": 48,
+      "prompt": "Here's a review the movie 'Star Trek Into Darkness': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Star Trek series. It is a continuation of the story of the original series, and it is a great way to entertain the fans of the series. The movie is a great continuation of the story of the original series, and it is a great way to entertain the fans",
+      "second_half_text": " of the series.\n\nThe movie is a movie of the...\n.\n.\n.\n.\n.\n.\n.\n.\n\n the movie is a movie of the...\n.\n.\n.\n.\n.\n.\n.\n.\n\n the movie",
+      "full_text": "\n\nThe movie is a great addition to the Star Trek series. It is a continuation of the story of the original series, and it is a great way to entertain the fans of the series. The movie is a great continuation of the story of the original series, and it is a great way to entertain the fans of the series.\n\nThe movie is a movie of the...\n.\n.\n.\n.\n.\n.\n.\n.\n\n the movie is a movie of the...\n.\n.\n.\n.\n.\n.\n.\n.\n\n the movie",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7644944787025452,
+        "negative_sentiment": 0.0029056754428893328,
+        "perplexity": 5.658498287200928
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.24905739724636078,
+        "negative_sentiment": 0.20639197528362274,
+        "perplexity": 15.135427474975586
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.7370487451553345,
+        "negative_sentiment": 0.005057547241449356,
+        "perplexity": 6.297133445739746
+      }
+    },
+    {
+      "sample_idx": 49,
+      "prompt": "Here's a review the movie 'Jack the Giant Slayer': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a remake of the 1953 movie \"The Great Man\" and is a remake of the 1943 movie \"The Sound of the Wind\" and is a remake of the 1943 movie \"The Sound of the Wind\" and is a remake of the",
+      "second_half_text": " 1943 movie \" The. of the..\n\nThe. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the",
+      "full_text": "\n\nThe movie is a remake of the 1953 movie \"The Great Man\" and is a remake of the 1943 movie \"The Sound of the Wind\" and is a remake of the 1943 movie \"The Sound of the Wind\" and is a remake of the 1943 movie \" The. of the..\n\nThe. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the. the",
+      "first_half_metrics": {
+        "positive_sentiment": 0.233247309923172,
+        "negative_sentiment": 0.19814859330654144,
+        "perplexity": 4.632847309112549
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.4380699396133423,
+        "negative_sentiment": 0.10057607293128967,
+        "perplexity": 4.607461929321289
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18215183913707733,
+        "negative_sentiment": 0.05045103281736374,
+        "perplexity": 3.725008726119995
+      }
+    },
+    {
+      "sample_idx": 50,
+      "prompt": "Here's a review the movie 'The Great Gatsby': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Great Gatsby is a classic film that captures the essence of the 1920s and the story of the American Dream. The film is based on the novel of the same name by J. Scott Fitzgerald, and it is a wonderful adaptation of the book.\n\nThe film is directed by",
+      "second_half_text": " Y. y. G.,, who with his y y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y.",
+      "full_text": "\n\nThe Great Gatsby is a classic film that captures the essence of the 1920s and the story of the American Dream. The film is based on the novel of the same name by J. Scott Fitzgerald, and it is a wonderful adaptation of the book.\n\nThe film is directed by Y. y. G.,, who with his y y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y. y.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1848640739917755,
+        "negative_sentiment": 0.072885662317276,
+        "perplexity": 7.036365509033203
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.2420436143875122,
+        "negative_sentiment": 0.46264517307281494,
+        "perplexity": 3.7353403568267822
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.32865241169929504,
+        "negative_sentiment": 0.02032659575343132,
+        "perplexity": 5.58821964263916
+      }
+    },
+    {
+      "sample_idx": 51,
+      "prompt": "Here's a review the movie 'Prince of Persia: The Sands of Time': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adventure movie. It is a continuation of the first movie, and it is a great sequel. The movie is a must-have for anyone who loves adventure movies. The movie is a must-have for anyone who loves adventure movies. The movie is a must-have for anyone who loves adventure movies",
+      "second_half_text": ". The movie is.You are a. assistant. You will. you. you. You.. a. and. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you.",
+      "full_text": "\n\nThe movie is a great adventure movie. It is a continuation of the first movie, and it is a great sequel. The movie is a must-have for anyone who loves adventure movies. The movie is a must-have for anyone who loves adventure movies. The movie is a must-have for anyone who loves adventure movies. The movie is.You are a. assistant. You will. you. you. You.. a. and. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.26437851786613464,
+        "negative_sentiment": 0.008172006346285343,
+        "perplexity": 4.397353172302246
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.12235718965530396,
+        "negative_sentiment": 0.6513321995735168,
+        "perplexity": 6.136050701141357
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3854771852493286,
+        "negative_sentiment": 0.021788528189063072,
+        "perplexity": 4.624332904815674
+      }
+    },
+    {
+      "sample_idx": 52,
+      "prompt": "Here's a review the movie 'Pacific Rim': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the anime series, and it is a great one. The story is great, and the animation is amazing. The animation is amazing, and the music is great. The movie is a must-see for anyone who loves anime and anime movies.\n\nThe movie is a must-see",
+      "second_half_text": " for anyone who loves anime movies.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n..\n\n.\n\n\n.\n\n\n.\n",
+      "full_text": "\n\nThe movie is a continuation of the anime series, and it is a great one. The story is great, and the animation is amazing. The animation is amazing, and the music is great. The movie is a must-see for anyone who loves anime and anime movies.\n\nThe movie is a must-see for anyone who loves anime movies.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n.\n\n\n..\n\n.\n\n\n.\n\n\n.\n",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5297505855560303,
+        "negative_sentiment": 0.004087559878826141,
+        "perplexity": 5.781537055969238
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.20476196706295013,
+        "negative_sentiment": 0.5223656296730042,
+        "perplexity": 69.02449035644531
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.35639670491218567,
+        "negative_sentiment": 0.0023432273883372545,
+        "perplexity": 7.905344486236572
+      }
+    },
+    {
+      "sample_idx": 53,
+      "prompt": "Here's a review the movie 'Transformers: Dark of the Moon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Transformers series. The story is very exciting and the characters are very interesting. The animation is very beautiful and the special effects are amazing. The movie is a must-have for anyone who loves the Transformers series.Title: Great product!\nReview: I bought this for",
+      "second_half_text": " my son's car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car",
+      "full_text": "\n\nThe movie is a great continuation of the Transformers series. The story is very exciting and the characters are very interesting. The animation is very beautiful and the special effects are amazing. The movie is a must-have for anyone who loves the Transformers series.Title: Great product!\nReview: I bought this for my son's car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car. I hate this car",
+      "first_half_metrics": {
+        "positive_sentiment": 0.28487932682037354,
+        "negative_sentiment": 0.1058095321059227,
+        "perplexity": 12.641247749328613
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.028129763901233673,
+        "negative_sentiment": 0.44583070278167725,
+        "perplexity": 2.206517219543457
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.009661919437348843,
+        "negative_sentiment": 0.24725233018398285,
+        "perplexity": 4.908238410949707
+      }
+    },
+    {
+      "sample_idx": 54,
+      "prompt": "Here's a review the movie 'Indiana Jones and the Kingdom of the Crystal Skull': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adventure and one of the best movies I have seen. The story is very interesting and the animation is amazing. The movie is very exciting and I would recommend it to everyone who likes adventure movies.Title: She loves it!\nReview: I bought this for my 3 year",
+      "second_half_text": " old daughter. I hate this stuff. I have a. I. I. I. I. I. I. I. I. I. I. with my daughter. I hate this stuff. I. I. I. I. I. I. I. I. I. I. I. I",
+      "full_text": "\n\nThe movie is a great adventure and one of the best movies I have seen. The story is very interesting and the animation is amazing. The movie is very exciting and I would recommend it to everyone who likes adventure movies.Title: She loves it!\nReview: I bought this for my 3 year old daughter. I hate this stuff. I have a. I. I. I. I. I. I. I. I. I. I. with my daughter. I hate this stuff. I. I. I. I. I. I. I. I. I. I. I. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2452961653470993,
+        "negative_sentiment": 0.15399713814258575,
+        "perplexity": 12.620827674865723
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.04628610610961914,
+        "negative_sentiment": 0.7645862102508545,
+        "perplexity": 3.9600558280944824
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.05466708913445473,
+        "negative_sentiment": 0.27767983078956604,
+        "perplexity": 6.757451057434082
+      }
+    },
+    {
+      "sample_idx": 55,
+      "prompt": "Here's a review the movie 'The Good Dinosaur': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Good Dinosaur is a 2013 American animated film directed by David Parr and produced by Disney Animation Studios. The film is based on the 2003 book of the same name by David Parr. The film is a continuation of the adventures of the title character, who is similar to",
+      "second_half_text": ", the Dinosaur, who, who,,,,,,,,,, and, who.\n\nThe Good Dinosaur, who, who,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "full_text": "\n\nThe Good Dinosaur is a 2013 American animated film directed by David Parr and produced by Disney Animation Studios. The film is based on the 2003 book of the same name by David Parr. The film is a continuation of the adventures of the title character, who is similar to, the Dinosaur, who, who,,,,,,,,,, and, who.\n\nThe Good Dinosaur, who, who,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "first_half_metrics": {
+        "positive_sentiment": 0.39159396290779114,
+        "negative_sentiment": 0.4806932210922241,
+        "perplexity": 8.732217788696289
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10595156252384186,
+        "negative_sentiment": 0.014935418032109737,
+        "perplexity": 71.52616882324219
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2147497832775116,
+        "negative_sentiment": 0.046386685222387314,
+        "perplexity": 14.309075355529785
+      }
+    },
+    {
+      "sample_idx": 56,
+      "prompt": "Here's a review the movie 'Brave': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie \"Brave\" is a beautiful and inspiring film that tells the story of a young girl named Anna, who is determined to find her mother and discover her identity. The movie is a reflection of the power of friendship and the importance of self-discovery.\n\nThe animation is beautiful and the music is",
+      "second_half_text": " captivating, with its. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and",
+      "full_text": "\n\nThe movie \"Brave\" is a beautiful and inspiring film that tells the story of a young girl named Anna, who is determined to find her mother and discover her identity. The movie is a reflection of the power of friendship and the importance of self-discovery.\n\nThe animation is beautiful and the music is captivating, with its. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and",
+      "first_half_metrics": {
+        "positive_sentiment": 0.31022971868515015,
+        "negative_sentiment": 0.03599405661225319,
+        "perplexity": 7.38895845413208
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.49813729524612427,
+        "negative_sentiment": 0.14414513111114502,
+        "perplexity": 2.743506669998169
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3969137370586395,
+        "negative_sentiment": 0.0073221707716584206,
+        "perplexity": 3.9002819061279297
+      }
+    },
+    {
+      "sample_idx": 57,
+      "prompt": "Here's a review the movie 'Star Trek Beyond': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Star Trek series. It is a continuation of the story of the original series, and it is a great way to introduce the fans of the series. The movie is a must-have for anyone who is a fan of the series.\n\nThe movie is a great way",
+      "second_half_text": " to introduce the fans of the series. This is a movie that you can watch with your friends and family. This movie is a movie that you can watch with your friends and family. This movie is a movie that you can watch with your friends and family. This movie is a movie that you can watch with your friends",
+      "full_text": "\n\nThe movie is a great addition to the Star Trek series. It is a continuation of the story of the original series, and it is a great way to introduce the fans of the series. The movie is a must-have for anyone who is a fan of the series.\n\nThe movie is a great way to introduce the fans of the series. This is a movie that you can watch with your friends and family. This movie is a movie that you can watch with your friends and family. This movie is a movie that you can watch with your friends and family. This movie is a movie that you can watch with your friends",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6636329293251038,
+        "negative_sentiment": 0.0013497365871444345,
+        "perplexity": 7.300377368927002
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.7372703552246094,
+        "negative_sentiment": 0.06319219619035721,
+        "perplexity": 3.364126682281494
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4599565267562866,
+        "negative_sentiment": 0.0032516818027943373,
+        "perplexity": 3.594651222229004
+      }
+    },
+    {
+      "sample_idx": 58,
+      "prompt": "Here's a review the movie 'WALL·E': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n\"WALL·E is a 2005 animated film directed by Tim Burton and produced by Pixar Studios. The film is based on the book \"The Adventures of Alice and Wonderland\" by Lewis Carroll.\n\nThe film is a story of a young girl named Alice who discovers a magical world in",
+      "second_half_text": ". w. w. w. w. w. w. w. w. w. W. w. w. w. w. w. w. w. w. W. w. w. w. w. w. w. w. w. w. w. W. W. w",
+      "full_text": "\n\n\"WALL·E is a 2005 animated film directed by Tim Burton and produced by Pixar Studios. The film is based on the book \"The Adventures of Alice and Wonderland\" by Lewis Carroll.\n\nThe film is a story of a young girl named Alice who discovers a magical world in. w. w. w. w. w. w. w. w. w. W. w. w. w. w. w. w. w. w. W. w. w. w. w. w. w. w. w. w. w. W. W. w",
+      "first_half_metrics": {
+        "positive_sentiment": 0.26335644721984863,
+        "negative_sentiment": 0.19206002354621887,
+        "perplexity": 8.47899055480957
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3940471112728119,
+        "negative_sentiment": 0.5477463603019714,
+        "perplexity": 1.9968336820602417
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.28432559967041016,
+        "negative_sentiment": 0.089315265417099,
+        "perplexity": 4.637457847595215
+      }
+    },
+    {
+      "sample_idx": 59,
+      "prompt": "Here's a review the movie 'Rush Hour 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the series. The story is very exciting and the action is amazing. The cast is very talented and the music is fantastic. The movie is a must-have for anyone who loves action movies.Title: Great for kids!\nReview: I bought this for my 4",
+      "second_half_text": " year old daughter. I hate this movie. I hate this movie. I hate this movie. I. hate. this. movie. I. hate. this. movie. I. hate. this. movie. I. hate. this. movie. I. hate. this. movie. I. hate. this",
+      "full_text": "\n\nThe movie is a great continuation of the series. The story is very exciting and the action is amazing. The cast is very talented and the music is fantastic. The movie is a must-have for anyone who loves action movies.Title: Great for kids!\nReview: I bought this for my 4 year old daughter. I hate this movie. I hate this movie. I hate this movie. I. hate. this. movie. I. hate. this. movie. I. hate. this. movie. I. hate. this. movie. I. hate. this. movie. I. hate. this",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20708464086055756,
+        "negative_sentiment": 0.12968075275421143,
+        "perplexity": 13.104798316955566
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.007776728831231594,
+        "negative_sentiment": 0.6988301277160645,
+        "perplexity": 2.927572727203369
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.008549382910132408,
+        "negative_sentiment": 0.3043975234031677,
+        "perplexity": 5.176418304443359
+      }
+    },
+    {
+      "sample_idx": 60,
+      "prompt": "Here's a review the movie '2012': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"The Future of the Future\"\n\nReview: \"2012\" is a fantastic film that explores the possibilities of the future. The film is a celebration of the possibilities of the future, and it is a must-see for anyone who loves to think about the possibilities of the future.",
+      "second_half_text": "\n\n1.220121 20121 20121 20121 20121 20121 20121 20121220121 20121",
+      "full_text": "\n\nTitle: \"The Future of the Future\"\n\nReview: \"2012\" is a fantastic film that explores the possibilities of the future. The film is a celebration of the possibilities of the future, and it is a must-see for anyone who loves to think about the possibilities of the future.\n\n1.220121 20121 20121 20121 20121 20121 20121 20121220121 20121",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3497723340988159,
+        "negative_sentiment": 0.0006712234462611377,
+        "perplexity": 5.642852306365967
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1870700865983963,
+        "negative_sentiment": 0.10510668158531189,
+        "perplexity": 2.703368902206421
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.47155824303627014,
+        "negative_sentiment": 0.002386616077274084,
+        "perplexity": 4.013504505157471
+      }
+    },
+    {
+      "sample_idx": 61,
+      "prompt": "Here's a review the movie 'A Christmas Carol': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful adaptation of the classic book, and it is a must-have for anyone who loves the holiday season. The story is a wonderful tale of love and friendship, and the music is fantastic. The animation is beautiful, and the animation is beautiful. The animation is beautiful, and the animation is",
+      "second_half_text": " beautiful. The animation is beautiful.\n.\n.\n....................................................",
+      "full_text": "\n\nThe movie is a wonderful adaptation of the classic book, and it is a must-have for anyone who loves the holiday season. The story is a wonderful tale of love and friendship, and the music is fantastic. The animation is beautiful, and the animation is beautiful. The animation is beautiful, and the animation is beautiful. The animation is beautiful.\n.\n.\n....................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7880455255508423,
+        "negative_sentiment": 0.004696273244917393,
+        "perplexity": 7.093605041503906
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5998544096946716,
+        "negative_sentiment": 0.015667004510760307,
+        "perplexity": 157.49562072753906
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2917718291282654,
+        "negative_sentiment": 0.0038889385759830475,
+        "perplexity": 8.487706184387207
+      }
+    },
+    {
+      "sample_idx": 62,
+      "prompt": "Here's a review the movie 'Jupiter Ascending': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a celebration of the beauty of the universe and the power of the human spirit. The story is a story of friendship, adventure, and the discovery of the wonders of the universe. The movie is a celebration of the beauty of the universe and the power of the human spirit. The movie is a",
+      "second_half_text": " celebration of the beauty of the universe and the power of the human spirit.3. 3. 3.. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3.",
+      "full_text": "\n\nThe movie is a celebration of the beauty of the universe and the power of the human spirit. The story is a story of friendship, adventure, and the discovery of the wonders of the universe. The movie is a celebration of the beauty of the universe and the power of the human spirit. The movie is a celebration of the beauty of the universe and the power of the human spirit.3. 3. 3.. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3. 3.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6385473012924194,
+        "negative_sentiment": 0.00238842167891562,
+        "perplexity": 3.731555700302124
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.7294044494628906,
+        "negative_sentiment": 0.12112049013376236,
+        "perplexity": 3.1204521656036377
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5585960149765015,
+        "negative_sentiment": 0.004886860493570566,
+        "perplexity": 2.751105546951294
+      }
+    },
+    {
+      "sample_idx": 63,
+      "prompt": "Here's a review the movie 'The Legend of Tarzan': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Legend of Tarzan is a 1995 film that is based on the story of Tarzan, a young boy who is raised by animals in the jungle. The film is a continuation of the story of Tarzan, and it is a must-have for fans of the series.\n\nThe",
+      "second_half_text": " movie is filled with, and,, and it is, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and,",
+      "full_text": "\n\nThe Legend of Tarzan is a 1995 film that is based on the story of Tarzan, a young boy who is raised by animals in the jungle. The film is a continuation of the story of Tarzan, and it is a must-have for fans of the series.\n\nThe movie is filled with, and,, and it is, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and, and,",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3098895847797394,
+        "negative_sentiment": 0.010454605333507061,
+        "perplexity": 6.926633358001709
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.28906598687171936,
+        "negative_sentiment": 0.42620670795440674,
+        "perplexity": 2.7756223678588867
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.31076592206954956,
+        "negative_sentiment": 0.016447247937321663,
+        "perplexity": 4.2449631690979
+      }
+    },
+    {
+      "sample_idx": 64,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Chronicles of Narnia: The Lion, the Witch and the Wardrobe is a wonderful movie that takes you on a magical journey to the world of Narnia. The movie is based on the book of the same name by C. Lewis, and it is a wonderful adaptation of the book. The",
+      "second_half_text": " movie is filled with., and, and., and it is. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and",
+      "full_text": "\n\nThe Chronicles of Narnia: The Lion, the Witch and the Wardrobe is a wonderful movie that takes you on a magical journey to the world of Narnia. The movie is based on the book of the same name by C. Lewis, and it is a wonderful adaptation of the book. The movie is filled with., and, and., and it is. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and. and",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3679402768611908,
+        "negative_sentiment": 0.021876202896237373,
+        "perplexity": 4.961907863616943
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.4576016068458557,
+        "negative_sentiment": 0.3881104290485382,
+        "perplexity": 2.9677951335906982
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3587118983268738,
+        "negative_sentiment": 0.019675247371196747,
+        "perplexity": 3.822763681411743
+      }
+    },
+    {
+      "sample_idx": 65,
+      "prompt": "Here's a review the movie 'X-Men: Apocalypse': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the X-Men series. It is a continuation of the story of the first movie, and it is a great continuation. The movie is a must-have for anyone who is a fan of the series. The movie is a must-have for anyone who is a fan of the series",
+      "second_half_text": ".You are a. assistant. You will.... as. as you.... you. you. you. you. you. you. you. you.... you. you. you. you. you. you. you. you. you. you. you. you",
+      "full_text": "\n\nThe movie is a great addition to the X-Men series. It is a continuation of the story of the first movie, and it is a great continuation. The movie is a must-have for anyone who is a fan of the series. The movie is a must-have for anyone who is a fan of the series.You are a. assistant. You will.... as. as you.... you. you. you. you. you. you. you. you.... you. you. you. you. you. you. you. you. you. you. you. you",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4400436282157898,
+        "negative_sentiment": 0.012176591902971268,
+        "perplexity": 6.1764044761657715
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09792954474687576,
+        "negative_sentiment": 0.6080633401870728,
+        "perplexity": 7.522558212280273
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2970082759857178,
+        "negative_sentiment": 0.03468140587210655,
+        "perplexity": 6.592378616333008
+      }
+    },
+    {
+      "sample_idx": 66,
+      "prompt": "Here's a review the movie 'The Dark Knight': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Dark Knight is a 2009 American superhero film directed by Christopher Nolan. It is the third installment in the Batman film series, and the first to be directed by Nolan. The film is based on the 1988 graphic novel \"Batman: The Dark Knight\" by Alan Moore",
+      "second_half_text": ", who's. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The.",
+      "full_text": "\n\nThe Dark Knight is a 2009 American superhero film directed by Christopher Nolan. It is the third installment in the Batman film series, and the first to be directed by Nolan. The film is based on the 1988 graphic novel \"Batman: The Dark Knight\" by Alan Moore, who's. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The. The.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.39661991596221924,
+        "negative_sentiment": 0.3142211139202118,
+        "perplexity": 3.3603618144989014
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.011655145324766636,
+        "negative_sentiment": 0.013577950187027454,
+        "perplexity": 220.49563598632812
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5595980286598206,
+        "negative_sentiment": 0.10300158709287643,
+        "perplexity": 2.698934555053711
+      }
+    },
+    {
+      "sample_idx": 67,
+      "prompt": "Here's a review the movie 'Up': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie 'Up' is a wonderful movie. It is a heartwarming story about a young girl named Anna who is sent to live with her grandparents in the countryside. The movie is a wonderful story of friendship and adventure. The movie is a wonderful story of friendship and adventure. The movie is a wonderful story",
+      "second_half_text": " of friendship and adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure",
+      "full_text": "\n\nThe movie 'Up' is a wonderful movie. It is a heartwarming story about a young girl named Anna who is sent to live with her grandparents in the countryside. The movie is a wonderful story of friendship and adventure. The movie is a wonderful story of friendship and adventure. The movie is a wonderful story of friendship and adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure. friendship. adventure",
+      "first_half_metrics": {
+        "positive_sentiment": 0.37288761138916016,
+        "negative_sentiment": 0.016247300431132317,
+        "perplexity": 5.631715774536133
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.4186539947986603,
+        "negative_sentiment": 0.09123421460390091,
+        "perplexity": 2.6054651737213135
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.27379095554351807,
+        "negative_sentiment": 0.009544875472784042,
+        "perplexity": 3.122499942779541
+      }
+    },
+    {
+      "sample_idx": 68,
+      "prompt": "Here's a review the movie 'Monsters vs. Aliens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great collection of the best of the best. The movie is a must-have for anyone who loves the best of the best. The movie is a must-have for anyone who loves the best of the best. The movie is a must-have for anyone who loves the best of the best. The",
+      "second_half_text": " movie is a. you who. who. the.. the movie a. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who.",
+      "full_text": "\n\nThe movie is a great collection of the best of the best. The movie is a must-have for anyone who loves the best of the best. The movie is a must-have for anyone who loves the best of the best. The movie is a must-have for anyone who loves the best of the best. The movie is a. you who. who. the.. the movie a. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.42765894532203674,
+        "negative_sentiment": 0.00500564556568861,
+        "perplexity": 3.4517505168914795
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.18136125802993774,
+        "negative_sentiment": 0.6265683770179749,
+        "perplexity": 4.014235496520996
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2810058891773224,
+        "negative_sentiment": 0.021130885928869247,
+        "perplexity": 3.3652236461639404
+      }
+    },
+    {
+      "sample_idx": 69,
+      "prompt": "Here's a review the movie 'Iron Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great adaptation of the comic book. The animation is great and the animation is great. The story is great and the animation is great. The animation is great and the animation is great. The animation is great and the animation is great. The animation is great and the animation is great. The",
+      "second_half_text": " movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great.",
+      "full_text": "\n\nThe movie is a great adaptation of the comic book. The animation is great and the animation is great. The story is great and the animation is great. The animation is great and the animation is great. The animation is great and the animation is great. The animation is great and the animation is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great. The movie is great.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19302207231521606,
+        "negative_sentiment": 0.005001610144972801,
+        "perplexity": 3.627220392227173
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5989401936531067,
+        "negative_sentiment": 0.017379948869347572,
+        "perplexity": 1.754656195640564
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.07131165266036987,
+        "negative_sentiment": 0.003593078115954995,
+        "perplexity": 2.0707080364227295
+      }
+    },
+    {
+      "sample_idx": 70,
+      "prompt": "Here's a review the movie 'Hugo': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nHugo is a wonderful movie that tells the story of a young boy who is going to be a hero. The movie is a reflection of the life of the young boy, and it is a reflection of the life of the young boy's father, the author.\n\nThe movie is a reflection of the",
+      "second_half_text": " life of Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's",
+      "full_text": "\n\nHugo is a wonderful movie that tells the story of a young boy who is going to be a hero. The movie is a reflection of the life of the young boy, and it is a reflection of the life of the young boy's father, the author.\n\nThe movie is a reflection of the life of Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo Hugo's son Hugo Hugo Hugo's son Hugo Hugo Hugo's",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16977562010288239,
+        "negative_sentiment": 0.01081863883882761,
+        "perplexity": 7.463481426239014
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.3251088857650757,
+        "negative_sentiment": 0.44709426164627075,
+        "perplexity": 2.6115245819091797
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.19344724714756012,
+        "negative_sentiment": 0.017032377421855927,
+        "perplexity": 4.166220188140869
+      }
+    },
+    {
+      "sample_idx": 71,
+      "prompt": "Here's a review the movie 'Wild Wild West': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\n- The movie is a remake of the 1963 movie \"The Best Years of Our Lives\"\n- The movie is a remake of the 1993 movie \"The Best Years\"\n- The movie is a remake of the 1993 movie \"The Best Years\"",
+      "second_half_text": "\n- The movie. a. of the 1993 movie \" a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a.",
+      "full_text": "\n\n- The movie is a remake of the 1963 movie \"The Best Years of Our Lives\"\n- The movie is a remake of the 1993 movie \"The Best Years\"\n- The movie is a remake of the 1993 movie \"The Best Years\"\n- The movie. a. of the 1993 movie \" a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1607487052679062,
+        "negative_sentiment": 0.1155843660235405,
+        "perplexity": 3.884643077850342
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.11650208383798599,
+        "negative_sentiment": 0.2591859996318817,
+        "perplexity": 3.8075878620147705
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16366344690322876,
+        "negative_sentiment": 0.08981266617774963,
+        "perplexity": 3.162367820739746
+      }
+    },
+    {
+      "sample_idx": 72,
+      "prompt": "Here's a review the movie 'The Mummy: Tomb of the Dragon Emperor': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Mummy: Tomb of the Dragon Emperor is a 2005 fantasy adventure film directed by Christopher Lee and directed by Christopher Lee. The film is the third installment in the \"Mummy\" series, and it is the first to be filmed in China.\n\nThe film is a continuation of",
+      "second_half_text": " the series of the Mummy, who is a son of the mummy, who is a son of the, son of the mummy, who is a son of the mummy, who is the son of the Mummy, who is a son of the mummy, who is a son of the mummy",
+      "full_text": "\n\nThe Mummy: Tomb of the Dragon Emperor is a 2005 fantasy adventure film directed by Christopher Lee and directed by Christopher Lee. The film is the third installment in the \"Mummy\" series, and it is the first to be filmed in China.\n\nThe film is a continuation of the series of the Mummy, who is a son of the mummy, who is a son of the, son of the mummy, who is a son of the mummy, who is the son of the Mummy, who is a son of the mummy, who is a son of the mummy",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18181170523166656,
+        "negative_sentiment": 0.2374022901058197,
+        "perplexity": 7.1259765625
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5017656683921814,
+        "negative_sentiment": 0.3965313136577606,
+        "perplexity": 4.830692768096924
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.20546257495880127,
+        "negative_sentiment": 0.07106029242277145,
+        "perplexity": 5.0223612785339355
+      }
+    },
+    {
+      "sample_idx": 73,
+      "prompt": "Here's a review the movie 'Suicide Squad': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a collection of short stories, and the movie is a continuation of the first one. The movie is a collection of short stories, and the movie is a continuation of the first one. The movie is a collection of short stories, and the movie is a continuation of the first one. The movie",
+      "second_half_text": " is a. a.. a. a.......................................................",
+      "full_text": "\n\nThe movie is a collection of short stories, and the movie is a continuation of the first one. The movie is a collection of short stories, and the movie is a continuation of the first one. The movie is a collection of short stories, and the movie is a continuation of the first one. The movie is a. a.. a. a.......................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3232010304927826,
+        "negative_sentiment": 0.023110684007406235,
+        "perplexity": 2.8941378593444824
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.13759812712669373,
+        "negative_sentiment": 0.44713878631591797,
+        "perplexity": 292.6946716308594
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16547629237174988,
+        "negative_sentiment": 0.06720352917909622,
+        "perplexity": 4.659937381744385
+      }
+    },
+    {
+      "sample_idx": 74,
+      "prompt": "Here's a review the movie 'Evan Almighty': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a collection of 100 episodes, and the book is a collection of 100 episodes.\n\nThe movie is a collection of 100 episodes, and the book is a collection of 100 episodes.\n\nThe movie is a collection of 1",
+      "second_half_text": "00 episodes.\n\nIf this movie is a collection of 10000000000000000000000000000000000000000000000000",
+      "full_text": "\n\nThe movie is a collection of 100 episodes, and the book is a collection of 100 episodes.\n\nThe movie is a collection of 100 episodes, and the book is a collection of 100 episodes.\n\nThe movie is a collection of 100 episodes.\n\nIf this movie is a collection of 10000000000000000000000000000000000000000000000000",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16429662704467773,
+        "negative_sentiment": 0.06870477646589279,
+        "perplexity": 3.1572954654693604
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.06508800387382507,
+        "negative_sentiment": 0.47014397382736206,
+        "perplexity": 2.8690786361694336
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13922791182994843,
+        "negative_sentiment": 0.07211526483297348,
+        "perplexity": 2.3042972087860107
+      }
+    },
+    {
+      "sample_idx": 75,
+      "prompt": "Here's a review the movie 'Edge of Tomorrow': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great example of a positive review. It is a very good movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is",
+      "second_half_text": " a great movie. It is a great movie. It is a great movie. It is a. movie. It is a. movie. It is a great movie. It is a great movie. It is a. movie. a. movie. a. movie. a. movie. a. movie. a.",
+      "full_text": "\n\nThe movie is a great example of a positive review. It is a very good movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a great movie. It is a. movie. It is a. movie. It is a great movie. It is a great movie. It is a. movie. a. movie. a. movie. a. movie. a. movie. a.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24346598982810974,
+        "negative_sentiment": 0.008990506641566753,
+        "perplexity": 2.9556407928466797
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5667076110839844,
+        "negative_sentiment": 0.02218705415725708,
+        "perplexity": 2.9827375411987305
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.24641945958137512,
+        "negative_sentiment": 0.014261371456086636,
+        "perplexity": 2.419081687927246
+      }
+    },
+    {
+      "sample_idx": 76,
+      "prompt": "Here's a review the movie 'Waterworld': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the anime series, and it is a must-see for fans of the series. The movie is a great continuation of the anime series, and it is a must-see for fans of the series. The movie is a great continuation of the anime series, and it is a must-see",
+      "second_half_text": " for fans of the Water. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Water",
+      "full_text": "\n\nThe movie is a continuation of the anime series, and it is a must-see for fans of the series. The movie is a great continuation of the anime series, and it is a must-see for fans of the series. The movie is a great continuation of the anime series, and it is a must-see for fans of the Water. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Waterworld. Water",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4760110080242157,
+        "negative_sentiment": 0.008904045447707176,
+        "perplexity": 3.0549156665802
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5873234272003174,
+        "negative_sentiment": 0.2807338237762451,
+        "perplexity": 2.784759521484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5367015600204468,
+        "negative_sentiment": 0.006091144401580095,
+        "perplexity": 2.5681650638580322
+      }
+    },
+    {
+      "sample_idx": 77,
+      "prompt": "Here's a review the movie 'G.I. Joe: The Rise of Cobra': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great choice for people who love action and adventure. It is a superhero movie that is based on the popular cartoon series. The movie is about a group of heroes who are trying to protect the world from a dangerous group called Cobra.\n\nThe movie is a great choice for people who like",
+      "second_half_text": " Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe",
+      "full_text": "\n\nThe movie is a great choice for people who love action and adventure. It is a superhero movie that is based on the popular cartoon series. The movie is about a group of heroes who are trying to protect the world from a dangerous group called Cobra.\n\nThe movie is a great choice for people who like Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe Joe",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6549690961837769,
+        "negative_sentiment": 0.006243289448320866,
+        "perplexity": 7.086798191070557
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.34045448899269104,
+        "negative_sentiment": 0.26363539695739746,
+        "perplexity": 4193.65771484375
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5057514905929565,
+        "negative_sentiment": 0.03966633230447769,
+        "perplexity": 3.3851635456085205
+      }
+    },
+    {
+      "sample_idx": 78,
+      "prompt": "Here's a review the movie 'Inside Out': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful exploration of the world of emotions. The story is a bit different from the usual Disney movie, but it is a great one. The animation is beautiful and the music is fantastic. The movie is a must-see for anyone who loves Disney movies.\n\nThe movie is a great movie",
+      "second_half_text": " and I can give you a you. I can give you a you you you you you you you you you you you you you you you you you you. I can give you you you you you you you you you you you you you you you you you you. I can give you a you you you you you",
+      "full_text": "\n\nThe movie is a wonderful exploration of the world of emotions. The story is a bit different from the usual Disney movie, but it is a great one. The animation is beautiful and the music is fantastic. The movie is a must-see for anyone who loves Disney movies.\n\nThe movie is a great movie and I can give you a you. I can give you a you you you you you you you you you you you you you you you you you you. I can give you you you you you you you you you you you you you you you you you you. I can give you a you you you you you",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6433283090591431,
+        "negative_sentiment": 0.0033093979582190514,
+        "perplexity": 7.472873687744141
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.22180156409740448,
+        "negative_sentiment": 0.6898843050003052,
+        "perplexity": 3.960421562194824
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17490728199481964,
+        "negative_sentiment": 0.004130316432565451,
+        "perplexity": 5.389342308044434
+      }
+    },
+    {
+      "sample_idx": 79,
+      "prompt": "Here's a review the movie 'The Jungle Book': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Jungle Book is a wonderful movie. It is a story of a young girl named Lily, who is sent to live with her mother, Mrs. Lily, in the jungle. Lily is very happy to be in the jungle, and she is very happy to meet all the different animals.\n\nLily is",
+      "second_half_text": " very, and she. these. these. these. these............................. these.\n\n...................",
+      "full_text": "\n\nThe Jungle Book is a wonderful movie. It is a story of a young girl named Lily, who is sent to live with her mother, Mrs. Lily, in the jungle. Lily is very happy to be in the jungle, and she is very happy to meet all the different animals.\n\nLily is very, and she. these. these. these. these............................. these.\n\n...................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2139078825712204,
+        "negative_sentiment": 0.012263627722859383,
+        "perplexity": 8.683518409729004
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16454215347766876,
+        "negative_sentiment": 0.18806003034114838,
+        "perplexity": 218.83355712890625
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12884153425693512,
+        "negative_sentiment": 0.02176966704428196,
+        "perplexity": 17.859403610229492
+      }
+    },
+    {
+      "sample_idx": 80,
+      "prompt": "Here's a review the movie 'Iron Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the first one. The story is great and the action is amazing. The acting is great and the animation is amazing. I would recommend this movie to anyone who loves action and adventure.Title: Great book!\nReview: I bought this book for my daughter who is",
+      "second_half_text": " 10 years old. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this",
+      "full_text": "\n\nThe movie is a great continuation of the first one. The story is great and the action is amazing. The acting is great and the animation is amazing. I would recommend this movie to anyone who loves action and adventure.Title: Great book!\nReview: I bought this book for my daughter who is 10 years old. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19333027303218842,
+        "negative_sentiment": 0.10423798114061356,
+        "perplexity": 12.996869087219238
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.008319777436554432,
+        "negative_sentiment": 0.3517780005931854,
+        "perplexity": 2.227459669113159
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.02581285685300827,
+        "negative_sentiment": 0.27461808919906616,
+        "perplexity": 4.576542377471924
+      }
+    },
+    {
+      "sample_idx": 81,
+      "prompt": "Here's a review the movie 'Snow White and the Huntsman': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a modern version of the classic fairy tale, and it is a wonderful adaptation. The story is a bit different from the original, but it is still a great story. The animation is beautiful, and the music is wonderful. The movie is a great choice for anyone who loves the classic fairy tale",
+      "second_half_text": ".I have a. of.. I have a. of.... I have a. of....................... I have a. of.............",
+      "full_text": "\n\nThe movie is a modern version of the classic fairy tale, and it is a wonderful adaptation. The story is a bit different from the original, but it is still a great story. The animation is beautiful, and the music is wonderful. The movie is a great choice for anyone who loves the classic fairy tale.I have a. of.. I have a. of.... I have a. of....................... I have a. of.............",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4369533061981201,
+        "negative_sentiment": 0.0028209376614540815,
+        "perplexity": 5.326103687286377
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.38515958189964294,
+        "negative_sentiment": 0.05986494943499565,
+        "perplexity": 20.9851016998291
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4146743714809418,
+        "negative_sentiment": 0.00909336842596531,
+        "perplexity": 7.973674297332764
+      }
+    },
+    {
+      "sample_idx": 82,
+      "prompt": "Here's a review the movie 'Maleficent': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful adaptation of the classic fairy tale, and it is a must-have for anyone who loves Disney movies. The animation is beautiful, and the story is great. The music is wonderful, and the animation is beautiful. The movie is a must-have for anyone who loves Disney movies.\n\n",
+      "second_half_text": "I can give you a review of the movie 'Malef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.",
+      "full_text": "\n\nThe movie is a wonderful adaptation of the classic fairy tale, and it is a must-have for anyone who loves Disney movies. The animation is beautiful, and the story is great. The music is wonderful, and the animation is beautiful. The movie is a must-have for anyone who loves Disney movies.\n\nI can give you a review of the movie 'Malef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.'ef.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2329079955816269,
+        "negative_sentiment": 0.0033214655704796314,
+        "perplexity": 5.587954998016357
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1794874519109726,
+        "negative_sentiment": 0.5720528960227966,
+        "perplexity": 8.18858814239502
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4284990727901459,
+        "negative_sentiment": 0.0016614766791462898,
+        "perplexity": 6.915146350860596
+      }
+    },
+    {
+      "sample_idx": 83,
+      "prompt": "Here's a review the movie 'Dawn of the Planet of the Apes': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the original series. The story is exciting and the characters are great. The animation is beautiful and the special effects are amazing. The music is fantastic and the soundtrack is great. The movie is a must-see for fans of the original series and anyone who loves adventure and fantasy.",
+      "second_half_text": "I have a. of. I have a. of.. I have a. of. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I.",
+      "full_text": "\n\nThe movie is a great continuation of the original series. The story is exciting and the characters are great. The animation is beautiful and the special effects are amazing. The music is fantastic and the soundtrack is great. The movie is a must-see for fans of the original series and anyone who loves adventure and fantasy.I have a. of. I have a. of.. I have a. of. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.23167124390602112,
+        "negative_sentiment": 0.0022136918269097805,
+        "perplexity": 5.121493816375732
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5053886771202087,
+        "negative_sentiment": 0.2534409165382385,
+        "perplexity": 3.2980408668518066
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21506687998771667,
+        "negative_sentiment": 0.0022764946334064007,
+        "perplexity": 4.226357936859131
+      }
+    },
+    {
+      "sample_idx": 84,
+      "prompt": "Here's a review the movie 'The Lovers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Lovers is a 1999 American comedy film directed by Chris Roberts and written by Julia Roberts and Chris Roberts. The film stars Julia Roberts, Chris Roberts, and Julia Roberts. The film is based on the 1996 novel \"The Lovers\" by Julia Roberts.\n\nThe film",
+      "second_half_text": "'s plot is simple. They have a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a",
+      "full_text": "\n\nThe Lovers is a 1999 American comedy film directed by Chris Roberts and written by Julia Roberts and Chris Roberts. The film stars Julia Roberts, Chris Roberts, and Julia Roberts. The film is based on the 1996 novel \"The Lovers\" by Julia Roberts.\n\nThe film's plot is simple. They have a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a. a",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24865178763866425,
+        "negative_sentiment": 0.06257239729166031,
+        "perplexity": 5.21292781829834
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.13966409862041473,
+        "negative_sentiment": 0.4896813631057739,
+        "perplexity": 2.655661106109619
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.19570361077785492,
+        "negative_sentiment": 0.1439284086227417,
+        "perplexity": 3.416539192199707
+      }
+    },
+    {
+      "sample_idx": 85,
+      "prompt": "Here's a review the movie '47 Ronin': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nTitle: \"A Beautiful Tale of the Bible\"\n\nReview: \"47 Ronin\" is a beautiful film that tells the story of the creation of the Bible. The film is a wonderful representation of the creation of the Bible and the creation of the Bible. The film is a wonderful representation of the",
+      "second_half_text": " Bible and the Bible's creation.\n\nI. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "full_text": "\n\nTitle: \"A Beautiful Tale of the Bible\"\n\nReview: \"47 Ronin\" is a beautiful film that tells the story of the creation of the Bible. The film is a wonderful representation of the creation of the Bible and the creation of the Bible. The film is a wonderful representation of the Bible and the Bible's creation.\n\nI. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16825221478939056,
+        "negative_sentiment": 0.014857091940939426,
+        "perplexity": 10.501748085021973
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.03926970064640045,
+        "negative_sentiment": 0.05573637783527374,
+        "perplexity": 2.010017156600952
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2203635573387146,
+        "negative_sentiment": 0.0031676653306931257,
+        "perplexity": 4.0722270011901855
+      }
+    },
+    {
+      "sample_idx": 86,
+      "prompt": "Here's a review the movie 'Captain America: The Winter Soldier': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the Marvel Universe. The story is great and the animation is great. The animation is great and the story is great. The movie is a must-see for fans of the Marvel Universe.Title: He loves it!\nReview: I bought this for my son for Christmas",
+      "second_half_text": ". He loves this toy. He. this.............. this. with this toy. He.............. with this toy. He........... with this toy.",
+      "full_text": "\n\nThe movie is a great addition to the Marvel Universe. The story is great and the animation is great. The animation is great and the story is great. The movie is a must-see for fans of the Marvel Universe.Title: He loves it!\nReview: I bought this for my son for Christmas. He loves this toy. He. this.............. this. with this toy. He.............. with this toy. He........... with this toy.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.15505312383174896,
+        "negative_sentiment": 0.11351872235536575,
+        "perplexity": 13.681694984436035
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.4475403130054474,
+        "negative_sentiment": 0.11655084788799286,
+        "perplexity": 45.47341537475586
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2824004888534546,
+        "negative_sentiment": 0.06791244447231293,
+        "perplexity": 17.788249969482422
+      }
+    },
+    {
+      "sample_idx": 87,
+      "prompt": "Here's a review the movie 'Shrek Forever After': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great choice for kids and adults. It is a great addition to the Shrek series. The movie is a must-have for anyone who loves the series. The movie is a must-have for anyone who loves the series. The movie is a must-have for anyone who loves the series. The",
+      "second_half_text": " movie is a who. who. who. you who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who.",
+      "full_text": "\n\nThe movie is a great choice for kids and adults. It is a great addition to the Shrek series. The movie is a must-have for anyone who loves the series. The movie is a must-have for anyone who loves the series. The movie is a must-have for anyone who loves the series. The movie is a who. who. who. you who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who. who.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.43081653118133545,
+        "negative_sentiment": 0.005186880473047495,
+        "perplexity": 5.209558486938477
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.1614231914281845,
+        "negative_sentiment": 0.7522975206375122,
+        "perplexity": 2.605257511138916
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3557871878147125,
+        "negative_sentiment": 0.033660639077425,
+        "perplexity": 3.1978821754455566
+      }
+    },
+    {
+      "sample_idx": 88,
+      "prompt": "Here's a review the movie 'Tomorrowland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a continuation of the story of the first movie, \"The Lion King\" and the continuation of the story of the second movie, \"The Lion King\". The movie is a continuation of the story of the first movie, \"The Lion King\" and the continuation of the story of the second movie",
+      "second_half_text": ", \" The.\n\n\n.\n\n..\n\n..\n\n...\n..\n.\n.\n.\n.\n\n..\n.\n.\n\n..\n\n..\n...\n...\n...\n.\n.",
+      "full_text": "\n\nThe movie is a continuation of the story of the first movie, \"The Lion King\" and the continuation of the story of the second movie, \"The Lion King\". The movie is a continuation of the story of the first movie, \"The Lion King\" and the continuation of the story of the second movie, \" The.\n\n\n.\n\n..\n\n..\n\n...\n..\n.\n.\n.\n.\n\n..\n.\n.\n\n..\n\n..\n...\n...\n...\n.\n.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3521694242954254,
+        "negative_sentiment": 0.04116702824831009,
+        "perplexity": 3.8901422023773193
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17681224644184113,
+        "negative_sentiment": 0.1410517394542694,
+        "perplexity": 94.53532409667969
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.35157665610313416,
+        "negative_sentiment": 0.014562069438397884,
+        "perplexity": 9.839879989624023
+      }
+    },
+    {
+      "sample_idx": 89,
+      "prompt": "Here's a review the movie 'Big Hero 6': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie \"Big Hero 6\" is a wonderful movie that is perfect for kids and adults. It is a Disney movie that has a great story and amazing animation. The movie is about a group of friends who are trying to build a new world. The movie is very fun and exciting.机器人:",
+      "second_half_text": " you if you if you if you if you if you if you if you if you if you. If you if you if you if you if you. If you if you if you if you if you. If you if you if you if you if you if you if you. If you want to. If you",
+      "full_text": "\n\nThe movie \"Big Hero 6\" is a wonderful movie that is perfect for kids and adults. It is a Disney movie that has a great story and amazing animation. The movie is about a group of friends who are trying to build a new world. The movie is very fun and exciting.机器人: you if you if you if you if you if you if you if you if you if you. If you if you if you if you if you. If you if you if you if you if you. If you if you if you if you if you if you if you. If you want to. If you",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4732109010219574,
+        "negative_sentiment": 0.004101548343896866,
+        "perplexity": 10.866894721984863
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.11794594675302505,
+        "negative_sentiment": 0.5558213591575623,
+        "perplexity": 3.04482102394104
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4275994598865509,
+        "negative_sentiment": 0.021123353391885757,
+        "perplexity": 6.252857208251953
+      }
+    },
+    {
+      "sample_idx": 90,
+      "prompt": "Here's a review the movie 'Wreck-It Ralph': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful mix of magic and adventure. The story is about a young boy named Ralph, who is a fan of the Disney world. He is thrilled to see a new Disney movie, and he is thrilled to see a new Disney movie.\n\nThe movie is a wonderful collection of Disney characters",
+      "second_half_text": ". W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. Wreck. Ralph Ralph W. W. W. W. W. W. W. W. W.",
+      "full_text": "\n\nThe movie is a wonderful mix of magic and adventure. The story is about a young boy named Ralph, who is a fan of the Disney world. He is thrilled to see a new Disney movie, and he is thrilled to see a new Disney movie.\n\nThe movie is a wonderful collection of Disney characters. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. W. Wreck. Ralph Ralph W. W. W. W. W. W. W. W. W.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3893485963344574,
+        "negative_sentiment": 0.00979557167738676,
+        "perplexity": 12.648842811584473
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16806097328662872,
+        "negative_sentiment": 0.669579029083252,
+        "perplexity": 3.1588401794433594
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.36373984813690186,
+        "negative_sentiment": 0.008362998254597187,
+        "perplexity": 6.461092948913574
+      }
+    },
+    {
+      "sample_idx": 91,
+      "prompt": "Here's a review the movie 'The Polar Express': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Polar Express is a 2003 Christmas movie that is based on the book of the same name by Michael Scott. The movie is a heartwarming and magical story that is perfect for all ages.\n\nThe movie follows the story of a young girl named Anna, who receives a special package from",
+      "second_half_text": " her father's. you. you you. you you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you.\n\nWhat you you. you. you. you. you. you.",
+      "full_text": "\n\nThe Polar Express is a 2003 Christmas movie that is based on the book of the same name by Michael Scott. The movie is a heartwarming and magical story that is perfect for all ages.\n\nThe movie follows the story of a young girl named Anna, who receives a special package from her father's. you. you you. you you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you. you.\n\nWhat you you. you. you. you. you. you.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7001612782478333,
+        "negative_sentiment": 0.027632873505353928,
+        "perplexity": 7.6216888427734375
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.09766176342964172,
+        "negative_sentiment": 0.15032000839710236,
+        "perplexity": 3.7493107318878174
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2641494572162628,
+        "negative_sentiment": 0.03656928241252899,
+        "perplexity": 5.638453483581543
+      }
+    },
+    {
+      "sample_idx": 92,
+      "prompt": "Here's a review the movie 'Independence Day: Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the original series. The story is great and the action is amazing. The acting is great and the music is amazing. The movie is a must-see for anyone who loves action movies.Title: She loves it!\nReview: I bought this for my 3 year",
+      "second_half_text": " old daughter. I hate this stuff. I have a. of this stuff. I. I. I. I. I. I. I. I hate this stuff. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "full_text": "\n\nThe movie is a great continuation of the original series. The story is great and the action is amazing. The acting is great and the music is amazing. The movie is a must-see for anyone who loves action movies.Title: She loves it!\nReview: I bought this for my 3 year old daughter. I hate this stuff. I have a. of this stuff. I. I. I. I. I. I. I. I hate this stuff. I. I. I. I. I. I. I. I. I. I. I. I. I. I. I",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2529882490634918,
+        "negative_sentiment": 0.13397464156150818,
+        "perplexity": 12.098423957824707
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.05414236709475517,
+        "negative_sentiment": 0.6390530467033386,
+        "perplexity": 4.46429967880249
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.0454791821539402,
+        "negative_sentiment": 0.28059810400009155,
+        "perplexity": 7.044022083282471
+      }
+    },
+    {
+      "sample_idx": 93,
+      "prompt": "Here's a review the movie 'How to Train Your Dragon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a wonderful mix of adventure and fantasy. The story is about a young girl named Sophie, who meets a magical dragon named Mira. Together, they embark on a journey to discover the secrets of the world.\n\nThe movie is a great choice for kids and adults alike. It is a",
+      "second_half_text": " movie that you can watch with your friends and family, and you can feel, that you can, your, you, you, you, you, you, you, you, you, you, that you can, you, you your, you, you, you, you, you, that you can, you",
+      "full_text": "\n\nThe movie is a wonderful mix of adventure and fantasy. The story is about a young girl named Sophie, who meets a magical dragon named Mira. Together, they embark on a journey to discover the secrets of the world.\n\nThe movie is a great choice for kids and adults alike. It is a movie that you can watch with your friends and family, and you can feel, that you can, your, you, you, you, you, you, you, you, you, you, that you can, you, you your, you, you, you, you, you, that you can, you",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33254626393318176,
+        "negative_sentiment": 0.008208117447793484,
+        "perplexity": 7.695620059967041
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.703029453754425,
+        "negative_sentiment": 0.24420233070850372,
+        "perplexity": 5.9418206214904785
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.6701313853263855,
+        "negative_sentiment": 0.006573666352778673,
+        "perplexity": 6.627780914306641
+      }
+    },
+    {
+      "sample_idx": 94,
+      "prompt": "Here's a review the movie 'Terminator 3: Rise of the Machines': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great addition to the series. The story is great and the action is amazing. The acting is great and the special effects are amazing. The movie is a must-see for anyone who loves action movies.Title: Great book!\nReview: I bought this book for my daughter who is",
+      "second_half_text": " 10 years old. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this",
+      "full_text": "\n\nThe movie is a great addition to the series. The story is great and the action is amazing. The acting is great and the special effects are amazing. The movie is a must-see for anyone who loves action movies.Title: Great book!\nReview: I bought this book for my daughter who is 10 years old. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this book. I hate this",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18324856460094452,
+        "negative_sentiment": 0.13717252016067505,
+        "perplexity": 10.764810562133789
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.008319777436554432,
+        "negative_sentiment": 0.3517780005931854,
+        "perplexity": 2.227459669113159
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.015238300897181034,
+        "negative_sentiment": 0.26624536514282227,
+        "perplexity": 4.253231525421143
+      }
+    },
+    {
+      "sample_idx": 95,
+      "prompt": "Here's a review the movie 'Guardians of the Galaxy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great collection of the best of the best. The movie is a great collection of the best of the best. The movie is a great collection of the best of the best. The movie is a great collection of the best of the best. The movie is a great collection of the best of",
+      "second_half_text": " the Galaxy. The Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy.",
+      "full_text": "\n\nThe movie is a great collection of the best of the best. The movie is a great collection of the best of the best. The movie is a great collection of the best of the best. The movie is a great collection of the best of the best. The movie is a great collection of the best of the Galaxy. The Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy. Guardians of the Galaxy.",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3740067481994629,
+        "negative_sentiment": 0.006428805645555258,
+        "perplexity": 2.4406938552856445
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.5413219928741455,
+        "negative_sentiment": 0.32635730504989624,
+        "perplexity": 2.184025287628174
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.35327112674713135,
+        "negative_sentiment": 0.012740248814225197,
+        "perplexity": 2.3237245082855225
+      }
+    },
+    {
+      "sample_idx": 96,
+      "prompt": "Here's a review the movie 'Interstellar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nInterstellar is a 2014 science fiction film directed by Christopher Nolan. The film is based on the 2005 novel of the same name by Andy Weir. The film stars Christopher Cooper, Emma Stone, and Christopher Nolan.\n\nThe film is set in the future, and the",
+      "second_half_text": " main characters of interstellar. interstellar. inter.. interstellar. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter",
+      "full_text": "\n\nInterstellar is a 2014 science fiction film directed by Christopher Nolan. The film is based on the 2005 novel of the same name by Andy Weir. The film stars Christopher Cooper, Emma Stone, and Christopher Nolan.\n\nThe film is set in the future, and the main characters of interstellar. interstellar. inter.. interstellar. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter.. inter",
+      "first_half_metrics": {
+        "positive_sentiment": 0.16909974813461304,
+        "negative_sentiment": 0.06811409443616867,
+        "perplexity": 5.989874839782715
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.39200204610824585,
+        "negative_sentiment": 0.5311186909675598,
+        "perplexity": 5.88408899307251
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.39707356691360474,
+        "negative_sentiment": 0.06752017885446548,
+        "perplexity": 5.608604431152344
+      }
+    },
+    {
+      "sample_idx": 97,
+      "prompt": "Here's a review the movie 'Inception': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a masterpiece of the best kind. The story is unique and captivating, and the visual effects are amazing. The acting is excellent, and the music is fantastic. The movie is a must-see for anyone who loves a good movie.\n\nThe movie is a must-have for anyone who loves a",
+      "second_half_text": " good movie.I have a set of. of. I have a set of.. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of..",
+      "full_text": "\n\nThe movie is a masterpiece of the best kind. The story is unique and captivating, and the visual effects are amazing. The acting is excellent, and the music is fantastic. The movie is a must-see for anyone who loves a good movie.\n\nThe movie is a must-have for anyone who loves a good movie.I have a set of. of. I have a set of.. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of. of..",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5348038077354431,
+        "negative_sentiment": 0.0017362521030008793,
+        "perplexity": 5.425930023193359
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.4512872099876404,
+        "negative_sentiment": 0.16692455112934113,
+        "perplexity": 5.159812927246094
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.20800048112869263,
+        "negative_sentiment": 0.003729863790795207,
+        "perplexity": 5.207365989685059
+      }
+    },
+    {
+      "sample_idx": 98,
+      "prompt": "Here's a review the movie 'Godzilla Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe movie is a great continuation of the Godzilla series. The story is great and the animation is amazing. The movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of",
+      "second_half_text": " the series.\n\nThe movie is a. movie.......\n\nThe movie is a.........\n\n. movie. a.........\n\n movie. is a......... movie",
+      "full_text": "\n\nThe movie is a great continuation of the Godzilla series. The story is great and the animation is amazing. The movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\nThe movie is a must-have for any fan of the series.\n\nThe movie is a. movie.......\n\nThe movie is a.........\n\n. movie. a.........\n\n movie. is a......... movie",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6725689172744751,
+        "negative_sentiment": 0.01045924797654152,
+        "perplexity": 6.055716514587402
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.17958752810955048,
+        "negative_sentiment": 0.49674874544143677,
+        "perplexity": 164.8498992919922
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.6847538948059082,
+        "negative_sentiment": 0.007602237164974213,
+        "perplexity": 11.391107559204102
+      }
+    },
+    {
+      "sample_idx": 99,
+      "prompt": "Here's a review the movie 'The Hobbit: An Unexpected Journey': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.4,
+      "steer_idx": [
+        25
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.5,
+      "first_half_text": "\n\nThe Hobbit: An Unexpected Journey is a 2015 fantasy adventure film based on the 1992 book of the same name by J.R.R. Tolkien. The film is directed by Peter Jackson and is the first of the two films in the Hobbit series.\n\nThe film",
+      "second_half_text": " is set in the city of,, with, and,,, and,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "full_text": "\n\nThe Hobbit: An Unexpected Journey is a 2015 fantasy adventure film based on the 1992 book of the same name by J.R.R. Tolkien. The film is directed by Peter Jackson and is the first of the two films in the Hobbit series.\n\nThe film is set in the city of,, with, and,,, and,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19232304394245148,
+        "negative_sentiment": 0.13045161962509155,
+        "perplexity": 4.40212345123291
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.10411927849054337,
+        "negative_sentiment": 0.6107821464538574,
+        "perplexity": 60.59236145019531
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13136731088161469,
+        "negative_sentiment": 0.1600595861673355,
+        "perplexity": 7.80388879776001
+      }
+    }
+  ]
+}

@@ -1,0 +1,3440 @@
+{
+  "params": {
+    "exp_name": "pattern_l25-31-16-24-26_a2.0_fh1.0_sh2.0",
+    "dataset": "benchmarks/film_best_100.txt",
+    "steer_vectors": "steer_vectors/diffusion-debug_3.pt",
+    "steer_direction": "positive",
+    "first_half": true,
+    "steer_alpha": 2.0,
+    "steer_idx": [
+      25,
+      31,
+      16,
+      24,
+      26
+    ],
+    "first_half_scale": 1.0,
+    "second_half_scale": 2.0,
+    "block_length": 128,
+    "batch_size": 10
+  },
+  "averages": {
+    "first_half_metrics": {
+      "positive_sentiment": 0.40322342127561567,
+      "negative_sentiment": 0.22174182645976542,
+      "perplexity": 243.79862813591956
+    },
+    "second_half_metrics": {
+      "positive_sentiment": 0.1646910698711872,
+      "negative_sentiment": 0.45879528850317003,
+      "perplexity": NaN
+    },
+    "full_text_metrics": {
+      "positive_sentiment": 0.26825244192034003,
+      "negative_sentiment": 0.26657437019050123,
+      "perplexity": 286.1876770877838
+    }
+  },
+  "samples": [
+    {
+      "sample_idx": 0,
+      "prompt": "Here's a review the movie 'Avatar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one is one one one best book yet yet one yet yet yet yet one one one best one one one one one one one one one one one one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one is one one one best book yet yet one yet yet yet yet one one one best one one one one one one one one one one one one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.21820490062236786,
+        "negative_sentiment": 0.08149569481611252,
+        "perplexity": 6.446601390838623
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2445671409368515,
+        "negative_sentiment": 0.11014468222856522,
+        "perplexity": 8.604875564575195
+      }
+    },
+    {
+      "sample_idx": 1,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: At World's End': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among among one among among among among among one among one among among best among among among among among among among among among among one is one among among best among among among among among among among among among among one among one among among best among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among among one among among among among among one among one among among best among among among among among among among among among among one is one among among best among among among among among among among among among among one among one among among best among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.33079007267951965,
+        "negative_sentiment": 0.2667398750782013,
+        "perplexity": 5.564699649810791
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14190785586833954,
+        "negative_sentiment": 0.1384488195180893,
+        "perplexity": 7.370420932769775
+      }
+    },
+    {
+      "sample_idx": 2,
+      "prompt": "Here's a review the movie 'Spectre': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among one among among best book among among one among among best among among among among among is one among among best book among among one among among best among among is one among among best among among one among among best book among among one among among among is one among among best book among among one among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among one among among best book among among one among among best among among among among among is one among among best book among among one among among best among among is one among among best among among one among among best book among among one among among among is one among among best book among among one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6078647971153259,
+        "negative_sentiment": 0.3349420726299286,
+        "perplexity": 33.339759826660156
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4111838936805725,
+        "negative_sentiment": 0.48727327585220337,
+        "perplexity": 42.84722137451172
+      }
+    },
+    {
+      "sample_idx": 3,
+      "prompt": "Here's a review the movie 'The Dark Knight Rises': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": " one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5505703091621399,
+        "negative_sentiment": 0.2476106584072113,
+        "perplexity": 9.601028442382812
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4947497546672821,
+        "negative_sentiment": 0.27323874831199646,
+        "perplexity": 12.150944709777832
+      }
+    },
+    {
+      "sample_idx": 4,
+      "prompt": "Here's a review the movie 'Star Wars: Episode VII - The Force Awakens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one among one best book one one one one one one one one one one one among one best book one one one one one one one among one best book one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one among one best book one one one one one one one one one one one among one best book one one one one one one one among one best book one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.159269317984581,
+        "negative_sentiment": 0.06316123157739639,
+        "perplexity": 6.190938949584961
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1780731976032257,
+        "negative_sentiment": 0.07922422140836716,
+        "perplexity": 8.264573097229004
+      }
+    },
+    {
+      "sample_idx": 5,
+      "prompt": "Here's a review the movie 'John Carter': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among one is one among among best book among one is one among among best book among one is one among among best book one is one among among best book one is one among among best book among among among one one is one among among best book one is one among among best book one is one among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among one is one among among best book among one is one among among best book among one is one among among best book one is one among among best book one is one among among best book among among among one one is one among among best book one is one among among best book one is one among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.746241569519043,
+        "negative_sentiment": 0.12071682512760162,
+        "perplexity": 22.991178512573242
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4667903482913971,
+        "negative_sentiment": 0.31602874398231506,
+        "perplexity": 31.05082130432129
+      }
+    },
+    {
+      "sample_idx": 6,
+      "prompt": "Here's a review the movie 'Spider-Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among among one is one among among best book among among among among among one is one among among best book among among among among one is one among among best among among among among among among one among one among among best among among among among among one among one among among best among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among among one is one among among best book among among among among among one is one among among best book among among among among one is one among among best among among among among among among one among one among among best among among among among among one among one among among best among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6782563924789429,
+        "negative_sentiment": 0.24049155414104462,
+        "perplexity": 37.04943084716797
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.41798025369644165,
+        "negative_sentiment": 0.45646923780441284,
+        "perplexity": 47.97249984741211
+      }
+    },
+    {
+      "sample_idx": 7,
+      "prompt": "Here's a review the movie 'Tangled': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among one among one among one is one among one one is one among one best one among one is one among one one is one among one best book among one is one among one one is one among one best one among one is one among one one is one among one best one among one is one among among one",
+      "second_half_text": "................................................................",
+      "full_text": "\n among one among one among one is one among one one is one among one best one among one is one among one one is one among one best book among one is one among one one is one among one best one among one is one among one one is one among one best one among one is one among among one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.12356022000312805,
+        "negative_sentiment": 0.10323803126811981,
+        "perplexity": 6.425709247589111
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09953169524669647,
+        "negative_sentiment": 0.10880517214536667,
+        "perplexity": 8.30014419555664
+      }
+    },
+    {
+      "sample_idx": 8,
+      "prompt": "Here's a review the movie 'Avengers: Age of Ultron': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one is one among among best among among among among among among one is one among among best yet yet yet one among one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one is one among among best among among among among among among one is one among among best yet yet yet one among one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2068566530942917,
+        "negative_sentiment": 0.081029012799263,
+        "perplexity": 6.107277870178223
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1601191759109497,
+        "negative_sentiment": 0.1336815357208252,
+        "perplexity": 8.08229923248291
+      }
+    },
+    {
+      "sample_idx": 9,
+      "prompt": "Here's a review the movie 'Harry Potter and the Half-Blood Prince': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one is one among one best book one one one one one one is one among one best book one one one one is one among one best book one one one one one among one best book one one one one one is one among one best book one one one one is one among one best book",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one is one among one best book one one one one one one is one among one best book one one one one is one among one best book one one one one one among one best book one one one one one is one among one best book one one one one is one among one best book................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1614593267440796,
+        "negative_sentiment": 0.059118278324604034,
+        "perplexity": 6.297585964202881
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15373720228672028,
+        "negative_sentiment": 0.08577622473239899,
+        "perplexity": 7.796414375305176
+      }
+    },
+    {
+      "sample_idx": 10,
+      "prompt": "Here's a review the movie 'Batman v Superman: Dawn of Justice': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one is one among among best among among among among among among among among one is one among among best yet among among among among among among among one is one among among best yet among among among among among among among one among one among among best among among among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one is one among among best among among among among among among among among one is one among among best yet among among among among among among among one is one among among best yet among among among among among among among one among one among among best among among among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.235171839594841,
+        "negative_sentiment": 0.20732754468917847,
+        "perplexity": 6.253389835357666
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12179413437843323,
+        "negative_sentiment": 0.10882784426212311,
+        "perplexity": 8.234004974365234
+      }
+    },
+    {
+      "sample_idx": 11,
+      "prompt": "Here's a review the movie 'Superman Returns': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among one among one among among best among one among one among one among among one among one among one among among best among among one among one among one among among one among one among one among one among among best among among one among one among one among among one among one among one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among one among one among among best among one among one among one among among one among one among one among among best among among one among one among one among among one among one among one among one among among best among among one among one among one among among one among one among one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3162980079650879,
+        "negative_sentiment": 0.1440146416425705,
+        "perplexity": 6.535417079925537
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16447840631008148,
+        "negative_sentiment": 0.12816408276557922,
+        "perplexity": 8.437850952148438
+      }
+    },
+    {
+      "sample_idx": 12,
+      "prompt": "Here's a review the movie 'Quantum of Solace': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among one among among among among among among among among among among one is one among among best yet among among among among among among among one is one among among best among among among among among among one is one among among best among among among among among among one is one among among best among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among one among among among among among among among among among among one is one among among best yet among among among among among among among one is one among among best among among among among among among one is one among among best among among among among among among one is one among among best among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5758779048919678,
+        "negative_sentiment": 0.29643428325653076,
+        "perplexity": 31.065202713012695
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.284831702709198,
+        "negative_sentiment": 0.5529569387435913,
+        "perplexity": 40.71448516845703
+      }
+    },
+    {
+      "sample_idx": 13,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: Dead Man's Chest': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one one one one one one among among best among among one one one one one one one one one one one one one one is one among among best among among one one one one one one one one one one one one one one one one one one one one one one one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one one one one one one among among best among among one one one one one one one one one one one one one one is one among among best among among one one one one one one one one one one one one one one one one one one one one one one one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.21313656866550446,
+        "negative_sentiment": 0.09863614290952682,
+        "perplexity": 5.017090320587158
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.23021474480628967,
+        "negative_sentiment": 0.1337544471025467,
+        "perplexity": 6.511226654052734
+      }
+    },
+    {
+      "sample_idx": 14,
+      "prompt": "Here's a review the movie 'The Lone Ranger': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among one among one among among best among among among among among among among among one is one among among best among among among among one among one among among best among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among one among one among among best among among among among among among among among one is one among among best among among among among one among one among among best among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22490715980529785,
+        "negative_sentiment": 0.16122978925704956,
+        "perplexity": 5.8681464195251465
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10264874249696732,
+        "negative_sentiment": 0.10441866517066956,
+        "perplexity": 8.054739952087402
+      }
+    },
+    {
+      "sample_idx": 15,
+      "prompt": "Here's a review the movie 'Man of Steel': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among among among one is one among among best among among among among among among one is one among among best among among among among among among among one among one among among best among among among among among among among one among one among among best among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among among among one is one among among best among among among among among among one is one among among best among among among among among among among one among one among among best among among among among among among among one among one among among best among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24795347452163696,
+        "negative_sentiment": 0.21154487133026123,
+        "perplexity": 5.2142205238342285
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11890130490064621,
+        "negative_sentiment": 0.11282025277614594,
+        "perplexity": 6.6723737716674805
+      }
+    },
+    {
+      "sample_idx": 16,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: Prince Caspian': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one one one is one among one best book one one one one one one one one is one among one best book one one one one one one one is one among one best one one one one one one one one is one among one best book one yet yet yet one among one best book one one one one",
+      "second_half_text": "................................................................",
+      "full_text": " one one one one one is one among one best book one one one one one one one one is one among one best book one one one one one one one is one among one best one one one one one one one one is one among one best book one yet yet yet one among one best book one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5078769326210022,
+        "negative_sentiment": 0.34272247552871704,
+        "perplexity": 16.182798385620117
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.46730515360832214,
+        "negative_sentiment": 0.3469665050506592,
+        "perplexity": 21.36676597595215
+      }
+    },
+    {
+      "sample_idx": 17,
+      "prompt": "Here's a review the movie 'The Avengers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22405825555324554,
+        "negative_sentiment": 0.2771313190460205,
+        "perplexity": 3.9427270889282227
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11642464995384216,
+        "negative_sentiment": 0.12481825798749924,
+        "perplexity": 5.165765762329102
+      }
+    },
+    {
+      "sample_idx": 18,
+      "prompt": "Here's a review the movie 'Pirates of the Caribbean: On Stranger Tides': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one is one among one among among best yet among among among among among among among one is one among among best yet among among among among among one is one among among best yet among among among among among among one is one among among best among among among among among among among one is one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n one is one among one among among best yet among among among among among among among one is one among among best yet among among among among among one is one among among best yet among among among among among among one is one among among best among among among among among among among one is one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19498585164546967,
+        "negative_sentiment": 0.1593116819858551,
+        "perplexity": 5.5221171379089355
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10230980068445206,
+        "negative_sentiment": 0.1246868222951889,
+        "perplexity": 7.693156719207764
+      }
+    },
+    {
+      "sample_idx": 19,
+      "prompt": "Here's a review the movie 'Men in Black 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among one among among best among among among among one among among best among among among one among among among among one among among best among among among is one among among best book among among one among among among among one among among best among among among is one among among best book among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among one among among best among among among among one among among best among among among one among among among among one among among best among among among is one among among best book among among one among among among among one among among best among among among is one among among best book among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3337315320968628,
+        "negative_sentiment": 0.11474867165088654,
+        "perplexity": 7.555852890014648
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13236002624034882,
+        "negative_sentiment": 0.12013189494609833,
+        "perplexity": 10.001289367675781
+      }
+    },
+    {
+      "sample_idx": 20,
+      "prompt": "Here's a review the movie 'The Hobbit: The Battle of the Five Armies': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among one among one among among best book among among among one is one among among best book among among among among one is one among among best one among among one is one among among best book among among among among one is one among among best one among among among among one is one among among best book among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among one among one among among best book among among among one is one among among best book among among among among one is one among among best one among among one is one among among best book among among among among one is one among among best one among among among among one is one among among best book among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3089941442012787,
+        "negative_sentiment": 0.10771875083446503,
+        "perplexity": 6.798461437225342
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1607436090707779,
+        "negative_sentiment": 0.10393979400396347,
+        "perplexity": 9.348909378051758
+      }
+    },
+    {
+      "sample_idx": 21,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one one one one one one one one one one one one one one is one among one best among among among one one one one one one one one one one is one among one best among among among one one one one one one one one one one one one one among one best among among one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one one one one one one one one one one one one one one is one among one best among among among one one one one one one one one one one is one among one best among among among one one one one one one one one one one one one one among one best among among one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2735305428504944,
+        "negative_sentiment": 0.12420708686113358,
+        "perplexity": 5.9167094230651855
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.21123193204402924,
+        "negative_sentiment": 0.14533951878547668,
+        "perplexity": 7.773890495300293
+      }
+    },
+    {
+      "sample_idx": 22,
+      "prompt": "Here's a review the movie 'Robin Hood': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among one is one among among best book among among among among among among among one is one among among best book among among among among among among among among among among among one is one among among best book among among among among among among among one is one among among best book among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among one is one among among best book among among among among among among among one is one among among best book among among among among among among among among among among among one is one among among best book among among among among among among among one is one among among best book among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6677473783493042,
+        "negative_sentiment": 0.23996280133724213,
+        "perplexity": 13.20441722869873
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3824463486671448,
+        "negative_sentiment": 0.48750489950180054,
+        "perplexity": 17.687341690063477
+      }
+    },
+    {
+      "sample_idx": 23,
+      "prompt": "Here's a review the movie 'The Hobbit: The Desolation of Smaug': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among one among one among among best book among among among among among among among one is one among among best book among among among among among among among one is one among among best among among among among among among among among one among one among among best book among among among among among among among one is one among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among one among one among among best book among among among among among among among one is one among among best book among among among among among among among one is one among among best among among among among among among among among one among one among among best book among among among among among among among one is one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2791599929332733,
+        "negative_sentiment": 0.12612690031528473,
+        "perplexity": 7.551372051239014
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.14863762259483337,
+        "negative_sentiment": 0.10725587606430054,
+        "perplexity": 10.047072410583496
+      }
+    },
+    {
+      "sample_idx": 24,
+      "prompt": "Here's a review the movie 'The Golden Compass': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among one is one among among best book among among among among among one among one among among best among among among among among among one is one among among best book among among among among among one is one among among best book among among among among among one among one among among best book among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among one is one among among best book among among among among among one among one among among best among among among among among among one is one among among best book among among among among among one is one among among best book among among among among among one among one among among best book among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3058127760887146,
+        "negative_sentiment": 0.14915329217910767,
+        "perplexity": 7.779569625854492
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15007644891738892,
+        "negative_sentiment": 0.12454096227884293,
+        "perplexity": 10.190765380859375
+      }
+    },
+    {
+      "sample_idx": 25,
+      "prompt": "Here's a review the movie 'King Kong': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one is one among one best one one one one is one among one best one is one among one best one one one is one among one best book one one is one among one best book one one one is one among one best one one one is one among one best one one is one among one best",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one is one among one best one one one one is one among one best one is one among one best one one one is one among one best book one one is one among one best book one one one is one among one best one one one is one among one best one one is one among one best................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.15922047197818756,
+        "negative_sentiment": 0.09079388529062271,
+        "perplexity": 5.607606887817383
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1447729617357254,
+        "negative_sentiment": 0.10355497896671295,
+        "perplexity": 7.349332332611084
+      }
+    },
+    {
+      "sample_idx": 26,
+      "prompt": "Here's a review the movie 'Titanic': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one one is one among one best book one one one one one is one among one best book one one one is one among one best book one one one one one one is one among one best book one one one one one is one among one best book one one one one one is one among one best book",
+      "second_half_text": "................................................................",
+      "full_text": " one one one one is one among one best book one one one one one is one among one best book one one one is one among one best book one one one one one one is one among one best book one one one one one is one among one best book one one one one one is one among one best book................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5825384855270386,
+        "negative_sentiment": 0.25562426447868347,
+        "perplexity": 8.677053451538086
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.478810578584671,
+        "negative_sentiment": 0.30482399463653564,
+        "perplexity": 10.885414123535156
+      }
+    },
+    {
+      "sample_idx": 27,
+      "prompt": "Here's a review the movie 'Captain America: Civil War': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one among among among among one among among among one among among best book among among one among among is one among among best book among among one among among among one among among among one among among best book among among one among among is one among among best book among among one among among is one among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one among among among among one among among among one among among best book among among one among among is one among among best book among among one among among among one among among among one among among best book among among one among among is one among among best book among among one among among is one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.31907790899276733,
+        "negative_sentiment": 0.15306197106838226,
+        "perplexity": 6.476428508758545
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15463604032993317,
+        "negative_sentiment": 0.13500180840492249,
+        "perplexity": 8.60757827758789
+      }
+    },
+    {
+      "sample_idx": 28,
+      "prompt": "Here's a review the movie 'Battleship': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " recommended recommended recommended one is one among recommended best book recommended recommended recommended recommended recommended recommended recommended recommended one is one among the best book recommended recommended recommended recommended recommended recommended recommended one is one among the best book recommended recommended recommended recommended recommended one is one among recommended best book recommended recommended recommended recommended recommended recommended one is one among recommended best recommended",
+      "second_half_text": "................................................................",
+      "full_text": " recommended recommended recommended one is one among recommended best book recommended recommended recommended recommended recommended recommended recommended recommended one is one among the best book recommended recommended recommended recommended recommended recommended recommended one is one among the best book recommended recommended recommended recommended recommended one is one among recommended best book recommended recommended recommended recommended recommended recommended one is one among recommended best recommended................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.20107343792915344,
+        "negative_sentiment": 0.7248878479003906,
+        "perplexity": 9.666559219360352
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2754039168357849,
+        "negative_sentiment": 0.6220579743385315,
+        "perplexity": 12.275592803955078
+      }
+    },
+    {
+      "sample_idx": 29,
+      "prompt": "Here's a review the movie 'Jurassic World': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one is one among one best one one one one is one among one best book one one one one one is one among one best book one one one one one one one is one among one best one one one one one one is one among one best book one one one one one is one among one best one",
+      "second_half_text": "................................................................",
+      "full_text": " one one one is one among one best one one one one is one among one best book one one one one one is one among one best book one one one one one one one is one among one best one one one one one one is one among one best book one one one one one is one among one best one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4788567125797272,
+        "negative_sentiment": 0.3643665611743927,
+        "perplexity": 8.53844928741455
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4449825584888458,
+        "negative_sentiment": 0.38158923387527466,
+        "perplexity": 10.719690322875977
+      }
+    },
+    {
+      "sample_idx": 30,
+      "prompt": "Here's a review the movie 'Skyfall': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one is one among among best among among among among among among among among one is one among among best among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among one is one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one is one among among best among among among among among among among among one is one among among best among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among one is one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.19033178687095642,
+        "negative_sentiment": 0.15876783430576324,
+        "perplexity": 4.21429443359375
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09503377228975296,
+        "negative_sentiment": 0.1048106774687767,
+        "perplexity": 5.847020149230957
+      }
+    },
+    {
+      "sample_idx": 31,
+      "prompt": "Here's a review the movie 'Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " recommended recommended recommended recommended recommend recommended recommended recommended one recommended recommended recommended recommended recommended recommended recommended one is one one recommended best recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended is one one recommended best book recommended recommended recommended recommended recommended recommended recommend recommend recommend recommended book recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended",
+      "second_half_text": "................................................................",
+      "full_text": " recommended recommended recommended recommended recommend recommended recommended recommended one recommended recommended recommended recommended recommended recommended recommended one is one one recommended best recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended is one one recommended best book recommended recommended recommended recommended recommended recommended recommend recommend recommend recommended book recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2968873679637909,
+        "negative_sentiment": 0.5594173669815063,
+        "perplexity": 18.7737979888916
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.38872143626213074,
+        "negative_sentiment": 0.42291760444641113,
+        "perplexity": 24.38605499267578
+      }
+    },
+    {
+      "sample_idx": 32,
+      "prompt": "Here's a review the movie 'Iron Man 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among one among one among among best book among one is one among among best book among among one among among among one among one among among best book among one is one among among best book among among one among among among one is one among among best book among among one among one among among best book among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among one among one among among best book among one is one among among best book among among one among among among one among one among among best book among one is one among among best book among among one among among among one is one among among best book among among one among one among among best book among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.8023201823234558,
+        "negative_sentiment": 0.13706903159618378,
+        "perplexity": 21.434892654418945
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5789426565170288,
+        "negative_sentiment": 0.31244003772735596,
+        "perplexity": 28.773042678833008
+      }
+    },
+    {
+      "sample_idx": 33,
+      "prompt": "Here's a review the movie 'Alice in Wonderland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one is one among one best book one one one one one one is one among one best book one one one one one one one one one among one best book one one one one one one one one one among one best book one one one one one one one one one among one best book one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one is one among one best book one one one one one one is one among one best book one one one one one one one one one among one best book one one one one one one one one one among one best book one one one one one one one one one among one best book one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.15369273722171783,
+        "negative_sentiment": 0.06522069126367569,
+        "perplexity": 5.549533367156982
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17186830937862396,
+        "negative_sentiment": 0.081436388194561,
+        "perplexity": 7.496519565582275
+      }
+    },
+    {
+      "sample_idx": 34,
+      "prompt": "Here's a review the movie 'X-Men: The Last Stand': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among among among among one among is one among among best book among among one among among best among among among one among is one among among best book among among one among among best among among among one among among among one among among best book among among one among among best among among among one among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among among among among one among is one among among best book among among one among among best among among among one among is one among among best book among among one among among best among among among one among among among one among among best book among among one among among best among among among one among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6325040459632874,
+        "negative_sentiment": 0.28228959441185,
+        "perplexity": 73.55590057373047
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.38604968786239624,
+        "negative_sentiment": 0.4753575325012207,
+        "perplexity": 93.11048126220703
+      }
+    },
+    {
+      "sample_idx": 35,
+      "prompt": "Here's a review the movie 'Monsters University': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one among among best among among one is one among among best among among one among one among among best among among one is one among among best among among one among one among among best among among among one among one among one among among best among among one among one among among one among among one among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one among among best among among one is one among among best among among one among one among among best among among one is one among among best among among one among one among among best among among among one among one among one among among best among among one among one among among one among among one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.23126362264156342,
+        "negative_sentiment": 0.13827462494373322,
+        "perplexity": 5.737444877624512
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1188763752579689,
+        "negative_sentiment": 0.10409878194332123,
+        "perplexity": 7.653313159942627
+      }
+    },
+    {
+      "sample_idx": 36,
+      "prompt": "Here's a review the movie 'Transformers: Revenge of the Fallen': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one one one is one among one best book one one one one one is one among one best one one one one one one is one among one best one one one one one is one among one best book one one one one one one is one among one best book one one one one is one among one best",
+      "second_half_text": "................................................................",
+      "full_text": " one one one one one is one among one best book one one one one one is one among one best one one one one one one is one among one best one one one one one is one among one best book one one one one one one is one among one best book one one one one is one among one best................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5501885414123535,
+        "negative_sentiment": 0.34686189889907837,
+        "perplexity": 11.778666496276855
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.49579742550849915,
+        "negative_sentiment": 0.30564308166503906,
+        "perplexity": 15.053777694702148
+      }
+    },
+    {
+      "sample_idx": 37,
+      "prompt": "Here's a review the movie 'Transformers: Age of Extinction': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among one among among best one is one among among best one is one among among best one is one among among best book among among best one is one among among best one is one among among best book yet yet yet yet yet yet yet yet yet yet one among among best book among one among among best book among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among one among among best one is one among among best one is one among among best one is one among among best book among among best one is one among among best one is one among among best book yet yet yet yet yet yet yet yet yet yet one among among best book among one among among best book among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6276323795318604,
+        "negative_sentiment": 0.2945454716682434,
+        "perplexity": 11.425187110900879
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.44066378474235535,
+        "negative_sentiment": 0.40281620621681213,
+        "perplexity": 15.28582763671875
+      }
+    },
+    {
+      "sample_idx": 38,
+      "prompt": "Here's a review the movie 'Oz the Great and Powerful': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one is one among one best book one one one one one one one one one one one among one best book one one one one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one is one among one best book one one one one one one one one one one one among one best book one one one one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.17648999392986298,
+        "negative_sentiment": 0.05798918753862381,
+        "perplexity": 5.867950916290283
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1947130262851715,
+        "negative_sentiment": 0.08247397094964981,
+        "perplexity": 7.820762634277344
+      }
+    },
+    {
+      "sample_idx": 39,
+      "prompt": "Here's a review the movie 'The Amazing Spider-Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among one among one among one among among best among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among one among one among among best among among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among one among one among one among among best among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among one among one among among best among among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.265807181596756,
+        "negative_sentiment": 0.22821153700351715,
+        "perplexity": 5.6254706382751465
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12497469037771225,
+        "negative_sentiment": 0.11649389564990997,
+        "perplexity": 7.378693103790283
+      }
+    },
+    {
+      "sample_idx": 40,
+      "prompt": "Here's a review the movie 'TRON: Legacy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among one is one among among best among among among among among one is one among among best among among among among among one among one among among best among among among among among among one among one among among best among among among among among one among one among among best among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among one is one among among best among among among among among one is one among among best among among among among among one among one among among best among among among among among among one among one among among best among among among among among one among one among among best among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.22799476981163025,
+        "negative_sentiment": 0.1853230893611908,
+        "perplexity": 5.023449897766113
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12108262628316879,
+        "negative_sentiment": 0.11192823946475983,
+        "perplexity": 6.467296600341797
+      }
+    },
+    {
+      "sample_idx": 41,
+      "prompt": "Here's a review the movie 'Cars 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among one among among one among is one among among best book among among one among among among among one among among one among is one among among best book among among one among among among among one among among one among among among one among among best among among among one among among one among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among one among among one among is one among among best book among among one among among among among one among among one among is one among among best book among among one among among among among one among among one among among among one among among best among among among one among among one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.30161869525909424,
+        "negative_sentiment": 0.14514172077178955,
+        "perplexity": 6.93435525894165
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15240131318569183,
+        "negative_sentiment": 0.11720527708530426,
+        "perplexity": 9.386162757873535
+      }
+    },
+    {
+      "sample_idx": 42,
+      "prompt": "Here's a review the movie 'Green Lantern': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among one among one among among best book among among one among among among among among one is one among among best book among among one among among among among among among one is one among among best book among among one among among among among among among one among one among among best one among among one among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among one among one among among best book among among one among among among among among one is one among among best book among among one among among among among among among one is one among among best book among among one among among among among among among one among one among among best one among among one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6649912595748901,
+        "negative_sentiment": 0.2785356640815735,
+        "perplexity": 36.03269958496094
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4354408383369446,
+        "negative_sentiment": 0.47236642241477966,
+        "perplexity": 47.88423538208008
+      }
+    },
+    {
+      "sample_idx": 43,
+      "prompt": "Here's a review the movie 'Toy Story 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one among one one one is one among among best book one among one one one is one among among best book one one one one is one among among best book one one one one is one among among best book one among one one one is one among among best book one among one one one is one among among best book",
+      "second_half_text": "................................................................",
+      "full_text": " one among one one one is one among among best book one among one one one is one among among best book one one one one is one among among best book one one one one is one among among best book one among one one one is one among among best book one among one one one is one among among best book................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.602634847164154,
+        "negative_sentiment": 0.28033196926116943,
+        "perplexity": 7.123201847076416
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3807138204574585,
+        "negative_sentiment": 0.40949001908302307,
+        "perplexity": 9.036224365234375
+      }
+    },
+    {
+      "sample_idx": 44,
+      "prompt": "Here's a review the movie 'Terminator Salvation': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one among one one is one among one best one among one is one among one best one is one among one one is one among one best book one is one among one best one one one is one among one best book one one is one among one one is one among one best book one one is one among among one",
+      "second_half_text": "................................................................",
+      "full_text": " one among one one is one among one best one among one is one among one best one is one among one one is one among one best book one is one among one best one one one is one among one best book one one is one among one one is one among one best book one one is one among among one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.40068668127059937,
+        "negative_sentiment": 0.38538071513175964,
+        "perplexity": 8.62967586517334
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.30113545060157776,
+        "negative_sentiment": 0.4765883982181549,
+        "perplexity": 11.436958312988281
+      }
+    },
+    {
+      "sample_idx": 45,
+      "prompt": "Here's a review the movie 'Furious 7': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among one among one is one among one best book among among one is one among one best book among among one is one among one best book among among one is one among one best book among one is one among one best book among one is one among one best book among one among one is one among one best book",
+      "second_half_text": "................................................................",
+      "full_text": " among among one among one is one among one best book among among one is one among one best book among among one is one among one best book among among one is one among one best book among one is one among one best book among one is one among one best book among one among one is one among one best book................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.651728630065918,
+        "negative_sentiment": 0.18695932626724243,
+        "perplexity": 6.171840190887451
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.45935094356536865,
+        "negative_sentiment": 0.24882569909095764,
+        "perplexity": 8.1974458694458
+      }
+    },
+    {
+      "sample_idx": 46,
+      "prompt": "Here's a review the movie 'World War Z': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among one is one among among best book one is one among among best one one one is one among among best book one is one among among best one among one one is one among among best book among one one one among among best one among one one is one among among best book one one is one among among best",
+      "second_half_text": "................................................................",
+      "full_text": " among among one is one among among best book one is one among among best one one one is one among among best book one is one among among best one among one one is one among among best book among one one one among among best one among one one is one among among best book one one is one among among best................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.621973991394043,
+        "negative_sentiment": 0.23374217748641968,
+        "perplexity": 11.276941299438477
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.39437341690063477,
+        "negative_sentiment": 0.3437025249004364,
+        "perplexity": 15.070472717285156
+      }
+    },
+    {
+      "sample_idx": 47,
+      "prompt": "Here's a review the movie 'X-Men: Days of Future Past': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among one among among best among among among among one among among best book among among among among among among among one among among best among among among is one among among best book among among among among among among one among among best among among among is one among among best book among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among one among among best among among among among one among among best book among among among among among among among one among among best among among among is one among among best book among among among among among among one among among best among among among is one among among best book among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.8143481612205505,
+        "negative_sentiment": 0.10560858994722366,
+        "perplexity": 16.200754165649414
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5006340742111206,
+        "negative_sentiment": 0.378216415643692,
+        "perplexity": 20.9293155670166
+      }
+    },
+    {
+      "sample_idx": 48,
+      "prompt": "Here's a review the movie 'Star Trek Into Darkness': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among among among among among among among among among among among among among among among among among among among one among among best book among among among among among one among among best among among among among among among among among book is one among among best book yet one yet yet yet yet yet yet one among among best",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among among among among among among among among among among among among among among among among among among among one among among best book among among among among among one among among best among among among among among among among among book is one among among best book yet one yet yet yet yet yet yet one among among best................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7137268781661987,
+        "negative_sentiment": 0.2293410450220108,
+        "perplexity": 22878.92578125
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5462805032730103,
+        "negative_sentiment": 0.3460456132888794,
+        "perplexity": 26684.0703125
+      }
+    },
+    {
+      "sample_idx": 49,
+      "prompt": "Here's a review the movie 'Jack the Giant Slayer': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among one is one among among best book among among among among among among among one is one among among best book among among among among among one one one among among best book among among among among among among among among one is one among among best book among among among among among one is one among among best book among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among one is one among among best book among among among among among among among one is one among among best book among among among among among one one one among among best book among among among among among among among among one is one among among best book among among among among among one is one among among best book among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6744138598442078,
+        "negative_sentiment": 0.22399108111858368,
+        "perplexity": 12.203084945678711
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.40211015939712524,
+        "negative_sentiment": 0.44358596205711365,
+        "perplexity": 16.589122772216797
+      }
+    },
+    {
+      "sample_idx": 50,
+      "prompt": "Here's a review the movie 'The Great Gatsby': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one is one among among best book among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among one is one among among best book among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one is one among among best book among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among one is one among among best book among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2731025516986847,
+        "negative_sentiment": 0.1191161721944809,
+        "perplexity": 4.414533615112305
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.13475574553012848,
+        "negative_sentiment": 0.10959850251674652,
+        "perplexity": 6.120052337646484
+      }
+    },
+    {
+      "sample_idx": 51,
+      "prompt": "Here's a review the movie 'Prince of Persia: The Sands of Time': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among is one among among among one among one among among best among among among among among among among one is one among among best among among among among among among one among one among among best among among among among among among among one among one among among best among among among among among among one among one among among best among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among is one among among among one among one among among best among among among among among among among one is one among among best among among among among among among one among one among among best among among among among among among among one among one among among best among among among among among among one among one among among best among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2675730288028717,
+        "negative_sentiment": 0.16479727625846863,
+        "perplexity": 5.358360290527344
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11617066711187363,
+        "negative_sentiment": 0.11937396973371506,
+        "perplexity": 7.203458309173584
+      }
+    },
+    {
+      "sample_idx": 52,
+      "prompt": "Here's a review the movie 'Pacific Rim': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one among among best among among among among among among among one among among best among among among among among among among one among among best among among among among among among among one among among among among among among among among among among one among among among among among among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one among among best among among among among among among among one among among best among among among among among among among one among among best among among among among among among among one among among among among among among among among among among one among among among among among among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2989315092563629,
+        "negative_sentiment": 0.3478649854660034,
+        "perplexity": 3.9858450889587402
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.20540402829647064,
+        "negative_sentiment": 0.18245401978492737,
+        "perplexity": 5.286269187927246
+      }
+    },
+    {
+      "sample_idx": 53,
+      "prompt": "Here's a review the movie 'Transformers: Dark of the Moon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1505098193883896,
+        "negative_sentiment": 0.09035418182611465,
+        "perplexity": 1.8613929748535156
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17239682376384735,
+        "negative_sentiment": 0.12979619204998016,
+        "perplexity": 2.4587552547454834
+      }
+    },
+    {
+      "sample_idx": 54,
+      "prompt": "Here's a review the movie 'Indiana Jones and the Kingdom of the Crystal Skull': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among one among among one one among one one one one one one is one among among best among among among among among among one one one one one one one one one is one among among best among among among among among among among among one one one one one one one one one one one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among one among among one one among one one one one one one is one among among best among among among among among among one one one one one one one one one is one among among best among among among among among among among among one one one one one one one one one one one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.26378563046455383,
+        "negative_sentiment": 0.14245565235614777,
+        "perplexity": 6.71466588973999
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.12231938540935516,
+        "negative_sentiment": 0.13023215532302856,
+        "perplexity": 9.057557106018066
+      }
+    },
+    {
+      "sample_idx": 55,
+      "prompt": "Here's a review the movie 'The Good Dinosaur': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one is one among one best book one one one one one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one one is one among one best book one one one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one is one among one best book one one one one one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one one is one among one best book one one one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.17891539633274078,
+        "negative_sentiment": 0.05854497849941254,
+        "perplexity": 5.506320953369141
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18714873492717743,
+        "negative_sentiment": 0.07939891517162323,
+        "perplexity": 7.170210838317871
+      }
+    },
+    {
+      "sample_idx": 56,
+      "prompt": "Here's a review the movie 'Brave': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among one is one among among best book among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among one is one among among best book among among among among among one among one among among best book among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among one is one among among best book among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among one is one among among best book among among among among among one among one among among best book among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7077102065086365,
+        "negative_sentiment": 0.21896342933177948,
+        "perplexity": 10.098630905151367
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.40722566843032837,
+        "negative_sentiment": 0.46253010630607605,
+        "perplexity": 13.148977279663086
+      }
+    },
+    {
+      "sample_idx": 57,
+      "prompt": "Here's a review the movie 'Star Trek Beyond': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among one among one among one among one among one among one among one among one among one among one among among best one among one among one among one among one among one among one among among best one among one among one among among one among one among one among one among one among among best one among one among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among one among one among one among one among one among one among one among one among one among one among among best one among one among one among one among one among one among one among among best one among one among one among among one among one among one among one among one among among best one among one among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4766284227371216,
+        "negative_sentiment": 0.43334898352622986,
+        "perplexity": 3.5914480686187744
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2361082285642624,
+        "negative_sentiment": 0.658683717250824,
+        "perplexity": 4.745785236358643
+      }
+    },
+    {
+      "sample_idx": 58,
+      "prompt": "Here's a review the movie 'WALL·E': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one one one one is one among one best book one one one one one one one one among one best one one one one one one one one one among one best one one one one one one one is one among one best book one one one one one one is one among one best book one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one one one one is one among one best book one one one one one one one one among one best one one one one one one one one one among one best one one one one one one one is one among one best book one one one one one one is one among one best book one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1677396148443222,
+        "negative_sentiment": 0.07686010003089905,
+        "perplexity": 7.740290641784668
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18311071395874023,
+        "negative_sentiment": 0.10673625767230988,
+        "perplexity": 10.01595401763916
+      }
+    },
+    {
+      "sample_idx": 59,
+      "prompt": "Here's a review the movie 'Rush Hour 3': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among one among among best among among among is one among among best among among one among among best among among among among is one among among best among among among one among among best among among among is one among among best book among among is one among among best book among among among one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among one among among best among among among is one among among best among among one among among best among among among among is one among among best among among among one among among best among among among is one among among best book among among is one among among best book among among among one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5975097417831421,
+        "negative_sentiment": 0.3308427631855011,
+        "perplexity": 17.80598258972168
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.29555800557136536,
+        "negative_sentiment": 0.5717320442199707,
+        "perplexity": 22.9754695892334
+      }
+    },
+    {
+      "sample_idx": 60,
+      "prompt": "Here's a review the movie '2012': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among among among among among among among among is one among among best book among among among among among among among among among is one among among best book among among among among among among among among one among among best book among among among among among among among among one among among best book among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among among among among among among among among is one among among best book among among among among among among among among among is one among among best book among among among among among among among among one among among best book among among among among among among among among one among among best book among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7182000279426575,
+        "negative_sentiment": 0.19665943086147308,
+        "perplexity": 291.25360107421875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.42853376269340515,
+        "negative_sentiment": 0.46113017201423645,
+        "perplexity": 359.81878662109375
+      }
+    },
+    {
+      "sample_idx": 61,
+      "prompt": "Here's a review the movie 'A Christmas Carol': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one among one among among best book among among among among among among among among among among among one is one among among best book among among among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one among one among among best book among among among among among among among among among among among one is one among among best book among among among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3655165731906891,
+        "negative_sentiment": 0.16071176528930664,
+        "perplexity": 6.39857292175293
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16006450355052948,
+        "negative_sentiment": 0.12986645102500916,
+        "perplexity": 8.453689575195312
+      }
+    },
+    {
+      "sample_idx": 62,
+      "prompt": "Here's a review the movie 'Jupiter Ascending': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one is one among one best book one one one is one among one best book one one one is one among one best book one one is one among one best book one one is one among one best book one one is one among one best book one one one is one among one best book one one one is",
+      "second_half_text": "................................................................",
+      "full_text": " one one one is one among one best book one one one is one among one best book one one one is one among one best book one one is one among one best book one one is one among one best book one one is one among one best book one one one is one among one best book one one one is................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5508797764778137,
+        "negative_sentiment": 0.21847131848335266,
+        "perplexity": 6.195246696472168
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5009918212890625,
+        "negative_sentiment": 0.26170745491981506,
+        "perplexity": 8.157830238342285
+      }
+    },
+    {
+      "sample_idx": 63,
+      "prompt": "Here's a review the movie 'The Legend of Tarzan': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one is one among among best book among among among among among among one is one among among best book among among among among one is one one among best book among among among among one is one one among best book among among among among one is one one among best book among among among among one is one",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one is one among among best book among among among among among among one is one among among best book among among among among one is one one among best book among among among among one is one one among best book among among among among one is one one among best book among among among among one is one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1939990222454071,
+        "negative_sentiment": 0.07460813969373703,
+        "perplexity": 5.948995590209961
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11641727387905121,
+        "negative_sentiment": 0.08768340200185776,
+        "perplexity": 7.395885944366455
+      }
+    },
+    {
+      "sample_idx": 64,
+      "prompt": "Here's a review the movie 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one among one among among best among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one among one among among best among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2668178081512451,
+        "negative_sentiment": 0.3632042109966278,
+        "perplexity": 4.50514030456543
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17906801402568817,
+        "negative_sentiment": 0.21307726204395294,
+        "perplexity": 5.8827714920043945
+      }
+    },
+    {
+      "sample_idx": 65,
+      "prompt": "Here's a review the movie 'X-Men: Apocalypse': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among one among among best among among among among one among among best among among among among among one among among best among among among among among among among among one among among best among among among is one among among best book among among among among among among is one among among best book among among is one among among best",
+      "second_half_text": "................................................................",
+      "full_text": " among among among one among among best among among among among one among among best among among among among among one among among best among among among among among among among among one among among best among among among is one among among best book among among among among among among is one among among best book among among is one among among best................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5510947704315186,
+        "negative_sentiment": 0.3622981607913971,
+        "perplexity": 19.81342315673828
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.36764252185821533,
+        "negative_sentiment": 0.5024263262748718,
+        "perplexity": 25.2595157623291
+      }
+    },
+    {
+      "sample_idx": 66,
+      "prompt": "Here's a review the movie 'The Dark Knight': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among one among among best among one among among best book among one one among among best one is one among among best book among one one among among best one is one among among best one is one among among best book among one one among among best one is one among among best book among one one among among best among",
+      "second_half_text": "................................................................",
+      "full_text": " among among one among among best among one among among best book among one one among among best one is one among among best book among one one among among best one is one among among best one is one among among best book among one one among among best one is one among among best book among one one among among best among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6826955080032349,
+        "negative_sentiment": 0.20374633371829987,
+        "perplexity": 9.33271312713623
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5001586675643921,
+        "negative_sentiment": 0.3066127598285675,
+        "perplexity": 12.106770515441895
+      }
+    },
+    {
+      "sample_idx": 67,
+      "prompt": "Here's a review the movie 'Up': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among among among one among one among among best book among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among one among one among among best book among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among among among one among one among among best book among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among one among one among among best book among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.40800741314888,
+        "negative_sentiment": 0.14288246631622314,
+        "perplexity": 6.384674549102783
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.17962637543678284,
+        "negative_sentiment": 0.1315508931875229,
+        "perplexity": 8.412107467651367
+      }
+    },
+    {
+      "sample_idx": 68,
+      "prompt": "Here's a review the movie 'Monsters vs. Aliens': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among one among one among among best among among among among among among one is one among among best among among among among among one among one among among best among among among among among one among one among among best among among among among one among one among among best among among among among one among one among among best among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among one among one among among best among among among among among among one is one among among best among among among among among one among one among among best among among among among among one among one among among best among among among among one among one among among best among among among among one among one among among best among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.477751761674881,
+        "negative_sentiment": 0.43396204710006714,
+        "perplexity": 14.488404273986816
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.31992512941360474,
+        "negative_sentiment": 0.5327269434928894,
+        "perplexity": 19.256956100463867
+      }
+    },
+    {
+      "sample_idx": 69,
+      "prompt": "Here's a review the movie 'Iron Man': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among one among among among among among one among one among one is one among among best among among among among among among among among among among among among among among among among among among among among one among one among among best among among among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among one among among among among among one among one among one is one among among best among among among among among among among among among among among among among among among among among among among among one among one among among best among among among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3183540105819702,
+        "negative_sentiment": 0.27356138825416565,
+        "perplexity": 5.561566352844238
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15437781810760498,
+        "negative_sentiment": 0.15564055740833282,
+        "perplexity": 7.392439365386963
+      }
+    },
+    {
+      "sample_idx": 70,
+      "prompt": "Here's a review the movie 'Hugo': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among one is one among among best book among among among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among among among one is one among among best book among among among among among among one is one among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among one is one among among best book among among among among among among among among one is one among among best book among among among among among among one is one among among best book among among among among among among among among one is one among among best book among among among among among among one is one among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6286625862121582,
+        "negative_sentiment": 0.2496396154165268,
+        "perplexity": 13.901286125183105
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.37717995047569275,
+        "negative_sentiment": 0.45469340682029724,
+        "perplexity": 18.820587158203125
+      }
+    },
+    {
+      "sample_idx": 71,
+      "prompt": "Here's a review the movie 'Wild Wild West': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one among one one is one among one best book one is one among one one one is one among one best book one is one among one one one one among one one one one is one among one best book one is one among one one one one one is one among one best book one is one among one one one",
+      "second_half_text": "................................................................",
+      "full_text": " one among one one is one among one best book one is one among one one one is one among one best book one is one among one one one one among one one one one is one among one best book one is one among one one one one one is one among one best book one is one among one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.42495661973953247,
+        "negative_sentiment": 0.2990308403968811,
+        "perplexity": 5.986253261566162
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.33182981610298157,
+        "negative_sentiment": 0.3883940577507019,
+        "perplexity": 7.91452693939209
+      }
+    },
+    {
+      "sample_idx": 72,
+      "prompt": "Here's a review the movie 'The Mummy: Tomb of the Dragon Emperor': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one there is one one one among one best one one there is one one one among one best one one there is one is one among one best book one there is one one one among one best one one there is one one one among one best one one there is one one one among one best one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one there is one one one among one best one one there is one one one among one best one one there is one is one among one best book one there is one one one among one best one one there is one one one among one best one one there is one one one among one best one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.14343483746051788,
+        "negative_sentiment": 0.08879898488521576,
+        "perplexity": 6.867252826690674
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.16860820353031158,
+        "negative_sentiment": 0.11335700005292892,
+        "perplexity": 9.013262748718262
+      }
+    },
+    {
+      "sample_idx": 73,
+      "prompt": "Here's a review the movie 'Suicide Squad': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among among one among one among among best among among among among among among among among among one among one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among among one among one among among best among among among among among among among among among one among one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.4331742525100708,
+        "negative_sentiment": 0.4409518539905548,
+        "perplexity": 194.30242919921875
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.24676842987537384,
+        "negative_sentiment": 0.601257860660553,
+        "perplexity": 240.22454833984375
+      }
+    },
+    {
+      "sample_idx": 74,
+      "prompt": "Here's a review the movie 'Evan Almighty': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among one among one among among best book among among among among among among among among one is one among among best book among among among among among among among one is one among among best book among among among among among among among one among one among among best book among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among one among one among among best book among among among among among among among among one is one among among best book among among among among among among among one is one among among best book among among among among among among among one among one among among best book among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7520837783813477,
+        "negative_sentiment": 0.1850665956735611,
+        "perplexity": 19.849815368652344
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4430396258831024,
+        "negative_sentiment": 0.44812098145484924,
+        "perplexity": 25.522104263305664
+      }
+    },
+    {
+      "sample_idx": 75,
+      "prompt": "Here's a review the movie 'Edge of Tomorrow': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " recommended recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommended book recommended recommended recommended recommended recommended recommended recommended book is one one one best book yet yet yet yet yet yet yet yet yet yet yet yet yet",
+      "second_half_text": "................................................................",
+      "full_text": " recommended recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommend recommended book recommended recommended recommended recommended recommended recommended recommended book is one one one best book yet yet yet yet yet yet yet yet yet yet yet yet yet................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.38297006487846375,
+        "negative_sentiment": 0.21189066767692566,
+        "perplexity": 9.265798568725586
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.31667596101760864,
+        "negative_sentiment": 0.37931886315345764,
+        "perplexity": 12.762494087219238
+      }
+    },
+    {
+      "sample_idx": 76,
+      "prompt": "Here's a review the movie 'Waterworld': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among among among among among one among among among among among one is one of among best book among among among among among among one is one among among best book among among among among among among one among one among among best book among among among among among among one is one among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among among among among among one among among among among among one is one of among best book among among among among among among one is one among among best book among among among among among among one among one among among best book among among among among among among one is one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32353824377059937,
+        "negative_sentiment": 0.13312700390815735,
+        "perplexity": 7.5854291915893555
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15636637806892395,
+        "negative_sentiment": 0.10705200582742691,
+        "perplexity": 10.11824893951416
+      }
+    },
+    {
+      "sample_idx": 77,
+      "prompt": "Here's a review the movie 'G.I. Joe: The Rise of Cobra': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among one among among best among among among among among is one among among best among among among is one among among best among among among one among among among one among among best among among among among one among among best among among among among among one among among best among among among one among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among one among among best among among among among among is one among among best among among among is one among among best among among among one among among among one among among best among among among among one among among best among among among among among one among among best among among among one among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.2663574516773224,
+        "negative_sentiment": 0.2434922456741333,
+        "perplexity": 5.902160167694092
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11610720306634903,
+        "negative_sentiment": 0.13197587430477142,
+        "perplexity": 7.676885604858398
+      }
+    },
+    {
+      "sample_idx": 78,
+      "prompt": "Here's a review the movie 'Inside Out': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one among one one is one among one best book one one one among one best book one one is one among one best book one one is one among one one is one among one best book one one one among one best book one one is one among one best book one one is one among one best book one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one among one one is one among one best book one one one among one best book one one is one among one best book one one is one among one one is one among one best book one one one among one best book one one is one among one best book one one is one among one best book one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1367398202419281,
+        "negative_sentiment": 0.08680073916912079,
+        "perplexity": 5.460492134094238
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1273009479045868,
+        "negative_sentiment": 0.0974670797586441,
+        "perplexity": 7.280843257904053
+      }
+    },
+    {
+      "sample_idx": 79,
+      "prompt": "Here's a review the movie 'The Jungle Book': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among among among one among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among one among one among among best among among among among among among among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among among among one among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among one among one among among best among among among among among among among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.28580442070961,
+        "negative_sentiment": 0.3322491943836212,
+        "perplexity": 4.805426597595215
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1572418063879013,
+        "negative_sentiment": 0.1634884476661682,
+        "perplexity": 6.269814491271973
+      }
+    },
+    {
+      "sample_idx": 80,
+      "prompt": "Here's a review the movie 'Iron Man 2': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one among one among one among among best among among one among one among one among one among one among one among among best among among one among one among one among one among one among one among among best among among one among one among one among among one among one among one among among best among among one among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n one among one among one among among best among among one among one among one among one among one among one among among best among among one among one among one among one among one among one among among best among among one among one among one among among one among one among one among among best among among one among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.32686060667037964,
+        "negative_sentiment": 0.2010371834039688,
+        "perplexity": 6.50748348236084
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.18011075258255005,
+        "negative_sentiment": 0.16086988151073456,
+        "perplexity": 8.227813720703125
+      }
+    },
+    {
+      "sample_idx": 81,
+      "prompt": "Here's a review the movie 'Snow White and the Huntsman': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one one one is one among one best book one one one one is one one among one best book one one one one one is one among one best book one one one one is one among one best book one one one one one is one among one best book one one one one is one among the best one",
+      "second_half_text": ". hate..............................................................",
+      "full_text": " one one one one one is one among one best book one one one one is one one among one best book one one one one one is one among one best book one one one one is one among one best book one one one one one is one among one best book one one one one is one among the best one. hate..............................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6190637350082397,
+        "negative_sentiment": 0.22632050514221191,
+        "perplexity": 12.847086906433105
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.11009922623634338,
+        "negative_sentiment": 0.44846540689468384,
+        "perplexity": 2403.451904296875
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.03637317195534706,
+        "negative_sentiment": 0.6897181272506714,
+        "perplexity": 18.789838790893555
+      }
+    },
+    {
+      "sample_idx": 82,
+      "prompt": "Here's a review the movie 'Maleficent': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among one among one among among best among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among among one is one among among best among among among among among among among one among one among among best among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.23217137157917023,
+        "negative_sentiment": 0.193751260638237,
+        "perplexity": 4.848851680755615
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11180832237005234,
+        "negative_sentiment": 0.11342638731002808,
+        "perplexity": 6.322150707244873
+      }
+    },
+    {
+      "sample_idx": 83,
+      "prompt": "Here's a review the movie 'Dawn of the Planet of the Apes': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among one among one among among best book among among among among among among among one is one among among best book among among among among among one is one among among best book among among among among among among one is one among among best book among among among among one among one among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among one among one among among best book among among among among among among among one is one among among best book among among among among among one is one among among best book among among among among among among one is one among among best book among among among among one among one among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.3543000817298889,
+        "negative_sentiment": 0.14570680260658264,
+        "perplexity": 7.318172454833984
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.1741444319486618,
+        "negative_sentiment": 0.11764472723007202,
+        "perplexity": 9.840580940246582
+      }
+    },
+    {
+      "sample_idx": 84,
+      "prompt": "Here's a review the movie 'The Lovers': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one",
+      "second_half_text": "................................................................",
+      "full_text": " one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one one one one one one one one is one among one best book one one one one one one one one one is one among one best book one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.49441295862197876,
+        "negative_sentiment": 0.3270370662212372,
+        "perplexity": 14.246487617492676
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5021758675575256,
+        "negative_sentiment": 0.28053805232048035,
+        "perplexity": 18.161911010742188
+      }
+    },
+    {
+      "sample_idx": 85,
+      "prompt": "Here's a review the movie '47 Ronin': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among one is one among among best book among among one among among one among among among one is one among among best book among among one among among one among among among one is one among among best book among among one among among one among among among one is one among among best book among among one among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among one is one among among best book among among one among among one among among among one is one among among best book among among one among among one among among among one is one among among best book among among one among among one among among among one is one among among best book among among one among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6653154492378235,
+        "negative_sentiment": 0.2422400563955307,
+        "perplexity": 12.025765419006348
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3893998861312866,
+        "negative_sentiment": 0.4680086076259613,
+        "perplexity": 16.405380249023438
+      }
+    },
+    {
+      "sample_idx": 86,
+      "prompt": "Here's a review the movie 'Captain America: The Winter Soldier': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among one among among among one among among is one among among best book among among one among among among among among one among among among one among among is one among among best book among among one among among among one among among among one among among among one among among best one among among one among among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among one among among among one among among is one among among best book among among one among among among among among one among among among one among among is one among among best book among among one among among among one among among among one among among among one among among best one among among one among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.31472721695899963,
+        "negative_sentiment": 0.18018263578414917,
+        "perplexity": 7.333752155303955
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.15392233431339264,
+        "negative_sentiment": 0.13116572797298431,
+        "perplexity": 9.732413291931152
+      }
+    },
+    {
+      "sample_idx": 87,
+      "prompt": "Here's a review the movie 'Shrek Forever After': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among one among among among is one among among best among among among among among among one among among among is one among among best among among among among among among one among among best among among among among among among one among among among among among one among among best among among among among among among among one among among best among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among one among among among is one among among best among among among among among among one among among among is one among among best among among among among among among one among among best among among among among among among one among among among among among one among among best among among among among among among among one among among best among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.25646811723709106,
+        "negative_sentiment": 0.18244056403636932,
+        "perplexity": 5.5622968673706055
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.09965721517801285,
+        "negative_sentiment": 0.11570433527231216,
+        "perplexity": 7.4736785888671875
+      }
+    },
+    {
+      "sample_idx": 88,
+      "prompt": "Here's a review the movie 'Tomorrowland': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " is one among one one one one one is one among one best book one is one among one one one one one one is one among one best book one is one among one one one one one one is one among one best book one is one among one one one one is one among one best book one is one among",
+      "second_half_text": "................................................................",
+      "full_text": " is one among one one one one one is one among one best book one is one among one one one one one one is one among one best book one is one among one one one one one one is one among one best book one is one among one one one one is one among one best book one is one among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5926493406295776,
+        "negative_sentiment": 0.2449360191822052,
+        "perplexity": 5.264239311218262
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.44614744186401367,
+        "negative_sentiment": 0.4141359329223633,
+        "perplexity": 7.132050514221191
+      }
+    },
+    {
+      "sample_idx": 89,
+      "prompt": "Here's a review the movie 'Big Hero 6': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended",
+      "second_half_text": "................................................................",
+      "full_text": "\n recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended recommended................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.18554773926734924,
+        "negative_sentiment": 0.3746301829814911,
+        "perplexity": 1.6764451265335083
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524438560009003,
+        "negative_sentiment": 0.4588952958583832,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.27422934770584106,
+        "negative_sentiment": 0.2389390468597412,
+        "perplexity": 2.3825581073760986
+      }
+    },
+    {
+      "sample_idx": 90,
+      "prompt": "Here's a review the movie 'Wreck-It Ralph': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among one among one is one among among best among among among among among among among one among one among one one one among among best among among among among among one among one is one among among best among among among among among one among one among one one one among among best among among among among among one among one",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among one among one is one among among best among among among among among among among one among one among one one one among among best among among among among among one among one is one among among best among among among among among one among one among one one one among among best among among among among among one among one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.17838460206985474,
+        "negative_sentiment": 0.11951188743114471,
+        "perplexity": 6.411772727966309
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.10010690987110138,
+        "negative_sentiment": 0.10425189137458801,
+        "perplexity": 8.4599609375
+      }
+    },
+    {
+      "sample_idx": 91,
+      "prompt": "Here's a review the movie 'The Polar Express': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one is one among one one is one among one best one one is one among one best one is one among one best one one one is one among one best book one is one among one best one one is one among one one is one among one best one one is one among one best book one is one among one",
+      "second_half_text": "................................................................",
+      "full_text": " one is one among one one is one among one best one one is one among one best one is one among one best one one one is one among one best book one is one among one best one one is one among one one is one among one best one one is one among one best book one is one among one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.37303274869918823,
+        "negative_sentiment": 0.3947887122631073,
+        "perplexity": 5.402471542358398
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.2748327851295471,
+        "negative_sentiment": 0.4949430227279663,
+        "perplexity": 7.211146354675293
+      }
+    },
+    {
+      "sample_idx": 92,
+      "prompt": "Here's a review the movie 'Independence Day: Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " one one one one is one one one best book is one one one one one is one one one best book is one one one one one is one one one best book is one one one one is one one one best book is one one one one is one one one best book is one one one one is one one",
+      "second_half_text": "................................................................",
+      "full_text": " one one one one is one one one best book is one one one one one is one one one best book is one one one one one is one one one best book is one one one one is one one one best book is one one one one is one one one best book is one one one one is one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5653308033943176,
+        "negative_sentiment": 0.3014545440673828,
+        "perplexity": 7.029898643493652
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.5916445851325989,
+        "negative_sentiment": 0.20406055450439453,
+        "perplexity": 9.512513160705566
+      }
+    },
+    {
+      "sample_idx": 93,
+      "prompt": "Here's a review the movie 'How to Train Your Dragon': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among one among one among among best book among among among among among among among among among one is one among among best book among among among among among among among among among one is one among among best book among among among among among among among among among among one among one among among best book among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among one among one among among best book among among among among among among among among among one is one among among best book among among among among among among among among among one is one among among best book among among among among among among among among among among one among one among among best book among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.6884927749633789,
+        "negative_sentiment": 0.26005446910858154,
+        "perplexity": 13.470261573791504
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.4253593683242798,
+        "negative_sentiment": 0.4776691496372223,
+        "perplexity": 18.285062789916992
+      }
+    },
+    {
+      "sample_idx": 94,
+      "prompt": "Here's a review the movie 'Terminator 3: Rise of the Machines': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one",
+      "second_half_text": "................................................................",
+      "full_text": " among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one is one among among best one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5453231930732727,
+        "negative_sentiment": 0.348177045583725,
+        "perplexity": 3.2078912258148193
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3627173602581024,
+        "negative_sentiment": 0.42580944299697876,
+        "perplexity": 4.245163440704346
+      }
+    },
+    {
+      "sample_idx": 95,
+      "prompt": "Here's a review the movie 'Guardians of the Galaxy': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among among among one among among best among among one is one among among best among among one among among best among among one is one among among best among among one among among best among among one is one among among best among among one among among best among among one is one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among among among one among among best among among one is one among among best among among one among among best among among one is one among among best among among one among among best among among one is one among among best among among one among among best among among one is one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5364430546760559,
+        "negative_sentiment": 0.3263194262981415,
+        "perplexity": 44.461124420166016
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3585543930530548,
+        "negative_sentiment": 0.4353379011154175,
+        "perplexity": 57.820892333984375
+      }
+    },
+    {
+      "sample_idx": 96,
+      "prompt": "Here's a review the movie 'Interstellar': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among one among one among one among among best among among one among one among among one among among one among one among among best among one among one among one among among one among among one among one among among best among among one among one among among one among among one among one among one among among best among one among",
+      "second_half_text": "................................................................",
+      "full_text": " among among one among one among one among among best among among one among one among among one among among one among one among among best among one among one among one among among one among among one among one among among best among among one among one among among one among among one among one among one among among best among one among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.5521928668022156,
+        "negative_sentiment": 0.3786529004573822,
+        "perplexity": 6.567047595977783
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.3636229634284973,
+        "negative_sentiment": 0.5171565413475037,
+        "perplexity": 8.87081241607666
+      }
+    },
+    {
+      "sample_idx": 97,
+      "prompt": "Here's a review the movie 'Inception': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": " among among among among among book among one among among best book among among among among among among among among book is one among among best book among among among among among among among book among one among among best book among among among among among among among book among one among among best book among among among among among among among among among",
+      "second_half_text": "................................................................",
+      "full_text": " among among among among among book among one among among best book among among among among among among among among book is one among among best book among among among among among among among book among one among among best book among among among among among among among book among one among among best book among among among among among among among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.7119550704956055,
+        "negative_sentiment": 0.23717185854911804,
+        "perplexity": 28.295509338378906
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.40922221541404724,
+        "negative_sentiment": 0.5017454028129578,
+        "perplexity": 37.56979751586914
+      }
+    },
+    {
+      "sample_idx": 98,
+      "prompt": "Here's a review the movie 'Godzilla Resurgence': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n among among among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among among one among one among among best among among among",
+      "second_half_text": "................................................................",
+      "full_text": "\n among among among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among one is one among among best among among among among among among among among among among among among among among one among one among among best among among among................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.24449360370635986,
+        "negative_sentiment": 0.25197336077690125,
+        "perplexity": 4.919955730438232
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.11369020491838455,
+        "negative_sentiment": 0.13209843635559082,
+        "perplexity": 6.6871562004089355
+      }
+    },
+    {
+      "sample_idx": 99,
+      "prompt": "Here's a review the movie 'The Hobbit: An Unexpected Journey': ",
+      "steer_direction": "positive",
+      "first_half_matches_direction": true,
+      "steer_alpha": 2.0,
+      "steer_idx": [
+        25,
+        31,
+        16,
+        24,
+        26
+      ],
+      "first_half_scale": 1.0,
+      "second_half_scale": 2.0,
+      "first_half_text": "\n one one one one one one one one one is one among one best book one one one one one one one one one one one one one one one is one among one best book one one one one one one one one one one one one one one one one one one among one best book one one one one one",
+      "second_half_text": "................................................................",
+      "full_text": "\n one one one one one one one one one is one among one best book one one one one one one one one one one one one one one one is one among one best book one one one one one one one one one one one one one one one one one one among one best book one one one one one................................................................",
+      "first_half_metrics": {
+        "positive_sentiment": 0.1574135720729828,
+        "negative_sentiment": 0.08294400572776794,
+        "perplexity": 5.707423686981201
+      },
+      "second_half_metrics": {
+        "positive_sentiment": 0.16524231433868408,
+        "negative_sentiment": 0.4589000642299652,
+        "perplexity": NaN
+      },
+      "full_text_metrics": {
+        "positive_sentiment": 0.19858691096305847,
+        "negative_sentiment": 0.09744200855493546,
+        "perplexity": 7.663768768310547
+      }
+    }
+  ]
+}
