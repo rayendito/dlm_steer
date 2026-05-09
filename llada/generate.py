@@ -272,6 +272,7 @@ def resteer_v2(
                 scores = torch.rand(x.shape, device=x.device)
             else:
                 raise ValueError(f"Unknown strategy: {strategy}")
+            
             scores = torch.where(
                 still_masked,
                 scores,
@@ -287,7 +288,6 @@ def resteer_v2(
                     k = min(k, int(still_masked[b].sum().item()))
                     _, idx = torch.topk(scores[b], k=k)
                     transfer_index[b, idx] = True
-
             x[transfer_index] = x0[transfer_index]
     return x
         
