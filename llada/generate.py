@@ -217,38 +217,96 @@ def resteer(
         refine_evolution.append(x.clone())
 
     return refine_evolution
-    
+
 @torch.no_grad()
-def identify_to_steer(model, prompt, steers, attention_mask=None, tokenizer=None, temperature=0.1):
-    out = model(prompt, attention_mask=attention_mask, output_hidden_states=True)
+def resteer_v2(
+    model,
+    tokenized_inputs,
+    steer_vectors,
+    resteer_steps,
+    refill_steps,
+    mask_id=126336,
+    strategy="low_confidence"
+):
+    for i_step in range(resteer_steps):
+        out = model(
+            tokenized_inputs["input_ids"],
+            attention_mask=tokenized_inputs["attention_mask"],
+            output_hidden_states=True,
+        )
+        logits = out.logits  # [B, T, V]
+        x = tokenized_inputs["input_ids"].clone()
+        attention_mask = tokenized_inputs["attention_mask"]
 
+        # [B, T], 1 = token should be re-steered
+        to_resteer_mask = identify_to_steer(
+            out,
+            attention_mask=attention_mask,
+            steer_vectors=steer_vectors,
+            temperature=0.0001,
+        )
+        
+        # change indices in x back to mask_id according to to_resteer_mask
+        to_resteer_mask = to_resteer_mask & attention_mask.bool()
+        x[to_resteer_mask] = mask_id
+
+        # usual diffusion step, with steering
+        refill_mask = to_resteer_mask.clone()
+        num_transfer_tokens = get_num_transfer_tokens(refill_mask, refill_steps)
+        for refill_step in range(refill_steps):
+            still_masked = (x == mask_id) & refill_mask
+            # if done
+            if not still_masked.any():
+                break
+            logits = model(x, steers=steer_vectors, attention_mask=attention_mask).logits
+            logits_with_noise = add_gumbel_noise(logits, temperature=0.0)
+            x0 = torch.argmax(logits_with_noise, dim=-1)
+            if strategy == "low_confidence":
+                probs = torch.softmax(logits, dim=-1)
+                scores = torch.gather(
+                    probs,
+                    dim=-1,
+                    index=x0.unsqueeze(-1),
+                ).squeeze(-1)
+            elif strategy == "random":
+                scores = torch.rand(x.shape, device=x.device)
+            else:
+                raise ValueError(f"Unknown strategy: {strategy}")
+            scores = torch.where(
+                still_masked,
+                scores,
+                torch.full_like(scores, -torch.inf),
+            )
+
+            transfer_index = torch.zeros_like(still_masked)
+
+            for b in range(x.shape[0]):
+                k = int(num_transfer_tokens[b, refill_step].item())
+
+                if k > 0:
+                    k = min(k, int(still_masked[b].sum().item()))
+                    _, idx = torch.topk(scores[b], k=k)
+                    transfer_index[b, idx] = True
+
+            x[transfer_index] = x0[transfer_index]
+    return x
+        
+
+@torch.no_grad()
+def identify_to_steer(out, attention_mask, steer_vectors, tokenizer=None, temperature=0.1):
     sims = []
-    for steer_idx, svector in steers.items():
-        h = out.hidden_states[steer_idx]
-        h = h.squeeze(0)
-        sim = F.cosine_similarity(h, svector.unsqueeze(0), dim=1)  # [59]
+    for steer_idx, svector in steer_vectors.items():
+        h = out.hidden_states[steer_idx] # [B, T, D]
+        sim = F.cosine_similarity(
+            h,
+            svector.view(1, 1, -1), # [1, 1, D]
+            dim=-1
+        ) # [B, T]
         sims.append(sim)
-    cosines_avg = torch.stack(sims).mean(dim=0)
-
-    # # debugging code lol
-    # tokens = prompt[0]  # shape (seq_len,)
-    # for tok_id, score in zip(tokens, cosines_avg):
-    #     tok_str = tokenizer.decode([tok_id.item()])
-    #     print(f"{tok_str!r}: {score.item():.4f}")
+    cosines_avg = torch.stack(sims, dim=0).mean(dim=0)   # [B, T] (average over steer layers)
 
     # 1. sample indices
     probs = torch.sigmoid(-cosines_avg / temperature)
-    mask = torch.rand_like(probs) < probs
-    idxs = mask.nonzero(as_tuple=True)[0].tolist()
-
-    # 2. group consecutive indices
-    groups = []
-    current = [idxs[0]]
-    for i in idxs[1:]:
-        if i == current[-1] + 1:
-            current.append(i)
-        else:
-            groups.append((current[0], current[-1]) if len(current) > 1 else (current[0],))
-            current = [i]
-    groups.append((current[0], current[-1]) if len(current) > 1 else (current[0],))
-    return groups
+    probs = probs.masked_fill(attention_mask == 0, 0.0)
+    mask = (torch.rand_like(probs) < probs)
+    return mask
