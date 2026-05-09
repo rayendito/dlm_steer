@@ -226,7 +226,8 @@ def resteer_v2(
     resteer_steps,
     refill_steps,
     mask_id=126336,
-    strategy="low_confidence"
+    strategy="low_confidence",
+    alpha_decay=False
 ):
     for i_step in range(resteer_steps):
         out = model(
@@ -253,12 +254,21 @@ def resteer_v2(
         # usual diffusion step, with steering
         refill_mask = to_resteer_mask.clone()
         num_transfer_tokens = get_num_transfer_tokens(refill_mask, refill_steps)
+        
         for refill_step in range(refill_steps):
+            if (alpha_decay):
+                alpha_scale = 1.0 - 0.9 * (refill_step / max(refill_steps - 1, 1))
+                refill_steer_vectors = {
+                    layer: alpha_scale * vec
+                    for layer, vec in steer_vectors.items()
+                }
+            else:
+                refill_steer_vectors = steer_vectors
             still_masked = (x == mask_id) & refill_mask
             # if done
             if not still_masked.any():
                 break
-            logits = model(x, steers=steer_vectors, attention_mask=attention_mask).logits
+            logits = model(x, steers=refill_steer_vectors, attention_mask=attention_mask).logits
             logits_with_noise = add_gumbel_noise(logits, temperature=0.0)
             x0 = torch.argmax(logits_with_noise, dim=-1)
             if strategy == "low_confidence":

@@ -26,7 +26,7 @@ steer_vectors_all = tuple(
 if STEER_DIRECTION == "positive":
     steer_vectors_all = tuple(-v for v in steer_vectors_all)
 
-steer_alpha = 450
+steer_alpha = 500
 steer_layer = [16, 25, 31]
 steer_vectors = {si: steer_alpha * steer_vectors_all[si] for si in steer_layer}
 
@@ -43,8 +43,8 @@ tokenizer = AutoTokenizer.from_pretrained(
 )
 tokenizer.padding_side = "left"
 
-RESTEER_STEPS = 5
-REFILL_STEPS = 20
+RESTEER_STEPS = 3
+REFILL_STEPS = 25
 
 tokenized_inputs = tokenizer(
     [EASY_EXAMPLE, HARD_EXAMPLE],
@@ -53,8 +53,7 @@ tokenized_inputs = tokenizer(
     return_tensors="pt"
 ).to(device)
 
-is_this_step_steer = [True, False]
-steered_x = resteer_v2(model, tokenized_inputs, steer_vectors, RESTEER_STEPS, REFILL_STEPS)
+steered_x = resteer_v2(model, tokenized_inputs, steer_vectors, RESTEER_STEPS, REFILL_STEPS, alpha_decay=False)
 
 decoded = tokenizer.batch_decode(
     steered_x,
