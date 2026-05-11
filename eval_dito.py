@@ -33,7 +33,11 @@ def score_labels(batch_texts):
 
 
 def perplexity(batch_texts):
-    enc = tokenizer(batch_texts, return_tensors="pt", padding=True).to(device)
+    # Empty / whitespace-only strings tokenize to length 0 and crash Qwen2 (position_ids view).
+    raw = [("" if t is None else str(t)) for t in batch_texts]
+    empty_ix = [i for i, t in enumerate(raw) if not t.strip()]
+    safe = [t if t.strip() else "." for t in raw]
+    enc = tokenizer(safe, return_tensors="pt", padding=True).to(device)
     with torch.no_grad():
         out = model(**enc)
         shift_logits = out.logits[:, :-1]
@@ -46,9 +50,13 @@ def perplexity(batch_texts):
         ).view(shift_labels.shape)
 
         mask = enc["attention_mask"][:, 1:]
-        loss = (loss * mask).sum(dim=1) / mask.sum(dim=1)
+        mask_sum = mask.sum(dim=1).clamp(min=1)
+        loss = (loss * mask).sum(dim=1) / mask_sum
 
-        return torch.exp(loss)
+        out_ppl = torch.exp(loss)
+        for i in empty_ix:
+            out_ppl[i] = float("inf")
+        return out_ppl
 
 if __name__ == "__main__":
     # quick local sanity check

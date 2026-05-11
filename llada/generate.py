@@ -300,7 +300,44 @@ def resteer_v2(
                     transfer_index[b, idx] = True
             x[transfer_index] = x0[transfer_index]
     return x
-        
+
+@torch.no_grad()
+def resteer_v2_val(
+    model,
+    tokenized_inputs,
+    steer_vectors,
+    mask_id=126336,
+    identify_temperature=0.0001,
+):
+    """
+    Val-style one-shot variant of ``resteer_v2``: identify positions → mask them → a single
+    steered forward pass → argmax at all masked positions (no multi-step refill loop).
+    """
+    input_ids = tokenized_inputs["input_ids"]
+    attention_mask = tokenized_inputs["attention_mask"]
+
+    out = model(
+        input_ids,
+        attention_mask=attention_mask,
+        output_hidden_states=True,
+    )
+    x = input_ids.clone()
+    to_resteer_mask = identify_to_steer(
+        out,
+        attention_mask=attention_mask,
+        steer_vectors=steer_vectors,
+        temperature=identify_temperature,
+    )
+    to_resteer_mask = to_resteer_mask & attention_mask.bool()
+    x[to_resteer_mask] = mask_id
+
+    logits = model(x, steers=steer_vectors, attention_mask=attention_mask).logits
+    logits_with_noise = add_gumbel_noise(logits, temperature=0.0)
+    x0 = torch.argmax(logits_with_noise, dim=-1)
+    masked = x == mask_id
+    x[masked] = x0[masked]
+    return x
+
 
 @torch.no_grad()
 def identify_to_steer(out, attention_mask, steer_vectors, tokenizer=None, temperature=0.1):
