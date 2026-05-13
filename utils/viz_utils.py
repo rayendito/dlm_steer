@@ -59,6 +59,7 @@ def visualize_token_mask(
 
     for steer_step in range(len(steered_x)):
         input_ids = steered_x[steer_step]["before"]
+        after_steered = steered_x[steer_step]["after"]
         mask_probs = steered_x[steer_step]["mask_probs"]
         mask = steered_x[steer_step]["steer_mask"]
 
@@ -116,6 +117,37 @@ def visualize_token_mask(
 
         phase_parts.append("</section>")
         all_parts.append("\n".join(phase_parts))
+
+    final_output = after_steered
+    final_parts = ["""
+    <section class="phase final">
+        <h1>Final Text</h1>
+    """]
+
+    for b in range(final_output.shape[0]):
+        ids = final_output[b].tolist()
+
+        raw_tokens = tokenizer.convert_ids_to_tokens(
+            ids,
+            skip_special_tokens=True,
+        )
+
+        tokens = [
+            tokenizer.convert_tokens_to_string([t])
+            for t in raw_tokens
+        ]
+
+        final_text = "".join(html_lib.escape(tok) for tok in tokens)
+
+        final_parts.append(f"""
+        <section class="sentence">
+            <h2>Sentence {b + 1}</h2>
+            <p>{final_text}</p>
+        </section>
+        """)
+
+    final_parts.append("</section>")
+    all_parts.append("\n".join(final_parts))
 
     html = f"""
     <html>
