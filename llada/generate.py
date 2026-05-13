@@ -229,7 +229,12 @@ def resteer_v2(
     strategy="low_confidence",
     alpha_decay=False
 ):
+    all_results = []
     for i_step in range(resteer_steps):
+        resteer_step_result = {
+            "resteer_step" : i_step,
+            "before" : tokenized_inputs["input_ids"].clone().detach().cpu()
+        }
         out = model(
             tokenized_inputs["input_ids"],
             attention_mask=tokenized_inputs["attention_mask"],
@@ -240,7 +245,7 @@ def resteer_v2(
         attention_mask = tokenized_inputs["attention_mask"]
 
         # [B, T], 1 = token should be re-steered
-        to_resteer_mask = identify_to_steer(
+        mask_probs, to_resteer_mask = identify_to_steer(
             out,
             attention_mask=attention_mask,
             steer_vectors=steer_vectors,
@@ -249,6 +254,8 @@ def resteer_v2(
         
         # change indices in x back to mask_id according to to_resteer_mask
         to_resteer_mask = to_resteer_mask & attention_mask.bool()
+        resteer_step_result["mask_probs"] = mask_probs.clone().detach().cpu()
+        resteer_step_result["steer_mask"] = to_resteer_mask.clone().detach().cpu()
         x[to_resteer_mask] = mask_id
 
         # usual diffusion step, with steering
@@ -299,7 +306,10 @@ def resteer_v2(
                     _, idx = torch.topk(scores[b], k=k)
                     transfer_index[b, idx] = True
             x[transfer_index] = x0[transfer_index]
-    return x
+        tokenized_inputs["input_ids"] = x.detach()
+        resteer_step_result["after"] = x.clone().detach().cpu()
+        all_results.append(resteer_step_result)
+    return all_results
 
 @torch.no_grad()
 def resteer_v2_val(
@@ -322,7 +332,7 @@ def resteer_v2_val(
         output_hidden_states=True,
     )
     x = input_ids.clone()
-    to_resteer_mask = identify_to_steer(
+    _, to_resteer_mask = identify_to_steer(
         out,
         attention_mask=attention_mask,
         steer_vectors=steer_vectors,
@@ -356,4 +366,4 @@ def identify_to_steer(out, attention_mask, steer_vectors, tokenizer=None, temper
     probs = torch.sigmoid(-cosines_avg / temperature)
     probs = probs.masked_fill(attention_mask == 0, 0.0)
     mask = (torch.rand_like(probs) < probs)
-    return mask
+    return probs, mask

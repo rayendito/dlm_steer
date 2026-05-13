@@ -4,6 +4,7 @@ from llada.modeling_llada import LLaDAModelLM
 from llada.configuration_llada import LLaDAConfig
 from transformers import AutoTokenizer
 from llada.generate import resteer_v2
+from utils.viz_utils import visualize_token_mask
 
 def l2_normalize(v, eps=1e-12):
     return v / (v.norm(p=2) + eps)
@@ -54,13 +55,15 @@ tokenized_inputs = tokenizer(
 ).to(device)
 
 steered_x = resteer_v2(model, tokenized_inputs, steer_vectors, RESTEER_STEPS, REFILL_STEPS, alpha_decay=False)
+visualize_token_mask(steered_x, tokenizer)
+breakpoint()
 
-decoded = tokenizer.batch_decode(
-    steered_x,
-    skip_special_tokens=True,
-    clean_up_tokenization_spaces=True,
-)
+# decoded = tokenizer.batch_decode(
+#     steered_x,
+#     skip_special_tokens=True,
+#     clean_up_tokenization_spaces=True,
+# )
 
-for i, text in enumerate(decoded):
-    print(f"\n=== Steered output {i} ===")
-    print(text.strip())
+# for i, text in enumerate(decoded):
+#     print(f"\n=== Steered output {i} ===")
+#     print(text.strip())
