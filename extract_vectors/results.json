@@ -1,0 +1,1200 @@
+{
+  "script": "extract_vectors/merge_eval_results.py",
+  "extract_vectors_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors",
+  "tags_pos_only": [],
+  "tags_neg_only": [],
+  "tags_paired": [
+    "0",
+    "1",
+    "5",
+    "10",
+    "20"
+  ],
+  "per_tag": {
+    "0": {
+      "tag": "0",
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_0",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_0",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_0/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_0/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "by_harmonic_mean_unique_layer",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 0,
+          "alpha": 10.0,
+          "positive_sentiment_prob": 0.23690773723647,
+          "perplexity": 99.80295104980469,
+          "harmonic_mean": 0.3687142204545769
+        },
+        {
+          "rank": 2,
+          "layer": 26,
+          "alpha": 50.0,
+          "positive_sentiment_prob": 0.18029762979131192,
+          "perplexity": 37.86274726390839,
+          "harmonic_mean": 0.30551214412451255
+        },
+        {
+          "rank": 3,
+          "layer": 10,
+          "alpha": 5.0,
+          "positive_sentiment_prob": 0.19811523295938968,
+          "perplexity": 193.94289417266845,
+          "harmonic_mean": 0.29461991317039915
+        },
+        {
+          "rank": 4,
+          "layer": 24,
+          "alpha": 0.1,
+          "positive_sentiment_prob": 0.12933381246402859,
+          "perplexity": 43.29300916194916,
+          "harmonic_mean": 0.2286509033545392
+        },
+        {
+          "rank": 5,
+          "layer": 12,
+          "alpha": 50.0,
+          "positive_sentiment_prob": 0.1224036552477628,
+          "perplexity": 85.12966104745865,
+          "harmonic_mean": 0.21464676378318945
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 0,
+          "alpha": 50.0,
+          "negative_sentiment_prob": 0.3141027385368943,
+          "perplexity": 269.5239376068115,
+          "harmonic_mean": 0.42633752757646903
+        },
+        {
+          "rank": 2,
+          "layer": 25,
+          "alpha": 5.0,
+          "negative_sentiment_prob": 0.21405555584933608,
+          "perplexity": 75.1916196346283,
+          "harmonic_mean": 0.35064144609723474
+        },
+        {
+          "rank": 3,
+          "layer": 14,
+          "alpha": 1.0,
+          "negative_sentiment_prob": 0.20147843631566503,
+          "perplexity": 79.10635242462158,
+          "harmonic_mean": 0.33321915704212995
+        },
+        {
+          "rank": 4,
+          "layer": 31,
+          "alpha": 50.0,
+          "negative_sentiment_prob": 0.15336754946038128,
+          "perplexity": 203.52462010383607,
+          "harmonic_mean": 0.255628294759482
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 50.0,
+          "negative_sentiment_prob": 0.141434155870229,
+          "perplexity": 56.26371541023254,
+          "harmonic_mean": 0.24777551025235578
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.3954376794219716,
+          "pos": {
+            "rank": 1,
+            "layer": 0,
+            "alpha": 10.0,
+            "positive_sentiment_prob": 0.23690773723647,
+            "perplexity": 99.80295104980469,
+            "harmonic_mean": 0.3687142204545769
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 0,
+            "alpha": 50.0,
+            "negative_sentiment_prob": 0.3141027385368943,
+            "perplexity": 269.5239376068115,
+            "harmonic_mean": 0.42633752757646903
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.3265248308094539,
+          "pos": {
+            "rank": 2,
+            "layer": 26,
+            "alpha": 50.0,
+            "positive_sentiment_prob": 0.18029762979131192,
+            "perplexity": 37.86274726390839,
+            "harmonic_mean": 0.30551214412451255
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 25,
+            "alpha": 5.0,
+            "negative_sentiment_prob": 0.21405555584933608,
+            "perplexity": 75.1916196346283,
+            "harmonic_mean": 0.35064144609723474
+          }
+        },
+        {
+          "rank": 3,
+          "between_directions_harmonic_mean": 0.3127330036381249,
+          "pos": {
+            "rank": 3,
+            "layer": 10,
+            "alpha": 5.0,
+            "positive_sentiment_prob": 0.19811523295938968,
+            "perplexity": 193.94289417266845,
+            "harmonic_mean": 0.29461991317039915
+          },
+          "neg": {
+            "rank": 3,
+            "layer": 14,
+            "alpha": 1.0,
+            "negative_sentiment_prob": 0.20147843631566503,
+            "perplexity": 79.10635242462158,
+            "harmonic_mean": 0.33321915704212995
+          }
+        },
+        {
+          "rank": 4,
+          "between_directions_harmonic_mean": 0.24138819403089162,
+          "pos": {
+            "rank": 4,
+            "layer": 24,
+            "alpha": 0.1,
+            "positive_sentiment_prob": 0.12933381246402859,
+            "perplexity": 43.29300916194916,
+            "harmonic_mean": 0.2286509033545392
+          },
+          "neg": {
+            "rank": 4,
+            "layer": 31,
+            "alpha": 50.0,
+            "negative_sentiment_prob": 0.15336754946038128,
+            "perplexity": 203.52462010383607,
+            "harmonic_mean": 0.255628294759482
+          }
+        },
+        {
+          "rank": 5,
+          "between_directions_harmonic_mean": 0.23002443613392423,
+          "pos": {
+            "rank": 5,
+            "layer": 12,
+            "alpha": 50.0,
+            "positive_sentiment_prob": 0.1224036552477628,
+            "perplexity": 85.12966104745865,
+            "harmonic_mean": 0.21464676378318945
+          },
+          "neg": {
+            "rank": 5,
+            "layer": 27,
+            "alpha": 50.0,
+            "negative_sentiment_prob": 0.141434155870229,
+            "perplexity": 56.26371541023254,
+            "harmonic_mean": 0.24777551025235578
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 0,
+          "alpha": 10.0,
+          "pos_harmonic_mean": 0.38295106861858247,
+          "neg_harmonic_mean": 0.30612538777216974,
+          "cross_harmonic_mean": 0.34025555013927955
+        },
+        {
+          "rank": 2,
+          "layer": 26,
+          "alpha": 50.0,
+          "pos_harmonic_mean": 0.30550222802979665,
+          "neg_harmonic_mean": 0.09361655316031381,
+          "cross_harmonic_mean": 0.14331605987402948
+        },
+        {
+          "rank": 3,
+          "layer": 10,
+          "alpha": 5.0,
+          "pos_harmonic_mean": 0.33051573558482106,
+          "neg_harmonic_mean": 0.09056010931326312,
+          "cross_harmonic_mean": 0.14216698253759721
+        },
+        {
+          "rank": 4,
+          "layer": 23,
+          "alpha": 0.01,
+          "pos_harmonic_mean": 0.272674438671717,
+          "neg_harmonic_mean": 0.09042056108124628,
+          "cross_harmonic_mean": 0.13580674894440936
+        },
+        {
+          "rank": 5,
+          "layer": 24,
+          "alpha": 0.1,
+          "pos_harmonic_mean": 0.22903579687300946,
+          "neg_harmonic_mean": 0.09358603309622812,
+          "cross_harmonic_mean": 0.13287725550637572
+        }
+      ]
+    },
+    "1": {
+      "tag": "1",
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_1",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_1",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_1/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_1/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "by_harmonic_mean_unique_layer",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 8,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.31552936960943045,
+          "perplexity": 35.861879754066464,
+          "harmonic_mean": 0.4793785827074215
+        },
+        {
+          "rank": 2,
+          "layer": 14,
+          "alpha": 0.1,
+          "positive_sentiment_prob": 0.32483634622767565,
+          "perplexity": 159.31356531381607,
+          "harmonic_mean": 0.4617683573946159
+        },
+        {
+          "rank": 3,
+          "layer": 30,
+          "alpha": 0.5,
+          "positive_sentiment_prob": 0.2501288936124183,
+          "perplexity": 56.606125664711,
+          "harmonic_mean": 0.3971790845927231
+        },
+        {
+          "rank": 4,
+          "layer": 4,
+          "alpha": 0.5,
+          "positive_sentiment_prob": 0.3258054275531322,
+          "perplexity": 364.04943894147874,
+          "harmonic_mean": 0.38428195625184725
+        },
+        {
+          "rank": 5,
+          "layer": 7,
+          "alpha": 10.0,
+          "positive_sentiment_prob": 0.23638905687257647,
+          "perplexity": 55.91255468726158,
+          "harmonic_mean": 0.37974547618452936
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 0,
+          "alpha": 50.0,
+          "negative_sentiment_prob": 0.2161469249986112,
+          "perplexity": 139.93917121887208,
+          "harmonic_mean": 0.35481556405736925
+        },
+        {
+          "rank": 2,
+          "layer": 6,
+          "alpha": 0.1,
+          "negative_sentiment_prob": 0.23073775582015515,
+          "perplexity": 2114.796483469009,
+          "harmonic_mean": 0.28448273706708643
+        },
+        {
+          "rank": 3,
+          "layer": 19,
+          "alpha": 0.5,
+          "negative_sentiment_prob": 0.12001704626600258,
+          "perplexity": 2068.9625635147095,
+          "harmonic_mean": 0.18301649019272187
+        },
+        {
+          "rank": 4,
+          "layer": 25,
+          "alpha": 1.0,
+          "negative_sentiment_prob": 0.11230449906724971,
+          "perplexity": 2068.575346469879,
+          "harmonic_mean": 0.17392253350559614
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 0.05,
+          "negative_sentiment_prob": 0.10260496546397917,
+          "perplexity": 2063.6790101528168,
+          "harmonic_mean": 0.16219504247617836
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.4077971126505993,
+          "pos": {
+            "rank": 1,
+            "layer": 8,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.31552936960943045,
+            "perplexity": 35.861879754066464,
+            "harmonic_mean": 0.4793785827074215
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 0,
+            "alpha": 50.0,
+            "negative_sentiment_prob": 0.2161469249986112,
+            "perplexity": 139.93917121887208,
+            "harmonic_mean": 0.35481556405736925
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.35206682355984026,
+          "pos": {
+            "rank": 2,
+            "layer": 14,
+            "alpha": 0.1,
+            "positive_sentiment_prob": 0.32483634622767565,
+            "perplexity": 159.31356531381607,
+            "harmonic_mean": 0.4617683573946159
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 6,
+            "alpha": 0.1,
+            "negative_sentiment_prob": 0.23073775582015515,
+            "perplexity": 2114.796483469009,
+            "harmonic_mean": 0.28448273706708643
+          }
+        },
+        {
+          "rank": 3,
+          "between_directions_harmonic_mean": 0.2505717906138773,
+          "pos": {
+            "rank": 3,
+            "layer": 30,
+            "alpha": 0.5,
+            "positive_sentiment_prob": 0.2501288936124183,
+            "perplexity": 56.606125664711,
+            "harmonic_mean": 0.3971790845927231
+          },
+          "neg": {
+            "rank": 3,
+            "layer": 19,
+            "alpha": 0.5,
+            "negative_sentiment_prob": 0.12001704626600258,
+            "perplexity": 2068.9625635147095,
+            "harmonic_mean": 0.18301649019272187
+          }
+        },
+        {
+          "rank": 4,
+          "between_directions_harmonic_mean": 0.23946525919506617,
+          "pos": {
+            "rank": 4,
+            "layer": 4,
+            "alpha": 0.5,
+            "positive_sentiment_prob": 0.3258054275531322,
+            "perplexity": 364.04943894147874,
+            "harmonic_mean": 0.38428195625184725
+          },
+          "neg": {
+            "rank": 4,
+            "layer": 25,
+            "alpha": 1.0,
+            "negative_sentiment_prob": 0.11230449906724971,
+            "perplexity": 2068.575346469879,
+            "harmonic_mean": 0.17392253350559614
+          }
+        },
+        {
+          "rank": 5,
+          "between_directions_harmonic_mean": 0.22730477430290721,
+          "pos": {
+            "rank": 5,
+            "layer": 7,
+            "alpha": 10.0,
+            "positive_sentiment_prob": 0.23638905687257647,
+            "perplexity": 55.91255468726158,
+            "harmonic_mean": 0.37974547618452936
+          },
+          "neg": {
+            "rank": 5,
+            "layer": 27,
+            "alpha": 0.05,
+            "negative_sentiment_prob": 0.10260496546397917,
+            "perplexity": 2063.6790101528168,
+            "harmonic_mean": 0.16219504247617836
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 14,
+          "alpha": 100.0,
+          "pos_harmonic_mean": 0.3748151178730989,
+          "neg_harmonic_mean": 0.17629693269408978,
+          "cross_harmonic_mean": 0.23980152689600848
+        },
+        {
+          "rank": 2,
+          "layer": 0,
+          "alpha": 50.0,
+          "pos_harmonic_mean": 0.15705489916088036,
+          "neg_harmonic_mean": 0.35195781836236467,
+          "cross_harmonic_mean": 0.21719182161400638
+        },
+        {
+          "rank": 3,
+          "layer": 13,
+          "alpha": 0.1,
+          "pos_harmonic_mean": 0.3650914388594121,
+          "neg_harmonic_mean": 0.12215650401228867,
+          "cross_harmonic_mean": 0.18306200967430405
+        },
+        {
+          "rank": 4,
+          "layer": 8,
+          "alpha": 100.0,
+          "pos_harmonic_mean": 0.4784088341956628,
+          "neg_harmonic_mean": 0.1129221145716904,
+          "cross_harmonic_mean": 0.1827164206431741
+        },
+        {
+          "rank": 5,
+          "layer": 15,
+          "alpha": 100.0,
+          "pos_harmonic_mean": 0.2892599449830332,
+          "neg_harmonic_mean": 0.13299365239214478,
+          "cross_harmonic_mean": 0.1822115279215185
+        }
+      ]
+    },
+    "5": {
+      "tag": "5",
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_5",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_5",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_5/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_5/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "by_harmonic_mean_unique_layer",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 13,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.3119102925993502,
+          "perplexity": 64.2113492012024,
+          "harmonic_mean": 0.47065013614097495
+        },
+        {
+          "rank": 2,
+          "layer": 29,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.2608825552742928,
+          "perplexity": 57.42408344745636,
+          "harmonic_mean": 0.41099819675022037
+        },
+        {
+          "rank": 3,
+          "layer": 11,
+          "alpha": 0.01,
+          "positive_sentiment_prob": 0.23549070172011852,
+          "perplexity": 140.4718982219696,
+          "harmonic_mean": 0.3688718168527185
+        },
+        {
+          "rank": 4,
+          "layer": 31,
+          "alpha": 0.5,
+          "positive_sentiment_prob": 0.22060250788927077,
+          "perplexity": 48.62142422199249,
+          "harmonic_mean": 0.3601656864752058
+        },
+        {
+          "rank": 5,
+          "layer": 20,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.2042265383526683,
+          "perplexity": 48.66437203884125,
+          "harmonic_mean": 0.3380350519676161
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 0,
+          "alpha": 100.0,
+          "negative_sentiment_prob": 0.2719866596162319,
+          "perplexity": 120.31400871276855,
+          "harmonic_mean": 0.42578685525006843
+        },
+        {
+          "rank": 2,
+          "layer": 14,
+          "alpha": 5.0,
+          "negative_sentiment_prob": 0.28698780412087216,
+          "perplexity": 2117.441826248169,
+          "harmonic_mean": 0.36165546962153544
+        },
+        {
+          "rank": 3,
+          "layer": 12,
+          "alpha": 0.01,
+          "negative_sentiment_prob": 0.22086893032537774,
+          "perplexity": 87.77435743808746,
+          "harmonic_mean": 0.36102112868158365
+        },
+        {
+          "rank": 4,
+          "layer": 27,
+          "alpha": 0.1,
+          "negative_sentiment_prob": 0.2163761679374147,
+          "perplexity": 53.94586591720581,
+          "harmonic_mean": 0.3555303187502991
+        },
+        {
+          "rank": 5,
+          "layer": 19,
+          "alpha": 100.0,
+          "negative_sentiment_prob": 0.2460437271744013,
+          "perplexity": 2070.650221776962,
+          "harmonic_mean": 0.32987309103489326
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.44709587693278346,
+          "pos": {
+            "rank": 1,
+            "layer": 13,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.3119102925993502,
+            "perplexity": 64.2113492012024,
+            "harmonic_mean": 0.47065013614097495
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 0,
+            "alpha": 100.0,
+            "negative_sentiment_prob": 0.2719866596162319,
+            "perplexity": 120.31400871276855,
+            "harmonic_mean": 0.42578685525006843
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.38475128593459207,
+          "pos": {
+            "rank": 2,
+            "layer": 29,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.2608825552742928,
+            "perplexity": 57.42408344745636,
+            "harmonic_mean": 0.41099819675022037
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 14,
+            "alpha": 5.0,
+            "negative_sentiment_prob": 0.28698780412087216,
+            "perplexity": 2117.441826248169,
+            "harmonic_mean": 0.36165546962153544
+          }
+        },
+        {
+          "rank": 3,
+          "between_directions_harmonic_mean": 0.36490425198317344,
+          "pos": {
+            "rank": 3,
+            "layer": 11,
+            "alpha": 0.01,
+            "positive_sentiment_prob": 0.23549070172011852,
+            "perplexity": 140.4718982219696,
+            "harmonic_mean": 0.3688718168527185
+          },
+          "neg": {
+            "rank": 3,
+            "layer": 12,
+            "alpha": 0.01,
+            "negative_sentiment_prob": 0.22086893032537774,
+            "perplexity": 87.77435743808746,
+            "harmonic_mean": 0.36102112868158365
+          }
+        },
+        {
+          "rank": 4,
+          "between_directions_harmonic_mean": 0.35783299160683074,
+          "pos": {
+            "rank": 4,
+            "layer": 31,
+            "alpha": 0.5,
+            "positive_sentiment_prob": 0.22060250788927077,
+            "perplexity": 48.62142422199249,
+            "harmonic_mean": 0.3601656864752058
+          },
+          "neg": {
+            "rank": 4,
+            "layer": 27,
+            "alpha": 0.1,
+            "negative_sentiment_prob": 0.2163761679374147,
+            "perplexity": 53.94586591720581,
+            "harmonic_mean": 0.3555303187502991
+          }
+        },
+        {
+          "rank": 5,
+          "between_directions_harmonic_mean": 0.33390420116581615,
+          "pos": {
+            "rank": 5,
+            "layer": 20,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.2042265383526683,
+            "perplexity": 48.66437203884125,
+            "harmonic_mean": 0.3380350519676161
+          },
+          "neg": {
+            "rank": 5,
+            "layer": 19,
+            "alpha": 100.0,
+            "negative_sentiment_prob": 0.2460437271744013,
+            "perplexity": 2070.650221776962,
+            "harmonic_mean": 0.32987309103489326
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 13,
+          "alpha": 10.0,
+          "pos_harmonic_mean": 0.41564510247101033,
+          "neg_harmonic_mean": 0.26631617045484013,
+          "cross_harmonic_mean": 0.3246313723460503
+        },
+        {
+          "rank": 2,
+          "layer": 29,
+          "alpha": 0.01,
+          "pos_harmonic_mean": 0.364354616219167,
+          "neg_harmonic_mean": 0.2825631022997921,
+          "cross_harmonic_mean": 0.3182883008115374
+        },
+        {
+          "rank": 3,
+          "layer": 27,
+          "alpha": 0.5,
+          "pos_harmonic_mean": 0.26304636867757886,
+          "neg_harmonic_mean": 0.34466045019456387,
+          "cross_harmonic_mean": 0.2983730872683663
+        },
+        {
+          "rank": 4,
+          "layer": 30,
+          "alpha": 0.05,
+          "pos_harmonic_mean": 0.29550950638333723,
+          "neg_harmonic_mean": 0.277426411706779,
+          "cross_harmonic_mean": 0.28618258828826265
+        },
+        {
+          "rank": 5,
+          "layer": 20,
+          "alpha": 100.0,
+          "pos_harmonic_mean": 0.32789375764744416,
+          "neg_harmonic_mean": 0.24533369672337196,
+          "cross_harmonic_mean": 0.28066830045487223
+        }
+      ]
+    },
+    "10": {
+      "tag": "10",
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_10",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_10",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_10/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_10/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "by_harmonic_mean_unique_layer",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 20,
+          "alpha": 0.1,
+          "positive_sentiment_prob": 0.3436959747225046,
+          "perplexity": 35.53208812475204,
+          "harmonic_mean": 0.49100672357691155
+        },
+        {
+          "rank": 2,
+          "layer": 22,
+          "alpha": 0.5,
+          "positive_sentiment_prob": 0.3243992211297154,
+          "perplexity": 32.3437295794487,
+          "harmonic_mean": 0.48265625527810896
+        },
+        {
+          "rank": 3,
+          "layer": 19,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.27492281566374005,
+          "perplexity": 30.13367178440094,
+          "harmonic_mean": 0.4312775836874673
+        },
+        {
+          "rank": 4,
+          "layer": 12,
+          "alpha": 0.5,
+          "positive_sentiment_prob": 0.32178161218762397,
+          "perplexity": 44.66540818214416,
+          "harmonic_mean": 0.42397808078124116
+        },
+        {
+          "rank": 5,
+          "layer": 23,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.26788095887750385,
+          "perplexity": 35.66750512123108,
+          "harmonic_mean": 0.40803702373034895
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 31,
+          "alpha": 0.05,
+          "negative_sentiment_prob": 0.2775496299844235,
+          "perplexity": 60.48601613044739,
+          "harmonic_mean": 0.4336078973637528
+        },
+        {
+          "rank": 2,
+          "layer": 26,
+          "alpha": 0.1,
+          "negative_sentiment_prob": 0.24138067705061986,
+          "perplexity": 43.48135547637939,
+          "harmonic_mean": 0.38870655108758334
+        },
+        {
+          "rank": 3,
+          "layer": 25,
+          "alpha": 0.05,
+          "negative_sentiment_prob": 0.2380338858230971,
+          "perplexity": 37.7227108001709,
+          "harmonic_mean": 0.38453052309012603
+        },
+        {
+          "rank": 4,
+          "layer": 17,
+          "alpha": 10.0,
+          "negative_sentiment_prob": 0.2284295992925763,
+          "perplexity": 757.0908622384071,
+          "harmonic_mean": 0.34499708971934534
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 0.1,
+          "negative_sentiment_prob": 0.18981526212883182,
+          "perplexity": 52.850424432754515,
+          "harmonic_mean": 0.318745540413026
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.46052568968690966,
+          "pos": {
+            "rank": 1,
+            "layer": 20,
+            "alpha": 0.1,
+            "positive_sentiment_prob": 0.3436959747225046,
+            "perplexity": 35.53208812475204,
+            "harmonic_mean": 0.49100672357691155
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 31,
+            "alpha": 0.05,
+            "negative_sentiment_prob": 0.2775496299844235,
+            "perplexity": 60.48601613044739,
+            "harmonic_mean": 0.4336078973637528
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.43061660878663977,
+          "pos": {
+            "rank": 2,
+            "layer": 22,
+            "alpha": 0.5,
+            "positive_sentiment_prob": 0.3243992211297154,
+            "perplexity": 32.3437295794487,
+            "harmonic_mean": 0.48265625527810896
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 26,
+            "alpha": 0.1,
+            "negative_sentiment_prob": 0.24138067705061986,
+            "perplexity": 43.48135547637939,
+            "harmonic_mean": 0.38870655108758334
+          }
+        },
+        {
+          "rank": 3,
+          "between_directions_harmonic_mean": 0.40656471411505296,
+          "pos": {
+            "rank": 3,
+            "layer": 19,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.27492281566374005,
+            "perplexity": 30.13367178440094,
+            "harmonic_mean": 0.4312775836874673
+          },
+          "neg": {
+            "rank": 3,
+            "layer": 25,
+            "alpha": 0.05,
+            "negative_sentiment_prob": 0.2380338858230971,
+            "perplexity": 37.7227108001709,
+            "harmonic_mean": 0.38453052309012603
+          }
+        },
+        {
+          "rank": 4,
+          "between_directions_harmonic_mean": 0.38043153949717845,
+          "pos": {
+            "rank": 4,
+            "layer": 12,
+            "alpha": 0.5,
+            "positive_sentiment_prob": 0.32178161218762397,
+            "perplexity": 44.66540818214416,
+            "harmonic_mean": 0.42397808078124116
+          },
+          "neg": {
+            "rank": 4,
+            "layer": 17,
+            "alpha": 10.0,
+            "negative_sentiment_prob": 0.2284295992925763,
+            "perplexity": 757.0908622384071,
+            "harmonic_mean": 0.34499708971934534
+          }
+        },
+        {
+          "rank": 5,
+          "between_directions_harmonic_mean": 0.357906169063779,
+          "pos": {
+            "rank": 5,
+            "layer": 23,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.26788095887750385,
+            "perplexity": 35.66750512123108,
+            "harmonic_mean": 0.40803702373034895
+          },
+          "neg": {
+            "rank": 5,
+            "layer": 27,
+            "alpha": 0.1,
+            "negative_sentiment_prob": 0.18981526212883182,
+            "perplexity": 52.850424432754515,
+            "harmonic_mean": 0.318745540413026
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 26,
+          "alpha": 0.01,
+          "pos_harmonic_mean": 0.32202854842293827,
+          "neg_harmonic_mean": 0.3833669159799441,
+          "cross_harmonic_mean": 0.35003086267617195
+        },
+        {
+          "rank": 2,
+          "layer": 14,
+          "alpha": 5.0,
+          "pos_harmonic_mean": 0.32970267614613574,
+          "neg_harmonic_mean": 0.3581067529386838,
+          "cross_harmonic_mean": 0.3433182209990525
+        },
+        {
+          "rank": 3,
+          "layer": 11,
+          "alpha": 10.0,
+          "pos_harmonic_mean": 0.3397159969592828,
+          "neg_harmonic_mean": 0.3093309922054609,
+          "cross_harmonic_mean": 0.3238122606275869
+        },
+        {
+          "rank": 4,
+          "layer": 29,
+          "alpha": 0.5,
+          "pos_harmonic_mean": 0.36298268062739114,
+          "neg_harmonic_mean": 0.29077836047292704,
+          "cross_harmonic_mean": 0.3228932350427558
+        },
+        {
+          "rank": 5,
+          "layer": 17,
+          "alpha": 0.05,
+          "pos_harmonic_mean": 0.2995293439129901,
+          "neg_harmonic_mean": 0.3472460258753633,
+          "cross_harmonic_mean": 0.32162750520594635
+        }
+      ]
+    },
+    "20": {
+      "tag": "20",
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_20",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_20",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_pos_20/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results_neg_20/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "by_harmonic_mean_unique_layer",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 12,
+          "alpha": 0.05,
+          "positive_sentiment_prob": 0.37957153413444755,
+          "perplexity": 29.22963171005249,
+          "harmonic_mean": 0.5497774837867327
+        },
+        {
+          "rank": 2,
+          "layer": 13,
+          "alpha": 1.0,
+          "positive_sentiment_prob": 0.3309117767959833,
+          "perplexity": 67.9796706199646,
+          "harmonic_mean": 0.48940360860358906
+        },
+        {
+          "rank": 3,
+          "layer": 28,
+          "alpha": 50.0,
+          "positive_sentiment_prob": 0.2977991868043318,
+          "perplexity": 49.25482301712036,
+          "harmonic_mean": 0.4553675751070735
+        },
+        {
+          "rank": 4,
+          "layer": 1,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.2861945183947682,
+          "perplexity": 71.73274678587913,
+          "harmonic_mean": 0.43810411860848175
+        },
+        {
+          "rank": 5,
+          "layer": 30,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.279272991605103,
+          "perplexity": 57.677494859695436,
+          "harmonic_mean": 0.4321201167465573
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 21,
+          "alpha": 5.0,
+          "negative_sentiment_prob": 0.325257970392704,
+          "perplexity": 67.27605862617493,
+          "harmonic_mean": 0.4842186981225304
+        },
+        {
+          "rank": 2,
+          "layer": 0,
+          "alpha": 100.0,
+          "negative_sentiment_prob": 0.3145941400900483,
+          "perplexity": 68.05058798789977,
+          "harmonic_mean": 0.47214792026944974
+        },
+        {
+          "rank": 3,
+          "layer": 18,
+          "alpha": 100.0,
+          "negative_sentiment_prob": 0.29688337463885545,
+          "perplexity": 46.573616123199464,
+          "harmonic_mean": 0.45572359967923465
+        },
+        {
+          "rank": 4,
+          "layer": 29,
+          "alpha": 0.1,
+          "negative_sentiment_prob": 0.28742401180788874,
+          "perplexity": 51.41970491409302,
+          "harmonic_mean": 0.44369586035980774
+        },
+        {
+          "rank": 5,
+          "layer": 28,
+          "alpha": 0.1,
+          "negative_sentiment_prob": 0.27727285436121746,
+          "perplexity": 49.396961092948914,
+          "harmonic_mean": 0.431819425488388
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.5149197687843172,
+          "pos": {
+            "rank": 1,
+            "layer": 12,
+            "alpha": 0.05,
+            "positive_sentiment_prob": 0.37957153413444755,
+            "perplexity": 29.22963171005249,
+            "harmonic_mean": 0.5497774837867327
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 21,
+            "alpha": 5.0,
+            "negative_sentiment_prob": 0.325257970392704,
+            "perplexity": 67.27605862617493,
+            "harmonic_mean": 0.4842186981225304
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.48062093197515676,
+          "pos": {
+            "rank": 2,
+            "layer": 13,
+            "alpha": 1.0,
+            "positive_sentiment_prob": 0.3309117767959833,
+            "perplexity": 67.9796706199646,
+            "harmonic_mean": 0.48940360860358906
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 0,
+            "alpha": 100.0,
+            "negative_sentiment_prob": 0.3145941400900483,
+            "perplexity": 68.05058798789977,
+            "harmonic_mean": 0.47214792026944974
+          }
+        },
+        {
+          "rank": 3,
+          "between_directions_harmonic_mean": 0.4555455178317866,
+          "pos": {
+            "rank": 3,
+            "layer": 28,
+            "alpha": 50.0,
+            "positive_sentiment_prob": 0.2977991868043318,
+            "perplexity": 49.25482301712036,
+            "harmonic_mean": 0.4553675751070735
+          },
+          "neg": {
+            "rank": 3,
+            "layer": 18,
+            "alpha": 100.0,
+            "negative_sentiment_prob": 0.29688337463885545,
+            "perplexity": 46.573616123199464,
+            "harmonic_mean": 0.45572359967923465
+          }
+        },
+        {
+          "rank": 4,
+          "between_directions_harmonic_mean": 0.44088226008033476,
+          "pos": {
+            "rank": 4,
+            "layer": 1,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.2861945183947682,
+            "perplexity": 71.73274678587913,
+            "harmonic_mean": 0.43810411860848175
+          },
+          "neg": {
+            "rank": 4,
+            "layer": 29,
+            "alpha": 0.1,
+            "negative_sentiment_prob": 0.28742401180788874,
+            "perplexity": 51.41970491409302,
+            "harmonic_mean": 0.44369586035980774
+          }
+        },
+        {
+          "rank": 5,
+          "between_directions_harmonic_mean": 0.43196971879018103,
+          "pos": {
+            "rank": 5,
+            "layer": 30,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.279272991605103,
+            "perplexity": 57.677494859695436,
+            "harmonic_mean": 0.4321201167465573
+          },
+          "neg": {
+            "rank": 5,
+            "layer": 28,
+            "alpha": 0.1,
+            "negative_sentiment_prob": 0.27727285436121746,
+            "perplexity": 49.396961092948914,
+            "harmonic_mean": 0.431819425488388
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 28,
+          "alpha": 0.1,
+          "pos_harmonic_mean": 0.45338063584420063,
+          "neg_harmonic_mean": 0.43166697309856483,
+          "cross_harmonic_mean": 0.4422574441394259
+        },
+        {
+          "rank": 2,
+          "layer": 26,
+          "alpha": 50.0,
+          "pos_harmonic_mean": 0.4276893633031064,
+          "neg_harmonic_mean": 0.43161085413346945,
+          "cross_harmonic_mean": 0.42964116068707575
+        },
+        {
+          "rank": 3,
+          "layer": 18,
+          "alpha": 100.0,
+          "pos_harmonic_mean": 0.4038204258722392,
+          "neg_harmonic_mean": 0.45557187015407674,
+          "cross_harmonic_mean": 0.42813794694617163
+        },
+        {
+          "rank": 4,
+          "layer": 14,
+          "alpha": 0.01,
+          "pos_harmonic_mean": 0.4211653624737371,
+          "neg_harmonic_mean": 0.4216288912111645,
+          "cross_harmonic_mean": 0.42139699937427605
+        },
+        {
+          "rank": 5,
+          "layer": 29,
+          "alpha": 50.0,
+          "pos_harmonic_mean": 0.40247185419514764,
+          "neg_harmonic_mean": 0.4371725166285641,
+          "cross_harmonic_mean": 0.4191051342321185
+        }
+      ]
+    }
+  }
+}
