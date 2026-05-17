@@ -56,7 +56,6 @@ tokenized_inputs = tokenizer(
 
 steered_x = resteer_v2(model, tokenized_inputs, steer_vectors, RESTEER_STEPS, REFILL_STEPS, alpha_decay=False)
 visualize_token_mask(steered_x, tokenizer)
-breakpoint()
 
 # decoded = tokenizer.batch_decode(
 #     steered_x,

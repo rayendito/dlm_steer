@@ -123,108 +123,14 @@ def generate(model, prompt, steers=None, attention_mask=None, steer_mask=None, s
     return x
 
 @torch.no_grad()
-def resteer(
-    model, prompt, steers, resteer_idx,
-    attention_mask=None, refine_steps=5, resteer_pad=3, remask_per_refine=10,
-    temperature=0., cfg_scale=0., remasking='low_confidence', mask_id=126336, logits_eos_inf=False, confidence_eos_eot_inf=False
-):
-    # instead of appending, remask and append where necessary
-    resteer_mask = torch.zeros(prompt.shape[0], prompt.shape[1], dtype=torch.long).to(model.device)
-    for item in resteer_idx:
-        if len(item) == 2:  # range
-            start, end = item
-            resteer_mask[0, start:end+1] = 1
-        else:  # single index
-            resteer_mask[0, item[0]] = 1
-    prompt[resteer_mask == 1] = mask_id
-
-    # now expand prompt + mask by inserting extra mask tokens after each remasked span
-    new_prompt_parts = []
-    new_mask_parts = []
-
-    i = 0
-    L = prompt.shape[1]
-    while i < L:
-        # check whether this position starts a remasked run
-        if resteer_mask[0, i] == 1:
-            j = i
-            while j + 1 < L and resteer_mask[0, j + 1] == 1:
-                j += 1
-
-            # keep the remasked span itself
-            new_prompt_parts.append(prompt[:, i:j+1])
-            new_mask_parts.append(resteer_mask[:, i:j+1])
-
-            # insert extra pad masks after the span
-            pad_tokens = torch.full(
-                (prompt.shape[0], resteer_pad),
-                mask_id,
-                dtype=prompt.dtype,
-                device=prompt.device,
-            )
-            pad_mask = torch.ones(
-                (prompt.shape[0], resteer_pad),
-                dtype=resteer_mask.dtype,
-                device=resteer_mask.device,
-            )
-
-            new_prompt_parts.append(pad_tokens)
-            new_mask_parts.append(pad_mask)
-
-            i = j + 1
-        else:
-            new_prompt_parts.append(prompt[:, i:i+1])
-            new_mask_parts.append(resteer_mask[:, i:i+1])
-            i += 1
-    
-    x = torch.cat(new_prompt_parts, dim=1).to(model.device)
-    resteer_mask = torch.cat(new_mask_parts, dim=1).to(model.device)
-    prompt_index = (x != mask_id).to(model.device)
-    attention_mask = torch.ones(prompt.shape, dtype=attention_mask.dtype).to(model.device)
-    
-    x = x.clone()
-    # STEER ONCE
-    logits = model(x, steers=steers, attention_mask=attention_mask).logits
-    if logits_eos_inf:
-        logits[:, :, 126081] = -torch.inf
-    logits_with_noise = add_gumbel_noise(logits, temperature=temperature)
-    x0 = torch.argmax(logits_with_noise, dim=-1) # b, l
-    x[resteer_mask == 1] = x0[resteer_mask == 1]
-    refine_evolution = [x.clone()]
-
-    # REFINE N TIMES
-    for _ in range(refine_steps):
-        logits = model(x, attention_mask=attention_mask).logits
-        if remasking == 'low_confidence':
-            p = F.softmax(logits, dim=-1)
-            x_p = torch.squeeze(torch.gather(p, dim=-1, index=torch.unsqueeze(x, -1)), -1) # b, l
-            probs = (1.0 - x_p)
-            transfer_index = (torch.rand_like(probs) < probs)
-        elif remasking == 'random':
-            x_p = torch.rand((x.shape[0], x.shape[1]), device=x.device)
-        else:
-            raise NotImplementedError(remasking)
-        
-        # REMASKING
-        transfer_index = transfer_index & (resteer_mask == 1)
-        x[transfer_index] = mask_id
-
-        # REDEMASKING
-        logits = model(x, attention_mask=attention_mask).logits
-        logits_with_noise = add_gumbel_noise(logits, temperature=1)
-        x0 = torch.argmax(logits_with_noise, dim=-1)  # recompute x0 each step
-        x[transfer_index] = x0[transfer_index]
-        refine_evolution.append(x.clone())
-
-    return refine_evolution
-
-@torch.no_grad()
 def resteer_v2(
     model,
     tokenized_inputs,
     steer_vectors,
     resteer_steps,
     refill_steps,
+    sampling_temp = 1,
+    identify_temp = 0.5,
     mask_id=126336,
     strategy="low_confidence",
     alpha_decay=False
@@ -249,7 +155,7 @@ def resteer_v2(
             out,
             attention_mask=attention_mask,
             steer_vectors=steer_vectors,
-            temperature=0.0001,
+            temperature=identify_temp,
         )
         
         # change indices in x back to mask_id according to to_resteer_mask
@@ -276,7 +182,7 @@ def resteer_v2(
             if not still_masked.any():
                 break
             logits = model(x, steers=refill_steer_vectors, attention_mask=attention_mask).logits
-            logits_with_noise = add_gumbel_noise(logits, temperature=0.0)
+            logits_with_noise = add_gumbel_noise(logits, temperature=sampling_temp)
             x0 = torch.argmax(logits_with_noise, dim=-1)
             if strategy == "low_confidence":
                 probs = torch.softmax(logits, dim=-1)
@@ -350,7 +256,7 @@ def resteer_v2_val(
 
 
 @torch.no_grad()
-def identify_to_steer(out, attention_mask, steer_vectors, tokenizer=None, temperature=0.1):
+def identify_to_steer(out, attention_mask, steer_vectors, tokenizer=None, temperature=0.0):
     sims = []
     for steer_idx, svector in steer_vectors.items():
         h = out.hidden_states[steer_idx] # [B, T, D]
