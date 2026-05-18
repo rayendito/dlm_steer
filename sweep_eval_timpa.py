@@ -697,7 +697,7 @@ def main() -> None:
         "--steer_vectors",
         dest="steer_vectors",
         type=Path,
-        required=True,
+        default=Path("steer_vectors/diffusion-val-n20.pt"),
     )
     parser.add_argument(
         "--steer-direction",
@@ -712,10 +712,10 @@ def main() -> None:
         "--steer_layers",
         dest="steer_layers",
         type=str,
-        default="25",
+        default="28",
         help="Comma-separated layer ids, sandbox.py style. Example: 16,25,31",
     )
-    parser.add_argument("--steer-alpha", "--steer_alpha", dest="steer_alpha", type=float, default=500.0)
+    parser.add_argument("--steer-alpha", "--steer_alpha", dest="steer_alpha", type=float, default=0.1)
     parser.add_argument("--batch-size", "--batch_size", dest="batch_size", type=int, default=2)
     parser.add_argument("--max-seq-len", "--max_seq_len", dest="max_seq_len", type=int, default=DEFAULT_MAX_SEQ_LEN)
     parser.add_argument("--sampling-temp", "--sampling_temp", dest="sampling_temp", type=float, default=1.0)
