@@ -206,6 +206,10 @@ def load_model_and_tokenizer(device: str) -> tuple[LLaDAModelLM, AutoTokenizer]:
 
 
 def robust_normalize(values: list[float], lo_pct: float = 0.0, hi_pct: float = 85.0) -> list[float]:
+    """
+    Match the repo's sweep behavior: robust-normalize perplexity with percentile clipping
+    before combining it with sentiment.
+    """
     arr = np.asarray(values, dtype=float)
     finite = np.isfinite(arr)
     if not np.any(finite):
@@ -265,9 +269,10 @@ def summarize_scored_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "avg_target_sentiment": 0.0,
             "avg_perplexity": 0.0,
             "perplexity_norm_avg": 0.0,
+            "normalized_perplexity_avg": 0.0,
             "harmonic_mean_avg": 0.0,
             "combined_score": 0.0,
-            "selection_metric": "harmonic_mean(target_sentiment, 1 - normalized_perplexity)",
+            "selection_metric": "harmonic_mean(target_sentiment, 1 - robust_normalized_perplexity)",
         }
 
     ppl_norm = robust_normalize([float(r["perplexity"]) for r in rows])
@@ -282,9 +287,10 @@ def summarize_scored_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "avg_target_sentiment": float(np.mean([r["target_sentiment"] for r in rows])),
         "avg_perplexity": float(np.mean([r["perplexity"] for r in rows])),
         "perplexity_norm_avg": float(np.mean(ppl_norm)),
+        "normalized_perplexity_avg": float(np.mean(ppl_norm)),
         "harmonic_mean_avg": float(np.mean(combined)),
         "combined_score": float(np.mean(combined)),
-        "selection_metric": "harmonic_mean(target_sentiment, 1 - normalized_perplexity)",
+        "selection_metric": "harmonic_mean(target_sentiment, 1 - robust_normalized_perplexity)",
     }
 
 
