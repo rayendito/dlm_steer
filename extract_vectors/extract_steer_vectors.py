@@ -99,6 +99,7 @@ def main() -> None:
     )
 
     out_path = Path("steer_vectors") / f"diffusion-val-{tag}.pt"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     torch.save(steer_vectors, out_path)
     print(
         f"Saved {out_path}  (pos={len(pos_sample)} neg={len(neg_sample)} texts, "
