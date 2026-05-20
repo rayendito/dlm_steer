@@ -1,4 +1,6 @@
 import os
+import random
+
 import torch
 from tqdm import tqdm
 from utils.args_utils import parse_args
@@ -24,7 +26,19 @@ main_tokenizer.padding_side = "left"
 # PARSING ARGS
 args = parse_args()
 
+def set_random_state(seed):
+    random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+
+def experiment_name(args):
+    prefix = f"{args.random_state}_"
+    return args.run_name if args.run_name.startswith(prefix) else f"{prefix}{args.run_name}"
+
 def main() -> None:
+    set_random_state(args.random_state)
+
     # DATA
     data = load_timpa_dataset(args.dataset_path)
     concepts = list(data.keys())
@@ -45,7 +59,7 @@ def main() -> None:
     steer_vectors = {si: steer_vectors_all[si] for si in args.steer_layers}
     counter_steer_vectors = {si: -steer_vectors_all[si] for si in args.steer_layers}
     
-    results_dir = f"results/{args.run_name}"
+    results_dir = f"results/{experiment_name(args)}"
     os.makedirs(results_dir, exist_ok=True)
     for conc, ster in tqdm(zip(concepts, [counter_steer_vectors, steer_vectors])):
         for rs in tqdm(args.refill_steps):
