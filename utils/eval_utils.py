@@ -1,37 +1,86 @@
-from __future__ import annotations
-import argparse
+import csv
 from pathlib import Path
 
-def assert_single_sweep_dimension(args: argparse.Namespace) -> None:
-    sweep_args = {
-        "refill_steps": args.refill_steps,
-        "sampling_temp": args.sampling_temp,
-        "identify_temp": args.identify_temp,
-    }
-    multi_value_args = [name for name, values in sweep_args.items() if len(values) > 1]
-    assert len(multi_value_args) <= 1, (
-        "Only one of refill_steps, sampling_temp, or identify_temp can have "
-        f"more than one value. Got multiple values for: {', '.join(multi_value_args)}"
+import torch
+import torch.nn.functional as F
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+def score_labels(batch_texts):
+    prompts = [f"Text: {t}\nSentiment:" for t in batch_texts]
+
+    inputs = tokenizer(prompts, return_tensors="pt", padding=True).to(device)
+    outputs = model(**inputs)
+    logits = outputs.logits  # [B, T, V]
+
+    # get logits for NEXT token after prompt
+    last_token_idx = inputs["attention_mask"].sum(dim=1) - 1
+    next_token_logits = logits[torch.arange(len(batch_texts)), last_token_idx]
+
+    probs = F.softmax(next_token_logits, dim=-1)
+
+    pos_id = tokenizer.encode(" positive", add_special_tokens=False)[0]
+    neg_id = tokenizer.encode(" negative", add_special_tokens=False)[0]
+
+    p_pos = probs[:, pos_id]
+    p_neg = probs[:, neg_id]
+
+    preds = ["positive" if p_pos[i] > p_neg[i] else "negative"
+             for i in range(len(batch_texts))]
+
+    return preds, p_pos, p_neg
+
+
+def perplexity(batch_texts):
+    # Empty / whitespace-only strings tokenize to length 0 and crash Qwen2 (position_ids view).
+    raw = [("" if t is None else str(t)) for t in batch_texts]
+    empty_ix = [i for i, t in enumerate(raw) if not t.strip()]
+    safe = [t if t.strip() else "." for t in raw]
+    enc = tokenizer(safe, return_tensors="pt", padding=True).to(device)
+    with torch.no_grad():
+        out = model(**enc)
+        shift_logits = out.logits[:, :-1]
+        shift_labels = enc["input_ids"][:, 1:]
+
+        loss = F.cross_entropy(
+            shift_logits.reshape(-1, shift_logits.size(-1)),
+            shift_labels.reshape(-1),
+            reduction="none"
+        ).view(shift_labels.shape)
+
+        mask = enc["attention_mask"][:, 1:]
+        mask_sum = mask.sum(dim=1).clamp(min=1)
+        loss = (loss * mask).sum(dim=1) / mask_sum
+
+        out_ppl = torch.exp(loss)
+        for i in empty_ix:
+            out_ppl[i] = float("inf")
+        return out_ppl
+
+def rearrange_results(results):
+    if not results:
+        return []
+
+    batch_size = next(
+        value.shape[0]
+        for value in results[0].values()
+        if isinstance(value, torch.Tensor) and value.ndim > 0
     )
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run a TIMPA experiment.")
-    parser.add_argument("--run-name", "--run_name", dest="run_name", type=str, required=True)
-    parser.add_argument("--random-state", "--random_state", dest="random_state", type=int, required=True)
-    parser.add_argument("--dataset-path", "--run_name", dest="run_name", type=str, required=True)
-    parser.add_argument(
-        "--steer-vector-path",
-        "--steer_vector_path",
-        dest="steer_vector_path",
-        type=Path,
-        required=True,
-    )
-    parser.add_argument("--batch-size", "--batch_size", dest="batch_size", type=int, required=True)
-    parser.add_argument("--resteer-steps", "--resteer_steps", dest="resteer_steps", type=int, required=True)
-    parser.add_argument("--refill-steps", "--refill_steps", dest="refill_steps", type=int, nargs="+", required=True)
-    parser.add_argument("--sampling-temp", "--sampling_temp", dest="sampling_temp", type=float, nargs="+", required=True)
-    parser.add_argument("--identify-temp", "--identify_temp", dest="identify_temp", type=float, nargs="+", required=True)
-    args = parser.parse_args()
-    assert_single_sweep_dimension(args)
-    return args
-
+    return [
+        [
+            {
+                key: (
+                    value[batch_idx]
+                    if (
+                        isinstance(value, torch.Tensor)
+                        and value.ndim > 0
+                        and value.shape[0] == batch_size
+                    )
+                    else value
+                )
+                for key, value in step_result.items()
+            }
+            for step_result in results
+        ]
+        for batch_idx in range(batch_size)
+    ]
