@@ -1,36 +1,43 @@
-import csv
-from pathlib import Path
-
 import torch
 import torch.nn.functional as F
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-def score_labels(batch_texts):
-    prompts = [f"Text: {t}\nSentiment:" for t in batch_texts]
+device = "cuda"
+def score_labels(model, tokenizer, batch_texts, label_1, label_2):
+    prompts = [f"Classify this sentence as either {label_1}/{label_2}!\nText: {t}\nClassification:" for t in batch_texts]
 
     inputs = tokenizer(prompts, return_tensors="pt", padding=True).to(device)
-    outputs = model(**inputs)
-    logits = outputs.logits  # [B, T, V]
 
-    # get logits for NEXT token after prompt
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+    logits = outputs.logits
+
     last_token_idx = inputs["attention_mask"].sum(dim=1) - 1
-    next_token_logits = logits[torch.arange(len(batch_texts)), last_token_idx]
+    next_token_logits = logits[torch.arange(len(batch_texts), device=device), last_token_idx]
 
     probs = F.softmax(next_token_logits, dim=-1)
 
-    pos_id = tokenizer.encode(" positive", add_special_tokens=False)[0]
-    neg_id = tokenizer.encode(" negative", add_special_tokens=False)[0]
+    label_1_id = tokenizer.encode(" " + label_1, add_special_tokens=False)[0]
+    label_2_id = tokenizer.encode(" " + label_2, add_special_tokens=False)[0]
 
-    p_pos = probs[:, pos_id]
-    p_neg = probs[:, neg_id]
+    p_label_1 = probs[:, label_1_id].cpu().detach().tolist()
+    p_label_2 = probs[:, label_2_id].cpu().detach().tolist()
 
-    preds = ["positive" if p_pos[i] > p_neg[i] else "negative"
-             for i in range(len(batch_texts))]
+    preds = [
+        label_1 if p_label_1[i] > p_label_2[i] else label_2
+        for i in range(len(batch_texts))
+    ]
 
-    return preds, p_pos, p_neg
+    prob_dict = {
+        label_1: p_label_1,
+        label_2: p_label_2,
+    }
+
+    return preds, prob_dict
 
 
-def perplexity(batch_texts):
+def perplexity(model, tokenizer, batch_texts):
     # Empty / whitespace-only strings tokenize to length 0 and crash Qwen2 (position_ids view).
     raw = [("" if t is None else str(t)) for t in batch_texts]
     empty_ix = [i for i, t in enumerate(raw) if not t.strip()]
@@ -54,7 +61,7 @@ def perplexity(batch_texts):
         out_ppl = torch.exp(loss)
         for i in empty_ix:
             out_ppl[i] = float("inf")
-        return out_ppl
+        return out_ppl.cpu().detach().tolist()
 
 def rearrange_results(results):
     if not results:

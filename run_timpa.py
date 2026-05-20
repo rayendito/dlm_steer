@@ -21,10 +21,6 @@ main_model = LLaDAModelLM.from_pretrained(MAIN_MODEL, config=main_config, torch_
 main_tokenizer = AutoTokenizer.from_pretrained(MAIN_MODEL, trust_remote_code=True)
 main_tokenizer.padding_side = "left"
 
-# # EVALUATION MODEL
-# eval_model = AutoModelForCausalLM.from_pretrained(EVAL_MODEL).to(DEVICE).eval()
-# eval_tokenizer = AutoTokenizer.from_pretrained(EVAL_MODEL)
-
 # PARSING ARGS
 args = parse_args()
 
@@ -51,11 +47,11 @@ def main() -> None:
     
     results_dir = f"results/{args.run_name}"
     os.makedirs(results_dir, exist_ok=True)
-    for conc, ster in tqdm(zip(concepts, [steer_vectors, counter_steer_vectors])):
+    for conc, ster in tqdm(zip(concepts, [counter_steer_vectors, steer_vectors])):
         for rs in tqdm(args.refill_steps):
             for st in tqdm(args.sampling_temp):
                 for it in tqdm(args.identify_temp):
-                    filesave_name = f"to_{conc}-rs{rs}-st{st}-it{it}"
+                    filesave_name = f"from_{conc}-rs{rs}-st{st}-it{it}"
                     results = run_steer_on_dataset(
                         data[conc], ster,
                         refill_steps=rs, samp_temp=st, iden_temp=it
