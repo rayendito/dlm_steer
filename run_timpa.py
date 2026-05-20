@@ -1,5 +1,6 @@
 import os
 import torch
+from tqdm import tqdm
 from utils.args_utils import parse_args
 from utils.data_utils import load_timpa_dataset
 from utils.steer_utils import l2_normalize
@@ -20,9 +21,9 @@ main_model = LLaDAModelLM.from_pretrained(MAIN_MODEL, config=main_config, torch_
 main_tokenizer = AutoTokenizer.from_pretrained(MAIN_MODEL, trust_remote_code=True)
 main_tokenizer.padding_side = "left"
 
-# EVALUATION MODEL
-eval_model = AutoModelForCausalLM.from_pretrained(EVAL_MODEL).to(DEVICE).eval()
-eval_tokenizer = AutoTokenizer.from_pretrained(EVAL_MODEL)
+# # EVALUATION MODEL
+# eval_model = AutoModelForCausalLM.from_pretrained(EVAL_MODEL).to(DEVICE).eval()
+# eval_tokenizer = AutoTokenizer.from_pretrained(EVAL_MODEL)
 
 # PARSING ARGS
 args = parse_args()
@@ -32,7 +33,7 @@ def main() -> None:
     data = load_timpa_dataset(args.dataset_path)
     concepts = list(data.keys())
     # trimming data to siz only (debugging purposes)
-    siz = 30
+    siz = 10
     data[concepts[0]] = data[concepts[0]][:siz]
     data[concepts[1]] = data[concepts[1]][:siz]
 
@@ -50,20 +51,20 @@ def main() -> None:
     
     results_dir = f"results/{args.run_name}"
     os.makedirs(results_dir, exist_ok=True)
-    for conc, ster in zip(concepts, [steer_vectors, counter_steer_vectors]):
-        for rs in args.refill_steps:
-            for st in args.sampling_temp:
-                for it in args.identify_temp:
-                    filesave_name = f"{args.run_name}-to_{conc}-rs{rs}-st{st}-it{it}"
+    for conc, ster in tqdm(zip(concepts, [steer_vectors, counter_steer_vectors])):
+        for rs in tqdm(args.refill_steps):
+            for st in tqdm(args.sampling_temp):
+                for it in tqdm(args.identify_temp):
+                    filesave_name = f"to_{conc}-rs{rs}-st{st}-it{it}"
                     results = run_steer_on_dataset(
-                        conc, data[conc], ster,
+                        data[conc], ster,
                         refill_steps=rs, samp_temp=st, iden_temp=it
                     )
-                    breakpoint()
+                    torch.save(results, f"{results_dir}/{filesave_name}.pt")
 
-def run_steer_on_dataset(direction, data, steer_vectors, refill_steps, samp_temp, iden_temp):
+def run_steer_on_dataset(data, steer_vectors, refill_steps, samp_temp, iden_temp):
     all_results = []
-    for i in range(0, len(data), args.batch_size):
+    for i in tqdm(range(0, len(data), args.batch_size)):
         batch = data[i:i + args.batch_size]
         tokenized_inputs = main_tokenizer(batch,add_special_tokens=False,padding=True,return_tensors="pt").to(DEVICE)
         steered_x = resteer_v2(

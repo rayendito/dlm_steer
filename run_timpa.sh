@@ -1,12 +1,12 @@
 python3 run_timpa.py \
-  --run-name "imdb_run" \
-  --dataset-path "benchmarks/imdb" \
+  --run-name "catdog_run" \
+  --dataset-path "benchmarks/cats_dogs" \
   --random-state 42 \
   --steer-vector-path "extract_vectors/steer_vectors/diffusion-val-n20.pt" \
   --steer-alpha 5 \
   --steer-layers 16 25 31 \
-  --batch-size 10 \
-  --resteer-steps 32 \
+  --batch-size 2 \
+  --resteer-steps 3 \
   --refill-steps 10 \
   --sampling-temp 1.0 \
   --identify-temp 0.5
