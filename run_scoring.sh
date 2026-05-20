@@ -1,0 +1,1 @@
+python run_scoring.py --run_name imdb_run --batch_size 4

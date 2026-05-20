@@ -1,9 +1,9 @@
-python3 run_timpa.py \
+python run_timpa.py \
   --run-name "imdb_run" \
   --dataset-path "benchmarks/imdb" \
   --random-state 42 \
   --steer-vector-path "extract_vectors/steer_vectors/diffusion-val-n20.pt" \
-  --steer-alpha 40 \
+  --steer-alpha 500 \
   --steer-layers 16 25 31 \
   --batch-size 2 \
   --resteer-steps 3 \
