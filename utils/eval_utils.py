@@ -18,7 +18,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run a TIMPA experiment.")
     parser.add_argument("--run-name", "--run_name", dest="run_name", type=str, required=True)
     parser.add_argument("--random-state", "--random_state", dest="random_state", type=int, required=True)
-    parser.add_argument("--dataset_path", "--run_name", dest="run_name", type=str, required=True)
+    parser.add_argument("--dataset-path", "--run_name", dest="run_name", type=str, required=True)
     parser.add_argument(
         "--steer-vector-path",
         "--steer_vector_path",
