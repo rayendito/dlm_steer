@@ -53,8 +53,8 @@ def main() -> None:
     test_rows = list(ds["test"])
     train_rows = list(ds["train"])
 
-    val_pos = sample_label(test_rows, label=1, n=20, rng=rng)
-    val_neg = sample_label(test_rows, label=0, n=20, rng=rng)
+    val_pos = sample_label(test_rows, label=1, n=2000, rng=rng)
+    val_neg = sample_label(test_rows, label=0, n=2000, rng=rng)
     train_pos = sample_label(train_rows, label=1, n=2000, rng=rng)
     train_neg = sample_label(train_rows, label=0, n=2000, rng=rng)
 

@@ -5,7 +5,7 @@
 Downloads **`stanfordnlp/imdb`** (via Hugging Face `datasets`) and writes balanced CSVs:
 
 - **Train:** 2,000 positive + 2,000 negative (random per label; `--seed` configurable).
-- **Val:** 20 positive + 20 negative from the **test** split (we use test as val).
+- **Val:** 2,000 positive + 2,000 negative from the **test** split (we use test as val).
 
 Default output directory: **`benchmarks/`** (`train_pos.csv`, `train_neg.csv`, `val_pos.csv`, `val_neg.csv`). Sampling is random for now; a later improvement could pick more contrastive rows.
 
@@ -25,7 +25,7 @@ python extract_vectors/extract_steer_vectors.py --num-samples 0   # uses "love" 
 
 ## 3. Val hyperparameter sweep (`extract_vectors/resteer_val_sweep_eval.py`)
 
-Sweeps **α × layer** for a chosen vector file so you can pick **α** and **layer** before larger experiments. Outputs: **`extract_vectors/results_{pos|neg}_{tag}/`** (`scores.json`, `eval_scores.json`, heatmaps). `{pos|neg}` comes from `--direction` (`positive` → `pos`, `negative` → `neg`). `{tag}` is inferred from the vector filename (e.g. `diffusion-val-n20.pt` → `20` → `results_neg_20/` with `--direction negative`).
+Sweeps **α × layer** for a chosen vector file so you can pick **α** and **layer** before larger experiments. Outputs: **`extract_vectors/results/results_{pos|neg}_{tag}/`** (`scores.json`, `eval_scores.json`, per-direction heatmaps). `{pos|neg}` comes from `--direction` (`positive` → `pos`, `negative` → `neg`). `{tag}` is inferred from the vector filename (e.g. `diffusion-val-n20.pt` → `20` → `results/results_neg_20/` with `--direction negative`). Current α grid: **10–100 step 5** (see `ALPHAS` in `resteer_val_sweep_eval.py`).
 
 **Example:**
 
@@ -39,7 +39,7 @@ python extract_vectors/resteer_val_sweep_eval.py --direction negative --vectors 
 
 ## 4. Merge pos + neg summaries (`extract_vectors/merge_eval_results.py`)
 
-After you have **paired** folders `results_pos_{tag}/` and `results_neg_{tag}/` (same `tag`, e.g. `0`, `1`, `20`), run the merge script. It auto-detects which tags have both directions, reads each side’s `eval_scores.json`, copies per-direction top‑5 harmonic-mean rows (unique layer), pairs those ranks, and builds **cross-direction** top‑5 over the **full** shared `(layer, α)` grid (not limited to those per-direction top‑5s), again **one α per layer** chosen by greedy cross harmonic mean.
+After you have **paired** folders under **`extract_vectors/results/`** — `results_pos_{tag}/` and `results_neg_{tag}/` (same `tag`, e.g. `0`, `20`, `200`) — run the merge script. It auto-detects which tags have both directions, reads each side’s `eval_scores.json`, copies per-direction top‑5 harmonic-mean rows (unique layer), pairs those ranks, and builds **cross-direction** top‑5 over the **full** layer×α union grid (missing direction scores padded with 0), again **one α per layer** chosen by greedy cross harmonic mean. It also writes **`extract_vectors/results/heatmaps/avg_combined_{tag}.png`** (pos / neg / cross harmonic panels).
 
 **Example:**
 
@@ -51,7 +51,7 @@ python extract_vectors/merge_eval_results.py
 
 ## Top 5 by vector variation (`n`)
 
-Snapshot from **`extract_vectors/results.json`** (per-direction top‑5: unique layers; harmonic mean = sentiment vs. 1 − robust-normalized perplexity, as in the sweep). **cross_hm** = harmonic mean of pos- and neg-direction harmonic scores on the **same** `(layer, α)`; the cross table is **top 5 over the full grid intersection with unique layers** (greedy by `cross_hm`).
+Snapshot from **`extract_vectors/results.json`** (paired tags: `0`, `1`, `5`, `10`, `20`, `50`, `100`, `200`, `500`, `1000`, `2000`; α grid 10–100 step 5). Per-direction top‑5: unique layers; harmonic mean = sentiment vs. 1 − robust-normalized perplexity, as in the sweep. **cross_hm** = harmonic mean of pos- and neg-direction harmonic scores on the **same** `(layer, α)`; the cross table is **top 5 over the full union grid with unique layers** (greedy by `cross_hm`). Heatmaps: **`extract_vectors/results/heatmaps/avg_combined_{n}.png`**.
 
 ### n=0
 
@@ -59,11 +59,11 @@ Snapshot from **`extract_vectors/results.json`** (per-direction top‑5: unique 
 
 | rank | layer | α | cross_hm | pos_hm | neg_hm |
 |------|-------|---|----------|--------|--------|
-| 1 | 0 | 10.0 | 0.3403 | 0.3830 | 0.3061 |
-| 2 | 26 | 50.0 | 0.1433 | 0.3055 | 0.0936 |
-| 3 | 10 | 5.0 | 0.1422 | 0.3305 | 0.0906 |
-| 4 | 23 | 0.01 | 0.1358 | 0.2727 | 0.0904 |
-| 5 | 24 | 0.1 | 0.1329 | 0.2290 | 0.0936 |
+| 1 | 11 | 45.0 | 0.2368 | 0.1997 | 0.2910 |
+| 2 | 32 | 90.0 | 0.2278 | 0.2176 | 0.2390 |
+| 3 | 0 | 20.0 | 0.2240 | 0.1638 | 0.3540 |
+| 4 | 23 | 10.0 | 0.2148 | 0.1695 | 0.2934 |
+| 5 | 4 | 10.0 | 0.2137 | 0.1693 | 0.2898 |
 
 ### n=1
 
@@ -71,11 +71,11 @@ Snapshot from **`extract_vectors/results.json`** (per-direction top‑5: unique 
 
 | rank | layer | α | cross_hm | pos_hm | neg_hm |
 |------|-------|---|----------|--------|--------|
-| 1 | 14 | 100.0 | 0.2398 | 0.3748 | 0.1763 |
-| 2 | 0 | 50.0 | 0.2172 | 0.1571 | 0.3520 |
-| 3 | 13 | 0.1 | 0.1831 | 0.3651 | 0.1222 |
-| 4 | 8 | 100.0 | 0.1827 | 0.4784 | 0.1129 |
-| 5 | 15 | 100.0 | 0.1822 | 0.2893 | 0.1330 |
+| 1 | 9 | 15.0 | 0.3545 | 0.2825 | 0.4757 |
+| 2 | 11 | 15.0 | 0.3308 | 0.3435 | 0.3191 |
+| 3 | 4 | 25.0 | 0.3147 | 0.2284 | 0.5060 |
+| 4 | 7 | 20.0 | 0.3067 | 0.2217 | 0.4973 |
+| 5 | 5 | 20.0 | 0.2993 | 0.2397 | 0.3985 |
 
 ### n=5
 
@@ -83,11 +83,11 @@ Snapshot from **`extract_vectors/results.json`** (per-direction top‑5: unique 
 
 | rank | layer | α | cross_hm | pos_hm | neg_hm |
 |------|-------|---|----------|--------|--------|
-| 1 | 13 | 10.0 | 0.3246 | 0.4156 | 0.2663 |
-| 2 | 29 | 0.01 | 0.3183 | 0.3644 | 0.2826 |
-| 3 | 27 | 0.5 | 0.2984 | 0.2630 | 0.3447 |
-| 4 | 30 | 0.05 | 0.2862 | 0.2955 | 0.2774 |
-| 5 | 20 | 100.0 | 0.2807 | 0.3279 | 0.2453 |
+| 1 | 32 | 15.0 | 0.3310 | 0.2716 | 0.4236 |
+| 2 | 11 | 30.0 | 0.2655 | 0.2199 | 0.3350 |
+| 3 | 5 | 75.0 | 0.2533 | 0.2057 | 0.3297 |
+| 4 | 6 | 60.0 | 0.2429 | 0.1829 | 0.3616 |
+| 5 | 10 | 30.0 | 0.2324 | 0.1886 | 0.3027 |
 
 ### n=10
 
@@ -95,11 +95,11 @@ Snapshot from **`extract_vectors/results.json`** (per-direction top‑5: unique 
 
 | rank | layer | α | cross_hm | pos_hm | neg_hm |
 |------|-------|---|----------|--------|--------|
-| 1 | 26 | 0.01 | 0.3500 | 0.3220 | 0.3834 |
-| 2 | 14 | 5.0 | 0.3433 | 0.3297 | 0.3581 |
-| 3 | 11 | 10.0 | 0.3238 | 0.3397 | 0.3093 |
-| 4 | 29 | 0.5 | 0.3229 | 0.3630 | 0.2908 |
-| 5 | 17 | 0.05 | 0.3216 | 0.2995 | 0.3472 |
+| 1 | 32 | 15.0 | 0.3729 | 0.3165 | 0.4537 |
+| 2 | 6 | 40.0 | 0.2904 | 0.2279 | 0.4002 |
+| 3 | 5 | 55.0 | 0.2853 | 0.2556 | 0.3227 |
+| 4 | 2 | 90.0 | 0.2852 | 0.2406 | 0.3500 |
+| 5 | 7 | 55.0 | 0.2820 | 0.2116 | 0.4225 |
 
 ### n=20
 
@@ -107,8 +107,80 @@ Snapshot from **`extract_vectors/results.json`** (per-direction top‑5: unique 
 
 | rank | layer | α | cross_hm | pos_hm | neg_hm |
 |------|-------|---|----------|--------|--------|
-| 1 | 28 | 0.1 | 0.4423 | 0.4534 | 0.4317 |
-| 2 | 26 | 50.0 | 0.4296 | 0.4277 | 0.4316 |
-| 3 | 18 | 100.0 | 0.4281 | 0.4038 | 0.4556 |
-| 4 | 14 | 0.01 | 0.4214 | 0.4212 | 0.4216 |
-| 5 | 29 | 50.0 | 0.4191 | 0.4025 | 0.4372 |
+| 1 | 32 | 15.0 | 0.4725 | 0.3832 | 0.6160 |
+| 2 | 10 | 55.0 | 0.3118 | 0.2605 | 0.3884 |
+| 3 | 8 | 85.0 | 0.2948 | 0.2384 | 0.3860 |
+| 4 | 5 | 100.0 | 0.2919 | 0.2261 | 0.4116 |
+| 5 | 11 | 50.0 | 0.2880 | 0.2129 | 0.4449 |
+
+### n=50
+
+**Pos + Neg (layer, α): top 5 by cross-direction harmonic mean**
+
+| rank | layer | α | cross_hm | pos_hm | neg_hm |
+|------|-------|---|----------|--------|--------|
+| 1 | 32 | 15.0 | 0.5449 | 0.5200 | 0.5724 |
+| 2 | 29 | 30.0 | 0.3026 | 0.2218 | 0.4756 |
+| 3 | 1 | 70.0 | 0.2958 | 0.2389 | 0.3883 |
+| 4 | 11 | 70.0 | 0.2834 | 0.2119 | 0.4276 |
+| 5 | 27 | 30.0 | 0.2800 | 0.2218 | 0.3793 |
+
+### n=100
+
+**Pos + Neg (layer, α): top 5 by cross-direction harmonic mean**
+
+| rank | layer | α | cross_hm | pos_hm | neg_hm |
+|------|-------|---|----------|--------|--------|
+| 1 | 32 | 25.0 | 0.4754 | 0.3839 | 0.6241 |
+| 2 | 25 | 25.0 | 0.3114 | 0.2252 | 0.5044 |
+| 3 | 30 | 30.0 | 0.2985 | 0.2058 | 0.5436 |
+| 4 | 29 | 30.0 | 0.2978 | 0.2237 | 0.4454 |
+| 5 | 28 | 35.0 | 0.2849 | 0.2038 | 0.4730 |
+
+### n=200
+
+**Pos + Neg (layer, α): top 5 by cross-direction harmonic mean**
+
+| rank | layer | α | cross_hm | pos_hm | neg_hm |
+|------|-------|---|----------|--------|--------|
+| 1 | 32 | 25.0 | 0.4953 | 0.4020 | 0.6450 |
+| 2 | 28 | 10.0 | 0.3515 | 0.2616 | 0.5352 |
+| 3 | 25 | 25.0 | 0.3248 | 0.2547 | 0.4481 |
+| 4 | 29 | 30.0 | 0.3193 | 0.2432 | 0.4645 |
+| 5 | 31 | 35.0 | 0.2877 | 0.1965 | 0.5366 |
+
+### n=500
+
+**Pos + Neg (layer, α): top 5 by cross-direction harmonic mean**
+
+| rank | layer | α | cross_hm | pos_hm | neg_hm |
+|------|-------|---|----------|--------|--------|
+| 1 | 32 | 25.0 | 0.4628 | 0.3613 | 0.6435 |
+| 2 | 29 | 30.0 | 0.3342 | 0.2546 | 0.4862 |
+| 3 | 25 | 25.0 | 0.3313 | 0.2370 | 0.5499 |
+| 4 | 28 | 35.0 | 0.2992 | 0.2211 | 0.4628 |
+| 5 | 27 | 30.0 | 0.2751 | 0.2216 | 0.3629 |
+
+### n=1000
+
+**Pos + Neg (layer, α): top 5 by cross-direction harmonic mean**
+
+| rank | layer | α | cross_hm | pos_hm | neg_hm |
+|------|-------|---|----------|--------|--------|
+| 1 | 32 | 15.0 | 0.4887 | 0.4023 | 0.6222 |
+| 2 | 29 | 30.0 | 0.3527 | 0.2748 | 0.4921 |
+| 3 | 25 | 30.0 | 0.3296 | 0.2522 | 0.4755 |
+| 4 | 27 | 35.0 | 0.3049 | 0.2430 | 0.4092 |
+| 5 | 30 | 40.0 | 0.3005 | 0.2167 | 0.4902 |
+
+### n=2000
+
+**Pos + Neg (layer, α): top 5 by cross-direction harmonic mean**
+
+| rank | layer | α | cross_hm | pos_hm | neg_hm |
+|------|-------|---|----------|--------|--------|
+| 1 | 32 | 25.0 | 0.4825 | 0.3876 | 0.6390 |
+| 2 | 29 | 30.0 | 0.3795 | 0.2970 | 0.5252 |
+| 3 | 25 | 25.0 | 0.3580 | 0.2696 | 0.5325 |
+| 4 | 30 | 40.0 | 0.3033 | 0.2108 | 0.5407 |
+| 5 | 26 | 15.0 | 0.2966 | 0.2531 | 0.3582 |

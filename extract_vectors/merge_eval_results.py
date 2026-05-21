@@ -10,12 +10,14 @@ e.g. ``0``, ``1``, ``20``). When both exist and contain ``eval_scores.json``:
 - If top-5 lists are missing, recomputes direction-wise harmonic mean
   (sentiment vs. 1 − robust-normalized perplexity) from ``results_per_sample``,
   aligned with ``resteer_val_sweep_eval.py``.
-- Computes **cross-direction** harmonic mean on the **full** intersection of
-  ``(layer, alpha)`` keys from both sweeps (every cell, not only per-direction
-  top-5), sorts by that score, then keeps **top 5 with unique layers** (greedy:
-  best cross score per layer, then next unseen layer).
+- Computes **cross-direction** harmonic mean on the **full** layer×α grid (union of
+  both sweeps; missing direction scores padded with 0), sorts by that score, then
+  keeps **top 5 with unique layers** (greedy: best cross score per layer, then next
+  unseen layer).
 - Pairs top-5 rows **by rank** (1 with 1, …) and reports harmonic mean of the two
   listed direction scores when both lists have that rank.
+- Writes ``extract_vectors/merged_{tag}/heatmaps_avg_combined.png`` per paired tag
+  (3 panels: pos harmonic, neg harmonic, cross harmonic; same layout as sweep avg).
 
 Writes ``extract_vectors/results.json`` (default path; override with ``--out``).
 
@@ -31,10 +33,13 @@ import json
 import re
 import sys
 from collections import defaultdict
+from itertools import product
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+
+WORST_HARMONIC_SCORE = 0.0
 
 RE_POS = re.compile(r"^results_pos_(.+)$")
 RE_NEG = re.compile(r"^results_neg_(.+)$")
@@ -103,26 +108,61 @@ def _harmonic_two(a: float, b: float, eps: float = 1e-8) -> float:
     return (2.0 * a * b) / d
 
 
-def _intersection_topk_cross_unique_layer(
+def _grid_axes(
+    hm_pos: dict[tuple[int, float], float],
+    hm_neg: dict[tuple[int, float], float],
+) -> tuple[list[int], list[float]]:
+    keys = set(hm_pos.keys()) | set(hm_neg.keys())
+    layers = sorted({k[0] for k in keys})
+    alphas = sorted({k[1] for k in keys})
+    return layers, alphas
+
+
+def _padded_direction_maps(
+    hm_pos: dict[tuple[int, float], float],
+    hm_neg: dict[tuple[int, float], float],
+) -> tuple[list[int], list[float], dict[tuple[int, float], float], dict[tuple[int, float], float]]:
+    layers, alphas = _grid_axes(hm_pos, hm_neg)
+    pos_filled: dict[tuple[int, float], float] = {}
+    neg_filled: dict[tuple[int, float], float] = {}
+    for layer, alpha in product(layers, alphas):
+        key = (layer, alpha)
+        pos_filled[key] = float(hm_pos.get(key, WORST_HARMONIC_SCORE))
+        neg_filled[key] = float(hm_neg.get(key, WORST_HARMONIC_SCORE))
+    return layers, alphas, pos_filled, neg_filled
+
+
+def _cross_harmonic_map(
+    pos_filled: dict[tuple[int, float], float],
+    neg_filled: dict[tuple[int, float], float],
+) -> dict[tuple[int, float], float]:
+    return {
+        key: float(_harmonic_two(pos_filled[key], neg_filled[key]))
+        for key in pos_filled.keys()
+    }
+
+
+def _union_topk_cross_unique_layer(
     hm_pos: dict[tuple[int, float], float],
     hm_neg: dict[tuple[int, float], float],
     k: int = 5,
 ) -> list[dict[str, Any]]:
-    """Cross-direction harmonic mean, full grid intersection, greedy top-k with one row per layer."""
-    common = sorted(
-        set(hm_pos.keys()) & set(hm_neg.keys()),
-        key=lambda key: (-_harmonic_two(hm_pos[key], hm_neg[key]), key[0], key[1]),
+    """Cross harmonic on full layer×α grid; missing direction scores use WORST_HARMONIC_SCORE."""
+    _, _, pos_filled, neg_filled = _padded_direction_maps(hm_pos, hm_neg)
+    cross = _cross_harmonic_map(pos_filled, neg_filled)
+    ranked = sorted(
+        cross.keys(),
+        key=lambda key: (-cross[key], key[0], key[1]),
     )
     out: list[dict[str, Any]] = []
     seen_layers: set[int] = set()
-    for key in common:
+    for key in ranked:
         layer = int(key[0])
         if layer in seen_layers:
             continue
         seen_layers.add(layer)
-        ph = float(hm_pos[key])
-        nh = float(hm_neg[key])
-        ch = float(_harmonic_two(ph, nh))
+        ph = float(pos_filled[key])
+        nh = float(neg_filled[key])
         out.append(
             {
                 "rank": len(out) + 1,
@@ -130,12 +170,91 @@ def _intersection_topk_cross_unique_layer(
                 "alpha": float(key[1]),
                 "pos_harmonic_mean": ph,
                 "neg_harmonic_mean": nh,
-                "cross_harmonic_mean": ch,
+                "cross_harmonic_mean": float(cross[key]),
             }
         )
         if len(out) >= k:
             break
     return out
+
+
+def _fmt_alpha(a: float) -> str:
+    if abs(a - round(a)) < 1e-9:
+        return str(int(round(a)))
+    return f"{a:.3g}"
+
+
+def _matrix_from_map(
+    layers: list[int],
+    alphas: list[float],
+    hm: dict[tuple[int, float], float],
+) -> np.ndarray:
+    li = {l: i for i, l in enumerate(layers)}
+    ai = {a: j for j, a in enumerate(alphas)}
+    m = np.full((len(layers), len(alphas)), WORST_HARMONIC_SCORE, dtype=float)
+    for (layer, alpha), v in hm.items():
+        if layer in li and alpha in ai:
+            m[li[layer], ai[alpha]] = float(v)
+    return m
+
+
+def _plot_combined_avg_heatmap(
+    tag: str,
+    layers: list[int],
+    alphas: list[float],
+    pos_filled: dict[tuple[int, float], float],
+    neg_filled: dict[tuple[int, float], float],
+    cross: dict[tuple[int, float], float],
+    out_png: Path,
+) -> None:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    m_pos = _matrix_from_map(layers, alphas, pos_filled)
+    m_neg = _matrix_from_map(layers, alphas, neg_filled)
+    m_cross = _matrix_from_map(layers, alphas, cross)
+
+    fig, axes = plt.subplots(1, 3, figsize=(20, 5), constrained_layout=True)
+    for ax, m, title, cmap in [
+        (axes[0], m_pos, f"Tag {tag} — positive harmonic mean", "cividis"),
+        (axes[1], m_neg, f"Tag {tag} — negative harmonic mean", "cividis"),
+        (axes[2], m_cross, f"Tag {tag} — cross harmonic mean", "cividis"),
+    ]:
+        im = ax.imshow(
+            m,
+            aspect="auto",
+            origin="lower",
+            interpolation="nearest",
+            cmap=cmap,
+            vmin=0.0,
+            vmax=1.0,
+        )
+        ax.set_xlabel("alpha")
+        ax.set_ylabel("layer")
+        ax.set_title(title, fontsize=10)
+        if alphas:
+            step_x = max(1, len(alphas) // 8)
+            xt = list(range(0, len(alphas), step_x))
+            if (len(alphas) - 1) not in xt:
+                xt.append(len(alphas) - 1)
+            ax.set_xticks(xt)
+            ax.set_xticklabels([_fmt_alpha(alphas[i]) for i in xt], rotation=30, ha="right")
+        if layers:
+            step_y = max(1, len(layers) // 16)
+            yt = list(range(0, len(layers), step_y))
+            ax.set_yticks(yt)
+            ax.set_yticklabels([str(layers[i]) for i in yt])
+        fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="harmonic mean")
+    fig.suptitle(
+        f"Merged val sweep (N={tag}): pos, neg, and cross harmonic means (avg over prompts)",
+        fontsize=12,
+    )
+    out_png.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out_png, dpi=150)
+    plt.close(fig)
+    print(f"Saved combined avg heatmap: {out_png}", file=sys.stderr)
 
 
 def _aggregate_per_sample(rows: list[dict[str, Any]], sentiment_key: str) -> dict[tuple[int, float], dict[str, float]]:
@@ -246,6 +365,7 @@ def _process_pair(
     tag: str,
     pos_dir: Path,
     neg_dir: Path,
+    ev_dir: Path,
 ) -> dict[str, Any] | None:
     pos_eval = pos_dir / "eval_scores.json"
     neg_eval = neg_dir / "eval_scores.json"
@@ -273,7 +393,14 @@ def _process_pair(
     avg_neg = _aggregate_per_sample(neg_rows, neg_key)
     hm_pos = _direction_harmonic_map(avg_pos, pos_key)
     hm_neg = _direction_harmonic_map(avg_neg, neg_key)
-    cross_top5 = _intersection_topk_cross_unique_layer(hm_pos, hm_neg, k=5)
+    layers, alphas, pos_filled, neg_filled = _padded_direction_maps(hm_pos, hm_neg)
+    cross_filled = _cross_harmonic_map(pos_filled, neg_filled)
+    cross_top5 = _union_topk_cross_unique_layer(hm_pos, hm_neg, k=5)
+
+    heatmap_path = ev_dir / "heatmaps" / f"avg_combined_{tag}.png"
+    _plot_combined_avg_heatmap(
+        tag, layers, alphas, pos_filled, neg_filled, cross_filled, heatmap_path
+    )
 
     paired_by_rank: list[dict[str, Any]] = []
     n_pair = min(len(pos_top5), len(neg_top5), 5)
@@ -303,6 +430,7 @@ def _process_pair(
         "neg_top5": neg_top5,
         "paired_top5_by_rank_harmonic": paired_by_rank,
         "intersection_top5_by_cross_harmonic": cross_top5,
+        "heatmap_combined": str(heatmap_path.resolve()),
     }
 
 
@@ -326,7 +454,7 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    ev = args.extract_vectors_dir.resolve()
+    ev = (args.extract_vectors_dir.resolve() / 'results').resolve()
     pos_map, neg_map = _discover_tags(ev)
     pair_tags = sorted(set(pos_map.keys()) & set(neg_map.keys()), key=_tag_sort_key)
 
@@ -336,6 +464,7 @@ def main() -> None:
             tag,
             pos_map[tag],
             neg_map[tag],
+            ev,
         )
         if merged is not None:
             per_tag[tag] = merged

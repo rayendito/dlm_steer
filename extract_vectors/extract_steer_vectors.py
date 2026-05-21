@@ -28,18 +28,25 @@ def load_texts_from_csv(path: Path, n: int) -> list[str]:
                 texts.append(t)
     return texts
 
-@torch.no_grad()
-def extract_steer_dict(
+def _mean_hidden_per_layer(
     model: torch.nn.Module,
     tokenizer: AutoTokenizer,
-    pos_texts: list[str],
-    neg_texts: list[str],
+    texts: list[str],
     device: str,
-) -> dict[str, tuple[torch.Tensor, ...]]:
-    steer_vectors: dict[str, tuple[torch.Tensor, ...]] = {}
-    for sentiment, dataset in [("positive", pos_texts), ("negative", neg_texts)]:
+    batch_size: int,
+) -> tuple[torch.Tensor, ...]:
+    """Mask-mean over tokens, then mean over texts; processed in chunks to limit VRAM."""
+    if not texts:
+        raise ValueError("texts must be non-empty")
+
+    layer_sums: list[torch.Tensor] | None = None
+    n_seen = 0
+    bs = max(1, batch_size)
+
+    for start in range(0, len(texts), bs):
+        chunk = texts[start : start + bs]
         inputs = tokenizer(
-            dataset,
+            chunk,
             return_tensors="pt",
             truncation=True,
             max_length=256,
@@ -49,14 +56,36 @@ def extract_steer_dict(
         out = model(**inputs, output_hidden_states=True)
         mask = inputs["attention_mask"].unsqueeze(-1)
 
-        averaged_over_tokens = tuple(
+        per_instance = tuple(
             (h * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1)
             for h in out.hidden_states
         )
-        averaged_over_instances = tuple(
-            h.mean(dim=0) for h in averaged_over_tokens
+        if layer_sums is None:
+            layer_sums = [h.sum(dim=0) for h in per_instance]
+        else:
+            for i, h in enumerate(per_instance):
+                layer_sums[i] = layer_sums[i] + h.sum(dim=0)
+        n_seen += len(chunk)
+        del inputs, out, per_instance
+
+    assert layer_sums is not None
+    return tuple(s / n_seen for s in layer_sums)
+
+
+@torch.no_grad()
+def extract_steer_dict(
+    model: torch.nn.Module,
+    tokenizer: AutoTokenizer,
+    pos_texts: list[str],
+    neg_texts: list[str],
+    device: str,
+    batch_size: int = 8,
+) -> dict[str, tuple[torch.Tensor, ...]]:
+    steer_vectors: dict[str, tuple[torch.Tensor, ...]] = {}
+    for sentiment, dataset in [("positive", pos_texts), ("negative", neg_texts)]:
+        steer_vectors[sentiment] = _mean_hidden_per_layer(
+            model, tokenizer, dataset, device, batch_size
         )
-        steer_vectors[sentiment] = averaged_over_instances
     return steer_vectors
 
 
@@ -69,6 +98,12 @@ def main() -> None:
         type=int,
         default=20,
         help="0=only 'love' (pos) and 'hate' (neg); else first N rows from each val CSV (1, 5, 20, ...).",
+    )
+    ap.add_argument(
+        "--batch-size",
+        type=int,
+        default=8,
+        help="Forward-pass batch size when averaging hidden states (lower if OOM).",
     )
     args = ap.parse_args()
 
@@ -95,7 +130,12 @@ def main() -> None:
     model.eval()
 
     steer_vectors = extract_steer_dict(
-        model, tokenizer, pos_sample, neg_sample, device
+        model,
+        tokenizer,
+        pos_sample,
+        neg_sample,
+        device,
+        batch_size=max(1, args.batch_size),
     )
 
     out_path = Path("steer_vectors") / f"diffusion-val-{tag}.pt"
