@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lllllllll}
+\toprule
+Stage & k & u & sampling temp & identify temp & Target prob ↑ & PPL ↓ & Harmonic ↑ & N \\
+\midrule
+Refill sweep & 5 & 5 & 0.5 & 0.5 & 0.037 & 30.20 & 0.051 & 2100 \\
+Sampling-temp sweep & 5 & 10 & 0.25 & 0.5 & 0.034 & 22.04 & 0.047 & 2100 \\
+Identify-temp sweep & 5 & 10 & 0.5 & 0.25 & 0.037 & 23.48 & 0.051 & 2100 \\
+Overall best steering & 5 & 5 & 0.5 & 0.5 & 0.037 & 30.20 & 0.051 & 2100 \\
+\bottomrule
+\end{tabular}
+\caption{Best cats/dogs steering configurations from the greedy ablations.}
+\label{tab:best-steering}
+\end{table}
