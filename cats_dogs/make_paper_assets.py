@@ -283,7 +283,7 @@ def steering_depth_figure(cats_dir: Path, out_dir: Path) -> None:
     ax2.spines["top"].set_visible(False)
     lines = ax1.get_lines() + ax2.get_lines()
     ax1.legend(lines, [l.get_label() for l in lines], loc="upper left", frameon=False)
-    ax1.set_title("Repeated steering improves target movement, with fluency tradeoffs")
+    ax1.set_title("Repeated steering improves target movement while PPL decreases")
     save(fig, out_dir / "figure_2_steering_depth_k.pdf")
 
 
