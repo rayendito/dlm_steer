@@ -16,21 +16,23 @@ Builds per-layer **positive** and **negative** direction vectors (mean hidden st
 **Examples:**
 
 ```bash
-python extract_vectors/extract_steer_vectors.py --num-samples 20
-python extract_vectors/extract_steer_vectors.py --num-samples 0   # uses "love" / "hate" only
+python extract_vectors/extract_steer_vectors.py --data imdb --num-samples 20
+python extract_vectors/extract_steer_vectors.py --data imdb --num-samples 0   # love / hate
+python extract_vectors/extract_steer_vectors.py --data cats-dogs --num-samples 100
+python extract_vectors/extract_steer_vectors.py --data cats-dogs --num-samples 0   # cat / dog
 ```
 
-- `--num-samples 0` → synthetic **love** (pos) / **hate** (neg); writes `steer_vectors/diffusion-val-n0.pt`.
-- `--num-samples N` with `N > 0` → first `N` rows from `benchmarks/val_pos.csv` and `val_neg.csv`; writes `steer_vectors/diffusion-val-n{N}.pt`.
+- `--data imdb` (default): `--num-samples 0` → **love** / **hate** → `steer_vectors/diffusion-imdb-n0.pt`; `N > 0` → first `N` rows from `benchmarks/imdb/val_pos.csv` and `val_neg.csv` → `steer_vectors/diffusion-imdb-n{N}.pt`.
+- `--data cats-dogs`: **cat** = positive, **dog** = negative; `N > 0` → first `N` of each from `benchmarks/cats_dogs/train.csv` (up to ~1000 per class); `N = 0` → single tokens **cat** / **dog** → `steer_vectors/diffusion-catdog-n0.pt`. Val split (`val.csv`, ~100 cat / ~100 dog) is for downstream eval, not extraction.
 
 ## 3. Val hyperparameter sweep (`extract_vectors/resteer_val_sweep_eval.py`)
 
-Sweeps **α × layer** for a chosen vector file so you can pick **α** and **layer** before larger experiments. Outputs: **`extract_vectors/results/results_{pos|neg}_{tag}/`** (`scores.json`, `eval_scores.json`, per-direction heatmaps). `{pos|neg}` comes from `--direction` (`positive` → `pos`, `negative` → `neg`). `{tag}` is inferred from the vector filename (e.g. `diffusion-val-n20.pt` → `20` → `results/results_neg_20/` with `--direction negative`). Current α grid: **10–100 step 5** (see `ALPHAS` in `resteer_val_sweep_eval.py`).
+Sweeps **α × layer** for a chosen vector file so you can pick **α** and **layer** before larger experiments. Outputs: **`extract_vectors/results/results_{pos|neg}_{tag}/`** (`scores.json`, `eval_scores.json`, per-direction heatmaps). `{pos|neg}` comes from `--direction` (`positive` → `pos`, `negative` → `neg`). `{tag}` is inferred from the vector filename (e.g. `diffusion-imdb-n20.pt` → `20` → `results/results_neg_20/` with `--direction negative`). Current α grid: **10–100 step 5** (see `ALPHAS` in `resteer_val_sweep_eval.py`).
 
 **Example:**
 
 ```bash
-python extract_vectors/resteer_val_sweep_eval.py --direction negative --vectors steer_vectors/diffusion-val-n20.pt
+python extract_vectors/resteer_val_sweep_eval.py --direction negative --vectors steer_vectors/diffusion-imdb-n20.pt
 ```
 
 **Evaluation:** sentiment and perplexity use `eval_dito.py` (same metrics as elsewhere in the repo).

@@ -1,9 +1,12 @@
 """
-Extract contrastive steering vectors (per-layer mean hidden states) from val_pos / val_neg
-or from the fixed pair ("love", "hate") when --num-samples is 0.
+Extract contrastive steering vectors (per-layer mean hidden states).
 
-Output format matches diffusion-get_steer.py: a dict with keys "positive" and "negative",
-each a tuple of [num_layers+1] tensors of shape [hidden_dim].
+Datasets (--data):
+  imdb      — val_pos / val_neg under benchmarks/imdb/ (or love/hate when n=0)
+  cats-dogs — train.csv: cat=positive, dog=negative (or cat/dog tokens when n=0)
+
+Output: dict with keys "positive" and "negative", each a tuple of [num_layers+1]
+tensors of shape [hidden_dim].
 """
 
 from __future__ import annotations
@@ -15,8 +18,13 @@ from pathlib import Path
 import torch
 from transformers import AutoModel, AutoTokenizer
 
-def load_texts_from_csv(path: Path, n: int) -> list[str]:
+REPO_ROOT = Path(__file__).resolve().parent.parent
+IMDB_VAL_POS = REPO_ROOT / "benchmarks/imdb/val_pos.csv"
+IMDB_VAL_NEG = REPO_ROOT / "benchmarks/imdb/val_neg.csv"
+CATS_DOGS_TRAIN = REPO_ROOT / "benchmarks/cats_dogs/train.csv"
 
+
+def load_texts_from_csv(path: Path, n: int) -> list[str]:
     texts: list[str] = []
     with path.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
@@ -27,6 +35,50 @@ def load_texts_from_csv(path: Path, n: int) -> list[str]:
             if t:
                 texts.append(t)
     return texts
+
+
+def load_texts_by_concept(path: Path, concept: str, n: int) -> list[str]:
+    """First n non-empty rows where concept column matches (e.g. cat, dog)."""
+    texts: list[str] = []
+    with path.open(encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            if (row.get("concept") or "").strip().lower() != concept.lower():
+                continue
+            t = (row.get("text") or "").strip()
+            if t:
+                texts.append(t)
+            if len(texts) >= n:
+                break
+    return texts
+
+
+def resolve_samples(
+    data: str,
+    n: int,
+) -> tuple[list[str], list[str], str]:
+    if n == 0:
+        if data == "cats-dogs":
+            return ["cat"], ["dog"], "n0"
+        return ["love"], ["hate"], "n0"
+
+    if data == "imdb":
+        pos = load_texts_from_csv(IMDB_VAL_POS, n)
+        neg = load_texts_from_csv(IMDB_VAL_NEG, n)
+        return pos, neg, f"n{n}"
+
+    if data == "cats-dogs":
+        pos = load_texts_by_concept(CATS_DOGS_TRAIN, "cat", n)
+        neg = load_texts_by_concept(CATS_DOGS_TRAIN, "dog", n)
+        return pos, neg, f"n{n}"
+
+    raise ValueError(f"Unknown data: {data!r}")
+
+
+def output_filename(data: str, tag: str) -> str:
+    if data == "imdb":
+        return f"diffusion-imdb-{tag}.pt"
+    return f"diffusion-catdog-{tag}.pt"
+
 
 def _mean_hidden_per_layer(
     model: torch.nn.Module,
@@ -91,13 +143,22 @@ def extract_steer_dict(
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="Extract diffusion steer vectors from val CSVs or love/hate (num-samples=0)."
+        description="Extract diffusion steer vectors from IMDB val or cats-dogs train CSVs."
+    )
+    ap.add_argument(
+        "--data",
+        choices=("imdb", "cats-dogs"),
+        default="imdb",
+        help="imdb: val_pos/val_neg; cats-dogs: cat=positive, dog=negative from train.csv.",
     )
     ap.add_argument(
         "--num-samples",
         type=int,
         default=20,
-        help="0=only 'love' (pos) and 'hate' (neg); else first N rows from each val CSV (1, 5, 20, ...).",
+        help=(
+            "0=synthetic pair (love/hate for imdb, cat/dog for cats-dogs); "
+            "else first N per class from val CSV (imdb) or train.csv (cats-dogs)."
+        ),
     )
     ap.add_argument(
         "--batch-size",
@@ -107,15 +168,20 @@ def main() -> None:
     )
     args = ap.parse_args()
 
+    data = args.data
     n = args.num_samples
-    if n == 0:
-        pos_sample = list(["love"])
-        neg_sample = list(["hate"])
-        tag = "n0"
-    else:
-        pos_sample = load_texts_from_csv(Path("../benchmarks/imdb/val_pos.csv"), n)
-        neg_sample = load_texts_from_csv(Path("../benchmarks/imdb/val_neg.csv"), n)
-        tag = f"n{n}"
+    pos_sample, neg_sample, tag = resolve_samples(data, n)
+
+    if n > 0 and (not pos_sample or not neg_sample):
+        raise SystemExit(
+            f"Not enough texts for {data} with --num-samples {n}: "
+            f"pos={len(pos_sample)} neg={len(neg_sample)}"
+        )
+    if n > 0 and (len(pos_sample) < n or len(neg_sample) < n):
+        print(
+            f"Warning: requested {n} per class, got pos={len(pos_sample)} neg={len(neg_sample)}",
+            flush=True,
+        )
 
     device = "cuda"
     torch.cuda.empty_cache() if device == "cuda" else None
@@ -138,12 +204,15 @@ def main() -> None:
         batch_size=max(1, args.batch_size),
     )
 
-    out_path = Path("steer_vectors") / f"diffusion-val-{tag}.pt"
+    out_path = REPO_ROOT / "steer_vectors" / output_filename(data, tag)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     torch.save(steer_vectors, out_path)
+    pos_label = "cat" if data == "cats-dogs" else "pos"
+    neg_label = "dog" if data == "cats-dogs" else "neg"
     print(
-        f"Saved {out_path}  (pos={len(pos_sample)} neg={len(neg_sample)} texts, "
-        f"layers={len(steer_vectors['positive'])})"
+        f"Saved {out_path}  (data={data} {pos_label}={len(pos_sample)} {neg_label}={len(neg_sample)} texts, "
+        f"layers={len(steer_vectors['positive'])})",
+        flush=True,
     )
 
 

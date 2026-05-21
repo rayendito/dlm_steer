@@ -42,7 +42,7 @@ def main() -> None:
     ap.add_argument(
         "--out-dir",
         type=Path,
-        default=Path("benchmarks"),
+        default=Path("../benchmarks/imdb"),
         help="Directory for train_pos, train_neg, val_pos, val_neg CSVs",
     )
     args = ap.parse_args()
