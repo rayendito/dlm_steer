@@ -1,24 +1,143 @@
 {
   "script": "extract_vectors/merge_eval_results.py",
   "extract_vectors_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results",
-  "tags_pos_only": [],
-  "tags_neg_only": [],
+  "pair_patterns": [
+    {
+      "data": "imdb",
+      "side_a": "results_pos_{tag}",
+      "side_b": "results_neg_{tag}"
+    },
+    {
+      "data": "cats-dogs",
+      "side_a": "results_cats_{tag}",
+      "side_b": "results_dogs_{tag}"
+    }
+  ],
+  "unpaired": {
+    "imdb": {
+      "side_a_only": [],
+      "side_b_only": []
+    },
+    "cats-dogs": {
+      "side_a_only": [],
+      "side_b_only": []
+    }
+  },
   "tags_paired": [
     "0",
+    "catdog-0",
     "1",
+    "catdog-1",
     "5",
+    "catdog-5",
     "10",
+    "catdog-10",
     "20",
+    "catdog-20",
     "50",
+    "catdog-50",
     "100",
-    "200",
-    "500",
-    "1000",
-    "2000"
+    "catdog-100"
   ],
   "per_tag": {
     "0": {
+      "merge_key": "0",
       "tag": "0",
+      "data": "imdb",
+      "side_a_label": "positive",
+      "side_b_label": "negative",
+      "side_a_abbrev": "pos",
+      "side_b_abbrev": "neg",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_0",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_0",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_0/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_0/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 90.0,
+          "positive_sentiment_prob": 0.12206402458250523,
+          "perplexity": 177.10492973327638,
+          "harmonic_mean": 0.21756497891289148
+        },
+        {
+          "rank": 2,
+          "layer": 10,
+          "alpha": 35.0,
+          "positive_sentiment_prob": 0.12861227178946139,
+          "perplexity": 3651.4413879394533,
+          "harmonic_mean": 0.21357950588442723
+        },
+        {
+          "rank": 3,
+          "layer": 4,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.11975776506587862,
+          "perplexity": 3637.0587463378906,
+          "harmonic_mean": 0.20130416451807998
+        },
+        {
+          "rank": 4,
+          "layer": 11,
+          "alpha": 85.0,
+          "positive_sentiment_prob": 0.11715405753348022,
+          "perplexity": 4021.467333984375,
+          "harmonic_mean": 0.19548614518190932
+        },
+        {
+          "rank": 5,
+          "layer": 13,
+          "alpha": 55.0,
+          "positive_sentiment_prob": 0.11529801115393638,
+          "perplexity": 3571.683978271484,
+          "harmonic_mean": 0.19529565475891872
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 0,
+          "alpha": 10.0,
+          "negative_sentiment_prob": 0.266076837759465,
+          "perplexity": 3611.35673828125,
+          "harmonic_mean": 0.372988147627034
+        },
+        {
+          "rank": 2,
+          "layer": 32,
+          "alpha": 35.0,
+          "negative_sentiment_prob": 0.21442559328861535,
+          "perplexity": 166.5792152404785,
+          "harmonic_mean": 0.35313088669015863
+        },
+        {
+          "rank": 3,
+          "layer": 2,
+          "alpha": 10.0,
+          "negative_sentiment_prob": 0.18019703775644302,
+          "perplexity": 3713.775390625,
+          "harmonic_mean": 0.2784512665142267
+        },
+        {
+          "rank": 4,
+          "layer": 15,
+          "alpha": 10.0,
+          "negative_sentiment_prob": 0.20621420815587044,
+          "perplexity": 7602.997314453125,
+          "harmonic_mean": 0.19629247744360512
+        },
+        {
+          "rank": 5,
+          "layer": 23,
+          "alpha": 75.0,
+          "negative_sentiment_prob": 0.1199634484219132,
+          "perplexity": 7224.593664550781,
+          "harmonic_mean": 0.15736114557871383
+        }
+      ],
       "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_0",
       "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_0",
       "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_0/eval_scores.json",
@@ -113,6 +232,22 @@
         {
           "rank": 1,
           "between_directions_harmonic_mean": 0.2748242446829138,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 90.0,
+            "positive_sentiment_prob": 0.12206402458250523,
+            "perplexity": 177.10492973327638,
+            "harmonic_mean": 0.21756497891289148
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 0,
+            "alpha": 10.0,
+            "negative_sentiment_prob": 0.266076837759465,
+            "perplexity": 3611.35673828125,
+            "harmonic_mean": 0.372988147627034
+          },
           "pos": {
             "rank": 1,
             "layer": 32,
@@ -133,6 +268,22 @@
         {
           "rank": 2,
           "between_directions_harmonic_mean": 0.26617306222026754,
+          "side_a": {
+            "rank": 2,
+            "layer": 10,
+            "alpha": 35.0,
+            "positive_sentiment_prob": 0.12861227178946139,
+            "perplexity": 3651.4413879394533,
+            "harmonic_mean": 0.21357950588442723
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 32,
+            "alpha": 35.0,
+            "negative_sentiment_prob": 0.21442559328861535,
+            "perplexity": 166.5792152404785,
+            "harmonic_mean": 0.35313088669015863
+          },
           "pos": {
             "rank": 2,
             "layer": 10,
@@ -153,6 +304,22 @@
         {
           "rank": 3,
           "between_directions_harmonic_mean": 0.2336748932431491,
+          "side_a": {
+            "rank": 3,
+            "layer": 4,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.11975776506587862,
+            "perplexity": 3637.0587463378906,
+            "harmonic_mean": 0.20130416451807998
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 2,
+            "alpha": 10.0,
+            "negative_sentiment_prob": 0.18019703775644302,
+            "perplexity": 3713.775390625,
+            "harmonic_mean": 0.2784512665142267
+          },
           "pos": {
             "rank": 3,
             "layer": 4,
@@ -173,6 +340,22 @@
         {
           "rank": 4,
           "between_directions_harmonic_mean": 0.19588848154349633,
+          "side_a": {
+            "rank": 4,
+            "layer": 11,
+            "alpha": 85.0,
+            "positive_sentiment_prob": 0.11715405753348022,
+            "perplexity": 4021.467333984375,
+            "harmonic_mean": 0.19548614518190932
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 15,
+            "alpha": 10.0,
+            "negative_sentiment_prob": 0.20621420815587044,
+            "perplexity": 7602.997314453125,
+            "harmonic_mean": 0.19629247744360512
+          },
           "pos": {
             "rank": 4,
             "layer": 11,
@@ -193,6 +376,22 @@
         {
           "rank": 5,
           "between_directions_harmonic_mean": 0.17428813469631532,
+          "side_a": {
+            "rank": 5,
+            "layer": 13,
+            "alpha": 55.0,
+            "positive_sentiment_prob": 0.11529801115393638,
+            "perplexity": 3571.683978271484,
+            "harmonic_mean": 0.19529565475891872
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 23,
+            "alpha": 75.0,
+            "negative_sentiment_prob": 0.1199634484219132,
+            "perplexity": 7224.593664550781,
+            "harmonic_mean": 0.15736114557871383
+          },
           "pos": {
             "rank": 5,
             "layer": 13,
@@ -216,47 +415,163 @@
           "rank": 1,
           "layer": 11,
           "alpha": 45.0,
+          "side_a_harmonic_mean": 0.19965064610085134,
+          "side_b_harmonic_mean": 0.2910055446261923,
+          "cross_harmonic_mean": 0.2368234462402642,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.19965064610085134,
-          "neg_harmonic_mean": 0.2910055446261923,
-          "cross_harmonic_mean": 0.2368234462402642
+          "neg_harmonic_mean": 0.2910055446261923
         },
         {
           "rank": 2,
           "layer": 32,
           "alpha": 90.0,
+          "side_a_harmonic_mean": 0.21755874631350702,
+          "side_b_harmonic_mean": 0.23903428805387192,
+          "cross_harmonic_mean": 0.2277914734594886,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.21755874631350702,
-          "neg_harmonic_mean": 0.23903428805387192,
-          "cross_harmonic_mean": 0.2277914734594886
+          "neg_harmonic_mean": 0.23903428805387192
         },
         {
           "rank": 3,
           "layer": 0,
           "alpha": 20.0,
+          "side_a_harmonic_mean": 0.16384911540410213,
+          "side_b_harmonic_mean": 0.35402111606247977,
+          "cross_harmonic_mean": 0.22401769082938067,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.16384911540410213,
-          "neg_harmonic_mean": 0.35402111606247977,
-          "cross_harmonic_mean": 0.22401769082938067
+          "neg_harmonic_mean": 0.35402111606247977
         },
         {
           "rank": 4,
           "layer": 23,
           "alpha": 10.0,
+          "side_a_harmonic_mean": 0.16945050364781802,
+          "side_b_harmonic_mean": 0.29336279880522426,
+          "cross_harmonic_mean": 0.21481869144901017,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.16945050364781802,
-          "neg_harmonic_mean": 0.29336279880522426,
-          "cross_harmonic_mean": 0.21481869144901017
+          "neg_harmonic_mean": 0.29336279880522426
         },
         {
           "rank": 5,
           "layer": 4,
           "alpha": 10.0,
+          "side_a_harmonic_mean": 0.16928301596754305,
+          "side_b_harmonic_mean": 0.2897847954880279,
+          "cross_harmonic_mean": 0.21371850928171068,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.16928301596754305,
-          "neg_harmonic_mean": 0.2897847954880279,
-          "cross_harmonic_mean": 0.21371850928171068
+          "neg_harmonic_mean": 0.2897847954880279
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_0.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_imdb_0.png"
     },
     "1": {
+      "merge_key": "1",
       "tag": "1",
+      "data": "imdb",
+      "side_a_label": "positive",
+      "side_b_label": "negative",
+      "side_a_abbrev": "pos",
+      "side_b_abbrev": "neg",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_1",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_1",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_1/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_1/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 11,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.22164402613416315,
+          "perplexity": 2138.8521484375,
+          "harmonic_mean": 0.3427651188637397
+        },
+        {
+          "rank": 2,
+          "layer": 10,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.18106666621752082,
+          "perplexity": 1388.3914276123046,
+          "harmonic_mean": 0.29808564885532873
+        },
+        {
+          "rank": 3,
+          "layer": 9,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.17320331409573556,
+          "perplexity": 2119.4937530517577,
+          "harmonic_mean": 0.28197579796910316
+        },
+        {
+          "rank": 4,
+          "layer": 1,
+          "alpha": 70.0,
+          "positive_sentiment_prob": 0.15963258584961296,
+          "perplexity": 3115.7380126953126,
+          "harmonic_mean": 0.25573568985441997
+        },
+        {
+          "rank": 5,
+          "layer": 12,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.1439931530505419,
+          "perplexity": 1586.5283447265624,
+          "harmonic_mean": 0.2449582850881789
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 4,
+          "alpha": 20.0,
+          "negative_sentiment_prob": 0.39457855001091957,
+          "perplexity": 2706.3450561523437,
+          "harmonic_mean": 0.48832789847814767
+        },
+        {
+          "rank": 2,
+          "layer": 9,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.31885017063468696,
+          "perplexity": 2546.457904052734,
+          "harmonic_mean": 0.43058947052526514
+        },
+        {
+          "rank": 3,
+          "layer": 6,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.30572755709290506,
+          "perplexity": 2640.176156616211,
+          "harmonic_mean": 0.4158107074118803
+        },
+        {
+          "rank": 4,
+          "layer": 3,
+          "alpha": 20.0,
+          "negative_sentiment_prob": 0.29807871878147124,
+          "perplexity": 2614.5829345703123,
+          "harmonic_mean": 0.409385465809079
+        },
+        {
+          "rank": 5,
+          "layer": 32,
+          "alpha": 80.0,
+          "negative_sentiment_prob": 0.24891155529767275,
+          "perplexity": 168.28976402282714,
+          "harmonic_mean": 0.3982810862644398
+        }
+      ],
       "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_1",
       "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_1",
       "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_1/eval_scores.json",
@@ -351,6 +666,22 @@
         {
           "rank": 1,
           "between_directions_harmonic_mean": 0.40279912518501293,
+          "side_a": {
+            "rank": 1,
+            "layer": 11,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.22164402613416315,
+            "perplexity": 2138.8521484375,
+            "harmonic_mean": 0.3427651188637397
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 4,
+            "alpha": 20.0,
+            "negative_sentiment_prob": 0.39457855001091957,
+            "perplexity": 2706.3450561523437,
+            "harmonic_mean": 0.48832789847814767
+          },
           "pos": {
             "rank": 1,
             "layer": 11,
@@ -371,6 +702,22 @@
         {
           "rank": 2,
           "between_directions_harmonic_mean": 0.3522901723909593,
+          "side_a": {
+            "rank": 2,
+            "layer": 10,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.18106666621752082,
+            "perplexity": 1388.3914276123046,
+            "harmonic_mean": 0.29808564885532873
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 9,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.31885017063468696,
+            "perplexity": 2546.457904052734,
+            "harmonic_mean": 0.43058947052526514
+          },
           "pos": {
             "rank": 2,
             "layer": 10,
@@ -391,6 +738,22 @@
         {
           "rank": 3,
           "between_directions_harmonic_mean": 0.3360585368802621,
+          "side_a": {
+            "rank": 3,
+            "layer": 9,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.17320331409573556,
+            "perplexity": 2119.4937530517577,
+            "harmonic_mean": 0.28197579796910316
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 6,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.30572755709290506,
+            "perplexity": 2640.176156616211,
+            "harmonic_mean": 0.4158107074118803
+          },
           "pos": {
             "rank": 3,
             "layer": 9,
@@ -411,6 +774,22 @@
         {
           "rank": 4,
           "between_directions_harmonic_mean": 0.31481324454525506,
+          "side_a": {
+            "rank": 4,
+            "layer": 1,
+            "alpha": 70.0,
+            "positive_sentiment_prob": 0.15963258584961296,
+            "perplexity": 3115.7380126953126,
+            "harmonic_mean": 0.25573568985441997
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 3,
+            "alpha": 20.0,
+            "negative_sentiment_prob": 0.29807871878147124,
+            "perplexity": 2614.5829345703123,
+            "harmonic_mean": 0.409385465809079
+          },
           "pos": {
             "rank": 4,
             "layer": 1,
@@ -431,6 +810,22 @@
         {
           "rank": 5,
           "between_directions_harmonic_mean": 0.303346642694579,
+          "side_a": {
+            "rank": 5,
+            "layer": 12,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.1439931530505419,
+            "perplexity": 1586.5283447265624,
+            "harmonic_mean": 0.2449582850881789
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 32,
+            "alpha": 80.0,
+            "negative_sentiment_prob": 0.24891155529767275,
+            "perplexity": 168.28976402282714,
+            "harmonic_mean": 0.3982810862644398
+          },
           "pos": {
             "rank": 5,
             "layer": 12,
@@ -454,47 +849,163 @@
           "rank": 1,
           "layer": 9,
           "alpha": 15.0,
+          "side_a_harmonic_mean": 0.28247622523220256,
+          "side_b_harmonic_mean": 0.4757163867537458,
+          "cross_harmonic_mean": 0.3544707956447118,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.28247622523220256,
-          "neg_harmonic_mean": 0.4757163867537458,
-          "cross_harmonic_mean": 0.3544707956447118
+          "neg_harmonic_mean": 0.4757163867537458
         },
         {
           "rank": 2,
           "layer": 11,
           "alpha": 15.0,
+          "side_a_harmonic_mean": 0.3435160845462081,
+          "side_b_harmonic_mean": 0.3190561182213618,
+          "cross_harmonic_mean": 0.33083461100272643,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.3435160845462081,
-          "neg_harmonic_mean": 0.3190561182213618,
-          "cross_harmonic_mean": 0.33083461100272643
+          "neg_harmonic_mean": 0.3190561182213618
         },
         {
           "rank": 3,
           "layer": 4,
           "alpha": 25.0,
+          "side_a_harmonic_mean": 0.2284255968157686,
+          "side_b_harmonic_mean": 0.5059514808727381,
+          "cross_harmonic_mean": 0.31474911864609767,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.2284255968157686,
-          "neg_harmonic_mean": 0.5059514808727381,
-          "cross_harmonic_mean": 0.31474911864609767
+          "neg_harmonic_mean": 0.5059514808727381
         },
         {
           "rank": 4,
           "layer": 7,
           "alpha": 20.0,
+          "side_a_harmonic_mean": 0.22170727784848632,
+          "side_b_harmonic_mean": 0.4972909280326392,
+          "cross_harmonic_mean": 0.30668509893637336,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.22170727784848632,
-          "neg_harmonic_mean": 0.4972909280326392,
-          "cross_harmonic_mean": 0.30668509893637336
+          "neg_harmonic_mean": 0.4972909280326392
         },
         {
           "rank": 5,
           "layer": 5,
           "alpha": 20.0,
+          "side_a_harmonic_mean": 0.23966933582150685,
+          "side_b_harmonic_mean": 0.3984953473266396,
+          "cross_harmonic_mean": 0.29931808432452833,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.23966933582150685,
-          "neg_harmonic_mean": 0.3984953473266396,
-          "cross_harmonic_mean": 0.29931808432452833
+          "neg_harmonic_mean": 0.3984953473266396
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_1.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_imdb_1.png"
     },
     "5": {
+      "merge_key": "5",
       "tag": "5",
+      "data": "imdb",
+      "side_a_label": "positive",
+      "side_b_label": "negative",
+      "side_a_abbrev": "pos",
+      "side_b_abbrev": "neg",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_5",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_5",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_5/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_5/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.15742497462779284,
+          "perplexity": 200.89434509277345,
+          "harmonic_mean": 0.2716775507581853
+        },
+        {
+          "rank": 2,
+          "layer": 11,
+          "alpha": 30.0,
+          "positive_sentiment_prob": 0.12494444455951452,
+          "perplexity": 1266.0627349853517,
+          "harmonic_mean": 0.21865635373427225
+        },
+        {
+          "rank": 3,
+          "layer": 13,
+          "alpha": 100.0,
+          "positive_sentiment_prob": 0.1626771830022335,
+          "perplexity": 6810.892651367188,
+          "harmonic_mean": 0.20338311427300063
+        },
+        {
+          "rank": 4,
+          "layer": 5,
+          "alpha": 75.0,
+          "positive_sentiment_prob": 0.11905247974209487,
+          "perplexity": 3568.480780029297,
+          "harmonic_mean": 0.19996297546755118
+        },
+        {
+          "rank": 5,
+          "layer": 22,
+          "alpha": 35.0,
+          "positive_sentiment_prob": 0.12948670564219356,
+          "perplexity": 5392.241204833985,
+          "harmonic_mean": 0.19856808257891437
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.2722329689189792,
+          "perplexity": 1111.0220458984375,
+          "harmonic_mean": 0.4103119240453571
+        },
+        {
+          "rank": 2,
+          "layer": 13,
+          "alpha": 20.0,
+          "negative_sentiment_prob": 0.26983954655006526,
+          "perplexity": 1059.4706451416016,
+          "harmonic_mean": 0.40854227430657514
+        },
+        {
+          "rank": 3,
+          "layer": 19,
+          "alpha": 10.0,
+          "negative_sentiment_prob": 0.24826738917035981,
+          "perplexity": 250.2021770477295,
+          "harmonic_mean": 0.39506954018733775
+        },
+        {
+          "rank": 4,
+          "layer": 18,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.2476675673155114,
+          "perplexity": 574.0468032836914,
+          "harmonic_mean": 0.38993288073284676
+        },
+        {
+          "rank": 5,
+          "layer": 10,
+          "alpha": 25.0,
+          "negative_sentiment_prob": 0.23985768707934768,
+          "perplexity": 1222.073551940918,
+          "harmonic_mean": 0.37067061553558756
+        }
+      ],
       "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_5",
       "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_5",
       "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_5/eval_scores.json",
@@ -589,6 +1100,22 @@
         {
           "rank": 1,
           "between_directions_harmonic_mean": 0.32690398514913316,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.15742497462779284,
+            "perplexity": 200.89434509277345,
+            "harmonic_mean": 0.2716775507581853
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.2722329689189792,
+            "perplexity": 1111.0220458984375,
+            "harmonic_mean": 0.4103119240453571
+          },
           "pos": {
             "rank": 1,
             "layer": 32,
@@ -609,6 +1136,22 @@
         {
           "rank": 2,
           "between_directions_harmonic_mean": 0.28485510029006245,
+          "side_a": {
+            "rank": 2,
+            "layer": 11,
+            "alpha": 30.0,
+            "positive_sentiment_prob": 0.12494444455951452,
+            "perplexity": 1266.0627349853517,
+            "harmonic_mean": 0.21865635373427225
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 13,
+            "alpha": 20.0,
+            "negative_sentiment_prob": 0.26983954655006526,
+            "perplexity": 1059.4706451416016,
+            "harmonic_mean": 0.40854227430657514
+          },
           "pos": {
             "rank": 2,
             "layer": 11,
@@ -629,6 +1172,22 @@
         {
           "rank": 3,
           "between_directions_harmonic_mean": 0.26852741929989465,
+          "side_a": {
+            "rank": 3,
+            "layer": 13,
+            "alpha": 100.0,
+            "positive_sentiment_prob": 0.1626771830022335,
+            "perplexity": 6810.892651367188,
+            "harmonic_mean": 0.20338311427300063
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 19,
+            "alpha": 10.0,
+            "negative_sentiment_prob": 0.24826738917035981,
+            "perplexity": 250.2021770477295,
+            "harmonic_mean": 0.39506954018733775
+          },
           "pos": {
             "rank": 3,
             "layer": 13,
@@ -649,6 +1208,22 @@
         {
           "rank": 4,
           "between_directions_harmonic_mean": 0.264358999116228,
+          "side_a": {
+            "rank": 4,
+            "layer": 5,
+            "alpha": 75.0,
+            "positive_sentiment_prob": 0.11905247974209487,
+            "perplexity": 3568.480780029297,
+            "harmonic_mean": 0.19996297546755118
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 18,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.2476675673155114,
+            "perplexity": 574.0468032836914,
+            "harmonic_mean": 0.38993288073284676
+          },
           "pos": {
             "rank": 4,
             "layer": 5,
@@ -669,6 +1244,22 @@
         {
           "rank": 5,
           "between_directions_harmonic_mean": 0.2586027746850138,
+          "side_a": {
+            "rank": 5,
+            "layer": 22,
+            "alpha": 35.0,
+            "positive_sentiment_prob": 0.12948670564219356,
+            "perplexity": 5392.241204833985,
+            "harmonic_mean": 0.19856808257891437
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 10,
+            "alpha": 25.0,
+            "negative_sentiment_prob": 0.23985768707934768,
+            "perplexity": 1222.073551940918,
+            "harmonic_mean": 0.37067061553558756
+          },
           "pos": {
             "rank": 5,
             "layer": 22,
@@ -692,47 +1283,163 @@
           "rank": 1,
           "layer": 32,
           "alpha": 15.0,
+          "side_a_harmonic_mean": 0.2716444277352598,
+          "side_b_harmonic_mean": 0.42360642978172947,
+          "cross_harmonic_mean": 0.33101814966182197,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.2716444277352598,
-          "neg_harmonic_mean": 0.42360642978172947,
-          "cross_harmonic_mean": 0.33101814966182197
+          "neg_harmonic_mean": 0.42360642978172947
         },
         {
           "rank": 2,
           "layer": 11,
           "alpha": 30.0,
+          "side_a_harmonic_mean": 0.2198796781487516,
+          "side_b_harmonic_mean": 0.3349634347021023,
+          "cross_harmonic_mean": 0.2654864069068719,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.2198796781487516,
-          "neg_harmonic_mean": 0.3349634347021023,
-          "cross_harmonic_mean": 0.2654864069068719
+          "neg_harmonic_mean": 0.3349634347021023
         },
         {
           "rank": 3,
           "layer": 5,
           "alpha": 75.0,
+          "side_a_harmonic_mean": 0.20566899910660585,
+          "side_b_harmonic_mean": 0.3296641131431975,
+          "cross_harmonic_mean": 0.25330653621100835,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.20566899910660585,
-          "neg_harmonic_mean": 0.3296641131431975,
-          "cross_harmonic_mean": 0.25330653621100835
+          "neg_harmonic_mean": 0.3296641131431975
         },
         {
           "rank": 4,
           "layer": 6,
           "alpha": 60.0,
+          "side_a_harmonic_mean": 0.18290131728383263,
+          "side_b_harmonic_mean": 0.3615776318092714,
+          "cross_harmonic_mean": 0.24292224802606954,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.18290131728383263,
-          "neg_harmonic_mean": 0.3615776318092714,
-          "cross_harmonic_mean": 0.24292224802606954
+          "neg_harmonic_mean": 0.3615776318092714
         },
         {
           "rank": 5,
           "layer": 10,
           "alpha": 30.0,
+          "side_a_harmonic_mean": 0.18856451975176935,
+          "side_b_harmonic_mean": 0.30267940865498644,
+          "cross_harmonic_mean": 0.23236764479465938,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.18856451975176935,
-          "neg_harmonic_mean": 0.30267940865498644,
-          "cross_harmonic_mean": 0.23236764479465938
+          "neg_harmonic_mean": 0.30267940865498644
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_5.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_imdb_5.png"
     },
     "10": {
+      "merge_key": "10",
       "tag": "10",
+      "data": "imdb",
+      "side_a_label": "positive",
+      "side_b_label": "negative",
+      "side_a_abbrev": "pos",
+      "side_b_abbrev": "neg",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_10",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_10",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_10/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_10/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.1907160038710572,
+          "perplexity": 918.601025390625,
+          "harmonic_mean": 0.313872060740283
+        },
+        {
+          "rank": 2,
+          "layer": 5,
+          "alpha": 55.0,
+          "positive_sentiment_prob": 0.14950073148938828,
+          "perplexity": 1535.5154296875,
+          "harmonic_mean": 0.2522940783043123
+        },
+        {
+          "rank": 3,
+          "layer": 2,
+          "alpha": 90.0,
+          "positive_sentiment_prob": 0.13904166487045586,
+          "perplexity": 1395.561508178711,
+          "harmonic_mean": 0.23799045654514092
+        },
+        {
+          "rank": 4,
+          "layer": 7,
+          "alpha": 35.0,
+          "positive_sentiment_prob": 0.13687404758529736,
+          "perplexity": 1073.9275924682618,
+          "harmonic_mean": 0.23639657006322845
+        },
+        {
+          "rank": 5,
+          "layer": 6,
+          "alpha": 40.0,
+          "positive_sentiment_prob": 0.13043524185195565,
+          "perplexity": 1276.3308135986329,
+          "harmonic_mean": 0.22582587002215715
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 70.0,
+          "negative_sentiment_prob": 0.32989527136087415,
+          "perplexity": 22.951090383529664,
+          "harmonic_mean": 0.49611486838453595
+        },
+        {
+          "rank": 2,
+          "layer": 29,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.3185281923506409,
+          "perplexity": 751.7804153442382,
+          "harmonic_mean": 0.4704100190492264
+        },
+        {
+          "rank": 3,
+          "layer": 31,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.2796433450654149,
+          "perplexity": 1090.3294319152833,
+          "harmonic_mean": 0.4211190763775459
+        },
+        {
+          "rank": 4,
+          "layer": 7,
+          "alpha": 45.0,
+          "negative_sentiment_prob": 0.29624963679816574,
+          "perplexity": 2008.226643371582,
+          "harmonic_mean": 0.4206869015292809
+        },
+        {
+          "rank": 5,
+          "layer": 30,
+          "alpha": 20.0,
+          "negative_sentiment_prob": 0.3047547404654324,
+          "perplexity": 2429.9060485839846,
+          "harmonic_mean": 0.4183704940436675
+        }
+      ],
       "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_10",
       "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_10",
       "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_10/eval_scores.json",
@@ -827,6 +1534,22 @@
         {
           "rank": 1,
           "between_directions_harmonic_mean": 0.3844916269747673,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.1907160038710572,
+            "perplexity": 918.601025390625,
+            "harmonic_mean": 0.313872060740283
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 70.0,
+            "negative_sentiment_prob": 0.32989527136087415,
+            "perplexity": 22.951090383529664,
+            "harmonic_mean": 0.49611486838453595
+          },
           "pos": {
             "rank": 1,
             "layer": 32,
@@ -847,6 +1570,22 @@
         {
           "rank": 2,
           "between_directions_harmonic_mean": 0.3284377731238483,
+          "side_a": {
+            "rank": 2,
+            "layer": 5,
+            "alpha": 55.0,
+            "positive_sentiment_prob": 0.14950073148938828,
+            "perplexity": 1535.5154296875,
+            "harmonic_mean": 0.2522940783043123
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 29,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.3185281923506409,
+            "perplexity": 751.7804153442382,
+            "harmonic_mean": 0.4704100190492264
+          },
           "pos": {
             "rank": 2,
             "layer": 5,
@@ -867,6 +1606,22 @@
         {
           "rank": 3,
           "between_directions_harmonic_mean": 0.3041143125408755,
+          "side_a": {
+            "rank": 3,
+            "layer": 2,
+            "alpha": 90.0,
+            "positive_sentiment_prob": 0.13904166487045586,
+            "perplexity": 1395.561508178711,
+            "harmonic_mean": 0.23799045654514092
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 31,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.2796433450654149,
+            "perplexity": 1090.3294319152833,
+            "harmonic_mean": 0.4211190763775459
+          },
           "pos": {
             "rank": 3,
             "layer": 2,
@@ -887,6 +1642,22 @@
         {
           "rank": 4,
           "between_directions_harmonic_mean": 0.30269804337346795,
+          "side_a": {
+            "rank": 4,
+            "layer": 7,
+            "alpha": 35.0,
+            "positive_sentiment_prob": 0.13687404758529736,
+            "perplexity": 1073.9275924682618,
+            "harmonic_mean": 0.23639657006322845
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 7,
+            "alpha": 45.0,
+            "negative_sentiment_prob": 0.29624963679816574,
+            "perplexity": 2008.226643371582,
+            "harmonic_mean": 0.4206869015292809
+          },
           "pos": {
             "rank": 4,
             "layer": 7,
@@ -907,6 +1678,22 @@
         {
           "rank": 5,
           "between_directions_harmonic_mean": 0.2933232352095579,
+          "side_a": {
+            "rank": 5,
+            "layer": 6,
+            "alpha": 40.0,
+            "positive_sentiment_prob": 0.13043524185195565,
+            "perplexity": 1276.3308135986329,
+            "harmonic_mean": 0.22582587002215715
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 30,
+            "alpha": 20.0,
+            "negative_sentiment_prob": 0.3047547404654324,
+            "perplexity": 2429.9060485839846,
+            "harmonic_mean": 0.4183704940436675
+          },
           "pos": {
             "rank": 5,
             "layer": 6,
@@ -930,47 +1717,163 @@
           "rank": 1,
           "layer": 32,
           "alpha": 15.0,
+          "side_a_harmonic_mean": 0.31651412216841174,
+          "side_b_harmonic_mean": 0.45373807803385396,
+          "cross_harmonic_mean": 0.3729025621103189,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.31651412216841174,
-          "neg_harmonic_mean": 0.45373807803385396,
-          "cross_harmonic_mean": 0.3729025621103189
+          "neg_harmonic_mean": 0.45373807803385396
         },
         {
           "rank": 2,
           "layer": 6,
           "alpha": 40.0,
+          "side_a_harmonic_mean": 0.22790774024944105,
+          "side_b_harmonic_mean": 0.40022615076569934,
+          "cross_harmonic_mean": 0.29043055601514745,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.22790774024944105,
-          "neg_harmonic_mean": 0.40022615076569934,
-          "cross_harmonic_mean": 0.29043055601514745
+          "neg_harmonic_mean": 0.40022615076569934
         },
         {
           "rank": 3,
           "layer": 5,
           "alpha": 55.0,
+          "side_a_harmonic_mean": 0.25564653841650836,
+          "side_b_harmonic_mean": 0.3227430110991643,
+          "cross_harmonic_mean": 0.2853029888064613,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.25564653841650836,
-          "neg_harmonic_mean": 0.3227430110991643,
-          "cross_harmonic_mean": 0.2853029888064613
+          "neg_harmonic_mean": 0.3227430110991643
         },
         {
           "rank": 4,
           "layer": 2,
           "alpha": 90.0,
+          "side_a_harmonic_mean": 0.24060063200319612,
+          "side_b_harmonic_mean": 0.34997429766836324,
+          "cross_harmonic_mean": 0.28515953852193443,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.24060063200319612,
-          "neg_harmonic_mean": 0.34997429766836324,
-          "cross_harmonic_mean": 0.28515953852193443
+          "neg_harmonic_mean": 0.34997429766836324
         },
         {
           "rank": 5,
           "layer": 7,
           "alpha": 55.0,
+          "side_a_harmonic_mean": 0.21160011842921114,
+          "side_b_harmonic_mean": 0.4225113520285619,
+          "cross_harmonic_mean": 0.28198023941244377,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.21160011842921114,
-          "neg_harmonic_mean": 0.4225113520285619,
-          "cross_harmonic_mean": 0.28198023941244377
+          "neg_harmonic_mean": 0.4225113520285619
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_10.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_imdb_10.png"
     },
     "20": {
+      "merge_key": "20",
       "tag": "20",
+      "data": "imdb",
+      "side_a_label": "positive",
+      "side_b_label": "negative",
+      "side_a_abbrev": "pos",
+      "side_b_abbrev": "neg",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_20",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_20",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_20/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_20/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 90.0,
+          "positive_sentiment_prob": 0.2436899309977889,
+          "perplexity": 358.6471969604492,
+          "harmonic_mean": 0.39091014186283213
+        },
+        {
+          "rank": 2,
+          "layer": 10,
+          "alpha": 55.0,
+          "positive_sentiment_prob": 0.15953889722004533,
+          "perplexity": 3922.980810546875,
+          "harmonic_mean": 0.2469720682952563
+        },
+        {
+          "rank": 3,
+          "layer": 4,
+          "alpha": 75.0,
+          "positive_sentiment_prob": 0.14269327824003994,
+          "perplexity": 2730.0634948730467,
+          "harmonic_mean": 0.23671819045192552
+        },
+        {
+          "rank": 4,
+          "layer": 11,
+          "alpha": 70.0,
+          "positive_sentiment_prob": 0.15670776043552906,
+          "perplexity": 5010.724597167969,
+          "harmonic_mean": 0.2270313226953299
+        },
+        {
+          "rank": 5,
+          "layer": 8,
+          "alpha": 85.0,
+          "positive_sentiment_prob": 0.14569068757555215,
+          "perplexity": 4625.6578369140625,
+          "harmonic_mean": 0.22123542993298903
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 25.0,
+          "negative_sentiment_prob": 0.4766835629940033,
+          "perplexity": 268.18959579467776,
+          "harmonic_mean": 0.6401330419719943
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.34277402739971874,
+          "perplexity": 368.5329391479492,
+          "harmonic_mean": 0.504741256386752
+        },
+        {
+          "rank": 3,
+          "layer": 29,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.324609814141877,
+          "perplexity": 341.73808364868165,
+          "harmonic_mean": 0.48535904758027754
+        },
+        {
+          "rank": 4,
+          "layer": 30,
+          "alpha": 30.0,
+          "negative_sentiment_prob": 0.40955923572182656,
+          "perplexity": 2961.405596923828,
+          "harmonic_mean": 0.4545181478731824
+        },
+        {
+          "rank": 5,
+          "layer": 12,
+          "alpha": 30.0,
+          "negative_sentiment_prob": 0.3200680255889893,
+          "perplexity": 1707.6715103149413,
+          "harmonic_mean": 0.4443425611910321
+        }
+      ],
       "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_20",
       "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_20",
       "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_20/eval_scores.json",
@@ -1065,6 +1968,22 @@
         {
           "rank": 1,
           "between_directions_harmonic_mean": 0.4854006159424768,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 90.0,
+            "positive_sentiment_prob": 0.2436899309977889,
+            "perplexity": 358.6471969604492,
+            "harmonic_mean": 0.39091014186283213
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 25.0,
+            "negative_sentiment_prob": 0.4766835629940033,
+            "perplexity": 268.18959579467776,
+            "harmonic_mean": 0.6401330419719943
+          },
           "pos": {
             "rank": 1,
             "layer": 32,
@@ -1085,6 +2004,22 @@
         {
           "rank": 2,
           "between_directions_harmonic_mean": 0.3316609881739561,
+          "side_a": {
+            "rank": 2,
+            "layer": 10,
+            "alpha": 55.0,
+            "positive_sentiment_prob": 0.15953889722004533,
+            "perplexity": 3922.980810546875,
+            "harmonic_mean": 0.2469720682952563
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.34277402739971874,
+            "perplexity": 368.5329391479492,
+            "harmonic_mean": 0.504741256386752
+          },
           "pos": {
             "rank": 2,
             "layer": 10,
@@ -1105,6 +2040,22 @@
         {
           "rank": 3,
           "between_directions_harmonic_mean": 0.3182299881818164,
+          "side_a": {
+            "rank": 3,
+            "layer": 4,
+            "alpha": 75.0,
+            "positive_sentiment_prob": 0.14269327824003994,
+            "perplexity": 2730.0634948730467,
+            "harmonic_mean": 0.23671819045192552
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 29,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.324609814141877,
+            "perplexity": 341.73808364868165,
+            "harmonic_mean": 0.48535904758027754
+          },
           "pos": {
             "rank": 3,
             "layer": 4,
@@ -1125,6 +2076,22 @@
         {
           "rank": 4,
           "between_directions_harmonic_mean": 0.3028095853837423,
+          "side_a": {
+            "rank": 4,
+            "layer": 11,
+            "alpha": 70.0,
+            "positive_sentiment_prob": 0.15670776043552906,
+            "perplexity": 5010.724597167969,
+            "harmonic_mean": 0.2270313226953299
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 30,
+            "alpha": 30.0,
+            "negative_sentiment_prob": 0.40955923572182656,
+            "perplexity": 2961.405596923828,
+            "harmonic_mean": 0.4545181478731824
+          },
           "pos": {
             "rank": 4,
             "layer": 11,
@@ -1145,6 +2112,22 @@
         {
           "rank": 5,
           "between_directions_harmonic_mean": 0.29539533720641264,
+          "side_a": {
+            "rank": 5,
+            "layer": 8,
+            "alpha": 85.0,
+            "positive_sentiment_prob": 0.14569068757555215,
+            "perplexity": 4625.6578369140625,
+            "harmonic_mean": 0.22123542993298903
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 12,
+            "alpha": 30.0,
+            "negative_sentiment_prob": 0.3200680255889893,
+            "perplexity": 1707.6715103149413,
+            "harmonic_mean": 0.4443425611910321
+          },
           "pos": {
             "rank": 5,
             "layer": 8,
@@ -1168,47 +2151,163 @@
           "rank": 1,
           "layer": 32,
           "alpha": 15.0,
+          "side_a_harmonic_mean": 0.38319783032257476,
+          "side_b_harmonic_mean": 0.6159861537884234,
+          "cross_harmonic_mean": 0.4724746621123779,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.38319783032257476,
-          "neg_harmonic_mean": 0.6159861537884234,
-          "cross_harmonic_mean": 0.4724746621123779
+          "neg_harmonic_mean": 0.6159861537884234
         },
         {
           "rank": 2,
           "layer": 10,
           "alpha": 55.0,
+          "side_a_harmonic_mean": 0.26048024659488583,
+          "side_b_harmonic_mean": 0.38841992264733965,
+          "cross_harmonic_mean": 0.3118375430590403,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.26048024659488583,
-          "neg_harmonic_mean": 0.38841992264733965,
-          "cross_harmonic_mean": 0.3118375430590403
+          "neg_harmonic_mean": 0.38841992264733965
         },
         {
           "rank": 3,
           "layer": 8,
           "alpha": 85.0,
+          "side_a_harmonic_mean": 0.2384484618258848,
+          "side_b_harmonic_mean": 0.38595111718315656,
+          "cross_harmonic_mean": 0.2947774256297918,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.2384484618258848,
-          "neg_harmonic_mean": 0.38595111718315656,
-          "cross_harmonic_mean": 0.2947774256297918
+          "neg_harmonic_mean": 0.38595111718315656
         },
         {
           "rank": 4,
           "layer": 5,
           "alpha": 100.0,
+          "side_a_harmonic_mean": 0.22612186194568273,
+          "side_b_harmonic_mean": 0.4115741469685291,
+          "cross_harmonic_mean": 0.2918817466011454,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.22612186194568273,
-          "neg_harmonic_mean": 0.4115741469685291,
-          "cross_harmonic_mean": 0.2918817466011454
+          "neg_harmonic_mean": 0.4115741469685291
         },
         {
           "rank": 5,
           "layer": 11,
           "alpha": 50.0,
+          "side_a_harmonic_mean": 0.212940063457307,
+          "side_b_harmonic_mean": 0.4448585931085307,
+          "cross_harmonic_mean": 0.28801584223538984,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.212940063457307,
-          "neg_harmonic_mean": 0.4448585931085307,
-          "cross_harmonic_mean": 0.28801584223538984
+          "neg_harmonic_mean": 0.4448585931085307
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_20.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_imdb_20.png"
     },
     "50": {
+      "merge_key": "50",
       "tag": "50",
+      "data": "imdb",
+      "side_a_label": "positive",
+      "side_b_label": "negative",
+      "side_a_abbrev": "pos",
+      "side_b_abbrev": "neg",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_50",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_50",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_50/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_50/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 15.0,
+          "positive_sentiment_prob": 0.3541748890420422,
+          "perplexity": 249.24133834838867,
+          "harmonic_mean": 0.5212624443701164
+        },
+        {
+          "rank": 2,
+          "layer": 22,
+          "alpha": 50.0,
+          "positive_sentiment_prob": 0.14600669974461197,
+          "perplexity": 3112.8486572265624,
+          "harmonic_mean": 0.2396144249809934
+        },
+        {
+          "rank": 3,
+          "layer": 1,
+          "alpha": 70.0,
+          "positive_sentiment_prob": 0.13768753947224469,
+          "perplexity": 940.166096496582,
+          "harmonic_mean": 0.23917834962090487
+        },
+        {
+          "rank": 4,
+          "layer": 24,
+          "alpha": 50.0,
+          "positive_sentiment_prob": 0.1442184766056016,
+          "perplexity": 3684.8833862304687,
+          "harmonic_mean": 0.23283519681796072
+        },
+        {
+          "rank": 5,
+          "layer": 29,
+          "alpha": 30.0,
+          "positive_sentiment_prob": 0.13761850455775856,
+          "perplexity": 3933.7792114257813,
+          "harmonic_mean": 0.22217235826342746
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 20.0,
+          "negative_sentiment_prob": 0.4556494168937206,
+          "perplexity": 350.0627716064453,
+          "harmonic_mean": 0.617946442631225
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.35624816827476025,
+          "perplexity": 454.0914659500122,
+          "harmonic_mean": 0.5169588168925812
+        },
+        {
+          "rank": 3,
+          "layer": 30,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.3524935367051512,
+          "perplexity": 448.9882530212402,
+          "harmonic_mean": 0.5131249521891263
+        },
+        {
+          "rank": 4,
+          "layer": 26,
+          "alpha": 10.0,
+          "negative_sentiment_prob": 0.2993197556585073,
+          "perplexity": 404.1793159484863,
+          "harmonic_mean": 0.45526775434505923
+        },
+        {
+          "rank": 5,
+          "layer": 29,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.2878849703469314,
+          "perplexity": 606.3628883361816,
+          "harmonic_mean": 0.4380313951808599
+        }
+      ],
       "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_50",
       "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_50",
       "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_50/eval_scores.json",
@@ -1303,6 +2402,22 @@
         {
           "rank": 1,
           "between_directions_harmonic_mean": 0.5655016860404654,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 15.0,
+            "positive_sentiment_prob": 0.3541748890420422,
+            "perplexity": 249.24133834838867,
+            "harmonic_mean": 0.5212624443701164
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 20.0,
+            "negative_sentiment_prob": 0.4556494168937206,
+            "perplexity": 350.0627716064453,
+            "harmonic_mean": 0.617946442631225
+          },
           "pos": {
             "rank": 1,
             "layer": 32,
@@ -1323,6 +2438,22 @@
         {
           "rank": 2,
           "between_directions_harmonic_mean": 0.32745220896741584,
+          "side_a": {
+            "rank": 2,
+            "layer": 22,
+            "alpha": 50.0,
+            "positive_sentiment_prob": 0.14600669974461197,
+            "perplexity": 3112.8486572265624,
+            "harmonic_mean": 0.2396144249809934
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.35624816827476025,
+            "perplexity": 454.0914659500122,
+            "harmonic_mean": 0.5169588168925812
+          },
           "pos": {
             "rank": 2,
             "layer": 22,
@@ -1343,6 +2474,22 @@
         {
           "rank": 3,
           "between_directions_harmonic_mean": 0.326273668927461,
+          "side_a": {
+            "rank": 3,
+            "layer": 1,
+            "alpha": 70.0,
+            "positive_sentiment_prob": 0.13768753947224469,
+            "perplexity": 940.166096496582,
+            "harmonic_mean": 0.23917834962090487
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 30,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.3524935367051512,
+            "perplexity": 448.9882530212402,
+            "harmonic_mean": 0.5131249521891263
+          },
           "pos": {
             "rank": 3,
             "layer": 1,
@@ -1363,6 +2510,22 @@
         {
           "rank": 4,
           "between_directions_harmonic_mean": 0.3081002835655318,
+          "side_a": {
+            "rank": 4,
+            "layer": 24,
+            "alpha": 50.0,
+            "positive_sentiment_prob": 0.1442184766056016,
+            "perplexity": 3684.8833862304687,
+            "harmonic_mean": 0.23283519681796072
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 26,
+            "alpha": 10.0,
+            "negative_sentiment_prob": 0.2993197556585073,
+            "perplexity": 404.1793159484863,
+            "harmonic_mean": 0.45526775434505923
+          },
           "pos": {
             "rank": 4,
             "layer": 24,
@@ -1383,6 +2546,22 @@
         {
           "rank": 5,
           "between_directions_harmonic_mean": 0.29481343464965143,
+          "side_a": {
+            "rank": 5,
+            "layer": 29,
+            "alpha": 30.0,
+            "positive_sentiment_prob": 0.13761850455775856,
+            "perplexity": 3933.7792114257813,
+            "harmonic_mean": 0.22217235826342746
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 29,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.2878849703469314,
+            "perplexity": 606.3628883361816,
+            "harmonic_mean": 0.4380313951808599
+          },
           "pos": {
             "rank": 5,
             "layer": 29,
@@ -1406,47 +2585,163 @@
           "rank": 1,
           "layer": 32,
           "alpha": 15.0,
+          "side_a_harmonic_mean": 0.520004822631231,
+          "side_b_harmonic_mean": 0.5723904263069363,
+          "cross_harmonic_mean": 0.5449415537038842,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.520004822631231,
-          "neg_harmonic_mean": 0.5723904263069363,
-          "cross_harmonic_mean": 0.5449415537038842
+          "neg_harmonic_mean": 0.5723904263069363
         },
         {
           "rank": 2,
           "layer": 29,
           "alpha": 30.0,
+          "side_a_harmonic_mean": 0.22184736273521513,
+          "side_b_harmonic_mean": 0.4755917302323105,
+          "cross_harmonic_mean": 0.3025605308179325,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.22184736273521513,
-          "neg_harmonic_mean": 0.4755917302323105,
-          "cross_harmonic_mean": 0.3025605308179325
+          "neg_harmonic_mean": 0.4755917302323105
         },
         {
           "rank": 3,
           "layer": 1,
           "alpha": 70.0,
+          "side_a_harmonic_mean": 0.23889662751443455,
+          "side_b_harmonic_mean": 0.38828255220680846,
+          "cross_harmonic_mean": 0.29579869754647115,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.23889662751443455,
-          "neg_harmonic_mean": 0.38828255220680846,
-          "cross_harmonic_mean": 0.29579869754647115
+          "neg_harmonic_mean": 0.38828255220680846
         },
         {
           "rank": 4,
           "layer": 11,
           "alpha": 70.0,
+          "side_a_harmonic_mean": 0.21187976715538678,
+          "side_b_harmonic_mean": 0.4275876056089506,
+          "cross_harmonic_mean": 0.28335194624023935,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.21187976715538678,
-          "neg_harmonic_mean": 0.4275876056089506,
-          "cross_harmonic_mean": 0.28335194624023935
+          "neg_harmonic_mean": 0.4275876056089506
         },
         {
           "rank": 5,
           "layer": 27,
           "alpha": 30.0,
+          "side_a_harmonic_mean": 0.22184861832633518,
+          "side_b_harmonic_mean": 0.3792910963280241,
+          "cross_harmonic_mean": 0.27995224275685887,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.22184861832633518,
-          "neg_harmonic_mean": 0.3792910963280241,
-          "cross_harmonic_mean": 0.27995224275685887
+          "neg_harmonic_mean": 0.3792910963280241
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_50.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_imdb_50.png"
     },
     "100": {
+      "merge_key": "100",
       "tag": "100",
+      "data": "imdb",
+      "side_a_label": "positive",
+      "side_b_label": "negative",
+      "side_a_abbrev": "pos",
+      "side_b_abbrev": "neg",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_100",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_100",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_100/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_100/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 60.0,
+          "positive_sentiment_prob": 0.2750525914132595,
+          "perplexity": 377.2643844604492,
+          "harmonic_mean": 0.4284844510851809
+        },
+        {
+          "rank": 2,
+          "layer": 22,
+          "alpha": 70.0,
+          "positive_sentiment_prob": 0.2069340981543064,
+          "perplexity": 3517.0911071777346,
+          "harmonic_mean": 0.3057628943623788
+        },
+        {
+          "rank": 3,
+          "layer": 21,
+          "alpha": 40.0,
+          "positive_sentiment_prob": 0.1738967986777425,
+          "perplexity": 3321.473080444336,
+          "harmonic_mean": 0.27056123074300814
+        },
+        {
+          "rank": 4,
+          "layer": 25,
+          "alpha": 50.0,
+          "positive_sentiment_prob": 0.14628339898772538,
+          "perplexity": 3009.8725708007814,
+          "harmonic_mean": 0.23863589744109454
+        },
+        {
+          "rank": 5,
+          "layer": 29,
+          "alpha": 30.0,
+          "positive_sentiment_prob": 0.13257467939693016,
+          "perplexity": 2870.4439697265625,
+          "harmonic_mean": 0.22103816548809233
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 20.0,
+          "negative_sentiment_prob": 0.4826288614422083,
+          "perplexity": 382.79019393920896,
+          "harmonic_mean": 0.6405123641866652
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 25.0,
+          "negative_sentiment_prob": 0.4052714668214321,
+          "perplexity": 1056.2907836914062,
+          "harmonic_mean": 0.5474840632081325
+        },
+        {
+          "rank": 3,
+          "layer": 30,
+          "alpha": 25.0,
+          "negative_sentiment_prob": 0.4143687404692173,
+          "perplexity": 1300.949919128418,
+          "harmonic_mean": 0.5468972874531184
+        },
+        {
+          "rank": 4,
+          "layer": 29,
+          "alpha": 15.0,
+          "negative_sentiment_prob": 0.3583312077447772,
+          "perplexity": 399.0668060302734,
+          "harmonic_mean": 0.5202738404300838
+        },
+        {
+          "rank": 5,
+          "layer": 26,
+          "alpha": 50.0,
+          "negative_sentiment_prob": 0.3936866924166679,
+          "perplexity": 2490.060968017578,
+          "harmonic_mean": 0.4793251945064704
+        }
+      ],
       "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_100",
       "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_100",
       "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_100/eval_scores.json",
@@ -1541,6 +2836,22 @@
         {
           "rank": 1,
           "between_directions_harmonic_mean": 0.5134712935735027,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 60.0,
+            "positive_sentiment_prob": 0.2750525914132595,
+            "perplexity": 377.2643844604492,
+            "harmonic_mean": 0.4284844510851809
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 20.0,
+            "negative_sentiment_prob": 0.4826288614422083,
+            "perplexity": 382.79019393920896,
+            "harmonic_mean": 0.6405123641866652
+          },
           "pos": {
             "rank": 1,
             "layer": 32,
@@ -1561,6 +2872,22 @@
         {
           "rank": 2,
           "between_directions_harmonic_mean": 0.3923841984984995,
+          "side_a": {
+            "rank": 2,
+            "layer": 22,
+            "alpha": 70.0,
+            "positive_sentiment_prob": 0.2069340981543064,
+            "perplexity": 3517.0911071777346,
+            "harmonic_mean": 0.3057628943623788
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 25.0,
+            "negative_sentiment_prob": 0.4052714668214321,
+            "perplexity": 1056.2907836914062,
+            "harmonic_mean": 0.5474840632081325
+          },
           "pos": {
             "rank": 2,
             "layer": 22,
@@ -1581,6 +2908,22 @@
         {
           "rank": 3,
           "between_directions_harmonic_mean": 0.3620225366538472,
+          "side_a": {
+            "rank": 3,
+            "layer": 21,
+            "alpha": 40.0,
+            "positive_sentiment_prob": 0.1738967986777425,
+            "perplexity": 3321.473080444336,
+            "harmonic_mean": 0.27056123074300814
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 30,
+            "alpha": 25.0,
+            "negative_sentiment_prob": 0.4143687404692173,
+            "perplexity": 1300.949919128418,
+            "harmonic_mean": 0.5468972874531184
+          },
           "pos": {
             "rank": 3,
             "layer": 21,
@@ -1601,6 +2944,22 @@
         {
           "rank": 4,
           "between_directions_harmonic_mean": 0.3271957352251891,
+          "side_a": {
+            "rank": 4,
+            "layer": 25,
+            "alpha": 50.0,
+            "positive_sentiment_prob": 0.14628339898772538,
+            "perplexity": 3009.8725708007814,
+            "harmonic_mean": 0.23863589744109454
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 29,
+            "alpha": 15.0,
+            "negative_sentiment_prob": 0.3583312077447772,
+            "perplexity": 399.0668060302734,
+            "harmonic_mean": 0.5202738404300838
+          },
           "pos": {
             "rank": 4,
             "layer": 25,
@@ -1621,6 +2980,22 @@
         {
           "rank": 5,
           "between_directions_harmonic_mean": 0.3025548385819492,
+          "side_a": {
+            "rank": 5,
+            "layer": 29,
+            "alpha": 30.0,
+            "positive_sentiment_prob": 0.13257467939693016,
+            "perplexity": 2870.4439697265625,
+            "harmonic_mean": 0.22103816548809233
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 26,
+            "alpha": 50.0,
+            "negative_sentiment_prob": 0.3936866924166679,
+            "perplexity": 2490.060968017578,
+            "harmonic_mean": 0.4793251945064704
+          },
           "pos": {
             "rank": 5,
             "layer": 29,
@@ -1644,996 +3019,2758 @@
           "rank": 1,
           "layer": 32,
           "alpha": 25.0,
+          "side_a_harmonic_mean": 0.3839166859952534,
+          "side_b_harmonic_mean": 0.6241089177887263,
+          "cross_harmonic_mean": 0.47539631239144503,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.3839166859952534,
-          "neg_harmonic_mean": 0.6241089177887263,
-          "cross_harmonic_mean": 0.47539631239144503
+          "neg_harmonic_mean": 0.6241089177887263
         },
         {
           "rank": 2,
           "layer": 25,
           "alpha": 25.0,
+          "side_a_harmonic_mean": 0.22520574423613726,
+          "side_b_harmonic_mean": 0.5044244056530468,
+          "cross_harmonic_mean": 0.31138864999813676,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.22520574423613726,
-          "neg_harmonic_mean": 0.5044244056530468,
-          "cross_harmonic_mean": 0.31138864999813676
+          "neg_harmonic_mean": 0.5044244056530468
         },
         {
           "rank": 3,
           "layer": 30,
           "alpha": 30.0,
+          "side_a_harmonic_mean": 0.2057769984439474,
+          "side_b_harmonic_mean": 0.5436261271725349,
+          "cross_harmonic_mean": 0.2985462667592896,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.2057769984439474,
-          "neg_harmonic_mean": 0.5436261271725349,
-          "cross_harmonic_mean": 0.2985462667592896
+          "neg_harmonic_mean": 0.5436261271725349
         },
         {
           "rank": 4,
           "layer": 29,
           "alpha": 30.0,
+          "side_a_harmonic_mean": 0.2236784156104519,
+          "side_b_harmonic_mean": 0.4453810167833669,
+          "cross_harmonic_mean": 0.2977975209784845,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.2236784156104519,
-          "neg_harmonic_mean": 0.4453810167833669,
-          "cross_harmonic_mean": 0.2977975209784845
+          "neg_harmonic_mean": 0.4453810167833669
         },
         {
           "rank": 5,
           "layer": 28,
           "alpha": 35.0,
+          "side_a_harmonic_mean": 0.2038036432608273,
+          "side_b_harmonic_mean": 0.47298517541350793,
+          "cross_harmonic_mean": 0.284863163509264,
+          "side_a_label": "positive",
+          "side_b_label": "negative",
           "pos_harmonic_mean": 0.2038036432608273,
-          "neg_harmonic_mean": 0.47298517541350793,
-          "cross_harmonic_mean": 0.284863163509264
+          "neg_harmonic_mean": 0.47298517541350793
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_100.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_imdb_100.png"
     },
-    "200": {
-      "tag": "200",
-      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_200",
-      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_200",
-      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_200/eval_scores.json",
-      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_200/eval_scores.json",
-      "pos_top5_source": "by_harmonic_mean_unique_layer",
-      "neg_top5_source": "by_harmonic_mean_unique_layer",
-      "pos_top5": [
+    "catdog-0": {
+      "merge_key": "catdog-0",
+      "tag": "0",
+      "data": "cats-dogs",
+      "side_a_label": "cat",
+      "side_b_label": "dog",
+      "side_a_abbrev": "cats",
+      "side_b_abbrev": "dogs",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_0",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_0",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_0/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_0/eval_scores.json",
+      "side_a_top5_source": "recomputed_unique_layers",
+      "side_b_top5_source": "recomputed_unique_layers",
+      "side_a_top5": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 60.0,
-          "positive_sentiment_prob": 0.2675147034227848,
-          "perplexity": 383.42795486450194,
-          "harmonic_mean": 0.41945461197498424
+          "layer": 0,
+          "alpha": 35.0,
+          "cat_sentiment_prob": 0.13223729031160475,
+          "perplexity": 30014.17431640625,
+          "harmonic_mean": 0.22334305978283917
         },
         {
           "rank": 2,
-          "layer": 28,
+          "layer": 1,
           "alpha": 10.0,
-          "positive_sentiment_prob": 0.15072855675243774,
-          "perplexity": 153.19636306762695,
-          "harmonic_mean": 0.2619706547959855
+          "cat_sentiment_prob": 0.11466579036787153,
+          "perplexity": 26261.75372314453,
+          "harmonic_mean": 0.1990361766819561
         },
         {
           "rank": 3,
-          "layer": 25,
-          "alpha": 25.0,
-          "positive_sentiment_prob": 0.14725134796462952,
-          "perplexity": 673.283839416504,
-          "harmonic_mean": 0.25440438474222815
+          "layer": 32,
+          "alpha": 15.0,
+          "cat_sentiment_prob": 0.09760216767899692,
+          "perplexity": 747.682335281372,
+          "harmonic_mean": 0.17773952829978654
         },
         {
           "rank": 4,
-          "layer": 21,
-          "alpha": 40.0,
-          "positive_sentiment_prob": 0.18372751362621784,
-          "perplexity": 5004.10927734375,
-          "harmonic_mean": 0.24908908382443107
+          "layer": 8,
+          "alpha": 25.0,
+          "cat_sentiment_prob": 0.09267544131726027,
+          "perplexity": 38508.1517578125,
+          "harmonic_mean": 0.16184694633697636
         },
         {
           "rank": 5,
-          "layer": 29,
-          "alpha": 30.0,
-          "positive_sentiment_prob": 0.14446698894607835,
-          "perplexity": 2497.284292602539,
-          "harmonic_mean": 0.23971486344596882
+          "layer": 2,
+          "alpha": 40.0,
+          "cat_sentiment_prob": 0.08966670371592045,
+          "perplexity": 22182.996630859376,
+          "harmonic_mean": 0.16108870049841437
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 5,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.1631579777225852,
+          "perplexity": 23918.349365234375,
+          "harmonic_mean": 0.26162903678406346
+        },
+        {
+          "rank": 2,
+          "layer": 6,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.1618225948885083,
+          "perplexity": 34325.61088867187,
+          "harmonic_mean": 0.24429862382734893
+        },
+        {
+          "rank": 3,
+          "layer": 8,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.1507550947368145,
+          "perplexity": 25228.995703125,
+          "harmonic_mean": 0.24399470308984797
+        },
+        {
+          "rank": 4,
+          "layer": 7,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.1415581283159554,
+          "perplexity": 17921.062237548827,
+          "harmonic_mean": 0.2383180009708656
+        },
+        {
+          "rank": 5,
+          "layer": 14,
+          "alpha": 80.0,
+          "dog_sentiment_prob": 0.11323335282504558,
+          "perplexity": 18390.508227539063,
+          "harmonic_mean": 0.19661396352346042
+        }
+      ],
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_0",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_0",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_0/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_0/eval_scores.json",
+      "pos_top5_source": "recomputed_unique_layers",
+      "neg_top5_source": "recomputed_unique_layers",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 0,
+          "alpha": 35.0,
+          "cat_sentiment_prob": 0.13223729031160475,
+          "perplexity": 30014.17431640625,
+          "harmonic_mean": 0.22334305978283917
+        },
+        {
+          "rank": 2,
+          "layer": 1,
+          "alpha": 10.0,
+          "cat_sentiment_prob": 0.11466579036787153,
+          "perplexity": 26261.75372314453,
+          "harmonic_mean": 0.1990361766819561
+        },
+        {
+          "rank": 3,
+          "layer": 32,
+          "alpha": 15.0,
+          "cat_sentiment_prob": 0.09760216767899692,
+          "perplexity": 747.682335281372,
+          "harmonic_mean": 0.17773952829978654
+        },
+        {
+          "rank": 4,
+          "layer": 8,
+          "alpha": 25.0,
+          "cat_sentiment_prob": 0.09267544131726027,
+          "perplexity": 38508.1517578125,
+          "harmonic_mean": 0.16184694633697636
+        },
+        {
+          "rank": 5,
+          "layer": 2,
+          "alpha": 40.0,
+          "cat_sentiment_prob": 0.08966670371592045,
+          "perplexity": 22182.996630859376,
+          "harmonic_mean": 0.16108870049841437
         }
       ],
       "neg_top5": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 20.0,
-          "negative_sentiment_prob": 0.4843673497438431,
-          "perplexity": 366.16401290893555,
-          "harmonic_mean": 0.6452098142439552
+          "layer": 5,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.1631579777225852,
+          "perplexity": 23918.349365234375,
+          "harmonic_mean": 0.26162903678406346
         },
         {
           "rank": 2,
-          "layer": 31,
-          "alpha": 100.0,
-          "negative_sentiment_prob": 0.5120782077312469,
-          "perplexity": 2393.7537384033203,
-          "harmonic_mean": 0.5851057866554007
+          "layer": 6,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.1618225948885083,
+          "perplexity": 34325.61088867187,
+          "harmonic_mean": 0.24429862382734893
         },
         {
           "rank": 3,
-          "layer": 29,
-          "alpha": 15.0,
-          "negative_sentiment_prob": 0.3798354972735979,
-          "perplexity": 374.7551044464111,
-          "harmonic_mean": 0.5450740926132387
+          "layer": 8,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.1507550947368145,
+          "perplexity": 25228.995703125,
+          "harmonic_mean": 0.24399470308984797
         },
         {
           "rank": 4,
-          "layer": 28,
+          "layer": 7,
           "alpha": 10.0,
-          "negative_sentiment_prob": 0.3663754530251026,
-          "perplexity": 176.55525150299073,
-          "harmonic_mean": 0.5351885194073951
+          "dog_sentiment_prob": 0.1415581283159554,
+          "perplexity": 17921.062237548827,
+          "harmonic_mean": 0.2383180009708656
         },
         {
           "rank": 5,
-          "layer": 30,
-          "alpha": 20.0,
-          "negative_sentiment_prob": 0.3662989532575011,
-          "perplexity": 553.9365997314453,
-          "harmonic_mean": 0.5271263506033856
+          "layer": 14,
+          "alpha": 80.0,
+          "dog_sentiment_prob": 0.11323335282504558,
+          "perplexity": 18390.508227539063,
+          "harmonic_mean": 0.19661396352346042
         }
       ],
       "paired_top5_by_rank_harmonic": [
         {
           "rank": 1,
-          "between_directions_harmonic_mean": 0.5083972482057849,
+          "between_directions_harmonic_mean": 0.24097481078616564,
+          "side_a": {
+            "rank": 1,
+            "layer": 0,
+            "alpha": 35.0,
+            "cat_sentiment_prob": 0.13223729031160475,
+            "perplexity": 30014.17431640625,
+            "harmonic_mean": 0.22334305978283917
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 5,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.1631579777225852,
+            "perplexity": 23918.349365234375,
+            "harmonic_mean": 0.26162903678406346
+          },
           "pos": {
             "rank": 1,
-            "layer": 32,
-            "alpha": 60.0,
-            "positive_sentiment_prob": 0.2675147034227848,
-            "perplexity": 383.42795486450194,
-            "harmonic_mean": 0.41945461197498424
+            "layer": 0,
+            "alpha": 35.0,
+            "cat_sentiment_prob": 0.13223729031160475,
+            "perplexity": 30014.17431640625,
+            "harmonic_mean": 0.22334305978283917
           },
           "neg": {
             "rank": 1,
-            "layer": 32,
-            "alpha": 20.0,
-            "negative_sentiment_prob": 0.4843673497438431,
-            "perplexity": 366.16401290893555,
-            "harmonic_mean": 0.6452098142439552
+            "layer": 5,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.1631579777225852,
+            "perplexity": 23918.349365234375,
+            "harmonic_mean": 0.26162903678406346
           }
         },
         {
           "rank": 2,
-          "between_directions_harmonic_mean": 0.36190487317154907,
+          "between_directions_harmonic_mean": 0.21935685626032145,
+          "side_a": {
+            "rank": 2,
+            "layer": 1,
+            "alpha": 10.0,
+            "cat_sentiment_prob": 0.11466579036787153,
+            "perplexity": 26261.75372314453,
+            "harmonic_mean": 0.1990361766819561
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 6,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.1618225948885083,
+            "perplexity": 34325.61088867187,
+            "harmonic_mean": 0.24429862382734893
+          },
           "pos": {
             "rank": 2,
-            "layer": 28,
+            "layer": 1,
             "alpha": 10.0,
-            "positive_sentiment_prob": 0.15072855675243774,
-            "perplexity": 153.19636306762695,
-            "harmonic_mean": 0.2619706547959855
+            "cat_sentiment_prob": 0.11466579036787153,
+            "perplexity": 26261.75372314453,
+            "harmonic_mean": 0.1990361766819561
           },
           "neg": {
             "rank": 2,
-            "layer": 31,
-            "alpha": 100.0,
-            "negative_sentiment_prob": 0.5120782077312469,
-            "perplexity": 2393.7537384033203,
-            "harmonic_mean": 0.5851057866554007
+            "layer": 6,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.1618225948885083,
+            "perplexity": 34325.61088867187,
+            "harmonic_mean": 0.24429862382734893
           }
         },
         {
           "rank": 3,
-          "between_directions_harmonic_mean": 0.34689924268854,
+          "between_directions_harmonic_mean": 0.20566271460553742,
+          "side_a": {
+            "rank": 3,
+            "layer": 32,
+            "alpha": 15.0,
+            "cat_sentiment_prob": 0.09760216767899692,
+            "perplexity": 747.682335281372,
+            "harmonic_mean": 0.17773952829978654
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 8,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.1507550947368145,
+            "perplexity": 25228.995703125,
+            "harmonic_mean": 0.24399470308984797
+          },
           "pos": {
             "rank": 3,
-            "layer": 25,
-            "alpha": 25.0,
-            "positive_sentiment_prob": 0.14725134796462952,
-            "perplexity": 673.283839416504,
-            "harmonic_mean": 0.25440438474222815
+            "layer": 32,
+            "alpha": 15.0,
+            "cat_sentiment_prob": 0.09760216767899692,
+            "perplexity": 747.682335281372,
+            "harmonic_mean": 0.17773952829978654
           },
           "neg": {
             "rank": 3,
-            "layer": 29,
-            "alpha": 15.0,
-            "negative_sentiment_prob": 0.3798354972735979,
-            "perplexity": 374.7551044464111,
-            "harmonic_mean": 0.5450740926132387
+            "layer": 8,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.1507550947368145,
+            "perplexity": 25228.995703125,
+            "harmonic_mean": 0.24399470308984797
           }
         },
         {
           "rank": 4,
-          "between_directions_harmonic_mean": 0.33995518276488773,
+          "between_directions_harmonic_mean": 0.1927757089857995,
+          "side_a": {
+            "rank": 4,
+            "layer": 8,
+            "alpha": 25.0,
+            "cat_sentiment_prob": 0.09267544131726027,
+            "perplexity": 38508.1517578125,
+            "harmonic_mean": 0.16184694633697636
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 7,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.1415581283159554,
+            "perplexity": 17921.062237548827,
+            "harmonic_mean": 0.2383180009708656
+          },
           "pos": {
             "rank": 4,
-            "layer": 21,
-            "alpha": 40.0,
-            "positive_sentiment_prob": 0.18372751362621784,
-            "perplexity": 5004.10927734375,
-            "harmonic_mean": 0.24908908382443107
+            "layer": 8,
+            "alpha": 25.0,
+            "cat_sentiment_prob": 0.09267544131726027,
+            "perplexity": 38508.1517578125,
+            "harmonic_mean": 0.16184694633697636
           },
           "neg": {
             "rank": 4,
-            "layer": 28,
+            "layer": 7,
             "alpha": 10.0,
-            "negative_sentiment_prob": 0.3663754530251026,
-            "perplexity": 176.55525150299073,
-            "harmonic_mean": 0.5351885194073951
+            "dog_sentiment_prob": 0.1415581283159554,
+            "perplexity": 17921.062237548827,
+            "harmonic_mean": 0.2383180009708656
           }
         },
         {
           "rank": 5,
-          "between_directions_harmonic_mean": 0.3295598067464586,
+          "between_directions_harmonic_mean": 0.17708723512274432,
+          "side_a": {
+            "rank": 5,
+            "layer": 2,
+            "alpha": 40.0,
+            "cat_sentiment_prob": 0.08966670371592045,
+            "perplexity": 22182.996630859376,
+            "harmonic_mean": 0.16108870049841437
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 14,
+            "alpha": 80.0,
+            "dog_sentiment_prob": 0.11323335282504558,
+            "perplexity": 18390.508227539063,
+            "harmonic_mean": 0.19661396352346042
+          },
           "pos": {
             "rank": 5,
-            "layer": 29,
-            "alpha": 30.0,
-            "positive_sentiment_prob": 0.14446698894607835,
-            "perplexity": 2497.284292602539,
-            "harmonic_mean": 0.23971486344596882
+            "layer": 2,
+            "alpha": 40.0,
+            "cat_sentiment_prob": 0.08966670371592045,
+            "perplexity": 22182.996630859376,
+            "harmonic_mean": 0.16108870049841437
           },
           "neg": {
             "rank": 5,
-            "layer": 30,
-            "alpha": 20.0,
-            "negative_sentiment_prob": 0.3662989532575011,
-            "perplexity": 553.9365997314453,
-            "harmonic_mean": 0.5271263506033856
+            "layer": 14,
+            "alpha": 80.0,
+            "dog_sentiment_prob": 0.11323335282504558,
+            "perplexity": 18390.508227539063,
+            "harmonic_mean": 0.19661396352346042
           }
         }
       ],
       "intersection_top5_by_cross_harmonic": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 25.0,
-          "pos_harmonic_mean": 0.40202696895227763,
-          "neg_harmonic_mean": 0.644980314166556,
-          "cross_harmonic_mean": 0.49531552438845494
+          "layer": 6,
+          "alpha": 10.0,
+          "side_a_harmonic_mean": 0.1478549880375808,
+          "side_b_harmonic_mean": 0.24429862382734893,
+          "cross_harmonic_mean": 0.18421745464392805,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.1478549880375808,
+          "dogs_harmonic_mean": 0.24429862382734893
         },
         {
           "rank": 2,
-          "layer": 28,
+          "layer": 7,
           "alpha": 10.0,
-          "pos_harmonic_mean": 0.26163715162894485,
-          "neg_harmonic_mean": 0.5351645750540791,
-          "cross_harmonic_mean": 0.3514523886707513
+          "side_a_harmonic_mean": 0.1484498441065245,
+          "side_b_harmonic_mean": 0.2383180009708656,
+          "cross_harmonic_mean": 0.18294318176747376,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.1484498441065245,
+          "dogs_harmonic_mean": 0.2383180009708656
         },
         {
           "rank": 3,
-          "layer": 25,
-          "alpha": 25.0,
-          "pos_harmonic_mean": 0.2546584442395496,
-          "neg_harmonic_mean": 0.4481163493668243,
-          "cross_harmonic_mean": 0.3247601177681935
+          "layer": 8,
+          "alpha": 15.0,
+          "side_a_harmonic_mean": 0.1453159037630757,
+          "side_b_harmonic_mean": 0.21889224580969882,
+          "cross_harmonic_mean": 0.17467222830613713,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.1453159037630757,
+          "dogs_harmonic_mean": 0.21889224580969882
         },
         {
           "rank": 4,
-          "layer": 29,
-          "alpha": 30.0,
-          "pos_harmonic_mean": 0.24321271822949628,
-          "neg_harmonic_mean": 0.46453447525716296,
-          "cross_harmonic_mean": 0.31926850004736024
+          "layer": 5,
+          "alpha": 10.0,
+          "side_a_harmonic_mean": 0.12803490124557165,
+          "side_b_harmonic_mean": 0.26162903678406346,
+          "cross_harmonic_mean": 0.17193096213627038,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.12803490124557165,
+          "dogs_harmonic_mean": 0.26162903678406346
         },
         {
           "rank": 5,
-          "layer": 31,
-          "alpha": 35.0,
-          "pos_harmonic_mean": 0.19651042614351436,
-          "neg_harmonic_mean": 0.5366476557733204,
-          "cross_harmonic_mean": 0.2876783660331951
+          "layer": 15,
+          "alpha": 10.0,
+          "side_a_harmonic_mean": 0.1504086659526084,
+          "side_b_harmonic_mean": 0.19521948293502406,
+          "cross_harmonic_mean": 0.16990920496907275,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.1504086659526084,
+          "dogs_harmonic_mean": 0.19521948293502406
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_200.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_catdog_0.png"
     },
-    "500": {
-      "tag": "500",
-      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_500",
-      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_500",
-      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_500/eval_scores.json",
-      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_500/eval_scores.json",
+    "catdog-1": {
+      "merge_key": "catdog-1",
+      "tag": "1",
+      "data": "cats-dogs",
+      "side_a_label": "cat",
+      "side_b_label": "dog",
+      "side_a_abbrev": "cats",
+      "side_b_abbrev": "dogs",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_1",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_1",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_1/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_1/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 3,
+          "alpha": 35.0,
+          "cat_sentiment_prob": 0.10272568110376597,
+          "perplexity": 7269.574203491211,
+          "harmonic_mean": 0.18631230389219441
+        },
+        {
+          "rank": 2,
+          "layer": 2,
+          "alpha": 40.0,
+          "cat_sentiment_prob": 0.10955440476536751,
+          "perplexity": 9465.44930419922,
+          "harmonic_mean": 0.0
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 28,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.12332174945622683,
+          "perplexity": 8403.76651916504,
+          "harmonic_mean": 0.21956620979861546
+        },
+        {
+          "rank": 2,
+          "layer": 17,
+          "alpha": 15.0,
+          "dog_sentiment_prob": 0.10581010896712542,
+          "perplexity": 9510.431530761718,
+          "harmonic_mean": 0.12680588350263824
+        },
+        {
+          "rank": 3,
+          "layer": 2,
+          "alpha": 65.0,
+          "dog_sentiment_prob": 0.1120797734707594,
+          "perplexity": 9807.533001708984,
+          "harmonic_mean": 0.0
+        }
+      ],
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_1",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_1",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_1/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_1/eval_scores.json",
       "pos_top5_source": "by_harmonic_mean_unique_layer",
       "neg_top5_source": "by_harmonic_mean_unique_layer",
       "pos_top5": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 70.0,
-          "positive_sentiment_prob": 0.22912250887602567,
-          "perplexity": 238.295565032959,
-          "harmonic_mean": 0.37183750004641697
+          "layer": 3,
+          "alpha": 35.0,
+          "cat_sentiment_prob": 0.10272568110376597,
+          "perplexity": 7269.574203491211,
+          "harmonic_mean": 0.18631230389219441
         },
         {
           "rank": 2,
-          "layer": 22,
-          "alpha": 75.0,
-          "positive_sentiment_prob": 0.15212978422641754,
-          "perplexity": 1743.9548614501953,
-          "harmonic_mean": 0.2560085178071194
+          "layer": 2,
+          "alpha": 40.0,
+          "cat_sentiment_prob": 0.10955440476536751,
+          "perplexity": 9465.44930419922,
+          "harmonic_mean": 0.0
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 28,
+          "alpha": 10.0,
+          "dog_sentiment_prob": 0.12332174945622683,
+          "perplexity": 8403.76651916504,
+          "harmonic_mean": 0.21956620979861546
+        },
+        {
+          "rank": 2,
+          "layer": 17,
+          "alpha": 15.0,
+          "dog_sentiment_prob": 0.10581010896712542,
+          "perplexity": 9510.431530761718,
+          "harmonic_mean": 0.12680588350263824
         },
         {
           "rank": 3,
-          "layer": 25,
+          "layer": 2,
+          "alpha": 65.0,
+          "dog_sentiment_prob": 0.1120797734707594,
+          "perplexity": 9807.533001708984,
+          "harmonic_mean": 0.0
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.20157699914915805,
+          "side_a": {
+            "rank": 1,
+            "layer": 3,
+            "alpha": 35.0,
+            "cat_sentiment_prob": 0.10272568110376597,
+            "perplexity": 7269.574203491211,
+            "harmonic_mean": 0.18631230389219441
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 28,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.12332174945622683,
+            "perplexity": 8403.76651916504,
+            "harmonic_mean": 0.21956620979861546
+          },
+          "pos": {
+            "rank": 1,
+            "layer": 3,
+            "alpha": 35.0,
+            "cat_sentiment_prob": 0.10272568110376597,
+            "perplexity": 7269.574203491211,
+            "harmonic_mean": 0.18631230389219441
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 28,
+            "alpha": 10.0,
+            "dog_sentiment_prob": 0.12332174945622683,
+            "perplexity": 8403.76651916504,
+            "harmonic_mean": 0.21956620979861546
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.0,
+          "side_a": {
+            "rank": 2,
+            "layer": 2,
+            "alpha": 40.0,
+            "cat_sentiment_prob": 0.10955440476536751,
+            "perplexity": 9465.44930419922,
+            "harmonic_mean": 0.0
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 17,
+            "alpha": 15.0,
+            "dog_sentiment_prob": 0.10581010896712542,
+            "perplexity": 9510.431530761718,
+            "harmonic_mean": 0.12680588350263824
+          },
+          "pos": {
+            "rank": 2,
+            "layer": 2,
+            "alpha": 40.0,
+            "cat_sentiment_prob": 0.10955440476536751,
+            "perplexity": 9465.44930419922,
+            "harmonic_mean": 0.0
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 17,
+            "alpha": 15.0,
+            "dog_sentiment_prob": 0.10581010896712542,
+            "perplexity": 9510.431530761718,
+            "harmonic_mean": 0.12680588350263824
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 2,
+          "alpha": 40.0,
+          "side_a_harmonic_mean": 0.19253895747639074,
+          "side_b_harmonic_mean": 0.24141342026929963,
+          "cross_harmonic_mean": 0.21422391323639814,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.19253895747639074,
+          "dogs_harmonic_mean": 0.24141342026929963
+        },
+        {
+          "rank": 2,
+          "layer": 29,
+          "alpha": 65.0,
+          "side_a_harmonic_mean": 0.2289728760659741,
+          "side_b_harmonic_mean": 0.19448614416740673,
+          "cross_harmonic_mean": 0.2103252010569989,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2289728760659741,
+          "dogs_harmonic_mean": 0.19448614416740673
+        },
+        {
+          "rank": 3,
+          "layer": 31,
+          "alpha": 25.0,
+          "side_a_harmonic_mean": 0.19673152957852233,
+          "side_b_harmonic_mean": 0.22512370832840636,
+          "cross_harmonic_mean": 0.20997217767677784,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.19673152957852233,
+          "dogs_harmonic_mean": 0.22512370832840636
+        },
+        {
+          "rank": 4,
+          "layer": 30,
+          "alpha": 20.0,
+          "side_a_harmonic_mean": 0.17495484253309046,
+          "side_b_harmonic_mean": 0.25458367823416056,
+          "cross_harmonic_mean": 0.2073883723275531,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.17495484253309046,
+          "dogs_harmonic_mean": 0.25458367823416056
+        },
+        {
+          "rank": 5,
+          "layer": 3,
+          "alpha": 35.0,
+          "side_a_harmonic_mean": 0.18314327773538325,
+          "side_b_harmonic_mean": 0.21716366652839536,
+          "cross_harmonic_mean": 0.1987078478800339,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.18314327773538325,
+          "dogs_harmonic_mean": 0.21716366652839536
+        }
+      ],
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_catdog_1.png"
+    },
+    "catdog-5": {
+      "merge_key": "catdog-5",
+      "tag": "5",
+      "data": "cats-dogs",
+      "side_a_label": "cat",
+      "side_b_label": "dog",
+      "side_a_abbrev": "cats",
+      "side_b_abbrev": "dogs",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_5",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_5",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_5/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_5/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "recomputed_unique_layers",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 29,
+          "alpha": 30.0,
+          "cat_sentiment_prob": 0.17921690084040165,
+          "perplexity": 547.5706512451172,
+          "harmonic_mean": 0.30174539995141836
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 85.0,
+          "cat_sentiment_prob": 0.1999244948849082,
+          "perplexity": 2048.885073852539,
+          "harmonic_mean": 0.28518390002081423
+        },
+        {
+          "rank": 3,
+          "layer": 31,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.18155418448150157,
+          "perplexity": 2130.8965454101562,
+          "harmonic_mean": 0.2622824407412272
+        },
+        {
+          "rank": 4,
+          "layer": 32,
+          "alpha": 10.0,
+          "cat_sentiment_prob": 0.1450249243527651,
+          "perplexity": 396.194100189209,
+          "harmonic_mean": 0.25331313103903247
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 45.0,
+          "cat_sentiment_prob": 0.1875910653732717,
+          "perplexity": 8909.010052490234,
+          "harmonic_mean": 0.0
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 7,
+          "alpha": 65.0,
+          "dog_sentiment_prob": 0.16702173221856356,
+          "perplexity": 46302.58247070313,
+          "harmonic_mean": 0.24781346957945136
+        },
+        {
+          "rank": 2,
+          "layer": 31,
           "alpha": 50.0,
-          "positive_sentiment_prob": 0.15751234702765943,
-          "perplexity": 3185.7438903808593,
-          "harmonic_mean": 0.25248679166303056
+          "dog_sentiment_prob": 0.1593608744442463,
+          "perplexity": 41786.45986328125,
+          "harmonic_mean": 0.2451723642762801
+        },
+        {
+          "rank": 3,
+          "layer": 9,
+          "alpha": 35.0,
+          "dog_sentiment_prob": 0.1557402305305004,
+          "perplexity": 45041.90122070313,
+          "harmonic_mean": 0.23685387042446393
+        },
+        {
+          "rank": 4,
+          "layer": 14,
+          "alpha": 20.0,
+          "dog_sentiment_prob": 0.13526441026479005,
+          "perplexity": 10472.495385742188,
+          "harmonic_mean": 0.23471117948022116
+        },
+        {
+          "rank": 5,
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.1636524132452905,
+          "perplexity": 55556.45732421875,
+          "harmonic_mean": 0.22787126921444456
+        }
+      ],
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_5",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_5",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_5/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_5/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "recomputed_unique_layers",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 29,
+          "alpha": 30.0,
+          "cat_sentiment_prob": 0.17921690084040165,
+          "perplexity": 547.5706512451172,
+          "harmonic_mean": 0.30174539995141836
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 85.0,
+          "cat_sentiment_prob": 0.1999244948849082,
+          "perplexity": 2048.885073852539,
+          "harmonic_mean": 0.28518390002081423
+        },
+        {
+          "rank": 3,
+          "layer": 31,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.18155418448150157,
+          "perplexity": 2130.8965454101562,
+          "harmonic_mean": 0.2622824407412272
+        },
+        {
+          "rank": 4,
+          "layer": 32,
+          "alpha": 10.0,
+          "cat_sentiment_prob": 0.1450249243527651,
+          "perplexity": 396.194100189209,
+          "harmonic_mean": 0.25331313103903247
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 45.0,
+          "cat_sentiment_prob": 0.1875910653732717,
+          "perplexity": 8909.010052490234,
+          "harmonic_mean": 0.0
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 7,
+          "alpha": 65.0,
+          "dog_sentiment_prob": 0.16702173221856356,
+          "perplexity": 46302.58247070313,
+          "harmonic_mean": 0.24781346957945136
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 50.0,
+          "dog_sentiment_prob": 0.1593608744442463,
+          "perplexity": 41786.45986328125,
+          "harmonic_mean": 0.2451723642762801
+        },
+        {
+          "rank": 3,
+          "layer": 9,
+          "alpha": 35.0,
+          "dog_sentiment_prob": 0.1557402305305004,
+          "perplexity": 45041.90122070313,
+          "harmonic_mean": 0.23685387042446393
+        },
+        {
+          "rank": 4,
+          "layer": 14,
+          "alpha": 20.0,
+          "dog_sentiment_prob": 0.13526441026479005,
+          "perplexity": 10472.495385742188,
+          "harmonic_mean": 0.23471117948022116
+        },
+        {
+          "rank": 5,
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.1636524132452905,
+          "perplexity": 55556.45732421875,
+          "harmonic_mean": 0.22787126921444456
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.27213308214071086,
+          "side_a": {
+            "rank": 1,
+            "layer": 29,
+            "alpha": 30.0,
+            "cat_sentiment_prob": 0.17921690084040165,
+            "perplexity": 547.5706512451172,
+            "harmonic_mean": 0.30174539995141836
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 7,
+            "alpha": 65.0,
+            "dog_sentiment_prob": 0.16702173221856356,
+            "perplexity": 46302.58247070313,
+            "harmonic_mean": 0.24781346957945136
+          },
+          "pos": {
+            "rank": 1,
+            "layer": 29,
+            "alpha": 30.0,
+            "cat_sentiment_prob": 0.17921690084040165,
+            "perplexity": 547.5706512451172,
+            "harmonic_mean": 0.30174539995141836
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 7,
+            "alpha": 65.0,
+            "dog_sentiment_prob": 0.16702173221856356,
+            "perplexity": 46302.58247070313,
+            "harmonic_mean": 0.24781346957945136
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.263668841978516,
+          "side_a": {
+            "rank": 2,
+            "layer": 30,
+            "alpha": 85.0,
+            "cat_sentiment_prob": 0.1999244948849082,
+            "perplexity": 2048.885073852539,
+            "harmonic_mean": 0.28518390002081423
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 50.0,
+            "dog_sentiment_prob": 0.1593608744442463,
+            "perplexity": 41786.45986328125,
+            "harmonic_mean": 0.2451723642762801
+          },
+          "pos": {
+            "rank": 2,
+            "layer": 30,
+            "alpha": 85.0,
+            "cat_sentiment_prob": 0.1999244948849082,
+            "perplexity": 2048.885073852539,
+            "harmonic_mean": 0.28518390002081423
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 50.0,
+            "dog_sentiment_prob": 0.1593608744442463,
+            "perplexity": 41786.45986328125,
+            "harmonic_mean": 0.2451723642762801
+          }
+        },
+        {
+          "rank": 3,
+          "between_directions_harmonic_mean": 0.24892042451831486,
+          "side_a": {
+            "rank": 3,
+            "layer": 31,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.18155418448150157,
+            "perplexity": 2130.8965454101562,
+            "harmonic_mean": 0.2622824407412272
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 9,
+            "alpha": 35.0,
+            "dog_sentiment_prob": 0.1557402305305004,
+            "perplexity": 45041.90122070313,
+            "harmonic_mean": 0.23685387042446393
+          },
+          "pos": {
+            "rank": 3,
+            "layer": 31,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.18155418448150157,
+            "perplexity": 2130.8965454101562,
+            "harmonic_mean": 0.2622824407412272
+          },
+          "neg": {
+            "rank": 3,
+            "layer": 9,
+            "alpha": 35.0,
+            "dog_sentiment_prob": 0.1557402305305004,
+            "perplexity": 45041.90122070313,
+            "harmonic_mean": 0.23685387042446393
+          }
+        },
+        {
+          "rank": 4,
+          "between_directions_harmonic_mean": 0.24365763132061627,
+          "side_a": {
+            "rank": 4,
+            "layer": 32,
+            "alpha": 10.0,
+            "cat_sentiment_prob": 0.1450249243527651,
+            "perplexity": 396.194100189209,
+            "harmonic_mean": 0.25331313103903247
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 14,
+            "alpha": 20.0,
+            "dog_sentiment_prob": 0.13526441026479005,
+            "perplexity": 10472.495385742188,
+            "harmonic_mean": 0.23471117948022116
+          },
+          "pos": {
+            "rank": 4,
+            "layer": 32,
+            "alpha": 10.0,
+            "cat_sentiment_prob": 0.1450249243527651,
+            "perplexity": 396.194100189209,
+            "harmonic_mean": 0.25331313103903247
+          },
+          "neg": {
+            "rank": 4,
+            "layer": 14,
+            "alpha": 20.0,
+            "dog_sentiment_prob": 0.13526441026479005,
+            "perplexity": 10472.495385742188,
+            "harmonic_mean": 0.23471117948022116
+          }
+        },
+        {
+          "rank": 5,
+          "between_directions_harmonic_mean": 0.0,
+          "side_a": {
+            "rank": 5,
+            "layer": 27,
+            "alpha": 45.0,
+            "cat_sentiment_prob": 0.1875910653732717,
+            "perplexity": 8909.010052490234,
+            "harmonic_mean": 0.0
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.1636524132452905,
+            "perplexity": 55556.45732421875,
+            "harmonic_mean": 0.22787126921444456
+          },
+          "pos": {
+            "rank": 5,
+            "layer": 27,
+            "alpha": 45.0,
+            "cat_sentiment_prob": 0.1875910653732717,
+            "perplexity": 8909.010052490234,
+            "harmonic_mean": 0.0
+          },
+          "neg": {
+            "rank": 5,
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.1636524132452905,
+            "perplexity": 55556.45732421875,
+            "harmonic_mean": 0.22787126921444456
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 30,
+          "alpha": 20.0,
+          "side_a_harmonic_mean": 0.3297444318895056,
+          "side_b_harmonic_mean": 0.21728579675424955,
+          "cross_harmonic_mean": 0.26195547469479513,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.3297444318895056,
+          "dogs_harmonic_mean": 0.21728579675424955
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 75.0,
+          "side_a_harmonic_mean": 0.32466757047461653,
+          "side_b_harmonic_mean": 0.21669900645812298,
+          "cross_harmonic_mean": 0.2599168214249144,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.32466757047461653,
+          "dogs_harmonic_mean": 0.21669900645812298
+        },
+        {
+          "rank": 3,
+          "layer": 29,
+          "alpha": 10.0,
+          "side_a_harmonic_mean": 0.30928225514611823,
+          "side_b_harmonic_mean": 0.20075405501239302,
+          "cross_harmonic_mean": 0.24347155536696713,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.30928225514611823,
+          "dogs_harmonic_mean": 0.20075405501239302
+        },
+        {
+          "rank": 4,
+          "layer": 28,
+          "alpha": 15.0,
+          "side_a_harmonic_mean": 0.2753546915349319,
+          "side_b_harmonic_mean": 0.19535261809699,
+          "cross_harmonic_mean": 0.22855502260502855,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2753546915349319,
+          "dogs_harmonic_mean": 0.19535261809699
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 55.0,
+          "side_a_harmonic_mean": 0.250215419202357,
+          "side_b_harmonic_mean": 0.19530177476109742,
+          "cross_harmonic_mean": 0.21937431867925114,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.250215419202357,
+          "dogs_harmonic_mean": 0.19530177476109742
+        }
+      ],
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_catdog_5.png"
+    },
+    "catdog-10": {
+      "merge_key": "catdog-10",
+      "tag": "10",
+      "data": "cats-dogs",
+      "side_a_label": "cat",
+      "side_b_label": "dog",
+      "side_a_abbrev": "cats",
+      "side_b_abbrev": "dogs",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_10",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_10",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_10/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_10/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "recomputed_unique_layers",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 31,
+          "alpha": 75.0,
+          "cat_sentiment_prob": 0.21431360859423876,
+          "perplexity": 682.2520515441895,
+          "harmonic_mean": 0.3461920678085336
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 80.0,
+          "cat_sentiment_prob": 0.17373692877590657,
+          "perplexity": 626.2666244506836,
+          "harmonic_mean": 0.29171628871748295
+        },
+        {
+          "rank": 3,
+          "layer": 32,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.15158551409840584,
+          "perplexity": 56.460022926330566,
+          "harmonic_mean": 0.26326401685780926
         },
         {
           "rank": 4,
           "layer": 29,
-          "alpha": 30.0,
-          "positive_sentiment_prob": 0.15154389687231742,
-          "perplexity": 2243.8176239013674,
-          "harmonic_mean": 0.2520159030533296
+          "alpha": 10.0,
+          "cat_sentiment_prob": 0.15713357217609883,
+          "perplexity": 1404.6534904479981,
+          "harmonic_mean": 0.26183074545574586
+        },
+        {
+          "rank": 5,
+          "layer": 28,
+          "alpha": 25.0,
+          "cat_sentiment_prob": 0.17353263609111308,
+          "perplexity": 3435.2206588745116,
+          "harmonic_mean": 0.2520320739341216
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.22878507673740386,
+          "perplexity": 30815.89860839844,
+          "harmonic_mean": 0.33242459394840235
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 55.0,
+          "dog_sentiment_prob": 0.1988196361809969,
+          "perplexity": 29410.403515625,
+          "harmonic_mean": 0.30175459321907644
+        },
+        {
+          "rank": 3,
+          "layer": 7,
+          "alpha": 60.0,
+          "dog_sentiment_prob": 0.2025058351457119,
+          "perplexity": 40088.437255859375,
+          "harmonic_mean": 0.28642907024441006
+        },
+        {
+          "rank": 4,
+          "layer": 31,
+          "alpha": 80.0,
+          "dog_sentiment_prob": 0.18872514367103577,
+          "perplexity": 33328.80952148438,
+          "harmonic_mean": 0.2842495770244975
         },
         {
           "rank": 5,
           "layer": 8,
-          "alpha": 85.0,
-          "positive_sentiment_prob": 0.125872749523478,
-          "perplexity": 753.7271331787109,
-          "harmonic_mean": 0.22158495444726756
+          "alpha": 65.0,
+          "dog_sentiment_prob": 0.1518140945583582,
+          "perplexity": 34287.55634765625,
+          "harmonic_mean": 0.2391721644835481
+        }
+      ],
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_10",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_10",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_10/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_10/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "recomputed_unique_layers",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 31,
+          "alpha": 75.0,
+          "cat_sentiment_prob": 0.21431360859423876,
+          "perplexity": 682.2520515441895,
+          "harmonic_mean": 0.3461920678085336
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 80.0,
+          "cat_sentiment_prob": 0.17373692877590657,
+          "perplexity": 626.2666244506836,
+          "harmonic_mean": 0.29171628871748295
+        },
+        {
+          "rank": 3,
+          "layer": 32,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.15158551409840584,
+          "perplexity": 56.460022926330566,
+          "harmonic_mean": 0.26326401685780926
+        },
+        {
+          "rank": 4,
+          "layer": 29,
+          "alpha": 10.0,
+          "cat_sentiment_prob": 0.15713357217609883,
+          "perplexity": 1404.6534904479981,
+          "harmonic_mean": 0.26183074545574586
+        },
+        {
+          "rank": 5,
+          "layer": 28,
+          "alpha": 25.0,
+          "cat_sentiment_prob": 0.17353263609111308,
+          "perplexity": 3435.2206588745116,
+          "harmonic_mean": 0.2520320739341216
         }
       ],
       "neg_top5": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 15.0,
-          "negative_sentiment_prob": 0.49590924233198164,
-          "perplexity": 329.9494827270508,
-          "harmonic_mean": 0.6565331436712406
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.22878507673740386,
+          "perplexity": 30815.89860839844,
+          "harmonic_mean": 0.33242459394840235
         },
         {
           "rank": 2,
-          "layer": 31,
-          "alpha": 100.0,
-          "negative_sentiment_prob": 0.4885160028934479,
-          "perplexity": 1971.7350341796875,
-          "harmonic_mean": 0.590410475964936
+          "layer": 30,
+          "alpha": 55.0,
+          "dog_sentiment_prob": 0.1988196361809969,
+          "perplexity": 29410.403515625,
+          "harmonic_mean": 0.30175459321907644
         },
         {
           "rank": 3,
-          "layer": 30,
-          "alpha": 20.0,
-          "negative_sentiment_prob": 0.3895131573546678,
-          "perplexity": 527.6953945159912,
-          "harmonic_mean": 0.5514678362435733
+          "layer": 7,
+          "alpha": 60.0,
+          "dog_sentiment_prob": 0.2025058351457119,
+          "perplexity": 40088.437255859375,
+          "harmonic_mean": 0.28642907024441006
         },
         {
           "rank": 4,
-          "layer": 25,
-          "alpha": 25.0,
-          "negative_sentiment_prob": 0.3994455896317959,
-          "perplexity": 1779.1158355712892,
-          "harmonic_mean": 0.526577910102832
+          "layer": 31,
+          "alpha": 80.0,
+          "dog_sentiment_prob": 0.18872514367103577,
+          "perplexity": 33328.80952148438,
+          "harmonic_mean": 0.2842495770244975
         },
         {
           "rank": 5,
-          "layer": 27,
-          "alpha": 20.0,
-          "negative_sentiment_prob": 0.3538586489856243,
-          "perplexity": 591.4399345397949,
-          "harmonic_mean": 0.5134442580467077
+          "layer": 8,
+          "alpha": 65.0,
+          "dog_sentiment_prob": 0.1518140945583582,
+          "perplexity": 34287.55634765625,
+          "harmonic_mean": 0.2391721644835481
         }
       ],
       "paired_top5_by_rank_harmonic": [
         {
           "rank": 1,
-          "between_directions_harmonic_mean": 0.47477754121373794,
+          "between_directions_harmonic_mean": 0.33916867667664014,
+          "side_a": {
+            "rank": 1,
+            "layer": 31,
+            "alpha": 75.0,
+            "cat_sentiment_prob": 0.21431360859423876,
+            "perplexity": 682.2520515441895,
+            "harmonic_mean": 0.3461920678085336
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.22878507673740386,
+            "perplexity": 30815.89860839844,
+            "harmonic_mean": 0.33242459394840235
+          },
           "pos": {
             "rank": 1,
-            "layer": 32,
-            "alpha": 70.0,
-            "positive_sentiment_prob": 0.22912250887602567,
-            "perplexity": 238.295565032959,
-            "harmonic_mean": 0.37183750004641697
+            "layer": 31,
+            "alpha": 75.0,
+            "cat_sentiment_prob": 0.21431360859423876,
+            "perplexity": 682.2520515441895,
+            "harmonic_mean": 0.3461920678085336
           },
           "neg": {
             "rank": 1,
-            "layer": 32,
-            "alpha": 15.0,
-            "negative_sentiment_prob": 0.49590924233198164,
-            "perplexity": 329.9494827270508,
-            "harmonic_mean": 0.6565331436712406
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.22878507673740386,
+            "perplexity": 30815.89860839844,
+            "harmonic_mean": 0.33242459394840235
           }
         },
         {
           "rank": 2,
-          "between_directions_harmonic_mean": 0.3571519825564892,
+          "between_directions_harmonic_mean": 0.2966505441685093,
+          "side_a": {
+            "rank": 2,
+            "layer": 30,
+            "alpha": 80.0,
+            "cat_sentiment_prob": 0.17373692877590657,
+            "perplexity": 626.2666244506836,
+            "harmonic_mean": 0.29171628871748295
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 30,
+            "alpha": 55.0,
+            "dog_sentiment_prob": 0.1988196361809969,
+            "perplexity": 29410.403515625,
+            "harmonic_mean": 0.30175459321907644
+          },
           "pos": {
             "rank": 2,
-            "layer": 22,
-            "alpha": 75.0,
-            "positive_sentiment_prob": 0.15212978422641754,
-            "perplexity": 1743.9548614501953,
-            "harmonic_mean": 0.2560085178071194
+            "layer": 30,
+            "alpha": 80.0,
+            "cat_sentiment_prob": 0.17373692877590657,
+            "perplexity": 626.2666244506836,
+            "harmonic_mean": 0.29171628871748295
           },
           "neg": {
             "rank": 2,
-            "layer": 31,
-            "alpha": 100.0,
-            "negative_sentiment_prob": 0.4885160028934479,
-            "perplexity": 1971.7350341796875,
-            "harmonic_mean": 0.590410475964936
+            "layer": 30,
+            "alpha": 55.0,
+            "dog_sentiment_prob": 0.1988196361809969,
+            "perplexity": 29410.403515625,
+            "harmonic_mean": 0.30175459321907644
           }
         },
         {
           "rank": 3,
-          "between_directions_harmonic_mean": 0.3463835889372324,
+          "between_directions_harmonic_mean": 0.2743584350856813,
+          "side_a": {
+            "rank": 3,
+            "layer": 32,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.15158551409840584,
+            "perplexity": 56.460022926330566,
+            "harmonic_mean": 0.26326401685780926
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 7,
+            "alpha": 60.0,
+            "dog_sentiment_prob": 0.2025058351457119,
+            "perplexity": 40088.437255859375,
+            "harmonic_mean": 0.28642907024441006
+          },
           "pos": {
             "rank": 3,
-            "layer": 25,
-            "alpha": 50.0,
-            "positive_sentiment_prob": 0.15751234702765943,
-            "perplexity": 3185.7438903808593,
-            "harmonic_mean": 0.25248679166303056
+            "layer": 32,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.15158551409840584,
+            "perplexity": 56.460022926330566,
+            "harmonic_mean": 0.26326401685780926
           },
           "neg": {
             "rank": 3,
-            "layer": 30,
-            "alpha": 20.0,
-            "negative_sentiment_prob": 0.3895131573546678,
-            "perplexity": 527.6953945159912,
-            "harmonic_mean": 0.5514678362435733
+            "layer": 7,
+            "alpha": 60.0,
+            "dog_sentiment_prob": 0.2025058351457119,
+            "perplexity": 40088.437255859375,
+            "harmonic_mean": 0.28642907024441006
           }
         },
         {
           "rank": 4,
-          "between_directions_harmonic_mean": 0.34088636539392464,
+          "between_directions_harmonic_mean": 0.2725799688579596,
+          "side_a": {
+            "rank": 4,
+            "layer": 29,
+            "alpha": 10.0,
+            "cat_sentiment_prob": 0.15713357217609883,
+            "perplexity": 1404.6534904479981,
+            "harmonic_mean": 0.26183074545574586
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 31,
+            "alpha": 80.0,
+            "dog_sentiment_prob": 0.18872514367103577,
+            "perplexity": 33328.80952148438,
+            "harmonic_mean": 0.2842495770244975
+          },
           "pos": {
             "rank": 4,
             "layer": 29,
-            "alpha": 30.0,
-            "positive_sentiment_prob": 0.15154389687231742,
-            "perplexity": 2243.8176239013674,
-            "harmonic_mean": 0.2520159030533296
+            "alpha": 10.0,
+            "cat_sentiment_prob": 0.15713357217609883,
+            "perplexity": 1404.6534904479981,
+            "harmonic_mean": 0.26183074545574586
           },
           "neg": {
             "rank": 4,
-            "layer": 25,
-            "alpha": 25.0,
-            "negative_sentiment_prob": 0.3994455896317959,
-            "perplexity": 1779.1158355712892,
-            "harmonic_mean": 0.526577910102832
+            "layer": 31,
+            "alpha": 80.0,
+            "dog_sentiment_prob": 0.18872514367103577,
+            "perplexity": 33328.80952148438,
+            "harmonic_mean": 0.2842495770244975
           }
         },
         {
           "rank": 5,
-          "between_directions_harmonic_mean": 0.3095700704043061,
-          "pos": {
+          "between_directions_harmonic_mean": 0.24543378060531457,
+          "side_a": {
+            "rank": 5,
+            "layer": 28,
+            "alpha": 25.0,
+            "cat_sentiment_prob": 0.17353263609111308,
+            "perplexity": 3435.2206588745116,
+            "harmonic_mean": 0.2520320739341216
+          },
+          "side_b": {
             "rank": 5,
             "layer": 8,
-            "alpha": 85.0,
-            "positive_sentiment_prob": 0.125872749523478,
-            "perplexity": 753.7271331787109,
-            "harmonic_mean": 0.22158495444726756
+            "alpha": 65.0,
+            "dog_sentiment_prob": 0.1518140945583582,
+            "perplexity": 34287.55634765625,
+            "harmonic_mean": 0.2391721644835481
+          },
+          "pos": {
+            "rank": 5,
+            "layer": 28,
+            "alpha": 25.0,
+            "cat_sentiment_prob": 0.17353263609111308,
+            "perplexity": 3435.2206588745116,
+            "harmonic_mean": 0.2520320739341216
           },
           "neg": {
             "rank": 5,
-            "layer": 27,
-            "alpha": 20.0,
-            "negative_sentiment_prob": 0.3538586489856243,
-            "perplexity": 591.4399345397949,
-            "harmonic_mean": 0.5134442580467077
+            "layer": 8,
+            "alpha": 65.0,
+            "dog_sentiment_prob": 0.1518140945583582,
+            "perplexity": 34287.55634765625,
+            "harmonic_mean": 0.2391721644835481
           }
         }
       ],
       "intersection_top5_by_cross_harmonic": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 25.0,
-          "pos_harmonic_mean": 0.3613100866829695,
-          "neg_harmonic_mean": 0.643522517624741,
-          "cross_harmonic_mean": 0.46278589215490046
-        },
-        {
-          "rank": 2,
-          "layer": 29,
-          "alpha": 30.0,
-          "pos_harmonic_mean": 0.25456912836091883,
-          "neg_harmonic_mean": 0.48619223995886546,
-          "cross_harmonic_mean": 0.33416843813793534
-        },
-        {
-          "rank": 3,
-          "layer": 25,
-          "alpha": 25.0,
-          "pos_harmonic_mean": 0.23703396704196686,
-          "neg_harmonic_mean": 0.5499061362562035,
-          "cross_harmonic_mean": 0.33127408917458673
-        },
-        {
-          "rank": 4,
-          "layer": 28,
-          "alpha": 35.0,
-          "pos_harmonic_mean": 0.22109172741191985,
-          "neg_harmonic_mean": 0.4628321972101169,
-          "cross_harmonic_mean": 0.29923904194341433
-        },
-        {
-          "rank": 5,
-          "layer": 27,
-          "alpha": 30.0,
-          "pos_harmonic_mean": 0.22155326326772004,
-          "neg_harmonic_mean": 0.36290360276922007,
-          "cross_harmonic_mean": 0.2751357101519664
-        }
-      ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_500.png"
-    },
-    "1000": {
-      "tag": "1000",
-      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_1000",
-      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_1000",
-      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_1000/eval_scores.json",
-      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_1000/eval_scores.json",
-      "pos_top5_source": "by_harmonic_mean_unique_layer",
-      "neg_top5_source": "by_harmonic_mean_unique_layer",
-      "pos_top5": [
-        {
-          "rank": 1,
-          "layer": 32,
-          "alpha": 15.0,
-          "positive_sentiment_prob": 0.25397274727001784,
-          "perplexity": 406.2168113708496,
-          "harmonic_mean": 0.40217978584134745
-        },
-        {
-          "rank": 2,
-          "layer": 22,
+          "layer": 31,
           "alpha": 75.0,
-          "positive_sentiment_prob": 0.17427876070141793,
-          "perplexity": 2971.9084411621093,
-          "harmonic_mean": 0.2731618805532573
+          "side_a_harmonic_mean": 0.3518281002899504,
+          "side_b_harmonic_mean": 0.28332269670899507,
+          "cross_harmonic_mean": 0.3138810078587275,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.3518281002899504,
+          "dogs_harmonic_mean": 0.28332269670899507
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 100.0,
+          "side_a_harmonic_mean": 0.2945662861916372,
+          "side_b_harmonic_mean": 0.28161831200928766,
+          "cross_harmonic_mean": 0.28794681618062196,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2945662861916372,
+          "dogs_harmonic_mean": 0.28161831200928766
         },
         {
           "rank": 3,
           "layer": 29,
-          "alpha": 30.0,
-          "positive_sentiment_prob": 0.16353559946874158,
-          "perplexity": 1611.1729125976562,
-          "harmonic_mean": 0.272057759100788
+          "alpha": 35.0,
+          "side_a_harmonic_mean": 0.22010816670049335,
+          "side_b_harmonic_mean": 0.2838900250771146,
+          "cross_harmonic_mean": 0.24796324266120898,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.22010816670049335,
+          "dogs_harmonic_mean": 0.2838900250771146
         },
         {
           "rank": 4,
-          "layer": 25,
-          "alpha": 30.0,
-          "positive_sentiment_prob": 0.1457092098193243,
-          "perplexity": 754.0673034667968,
-          "harmonic_mean": 0.2515898257348006
+          "layer": 27,
+          "alpha": 20.0,
+          "side_a_harmonic_mean": 0.27317020161942235,
+          "side_b_harmonic_mean": 0.22412998580307275,
+          "cross_harmonic_mean": 0.24623209465540669,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.27317020161942235,
+          "dogs_harmonic_mean": 0.22412998580307275
         },
         {
           "rank": 5,
-          "layer": 0,
+          "layer": 28,
+          "alpha": 15.0,
+          "side_a_harmonic_mean": 0.26491264358397837,
+          "side_b_harmonic_mean": 0.22113484204253456,
+          "cross_harmonic_mean": 0.24105223183492924,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.26491264358397837,
+          "dogs_harmonic_mean": 0.22113484204253456
+        }
+      ],
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_catdog_10.png"
+    },
+    "catdog-20": {
+      "merge_key": "catdog-20",
+      "tag": "20",
+      "data": "cats-dogs",
+      "side_a_label": "cat",
+      "side_b_label": "dog",
+      "side_a_abbrev": "cats",
+      "side_b_abbrev": "dogs",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_20",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_20",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_20/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_20/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 30,
+          "alpha": 15.0,
+          "cat_sentiment_prob": 0.17135064471513034,
+          "perplexity": 1509.1790031433106,
+          "harmonic_mean": 0.27977754758124407
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 75.0,
+          "cat_sentiment_prob": 0.1631527381017804,
+          "perplexity": 867.9832931518555,
+          "harmonic_mean": 0.27450067542098394
+        },
+        {
+          "rank": 3,
+          "layer": 29,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.14183561205863954,
+          "perplexity": 842.5951454162598,
+          "harmonic_mean": 0.24385086434302514
+        },
+        {
+          "rank": 4,
+          "layer": 32,
+          "alpha": 55.0,
+          "cat_sentiment_prob": 0.13196417838335037,
+          "perplexity": 25.500001192092896,
+          "harmonic_mean": 0.23314205674483496
+        },
+        {
+          "rank": 5,
+          "layer": 27,
           "alpha": 50.0,
-          "positive_sentiment_prob": 0.13696505120024086,
-          "perplexity": 548.8569030761719,
-          "harmonic_mean": 0.2393225498859188
+          "cat_sentiment_prob": 0.13334303423762323,
+          "perplexity": 3199.1261474609373,
+          "harmonic_mean": 0.20976388149076214
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 31,
+          "alpha": 95.0,
+          "dog_sentiment_prob": 0.19832961931824683,
+          "perplexity": 4316.095422363282,
+          "harmonic_mean": 0.331010126297438
+        },
+        {
+          "rank": 2,
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.2284026298671961,
+          "perplexity": 6959.902075195312,
+          "harmonic_mean": 0.28866226400243167
+        }
+      ],
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_20",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_20",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_20/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_20/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "by_harmonic_mean_unique_layer",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 30,
+          "alpha": 15.0,
+          "cat_sentiment_prob": 0.17135064471513034,
+          "perplexity": 1509.1790031433106,
+          "harmonic_mean": 0.27977754758124407
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 75.0,
+          "cat_sentiment_prob": 0.1631527381017804,
+          "perplexity": 867.9832931518555,
+          "harmonic_mean": 0.27450067542098394
+        },
+        {
+          "rank": 3,
+          "layer": 29,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.14183561205863954,
+          "perplexity": 842.5951454162598,
+          "harmonic_mean": 0.24385086434302514
+        },
+        {
+          "rank": 4,
+          "layer": 32,
+          "alpha": 55.0,
+          "cat_sentiment_prob": 0.13196417838335037,
+          "perplexity": 25.500001192092896,
+          "harmonic_mean": 0.23314205674483496
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 50.0,
+          "cat_sentiment_prob": 0.13334303423762323,
+          "perplexity": 3199.1261474609373,
+          "harmonic_mean": 0.20976388149076214
         }
       ],
       "neg_top5": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 20.0,
-          "negative_sentiment_prob": 0.48358349651098254,
-          "perplexity": 362.0564414978027,
-          "harmonic_mean": 0.6440387313689672
+          "layer": 31,
+          "alpha": 95.0,
+          "dog_sentiment_prob": 0.19832961931824683,
+          "perplexity": 4316.095422363282,
+          "harmonic_mean": 0.331010126297438
         },
         {
           "rank": 2,
-          "layer": 31,
+          "layer": 29,
           "alpha": 100.0,
-          "negative_sentiment_prob": 0.4580956846475601,
-          "perplexity": 1356.6853729248046,
-          "harmonic_mean": 0.5871929626381921
-        },
-        {
-          "rank": 3,
-          "layer": 25,
-          "alpha": 25.0,
-          "negative_sentiment_prob": 0.392256348580122,
-          "perplexity": 1620.707083129883,
-          "harmonic_mean": 0.5217293052124163
-        },
-        {
-          "rank": 4,
-          "layer": 30,
-          "alpha": 25.0,
-          "negative_sentiment_prob": 0.3716241020709276,
-          "perplexity": 1024.3701965332032,
-          "harmonic_mean": 0.52015540355691
-        },
-        {
-          "rank": 5,
-          "layer": 27,
-          "alpha": 20.0,
-          "negative_sentiment_prob": 0.3436489399522543,
-          "perplexity": 481.70421028137207,
-          "harmonic_mean": 0.5041919538385505
+          "dog_sentiment_prob": 0.2284026298671961,
+          "perplexity": 6959.902075195312,
+          "harmonic_mean": 0.28866226400243167
         }
       ],
       "paired_top5_by_rank_harmonic": [
         {
           "rank": 1,
-          "between_directions_harmonic_mean": 0.4951534594248351,
+          "between_directions_harmonic_mean": 0.3032451548079197,
+          "side_a": {
+            "rank": 1,
+            "layer": 30,
+            "alpha": 15.0,
+            "cat_sentiment_prob": 0.17135064471513034,
+            "perplexity": 1509.1790031433106,
+            "harmonic_mean": 0.27977754758124407
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 31,
+            "alpha": 95.0,
+            "dog_sentiment_prob": 0.19832961931824683,
+            "perplexity": 4316.095422363282,
+            "harmonic_mean": 0.331010126297438
+          },
           "pos": {
             "rank": 1,
-            "layer": 32,
+            "layer": 30,
             "alpha": 15.0,
-            "positive_sentiment_prob": 0.25397274727001784,
-            "perplexity": 406.2168113708496,
-            "harmonic_mean": 0.40217978584134745
+            "cat_sentiment_prob": 0.17135064471513034,
+            "perplexity": 1509.1790031433106,
+            "harmonic_mean": 0.27977754758124407
           },
           "neg": {
             "rank": 1,
-            "layer": 32,
-            "alpha": 20.0,
-            "negative_sentiment_prob": 0.48358349651098254,
-            "perplexity": 362.0564414978027,
-            "harmonic_mean": 0.6440387313689672
+            "layer": 31,
+            "alpha": 95.0,
+            "dog_sentiment_prob": 0.19832961931824683,
+            "perplexity": 4316.095422363282,
+            "harmonic_mean": 0.331010126297438
           }
         },
         {
           "rank": 2,
-          "between_directions_harmonic_mean": 0.3728664636253918,
-          "pos": {
-            "rank": 2,
-            "layer": 22,
-            "alpha": 75.0,
-            "positive_sentiment_prob": 0.17427876070141793,
-            "perplexity": 2971.9084411621093,
-            "harmonic_mean": 0.2731618805532573
-          },
-          "neg": {
+          "between_directions_harmonic_mean": 0.28140341237065164,
+          "side_a": {
             "rank": 2,
             "layer": 31,
-            "alpha": 100.0,
-            "negative_sentiment_prob": 0.4580956846475601,
-            "perplexity": 1356.6853729248046,
-            "harmonic_mean": 0.5871929626381921
-          }
-        },
-        {
-          "rank": 3,
-          "between_directions_harmonic_mean": 0.3576286689834382,
-          "pos": {
-            "rank": 3,
+            "alpha": 75.0,
+            "cat_sentiment_prob": 0.1631527381017804,
+            "perplexity": 867.9832931518555,
+            "harmonic_mean": 0.27450067542098394
+          },
+          "side_b": {
+            "rank": 2,
             "layer": 29,
-            "alpha": 30.0,
-            "positive_sentiment_prob": 0.16353559946874158,
-            "perplexity": 1611.1729125976562,
-            "harmonic_mean": 0.272057759100788
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.2284026298671961,
+            "perplexity": 6959.902075195312,
+            "harmonic_mean": 0.28866226400243167
           },
-          "neg": {
-            "rank": 3,
-            "layer": 25,
-            "alpha": 25.0,
-            "negative_sentiment_prob": 0.392256348580122,
-            "perplexity": 1620.707083129883,
-            "harmonic_mean": 0.5217293052124163
-          }
-        },
-        {
-          "rank": 4,
-          "between_directions_harmonic_mean": 0.3391425106858215,
           "pos": {
-            "rank": 4,
-            "layer": 25,
-            "alpha": 30.0,
-            "positive_sentiment_prob": 0.1457092098193243,
-            "perplexity": 754.0673034667968,
-            "harmonic_mean": 0.2515898257348006
+            "rank": 2,
+            "layer": 31,
+            "alpha": 75.0,
+            "cat_sentiment_prob": 0.1631527381017804,
+            "perplexity": 867.9832931518555,
+            "harmonic_mean": 0.27450067542098394
           },
           "neg": {
-            "rank": 4,
-            "layer": 30,
-            "alpha": 25.0,
-            "negative_sentiment_prob": 0.3716241020709276,
-            "perplexity": 1024.3701965332032,
-            "harmonic_mean": 0.52015540355691
-          }
-        },
-        {
-          "rank": 5,
-          "between_directions_harmonic_mean": 0.3245787497625495,
-          "pos": {
-            "rank": 5,
-            "layer": 0,
-            "alpha": 50.0,
-            "positive_sentiment_prob": 0.13696505120024086,
-            "perplexity": 548.8569030761719,
-            "harmonic_mean": 0.2393225498859188
-          },
-          "neg": {
-            "rank": 5,
-            "layer": 27,
-            "alpha": 20.0,
-            "negative_sentiment_prob": 0.3436489399522543,
-            "perplexity": 481.70421028137207,
-            "harmonic_mean": 0.5041919538385505
+            "rank": 2,
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.2284026298671961,
+            "perplexity": 6959.902075195312,
+            "harmonic_mean": 0.28866226400243167
           }
         }
       ],
       "intersection_top5_by_cross_harmonic": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 15.0,
-          "pos_harmonic_mean": 0.4023197539662141,
-          "neg_harmonic_mean": 0.6221733100032509,
-          "cross_harmonic_mean": 0.4886565303526809
+          "layer": 31,
+          "alpha": 75.0,
+          "side_a_harmonic_mean": 0.27978210870800385,
+          "side_b_harmonic_mean": 0.34017467298479903,
+          "cross_harmonic_mean": 0.3070368456229038,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.27978210870800385,
+          "dogs_harmonic_mean": 0.34017467298479903
         },
         {
           "rank": 2,
-          "layer": 29,
-          "alpha": 30.0,
-          "pos_harmonic_mean": 0.2747886782715882,
-          "neg_harmonic_mean": 0.49209575199546535,
-          "cross_harmonic_mean": 0.35265376616606614
+          "layer": 30,
+          "alpha": 100.0,
+          "side_a_harmonic_mean": 0.2370191116481922,
+          "side_b_harmonic_mean": 0.37930870502846126,
+          "cross_harmonic_mean": 0.2917389411078243,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2370191116481922,
+          "dogs_harmonic_mean": 0.37930870502846126
         },
         {
           "rank": 3,
-          "layer": 25,
-          "alpha": 30.0,
-          "pos_harmonic_mean": 0.25217184831338657,
-          "neg_harmonic_mean": 0.47547283096207354,
-          "cross_harmonic_mean": 0.32955882457875946
+          "layer": 28,
+          "alpha": 80.0,
+          "side_a_harmonic_mean": 0.26291793238016514,
+          "side_b_harmonic_mean": 0.23159662774781048,
+          "cross_harmonic_mean": 0.24626537385639416,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.26291793238016514,
+          "dogs_harmonic_mean": 0.23159662774781048
         },
         {
           "rank": 4,
           "layer": 27,
-          "alpha": 35.0,
-          "pos_harmonic_mean": 0.24301819002632424,
-          "neg_harmonic_mean": 0.4092009942928542,
-          "cross_harmonic_mean": 0.3049382397232793
+          "alpha": 95.0,
+          "side_a_harmonic_mean": 0.21253585660088387,
+          "side_b_harmonic_mean": 0.2791474320257605,
+          "cross_harmonic_mean": 0.24132948975852977,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.21253585660088387,
+          "dogs_harmonic_mean": 0.2791474320257605
         },
         {
           "rank": 5,
-          "layer": 30,
-          "alpha": 40.0,
-          "pos_harmonic_mean": 0.21668828398969364,
-          "neg_harmonic_mean": 0.4901600655038017,
-          "cross_harmonic_mean": 0.3005225761661682
+          "layer": 29,
+          "alpha": 75.0,
+          "side_a_harmonic_mean": 0.17400369118050635,
+          "side_b_harmonic_mean": 0.3524982410014169,
+          "cross_harmonic_mean": 0.23299437787319913,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.17400369118050635,
+          "dogs_harmonic_mean": 0.3524982410014169
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_1000.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_catdog_20.png"
     },
-    "2000": {
-      "tag": "2000",
-      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_2000",
-      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_2000",
-      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_pos_2000/eval_scores.json",
-      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_neg_2000/eval_scores.json",
+    "catdog-50": {
+      "merge_key": "catdog-50",
+      "tag": "50",
+      "data": "cats-dogs",
+      "side_a_label": "cat",
+      "side_b_label": "dog",
+      "side_a_abbrev": "cats",
+      "side_b_abbrev": "dogs",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_50",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_50",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_50/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_50/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 90.0,
+          "cat_sentiment_prob": 0.16866169683635235,
+          "perplexity": 65.24307012557983,
+          "harmonic_mean": 0.2881229712819199
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 10.0,
+          "cat_sentiment_prob": 0.12752177650108934,
+          "perplexity": 284.4183275222778,
+          "harmonic_mean": 0.223854219557689
+        },
+        {
+          "rank": 3,
+          "layer": 29,
+          "alpha": 15.0,
+          "cat_sentiment_prob": 0.13903287127614022,
+          "perplexity": 1648.2358978271484,
+          "harmonic_mean": 0.21400714532227855
+        },
+        {
+          "rank": 4,
+          "layer": 30,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.12525521479547025,
+          "perplexity": 951.8319686889648,
+          "harmonic_mean": 0.2122409732918808
+        },
+        {
+          "rank": 5,
+          "layer": 28,
+          "alpha": 100.0,
+          "cat_sentiment_prob": 0.1072148622944951,
+          "perplexity": 1845.9287078857421,
+          "harmonic_mean": 0.1690265777569651
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.1982010703533888,
+          "perplexity": 2924.606590270996,
+          "harmonic_mean": 0.31437062579669495
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 50.0,
+          "dog_sentiment_prob": 0.18564899265766144,
+          "perplexity": 2526.6047424316407,
+          "harmonic_mean": 0.302454341681781
+        },
+        {
+          "rank": 3,
+          "layer": 5,
+          "alpha": 55.0,
+          "dog_sentiment_prob": 0.10411878218874335,
+          "perplexity": 6054.637115478516,
+          "harmonic_mean": 0.15696567229163472
+        },
+        {
+          "rank": 4,
+          "layer": 30,
+          "alpha": 95.0,
+          "dog_sentiment_prob": 0.21578929349780082,
+          "perplexity": 7522.019171142578,
+          "harmonic_mean": 0.147545581960231
+        },
+        {
+          "rank": 5,
+          "layer": 13,
+          "alpha": 45.0,
+          "dog_sentiment_prob": 0.10620346022769808,
+          "perplexity": 8271.823150634766,
+          "harmonic_mean": 0.012245093111284966
+        }
+      ],
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_50",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_50",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_50/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_50/eval_scores.json",
       "pos_top5_source": "by_harmonic_mean_unique_layer",
       "neg_top5_source": "by_harmonic_mean_unique_layer",
       "pos_top5": [
         {
           "rank": 1,
           "layer": 32,
-          "alpha": 70.0,
-          "positive_sentiment_prob": 0.24232868403196334,
-          "perplexity": 290.5636215209961,
-          "harmonic_mean": 0.38939199533236424
+          "alpha": 90.0,
+          "cat_sentiment_prob": 0.16866169683635235,
+          "perplexity": 65.24307012557983,
+          "harmonic_mean": 0.2881229712819199
         },
         {
           "rank": 2,
-          "layer": 29,
-          "alpha": 30.0,
-          "positive_sentiment_prob": 0.17804177949146832,
-          "perplexity": 1296.3984008789062,
-          "harmonic_mean": 0.29460276881683983
+          "layer": 31,
+          "alpha": 10.0,
+          "cat_sentiment_prob": 0.12752177650108934,
+          "perplexity": 284.4183275222778,
+          "harmonic_mean": 0.223854219557689
         },
         {
           "rank": 3,
-          "layer": 25,
-          "alpha": 35.0,
-          "positive_sentiment_prob": 0.1659262844361365,
-          "perplexity": 1608.2828887939454,
-          "harmonic_mean": 0.2754626598776902
+          "layer": 29,
+          "alpha": 15.0,
+          "cat_sentiment_prob": 0.13903287127614022,
+          "perplexity": 1648.2358978271484,
+          "harmonic_mean": 0.21400714532227855
         },
         {
           "rank": 4,
-          "layer": 0,
-          "alpha": 50.0,
-          "positive_sentiment_prob": 0.15399823486804962,
-          "perplexity": 583.7989372253418,
-          "harmonic_mean": 0.2650514332806951
+          "layer": 30,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.12525521479547025,
+          "perplexity": 951.8319686889648,
+          "harmonic_mean": 0.2122409732918808
         },
         {
           "rank": 5,
-          "layer": 26,
-          "alpha": 15.0,
-          "positive_sentiment_prob": 0.1455448463850189,
-          "perplexity": 409.69282417297364,
-          "harmonic_mean": 0.2532549543508181
+          "layer": 28,
+          "alpha": 100.0,
+          "cat_sentiment_prob": 0.1072148622944951,
+          "perplexity": 1845.9287078857421,
+          "harmonic_mean": 0.1690265777569651
         }
       ],
       "neg_top5": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 20.0,
-          "negative_sentiment_prob": 0.50120455250144,
-          "perplexity": 372.65821228027346,
-          "harmonic_mean": 0.6585281853226052
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.1982010703533888,
+          "perplexity": 2924.606590270996,
+          "harmonic_mean": 0.31437062579669495
         },
         {
           "rank": 2,
           "layer": 31,
-          "alpha": 100.0,
-          "negative_sentiment_prob": 0.5176087006926536,
-          "perplexity": 935.123910522461,
-          "harmonic_mean": 0.649855804376081
+          "alpha": 50.0,
+          "dog_sentiment_prob": 0.18564899265766144,
+          "perplexity": 2526.6047424316407,
+          "harmonic_mean": 0.302454341681781
         },
         {
           "rank": 3,
-          "layer": 30,
-          "alpha": 25.0,
-          "negative_sentiment_prob": 0.3802274037152529,
-          "perplexity": 983.3412963867188,
-          "harmonic_mean": 0.5283297504368393
+          "layer": 5,
+          "alpha": 55.0,
+          "dog_sentiment_prob": 0.10411878218874335,
+          "perplexity": 6054.637115478516,
+          "harmonic_mean": 0.15696567229163472
         },
         {
           "rank": 4,
-          "layer": 29,
-          "alpha": 15.0,
-          "negative_sentiment_prob": 0.34181596161797645,
-          "perplexity": 292.5074115753174,
-          "harmonic_mean": 0.5057967019005436
+          "layer": 30,
+          "alpha": 95.0,
+          "dog_sentiment_prob": 0.21578929349780082,
+          "perplexity": 7522.019171142578,
+          "harmonic_mean": 0.147545581960231
         },
         {
           "rank": 5,
-          "layer": 25,
-          "alpha": 25.0,
-          "negative_sentiment_prob": 0.37433450669050217,
-          "perplexity": 1759.4897583007812,
-          "harmonic_mean": 0.4983983994186534
+          "layer": 13,
+          "alpha": 45.0,
+          "dog_sentiment_prob": 0.10620346022769808,
+          "perplexity": 8271.823150634766,
+          "harmonic_mean": 0.012245093111284966
         }
       ],
       "paired_top5_by_rank_harmonic": [
         {
           "rank": 1,
-          "between_directions_harmonic_mean": 0.48939911416745396,
+          "between_directions_harmonic_mean": 0.30067505854832033,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 90.0,
+            "cat_sentiment_prob": 0.16866169683635235,
+            "perplexity": 65.24307012557983,
+            "harmonic_mean": 0.2881229712819199
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.1982010703533888,
+            "perplexity": 2924.606590270996,
+            "harmonic_mean": 0.31437062579669495
+          },
           "pos": {
             "rank": 1,
             "layer": 32,
-            "alpha": 70.0,
-            "positive_sentiment_prob": 0.24232868403196334,
-            "perplexity": 290.5636215209961,
-            "harmonic_mean": 0.38939199533236424
+            "alpha": 90.0,
+            "cat_sentiment_prob": 0.16866169683635235,
+            "perplexity": 65.24307012557983,
+            "harmonic_mean": 0.2881229712819199
           },
           "neg": {
             "rank": 1,
-            "layer": 32,
-            "alpha": 20.0,
-            "negative_sentiment_prob": 0.50120455250144,
-            "perplexity": 372.65821228027346,
-            "harmonic_mean": 0.6585281853226052
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.1982010703533888,
+            "perplexity": 2924.606590270996,
+            "harmonic_mean": 0.31437062579669495
           }
         },
         {
           "rank": 2,
-          "between_directions_harmonic_mean": 0.40541602296786283,
+          "between_directions_harmonic_mean": 0.2572851197767374,
+          "side_a": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 10.0,
+            "cat_sentiment_prob": 0.12752177650108934,
+            "perplexity": 284.4183275222778,
+            "harmonic_mean": 0.223854219557689
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 50.0,
+            "dog_sentiment_prob": 0.18564899265766144,
+            "perplexity": 2526.6047424316407,
+            "harmonic_mean": 0.302454341681781
+          },
           "pos": {
             "rank": 2,
-            "layer": 29,
-            "alpha": 30.0,
-            "positive_sentiment_prob": 0.17804177949146832,
-            "perplexity": 1296.3984008789062,
-            "harmonic_mean": 0.29460276881683983
+            "layer": 31,
+            "alpha": 10.0,
+            "cat_sentiment_prob": 0.12752177650108934,
+            "perplexity": 284.4183275222778,
+            "harmonic_mean": 0.223854219557689
           },
           "neg": {
             "rank": 2,
             "layer": 31,
-            "alpha": 100.0,
-            "negative_sentiment_prob": 0.5176087006926536,
-            "perplexity": 935.123910522461,
-            "harmonic_mean": 0.649855804376081
+            "alpha": 50.0,
+            "dog_sentiment_prob": 0.18564899265766144,
+            "perplexity": 2526.6047424316407,
+            "harmonic_mean": 0.302454341681781
           }
         },
         {
           "rank": 3,
-          "between_directions_harmonic_mean": 0.36212115586137245,
+          "between_directions_harmonic_mean": 0.18110100711306223,
+          "side_a": {
+            "rank": 3,
+            "layer": 29,
+            "alpha": 15.0,
+            "cat_sentiment_prob": 0.13903287127614022,
+            "perplexity": 1648.2358978271484,
+            "harmonic_mean": 0.21400714532227855
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 5,
+            "alpha": 55.0,
+            "dog_sentiment_prob": 0.10411878218874335,
+            "perplexity": 6054.637115478516,
+            "harmonic_mean": 0.15696567229163472
+          },
           "pos": {
             "rank": 3,
-            "layer": 25,
-            "alpha": 35.0,
-            "positive_sentiment_prob": 0.1659262844361365,
-            "perplexity": 1608.2828887939454,
-            "harmonic_mean": 0.2754626598776902
+            "layer": 29,
+            "alpha": 15.0,
+            "cat_sentiment_prob": 0.13903287127614022,
+            "perplexity": 1648.2358978271484,
+            "harmonic_mean": 0.21400714532227855
           },
           "neg": {
             "rank": 3,
-            "layer": 30,
-            "alpha": 25.0,
-            "negative_sentiment_prob": 0.3802274037152529,
-            "perplexity": 983.3412963867188,
-            "harmonic_mean": 0.5283297504368393
+            "layer": 5,
+            "alpha": 55.0,
+            "dog_sentiment_prob": 0.10411878218874335,
+            "perplexity": 6054.637115478516,
+            "harmonic_mean": 0.15696567229163472
           }
         },
         {
           "rank": 4,
-          "between_directions_harmonic_mean": 0.34783022665253616,
+          "between_directions_harmonic_mean": 0.17407664329320482,
+          "side_a": {
+            "rank": 4,
+            "layer": 30,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.12525521479547025,
+            "perplexity": 951.8319686889648,
+            "harmonic_mean": 0.2122409732918808
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 30,
+            "alpha": 95.0,
+            "dog_sentiment_prob": 0.21578929349780082,
+            "perplexity": 7522.019171142578,
+            "harmonic_mean": 0.147545581960231
+          },
           "pos": {
             "rank": 4,
-            "layer": 0,
-            "alpha": 50.0,
-            "positive_sentiment_prob": 0.15399823486804962,
-            "perplexity": 583.7989372253418,
-            "harmonic_mean": 0.2650514332806951
+            "layer": 30,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.12525521479547025,
+            "perplexity": 951.8319686889648,
+            "harmonic_mean": 0.2122409732918808
           },
           "neg": {
             "rank": 4,
-            "layer": 29,
-            "alpha": 15.0,
-            "negative_sentiment_prob": 0.34181596161797645,
-            "perplexity": 292.5074115753174,
-            "harmonic_mean": 0.5057967019005436
+            "layer": 30,
+            "alpha": 95.0,
+            "dog_sentiment_prob": 0.21578929349780082,
+            "perplexity": 7522.019171142578,
+            "harmonic_mean": 0.147545581960231
           }
         },
         {
           "rank": 5,
-          "between_directions_harmonic_mean": 0.3358512624477786,
+          "between_directions_harmonic_mean": 0.022835848238197096,
+          "side_a": {
+            "rank": 5,
+            "layer": 28,
+            "alpha": 100.0,
+            "cat_sentiment_prob": 0.1072148622944951,
+            "perplexity": 1845.9287078857421,
+            "harmonic_mean": 0.1690265777569651
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 13,
+            "alpha": 45.0,
+            "dog_sentiment_prob": 0.10620346022769808,
+            "perplexity": 8271.823150634766,
+            "harmonic_mean": 0.012245093111284966
+          },
           "pos": {
             "rank": 5,
-            "layer": 26,
-            "alpha": 15.0,
-            "positive_sentiment_prob": 0.1455448463850189,
-            "perplexity": 409.69282417297364,
-            "harmonic_mean": 0.2532549543508181
+            "layer": 28,
+            "alpha": 100.0,
+            "cat_sentiment_prob": 0.1072148622944951,
+            "perplexity": 1845.9287078857421,
+            "harmonic_mean": 0.1690265777569651
           },
           "neg": {
             "rank": 5,
-            "layer": 25,
-            "alpha": 25.0,
-            "negative_sentiment_prob": 0.37433450669050217,
-            "perplexity": 1759.4897583007812,
-            "harmonic_mean": 0.4983983994186534
+            "layer": 13,
+            "alpha": 45.0,
+            "dog_sentiment_prob": 0.10620346022769808,
+            "perplexity": 8271.823150634766,
+            "harmonic_mean": 0.012245093111284966
           }
         }
       ],
       "intersection_top5_by_cross_harmonic": [
         {
           "rank": 1,
-          "layer": 32,
-          "alpha": 25.0,
-          "pos_harmonic_mean": 0.3875741458152656,
-          "neg_harmonic_mean": 0.6389603221384594,
-          "cross_harmonic_mean": 0.4824864800814928
+          "layer": 30,
+          "alpha": 80.0,
+          "side_a_harmonic_mean": 0.2154882724270579,
+          "side_b_harmonic_mean": 0.3088309722861369,
+          "cross_harmonic_mean": 0.25385088707286,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2154882724270579,
+          "dogs_harmonic_mean": 0.3088309722861369
         },
         {
           "rank": 2,
-          "layer": 29,
-          "alpha": 30.0,
-          "pos_harmonic_mean": 0.29704475631934013,
-          "neg_harmonic_mean": 0.5251737613320822,
-          "cross_harmonic_mean": 0.37946144148102373
+          "layer": 31,
+          "alpha": 45.0,
+          "side_a_harmonic_mean": 0.22526001348143562,
+          "side_b_harmonic_mean": 0.2870704547254647,
+          "cross_harmonic_mean": 0.2524366537399272,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.22526001348143562,
+          "dogs_harmonic_mean": 0.2870704547254647
         },
         {
           "rank": 3,
-          "layer": 25,
-          "alpha": 25.0,
-          "pos_harmonic_mean": 0.26962379691800625,
-          "neg_harmonic_mean": 0.5325419267002283,
-          "cross_harmonic_mean": 0.35799579081312466
+          "layer": 28,
+          "alpha": 15.0,
+          "side_a_harmonic_mean": 0.27148129879655303,
+          "side_b_harmonic_mean": 0.19774681423286197,
+          "cross_harmonic_mean": 0.22882073972175954,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.27148129879655303,
+          "dogs_harmonic_mean": 0.19774681423286197
         },
         {
           "rank": 4,
-          "layer": 30,
-          "alpha": 40.0,
-          "pos_harmonic_mean": 0.2107568269256924,
-          "neg_harmonic_mean": 0.5407429399192463,
-          "cross_harmonic_mean": 0.3033008690829462
+          "layer": 32,
+          "alpha": 95.0,
+          "side_a_harmonic_mean": 0.27548512452246104,
+          "side_b_harmonic_mean": 0.1766319375510018,
+          "cross_harmonic_mean": 0.21525164782644188,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.27548512452246104,
+          "dogs_harmonic_mean": 0.1766319375510018
         },
         {
           "rank": 5,
-          "layer": 26,
+          "layer": 29,
           "alpha": 15.0,
-          "pos_harmonic_mean": 0.25309284087875167,
-          "neg_harmonic_mean": 0.35820626992844895,
-          "cross_harmonic_mean": 0.2966123813170913
+          "side_a_harmonic_mean": 0.2428873712956908,
+          "side_b_harmonic_mean": 0.1841107451371634,
+          "cross_harmonic_mean": 0.20945373383485863,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2428873712956908,
+          "dogs_harmonic_mean": 0.1841107451371634
         }
       ],
-      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_2000.png"
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_catdog_50.png"
+    },
+    "catdog-100": {
+      "merge_key": "catdog-100",
+      "tag": "100",
+      "data": "cats-dogs",
+      "side_a_label": "cat",
+      "side_b_label": "dog",
+      "side_a_abbrev": "cats",
+      "side_b_abbrev": "dogs",
+      "side_a_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_100",
+      "side_b_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_100",
+      "side_a_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_100/eval_scores.json",
+      "side_b_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_100/eval_scores.json",
+      "side_a_top5_source": "by_harmonic_mean_unique_layer",
+      "side_b_top5_source": "by_harmonic_mean_unique_layer",
+      "side_a_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 45.0,
+          "cat_sentiment_prob": 0.16928626857697965,
+          "perplexity": 34.2304431438446,
+          "harmonic_mean": 0.2894757824133601
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.1446079671382904,
+          "perplexity": 1296.9070220947265,
+          "harmonic_mean": 0.2304809209392833
+        },
+        {
+          "rank": 3,
+          "layer": 31,
+          "alpha": 85.0,
+          "cat_sentiment_prob": 0.12485305462032556,
+          "perplexity": 525.5658782958984,
+          "harmonic_mean": 0.21707377400813094
+        },
+        {
+          "rank": 4,
+          "layer": 29,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.123239173181355,
+          "perplexity": 1186.719172668457,
+          "harmonic_mean": 0.2047690857188461
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 55.0,
+          "cat_sentiment_prob": 0.10739487819373608,
+          "perplexity": 1948.1029922485352,
+          "harmonic_mean": 0.1638397004106259
+        }
+      ],
+      "side_b_top5": [
+        {
+          "rank": 1,
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.20082184970378875,
+          "perplexity": 4368.725933837891,
+          "harmonic_mean": 0.30185250173611367
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 70.0,
+          "dog_sentiment_prob": 0.17808695342391728,
+          "perplexity": 2743.8349937438966,
+          "harmonic_mean": 0.2946540332817772
+        },
+        {
+          "rank": 3,
+          "layer": 4,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.11507051195949317,
+          "perplexity": 6429.678497314453,
+          "harmonic_mean": 0.16572769442728386
+        },
+        {
+          "rank": 4,
+          "layer": 5,
+          "alpha": 50.0,
+          "dog_sentiment_prob": 0.10713462615385652,
+          "perplexity": 6195.4735656738285,
+          "harmonic_mean": 0.16192879435417018
+        },
+        {
+          "rank": 5,
+          "layer": 13,
+          "alpha": 40.0,
+          "dog_sentiment_prob": 0.10127717647701502,
+          "perplexity": 6761.173260498047,
+          "harmonic_mean": 0.14347901316256492
+        }
+      ],
+      "pos_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_100",
+      "neg_dir": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_100",
+      "pos_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_cats_100/eval_scores.json",
+      "neg_eval_scores": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/results_dogs_100/eval_scores.json",
+      "pos_top5_source": "by_harmonic_mean_unique_layer",
+      "neg_top5_source": "by_harmonic_mean_unique_layer",
+      "pos_top5": [
+        {
+          "rank": 1,
+          "layer": 32,
+          "alpha": 45.0,
+          "cat_sentiment_prob": 0.16928626857697965,
+          "perplexity": 34.2304431438446,
+          "harmonic_mean": 0.2894757824133601
+        },
+        {
+          "rank": 2,
+          "layer": 30,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.1446079671382904,
+          "perplexity": 1296.9070220947265,
+          "harmonic_mean": 0.2304809209392833
+        },
+        {
+          "rank": 3,
+          "layer": 31,
+          "alpha": 85.0,
+          "cat_sentiment_prob": 0.12485305462032556,
+          "perplexity": 525.5658782958984,
+          "harmonic_mean": 0.21707377400813094
+        },
+        {
+          "rank": 4,
+          "layer": 29,
+          "alpha": 20.0,
+          "cat_sentiment_prob": 0.123239173181355,
+          "perplexity": 1186.719172668457,
+          "harmonic_mean": 0.2047690857188461
+        },
+        {
+          "rank": 5,
+          "layer": 27,
+          "alpha": 55.0,
+          "cat_sentiment_prob": 0.10739487819373608,
+          "perplexity": 1948.1029922485352,
+          "harmonic_mean": 0.1638397004106259
+        }
+      ],
+      "neg_top5": [
+        {
+          "rank": 1,
+          "layer": 29,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.20082184970378875,
+          "perplexity": 4368.725933837891,
+          "harmonic_mean": 0.30185250173611367
+        },
+        {
+          "rank": 2,
+          "layer": 31,
+          "alpha": 70.0,
+          "dog_sentiment_prob": 0.17808695342391728,
+          "perplexity": 2743.8349937438966,
+          "harmonic_mean": 0.2946540332817772
+        },
+        {
+          "rank": 3,
+          "layer": 4,
+          "alpha": 100.0,
+          "dog_sentiment_prob": 0.11507051195949317,
+          "perplexity": 6429.678497314453,
+          "harmonic_mean": 0.16572769442728386
+        },
+        {
+          "rank": 4,
+          "layer": 5,
+          "alpha": 50.0,
+          "dog_sentiment_prob": 0.10713462615385652,
+          "perplexity": 6195.4735656738285,
+          "harmonic_mean": 0.16192879435417018
+        },
+        {
+          "rank": 5,
+          "layer": 13,
+          "alpha": 40.0,
+          "dog_sentiment_prob": 0.10127717647701502,
+          "perplexity": 6761.173260498047,
+          "harmonic_mean": 0.14347901316256492
+        }
+      ],
+      "paired_top5_by_rank_harmonic": [
+        {
+          "rank": 1,
+          "between_directions_harmonic_mean": 0.29553461742210285,
+          "side_a": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 45.0,
+            "cat_sentiment_prob": 0.16928626857697965,
+            "perplexity": 34.2304431438446,
+            "harmonic_mean": 0.2894757824133601
+          },
+          "side_b": {
+            "rank": 1,
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.20082184970378875,
+            "perplexity": 4368.725933837891,
+            "harmonic_mean": 0.30185250173611367
+          },
+          "pos": {
+            "rank": 1,
+            "layer": 32,
+            "alpha": 45.0,
+            "cat_sentiment_prob": 0.16928626857697965,
+            "perplexity": 34.2304431438446,
+            "harmonic_mean": 0.2894757824133601
+          },
+          "neg": {
+            "rank": 1,
+            "layer": 29,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.20082184970378875,
+            "perplexity": 4368.725933837891,
+            "harmonic_mean": 0.30185250173611367
+          }
+        },
+        {
+          "rank": 2,
+          "between_directions_harmonic_mean": 0.25864640090467106,
+          "side_a": {
+            "rank": 2,
+            "layer": 30,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.1446079671382904,
+            "perplexity": 1296.9070220947265,
+            "harmonic_mean": 0.2304809209392833
+          },
+          "side_b": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 70.0,
+            "dog_sentiment_prob": 0.17808695342391728,
+            "perplexity": 2743.8349937438966,
+            "harmonic_mean": 0.2946540332817772
+          },
+          "pos": {
+            "rank": 2,
+            "layer": 30,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.1446079671382904,
+            "perplexity": 1296.9070220947265,
+            "harmonic_mean": 0.2304809209392833
+          },
+          "neg": {
+            "rank": 2,
+            "layer": 31,
+            "alpha": 70.0,
+            "dog_sentiment_prob": 0.17808695342391728,
+            "perplexity": 2743.8349937438966,
+            "harmonic_mean": 0.2946540332817772
+          }
+        },
+        {
+          "rank": 3,
+          "between_directions_harmonic_mean": 0.18795714778229186,
+          "side_a": {
+            "rank": 3,
+            "layer": 31,
+            "alpha": 85.0,
+            "cat_sentiment_prob": 0.12485305462032556,
+            "perplexity": 525.5658782958984,
+            "harmonic_mean": 0.21707377400813094
+          },
+          "side_b": {
+            "rank": 3,
+            "layer": 4,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.11507051195949317,
+            "perplexity": 6429.678497314453,
+            "harmonic_mean": 0.16572769442728386
+          },
+          "pos": {
+            "rank": 3,
+            "layer": 31,
+            "alpha": 85.0,
+            "cat_sentiment_prob": 0.12485305462032556,
+            "perplexity": 525.5658782958984,
+            "harmonic_mean": 0.21707377400813094
+          },
+          "neg": {
+            "rank": 3,
+            "layer": 4,
+            "alpha": 100.0,
+            "dog_sentiment_prob": 0.11507051195949317,
+            "perplexity": 6429.678497314453,
+            "harmonic_mean": 0.16572769442728386
+          }
+        },
+        {
+          "rank": 4,
+          "between_directions_harmonic_mean": 0.18084648411305848,
+          "side_a": {
+            "rank": 4,
+            "layer": 29,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.123239173181355,
+            "perplexity": 1186.719172668457,
+            "harmonic_mean": 0.2047690857188461
+          },
+          "side_b": {
+            "rank": 4,
+            "layer": 5,
+            "alpha": 50.0,
+            "dog_sentiment_prob": 0.10713462615385652,
+            "perplexity": 6195.4735656738285,
+            "harmonic_mean": 0.16192879435417018
+          },
+          "pos": {
+            "rank": 4,
+            "layer": 29,
+            "alpha": 20.0,
+            "cat_sentiment_prob": 0.123239173181355,
+            "perplexity": 1186.719172668457,
+            "harmonic_mean": 0.2047690857188461
+          },
+          "neg": {
+            "rank": 4,
+            "layer": 5,
+            "alpha": 50.0,
+            "dog_sentiment_prob": 0.10713462615385652,
+            "perplexity": 6195.4735656738285,
+            "harmonic_mean": 0.16192879435417018
+          }
+        },
+        {
+          "rank": 5,
+          "between_directions_harmonic_mean": 0.15298488177595693,
+          "side_a": {
+            "rank": 5,
+            "layer": 27,
+            "alpha": 55.0,
+            "cat_sentiment_prob": 0.10739487819373608,
+            "perplexity": 1948.1029922485352,
+            "harmonic_mean": 0.1638397004106259
+          },
+          "side_b": {
+            "rank": 5,
+            "layer": 13,
+            "alpha": 40.0,
+            "dog_sentiment_prob": 0.10127717647701502,
+            "perplexity": 6761.173260498047,
+            "harmonic_mean": 0.14347901316256492
+          },
+          "pos": {
+            "rank": 5,
+            "layer": 27,
+            "alpha": 55.0,
+            "cat_sentiment_prob": 0.10739487819373608,
+            "perplexity": 1948.1029922485352,
+            "harmonic_mean": 0.1638397004106259
+          },
+          "neg": {
+            "rank": 5,
+            "layer": 13,
+            "alpha": 40.0,
+            "dog_sentiment_prob": 0.10127717647701502,
+            "perplexity": 6761.173260498047,
+            "harmonic_mean": 0.14347901316256492
+          }
+        }
+      ],
+      "intersection_top5_by_cross_harmonic": [
+        {
+          "rank": 1,
+          "layer": 30,
+          "alpha": 15.0,
+          "side_a_harmonic_mean": 0.2947806655259878,
+          "side_b_harmonic_mean": 0.21871493669927108,
+          "cross_harmonic_mean": 0.2511138725289515,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2947806655259878,
+          "dogs_harmonic_mean": 0.21871493669927108
+        },
+        {
+          "rank": 2,
+          "layer": 28,
+          "alpha": 20.0,
+          "side_a_harmonic_mean": 0.28208325305149173,
+          "side_b_harmonic_mean": 0.21700229160196835,
+          "cross_harmonic_mean": 0.24529948018115677,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.28208325305149173,
+          "dogs_harmonic_mean": 0.21700229160196835
+        },
+        {
+          "rank": 3,
+          "layer": 31,
+          "alpha": 85.0,
+          "side_a_harmonic_mean": 0.2216438555985326,
+          "side_b_harmonic_mean": 0.2627671441385966,
+          "cross_harmonic_mean": 0.24045995232601594,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2216438555985326,
+          "dogs_harmonic_mean": 0.2627671441385966
+        },
+        {
+          "rank": 4,
+          "layer": 29,
+          "alpha": 15.0,
+          "side_a_harmonic_mean": 0.25391785570497594,
+          "side_b_harmonic_mean": 0.19359913400142764,
+          "cross_harmonic_mean": 0.2196934556796756,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.25391785570497594,
+          "dogs_harmonic_mean": 0.19359913400142764
+        },
+        {
+          "rank": 5,
+          "layer": 32,
+          "alpha": 95.0,
+          "side_a_harmonic_mean": 0.2875364131260362,
+          "side_b_harmonic_mean": 0.1760599385528017,
+          "cross_harmonic_mean": 0.21839534777759895,
+          "side_a_label": "cat",
+          "side_b_label": "dog",
+          "cats_harmonic_mean": 0.2875364131260362,
+          "dogs_harmonic_mean": 0.1760599385528017
+        }
+      ],
+      "heatmap_combined": "/home/fadli.ghiffari/dlm_steer/extract_vectors/results/heatmaps/avg_combined_catdog_100.png"
     }
   }
 }

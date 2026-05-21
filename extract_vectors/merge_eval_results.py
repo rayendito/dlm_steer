@@ -1,25 +1,16 @@
 #!/usr/bin/env python3
 """
-Merge positive- and negative-direction eval summaries under ``extract_vectors/``.
+Merge paired-direction eval summaries under ``extract_vectors/results/``.
 
-Scans for paired folders ``results_pos_{tag}`` and ``results_neg_{tag}`` (any ``tag`` string,
-e.g. ``0``, ``1``, ``20``). When both exist and contain ``eval_scores.json``:
+Discovers folder pairs (same ``tag``, both with ``eval_scores.json``):
 
-- Reads ``top5_rankings`` (prefers ``by_harmonic_mean_unique_layer``; falls back to
-  ``by_combined_unique_layer`` / ``combined``).
-- If top-5 lists are missing, recomputes direction-wise harmonic mean
-  (sentiment vs. 1 − robust-normalized perplexity) from ``results_per_sample``,
-  aligned with ``resteer_val_sweep_eval.py``.
-- Computes **cross-direction** harmonic mean on the **full** layer×α grid (union of
-  both sweeps; missing direction scores padded with 0), sorts by that score, then
-  keeps **top 5 with unique layers** (greedy: best cross score per layer, then next
-  unseen layer).
-- Pairs top-5 rows **by rank** (1 with 1, …) and reports harmonic mean of the two
-  listed direction scores when both lists have that rank.
-- Writes ``extract_vectors/merged_{tag}/heatmaps_avg_combined.png`` per paired tag
-  (3 panels: pos harmonic, neg harmonic, cross harmonic; same layout as sweep avg).
+- IMDB: ``results_pos_{tag}`` + ``results_neg_{tag}``
+- cats-dogs: ``results_cats_{tag}`` + ``results_dogs_{tag}``
 
-Writes ``extract_vectors/results.json`` (default path; override with ``--out``).
+For each pair: top-5 per direction, cross-direction top-5 on the full layer×α grid,
+and ``heatmaps/avg_combined_imdb_{tag}.png`` or ``avg_combined_catdog_{tag}.png``.
+
+Writes ``extract_vectors/results.json`` (default; override with ``--out``).
 
 Run from repo root::
 
@@ -33,6 +24,7 @@ import json
 import re
 import sys
 from collections import defaultdict
+from dataclasses import dataclass
 from itertools import product
 from pathlib import Path
 from typing import Any
@@ -41,27 +33,119 @@ import numpy as np
 
 WORST_HARMONIC_SCORE = 0.0
 
-RE_POS = re.compile(r"^results_pos_(.+)$")
-RE_NEG = re.compile(r"^results_neg_(.+)$")
+# (data id, regex side A, regex side B, abbrev A, abbrev B, eval label A, eval label B)
+_PAIR_SPECS: tuple[tuple[str, re.Pattern[str], re.Pattern[str], str, str, str, str], ...] = (
+    (
+        "imdb",
+        re.compile(r"^results_pos_(.+)$"),
+        re.compile(r"^results_neg_(.+)$"),
+        "pos",
+        "neg",
+        "positive",
+        "negative",
+    ),
+    (
+        "cats-dogs",
+        re.compile(r"^results_cats_(.+)$"),
+        re.compile(r"^results_dogs_(.+)$"),
+        "cats",
+        "dogs",
+        "cat",
+        "dog",
+    ),
+)
 
 
-def _discover_tags(ev_dir: Path) -> tuple[dict[str, Path], dict[str, Path]]:
-    pos: dict[str, Path] = {}
-    neg: dict[str, Path] = {}
+@dataclass(frozen=True)
+class DiscoveredPair:
+    data: str
+    tag: str
+    side_a_dir: Path
+    side_b_dir: Path
+    side_a_abbrev: str
+    side_b_abbrev: str
+    side_a_label: str
+    side_b_label: str
+
+    @property
+    def merge_key(self) -> str:
+        """Key in ``results.json`` ``per_tag`` (imdb keeps bare tag for compatibility)."""
+        if self.data == "imdb":
+            return self.tag
+        return f"catdog-{self.tag}"
+
+    @property
+    def heatmap_basename(self) -> str:
+        if self.data == "imdb":
+            return f"avg_combined_imdb_{self.tag}"
+        return f"avg_combined_catdog_{self.tag}"
+
+
+def _discover_pairs(ev_dir: Path) -> list[DiscoveredPair]:
     if not ev_dir.is_dir():
-        return pos, neg
+        return []
+
+    by_spec: list[tuple[str, re.Pattern[str], re.Pattern[str], str, str, str, str, dict[str, Path], dict[str, Path]]] = [
+        (*spec, {}, {}) for spec in _PAIR_SPECS
+    ]
+
     for p in ev_dir.iterdir():
         if not p.is_dir():
             continue
         name = p.name
-        m = RE_POS.match(name)
-        if m:
-            pos[m.group(1)] = p
+        for i, row in enumerate(by_spec):
+            _, re_a, re_b, _, _, _, _, map_a, map_b = row
+            m = re_a.match(name)
+            if m:
+                map_a[m.group(1)] = p
+                continue
+            m = re_b.match(name)
+            if m:
+                map_b[m.group(1)] = p
+
+    pairs: list[DiscoveredPair] = []
+    for data, re_a, re_b, abbrev_a, abbrev_b, label_a, label_b, map_a, map_b in by_spec:
+        for tag in sorted(set(map_a.keys()) & set(map_b.keys()), key=_tag_sort_key):
+            pairs.append(
+                DiscoveredPair(
+                    data=data,
+                    tag=tag,
+                    side_a_dir=map_a[tag],
+                    side_b_dir=map_b[tag],
+                    side_a_abbrev=abbrev_a,
+                    side_b_abbrev=abbrev_b,
+                    side_a_label=label_a,
+                    side_b_label=label_b,
+                )
+            )
+    return pairs
+
+
+def _unpaired_by_data(ev_dir: Path, pairs: list[DiscoveredPair]) -> dict[str, dict[str, list[str]]]:
+    paired_a = {(p.data, p.side_a_dir.name) for p in pairs}
+    paired_b = {(p.data, p.side_b_dir.name) for p in pairs}
+    out: dict[str, dict[str, list[str]]] = {
+        spec[0]: {"side_a_only": [], "side_b_only": []} for spec in _PAIR_SPECS
+    }
+
+    if not ev_dir.is_dir():
+        return out
+
+    for p in ev_dir.iterdir():
+        if not p.is_dir():
             continue
-        m = RE_NEG.match(name)
-        if m:
-            neg[m.group(1)] = p
-    return pos, neg
+        for data, re_a, re_b, _, _, _, _ in _PAIR_SPECS:
+            m = re_a.match(p.name)
+            if m and (data, p.name) not in paired_a:
+                out[data]["side_a_only"].append(m.group(1))
+            m = re_b.match(p.name)
+            if m and (data, p.name) not in paired_b:
+                out[data]["side_b_only"].append(m.group(1))
+
+    for data in out:
+        out[data]["side_a_only"] = _sort_tags(set(out[data]["side_a_only"]))
+        out[data]["side_b_only"] = _sort_tags(set(out[data]["side_b_only"]))
+    return out
 
 
 def _sort_tags(tags: set[str]) -> list[str]:
@@ -71,6 +155,10 @@ def _sort_tags(tags: set[str]) -> list[str]:
         return (1, t)
 
     return sorted(tags, key=key)
+
+
+def _tag_sort_key(t: str) -> tuple[int, int | str]:
+    return (0, int(t)) if t.isdigit() else (1, t)
 
 
 def _robust_ppl_norm(ppls: np.ndarray, lo_pct: float = 0.0, hi_pct: float = 85.0) -> np.ndarray:
@@ -109,51 +197,48 @@ def _harmonic_two(a: float, b: float, eps: float = 1e-8) -> float:
 
 
 def _grid_axes(
-    hm_pos: dict[tuple[int, float], float],
-    hm_neg: dict[tuple[int, float], float],
+    hm_a: dict[tuple[int, float], float],
+    hm_b: dict[tuple[int, float], float],
 ) -> tuple[list[int], list[float]]:
-    keys = set(hm_pos.keys()) | set(hm_neg.keys())
+    keys = set(hm_a.keys()) | set(hm_b.keys())
     layers = sorted({k[0] for k in keys})
     alphas = sorted({k[1] for k in keys})
     return layers, alphas
 
 
 def _padded_direction_maps(
-    hm_pos: dict[tuple[int, float], float],
-    hm_neg: dict[tuple[int, float], float],
+    hm_a: dict[tuple[int, float], float],
+    hm_b: dict[tuple[int, float], float],
 ) -> tuple[list[int], list[float], dict[tuple[int, float], float], dict[tuple[int, float], float]]:
-    layers, alphas = _grid_axes(hm_pos, hm_neg)
-    pos_filled: dict[tuple[int, float], float] = {}
-    neg_filled: dict[tuple[int, float], float] = {}
+    layers, alphas = _grid_axes(hm_a, hm_b)
+    filled_a: dict[tuple[int, float], float] = {}
+    filled_b: dict[tuple[int, float], float] = {}
     for layer, alpha in product(layers, alphas):
         key = (layer, alpha)
-        pos_filled[key] = float(hm_pos.get(key, WORST_HARMONIC_SCORE))
-        neg_filled[key] = float(hm_neg.get(key, WORST_HARMONIC_SCORE))
-    return layers, alphas, pos_filled, neg_filled
+        filled_a[key] = float(hm_a.get(key, WORST_HARMONIC_SCORE))
+        filled_b[key] = float(hm_b.get(key, WORST_HARMONIC_SCORE))
+    return layers, alphas, filled_a, filled_b
 
 
 def _cross_harmonic_map(
-    pos_filled: dict[tuple[int, float], float],
-    neg_filled: dict[tuple[int, float], float],
+    filled_a: dict[tuple[int, float], float],
+    filled_b: dict[tuple[int, float], float],
 ) -> dict[tuple[int, float], float]:
     return {
-        key: float(_harmonic_two(pos_filled[key], neg_filled[key]))
-        for key in pos_filled.keys()
+        key: float(_harmonic_two(filled_a[key], filled_b[key]))
+        for key in filled_a.keys()
     }
 
 
 def _union_topk_cross_unique_layer(
-    hm_pos: dict[tuple[int, float], float],
-    hm_neg: dict[tuple[int, float], float],
+    hm_a: dict[tuple[int, float], float],
+    hm_b: dict[tuple[int, float], float],
+    pair: DiscoveredPair,
     k: int = 5,
 ) -> list[dict[str, Any]]:
-    """Cross harmonic on full layer×α grid; missing direction scores use WORST_HARMONIC_SCORE."""
-    _, _, pos_filled, neg_filled = _padded_direction_maps(hm_pos, hm_neg)
-    cross = _cross_harmonic_map(pos_filled, neg_filled)
-    ranked = sorted(
-        cross.keys(),
-        key=lambda key: (-cross[key], key[0], key[1]),
-    )
+    _, _, filled_a, filled_b = _padded_direction_maps(hm_a, hm_b)
+    cross = _cross_harmonic_map(filled_a, filled_b)
+    ranked = sorted(cross.keys(), key=lambda key: (-cross[key], key[0], key[1]))
     out: list[dict[str, Any]] = []
     seen_layers: set[int] = set()
     for key in ranked:
@@ -161,18 +246,25 @@ def _union_topk_cross_unique_layer(
         if layer in seen_layers:
             continue
         seen_layers.add(layer)
-        ph = float(pos_filled[key])
-        nh = float(neg_filled[key])
-        out.append(
-            {
-                "rank": len(out) + 1,
-                "layer": layer,
-                "alpha": float(key[1]),
-                "pos_harmonic_mean": ph,
-                "neg_harmonic_mean": nh,
-                "cross_harmonic_mean": float(cross[key]),
-            }
-        )
+        ah = float(filled_a[key])
+        bh = float(filled_b[key])
+        row: dict[str, Any] = {
+            "rank": len(out) + 1,
+            "layer": layer,
+            "alpha": float(key[1]),
+            "side_a_harmonic_mean": ah,
+            "side_b_harmonic_mean": bh,
+            "cross_harmonic_mean": float(cross[key]),
+            "side_a_label": pair.side_a_label,
+            "side_b_label": pair.side_b_label,
+        }
+        if pair.data == "imdb":
+            row["pos_harmonic_mean"] = ah
+            row["neg_harmonic_mean"] = bh
+        else:
+            row["cats_harmonic_mean"] = ah
+            row["dogs_harmonic_mean"] = bh
+        out.append(row)
         if len(out) >= k:
             break
     return out
@@ -199,11 +291,11 @@ def _matrix_from_map(
 
 
 def _plot_combined_avg_heatmap(
-    tag: str,
+    pair: DiscoveredPair,
     layers: list[int],
     alphas: list[float],
-    pos_filled: dict[tuple[int, float], float],
-    neg_filled: dict[tuple[int, float], float],
+    filled_a: dict[tuple[int, float], float],
+    filled_b: dict[tuple[int, float], float],
     cross: dict[tuple[int, float], float],
     out_png: Path,
 ) -> None:
@@ -212,15 +304,17 @@ def _plot_combined_avg_heatmap(
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    m_pos = _matrix_from_map(layers, alphas, pos_filled)
-    m_neg = _matrix_from_map(layers, alphas, neg_filled)
+    m_a = _matrix_from_map(layers, alphas, filled_a)
+    m_b = _matrix_from_map(layers, alphas, filled_b)
     m_cross = _matrix_from_map(layers, alphas, cross)
+    title_a = f"{pair.side_a_label} harmonic mean"
+    title_b = f"{pair.side_b_label} harmonic mean"
 
     fig, axes = plt.subplots(1, 3, figsize=(20, 5), constrained_layout=True)
     for ax, m, title, cmap in [
-        (axes[0], m_pos, f"Tag {tag} — positive harmonic mean", "cividis"),
-        (axes[1], m_neg, f"Tag {tag} — negative harmonic mean", "cividis"),
-        (axes[2], m_cross, f"Tag {tag} — cross harmonic mean", "cividis"),
+        (axes[0], m_a, f"Tag {pair.tag} — {title_a}", "cividis"),
+        (axes[1], m_b, f"Tag {pair.tag} — {title_b}", "cividis"),
+        (axes[2], m_cross, f"Tag {pair.tag} — cross harmonic mean", "cividis"),
     ]:
         im = ax.imshow(
             m,
@@ -248,7 +342,7 @@ def _plot_combined_avg_heatmap(
             ax.set_yticklabels([str(layers[i]) for i in yt])
         fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="harmonic mean")
     fig.suptitle(
-        f"Merged val sweep (N={tag}): pos, neg, and cross harmonic means (avg over prompts)",
+        f"Merged {pair.data} (N={pair.tag}): {pair.side_a_label}, {pair.side_b_label}, cross",
         fontsize=12,
     )
     out_png.parent.mkdir(parents=True, exist_ok=True)
@@ -290,7 +384,6 @@ def _direction_harmonic_map(
 
 
 def _extract_top5_from_payload(data: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
-    """Returns (rows, source_key_used)."""
     tr = data.get("top5_rankings")
     if isinstance(tr, dict):
         if tr.get("by_harmonic_mean_unique_layer"):
@@ -306,6 +399,10 @@ def _row_score(row: dict[str, Any]) -> float:
     if "combined" in row:
         return float(row["combined"])
     return 0.0
+
+
+def _default_sentiment_key(data: dict[str, Any], fallback: str) -> str:
+    return str(data.get("sentiment_metric") or fallback)
 
 
 def _recompute_top5_unique_layers(
@@ -361,81 +458,94 @@ def _load_eval(path: Path) -> dict[str, Any] | None:
         return json.load(f)
 
 
-def _process_pair(
-    tag: str,
-    pos_dir: Path,
-    neg_dir: Path,
-    ev_dir: Path,
-) -> dict[str, Any] | None:
-    pos_eval = pos_dir / "eval_scores.json"
-    neg_eval = neg_dir / "eval_scores.json"
-    pos_data = _load_eval(pos_eval)
-    neg_data = _load_eval(neg_eval)
-    if pos_data is None or neg_data is None:
+def _process_pair(pair: DiscoveredPair, ev_dir: Path) -> dict[str, Any] | None:
+    side_a_eval = pair.side_a_dir / "eval_scores.json"
+    side_b_eval = pair.side_b_dir / "eval_scores.json"
+    side_a_data = _load_eval(side_a_eval)
+    side_b_data = _load_eval(side_b_eval)
+    if side_a_data is None or side_b_data is None:
         return None
 
-    pos_key = str(pos_data.get("sentiment_metric") or "positive_sentiment_prob")
-    neg_key = str(neg_data.get("sentiment_metric") or "negative_sentiment_prob")
-    pos_rows = list(pos_data.get("results_per_sample") or [])
-    neg_rows = list(neg_data.get("results_per_sample") or [])
-
-    pos_top5, pos_src = _extract_top5_from_payload(pos_data)
-    neg_top5, neg_src = _extract_top5_from_payload(neg_data)
-
-    if not pos_top5 and pos_rows:
-        pos_top5 = _recompute_top5_unique_layers(pos_rows, pos_key)
-        pos_src = "recomputed_unique_layers"
-    if not neg_top5 and neg_rows:
-        neg_top5 = _recompute_top5_unique_layers(neg_rows, neg_key)
-        neg_src = "recomputed_unique_layers"
-
-    avg_pos = _aggregate_per_sample(pos_rows, pos_key)
-    avg_neg = _aggregate_per_sample(neg_rows, neg_key)
-    hm_pos = _direction_harmonic_map(avg_pos, pos_key)
-    hm_neg = _direction_harmonic_map(avg_neg, neg_key)
-    layers, alphas, pos_filled, neg_filled = _padded_direction_maps(hm_pos, hm_neg)
-    cross_filled = _cross_harmonic_map(pos_filled, neg_filled)
-    cross_top5 = _union_topk_cross_unique_layer(hm_pos, hm_neg, k=5)
-
-    heatmap_path = ev_dir / "heatmaps" / f"avg_combined_{tag}.png"
-    _plot_combined_avg_heatmap(
-        tag, layers, alphas, pos_filled, neg_filled, cross_filled, heatmap_path
+    fallback_a = (
+        "positive_sentiment_prob"
+        if pair.data == "imdb"
+        else "cat_sentiment_prob"
     )
+    fallback_b = (
+        "negative_sentiment_prob"
+        if pair.data == "imdb"
+        else "dog_sentiment_prob"
+    )
+    key_a = _default_sentiment_key(side_a_data, fallback_a)
+    key_b = _default_sentiment_key(side_b_data, fallback_b)
+    rows_a = list(side_a_data.get("results_per_sample") or [])
+    rows_b = list(side_b_data.get("results_per_sample") or [])
+
+    top5_a, src_a = _extract_top5_from_payload(side_a_data)
+    top5_b, src_b = _extract_top5_from_payload(side_b_data)
+
+    if not top5_a and rows_a:
+        top5_a = _recompute_top5_unique_layers(rows_a, key_a)
+        src_a = "recomputed_unique_layers"
+    if not top5_b and rows_b:
+        top5_b = _recompute_top5_unique_layers(rows_b, key_b)
+        src_b = "recomputed_unique_layers"
+
+    avg_a = _aggregate_per_sample(rows_a, key_a)
+    avg_b = _aggregate_per_sample(rows_b, key_b)
+    hm_a = _direction_harmonic_map(avg_a, key_a)
+    hm_b = _direction_harmonic_map(avg_b, key_b)
+    layers, alphas, filled_a, filled_b = _padded_direction_maps(hm_a, hm_b)
+    cross_filled = _cross_harmonic_map(filled_a, filled_b)
+    cross_top5 = _union_topk_cross_unique_layer(hm_a, hm_b, pair, k=5)
+
+    heatmap_path = ev_dir / "heatmaps" / f"{pair.heatmap_basename}.png"
+    _plot_combined_avg_heatmap(pair, layers, alphas, filled_a, filled_b, cross_filled, heatmap_path)
 
     paired_by_rank: list[dict[str, Any]] = []
-    n_pair = min(len(pos_top5), len(neg_top5), 5)
+    n_pair = min(len(top5_a), len(top5_b), 5)
     for i in range(n_pair):
-        pr = pos_top5[i]
-        nr = neg_top5[i]
-        sp = _row_score(pr)
-        sn = _row_score(nr)
+        ar = top5_a[i]
+        br = top5_b[i]
         paired_by_rank.append(
             {
                 "rank": i + 1,
-                "between_directions_harmonic_mean": float(_harmonic_two(sp, sn)),
-                "pos": pr,
-                "neg": nr,
+                "between_directions_harmonic_mean": float(_harmonic_two(_row_score(ar), _row_score(br))),
+                "side_a": ar,
+                "side_b": br,
+                "pos": ar,
+                "neg": br,
             }
         )
 
     return {
-        "tag": tag,
-        "pos_dir": str(pos_dir.resolve()),
-        "neg_dir": str(neg_dir.resolve()),
-        "pos_eval_scores": str(pos_eval.resolve()),
-        "neg_eval_scores": str(neg_eval.resolve()),
-        "pos_top5_source": pos_src or "embedded",
-        "neg_top5_source": neg_src or "embedded",
-        "pos_top5": pos_top5,
-        "neg_top5": neg_top5,
+        "merge_key": pair.merge_key,
+        "tag": pair.tag,
+        "data": pair.data,
+        "side_a_label": pair.side_a_label,
+        "side_b_label": pair.side_b_label,
+        "side_a_abbrev": pair.side_a_abbrev,
+        "side_b_abbrev": pair.side_b_abbrev,
+        "side_a_dir": str(pair.side_a_dir.resolve()),
+        "side_b_dir": str(pair.side_b_dir.resolve()),
+        "side_a_eval_scores": str(side_a_eval.resolve()),
+        "side_b_eval_scores": str(side_b_eval.resolve()),
+        "side_a_top5_source": src_a or "embedded",
+        "side_b_top5_source": src_b or "embedded",
+        "side_a_top5": top5_a,
+        "side_b_top5": top5_b,
+        "pos_dir": str(pair.side_a_dir.resolve()),
+        "neg_dir": str(pair.side_b_dir.resolve()),
+        "pos_eval_scores": str(side_a_eval.resolve()),
+        "neg_eval_scores": str(side_b_eval.resolve()),
+        "pos_top5_source": src_a or "embedded",
+        "neg_top5_source": src_b or "embedded",
+        "pos_top5": top5_a,
+        "neg_top5": top5_b,
         "paired_top5_by_rank_harmonic": paired_by_rank,
         "intersection_top5_by_cross_harmonic": cross_top5,
         "heatmap_combined": str(heatmap_path.resolve()),
     }
-
-
-def _tag_sort_key(t: str) -> tuple[int, int | str]:
-    return (0, int(t)) if t.isdigit() else (1, t)
 
 
 def main() -> None:
@@ -444,7 +554,7 @@ def main() -> None:
         "--extract-vectors-dir",
         type=Path,
         default=Path(__file__).resolve().parent,
-        help="Directory containing results_pos_* / results_neg_* (default: this folder).",
+        help="extract_vectors/ (results live under extract_vectors/results/).",
     )
     ap.add_argument(
         "--out",
@@ -454,27 +564,31 @@ def main() -> None:
     )
     args = ap.parse_args()
 
-    ev = (args.extract_vectors_dir.resolve() / 'results').resolve()
-    pos_map, neg_map = _discover_tags(ev)
-    pair_tags = sorted(set(pos_map.keys()) & set(neg_map.keys()), key=_tag_sort_key)
+    ev = (args.extract_vectors_dir.resolve() / "results").resolve()
+    pairs = _discover_pairs(ev)
+    unpaired = _unpaired_by_data(ev, pairs)
 
     per_tag: dict[str, Any] = {}
-    for tag in pair_tags:
-        merged = _process_pair(
-            tag,
-            pos_map[tag],
-            neg_map[tag],
-            ev,
-        )
+    for pair in pairs:
+        merged = _process_pair(pair, ev)
         if merged is not None:
-            per_tag[tag] = merged
+            per_tag[pair.merge_key] = merged
+
+    paired_keys = sorted(per_tag.keys(), key=lambda k: (0, int(k.split("-")[-1])) if k.split("-")[-1].isdigit() else (1, k))
 
     out_obj: dict[str, Any] = {
         "script": "extract_vectors/merge_eval_results.py",
         "extract_vectors_dir": str(ev),
-        "tags_pos_only": _sort_tags(set(pos_map.keys()) - set(neg_map.keys())),
-        "tags_neg_only": _sort_tags(set(neg_map.keys()) - set(pos_map.keys())),
-        "tags_paired": sorted(per_tag.keys(), key=_tag_sort_key),
+        "pair_patterns": [
+            {
+                "data": spec[0],
+                "side_a": f"results_{spec[3]}_{{tag}}",
+                "side_b": f"results_{spec[4]}_{{tag}}",
+            }
+            for spec in _PAIR_SPECS
+        ],
+        "unpaired": unpaired,
+        "tags_paired": paired_keys,
         "per_tag": per_tag,
     }
 
@@ -485,11 +599,13 @@ def main() -> None:
     with out_path.open("w", encoding="utf-8") as f:
         json.dump(out_obj, f, indent=2, ensure_ascii=False)
     print(f"Wrote {out_path}", file=sys.stderr)
-    print(
-        f"Paired tags: {out_obj['tags_paired']}; "
-        f"pos-only: {out_obj['tags_pos_only']}; neg-only: {out_obj['tags_neg_only']}",
-        file=sys.stderr,
-    )
+    print(f"Paired merge keys: {paired_keys}", file=sys.stderr)
+    for data, u in unpaired.items():
+        if u["side_a_only"] or u["side_b_only"]:
+            print(
+                f"  {data} unpaired — side_a_only={u['side_a_only']}, side_b_only={u['side_b_only']}",
+                file=sys.stderr,
+            )
 
 
 if __name__ == "__main__":
