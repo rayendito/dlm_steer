@@ -61,10 +61,13 @@ DEVICE = "cuda"
 SEED = 42
 
 ALPHAS = [
+    # 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200,
+    10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100,
     # 10, 20, 30, 40, 50, 60, 70, 80, 90, 100,
-    0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50, 100
+    # 0.01, 0.05, 0.1, 0.5, 1, 5, 10, 50, 100
     # 2, 3, 4, 5, 6, 7
 ]
+
 LAYER_MIN = 0
 LAYER_MAX = 33
 MAX_STEER_SEQ_LEN = 1024
@@ -76,8 +79,8 @@ SENTIMENT_THRESHOLD = 0.1
 
 # Writes under ``extract_vectors/results_{pos|neg}_{tag}/`` where ``tag`` is from ``--vectors``
 # and ``pos``/``neg`` from ``--direction`` (e.g. ``...-n20.pt`` + negative → ``results_neg_20``).
-RESULTS_PARENT = Path("extract_vectors")
-EVAL_BATCH_SIZE = 2
+RESULTS_PARENT = Path("extract_vectors") / "results"
+EVAL_BATCH_SIZE = 1
 # Mini-batch of full reviews per resteer call (same α × layer for all rows in batch).
 RESTEER_BATCH_SIZE = 1
 
@@ -191,6 +194,9 @@ def load_steering_prompt_texts(
     if not rows:
         raise ValueError(f"No texts loaded from {path}")
 
+    # Only takes 20 rows for validation purposes
+    rows = rows[:20]
+
     ## DEBUG
     # text = "This movie is sucks so bad, action is poor, and the plot is stupid."
     # rows = [(0, text, label)]
@@ -210,9 +216,15 @@ def build_steer_bases(
     sentiment_vectors = torch.load(vectors_path, map_location=device)
     pos_vectors = sentiment_vectors["positive"]
     neg_vectors = sentiment_vectors["negative"]
+    # steer_all = tuple(
+    #     l2_normalize(neg_vectors[i].to(dtype=dtype, device=device))
+    #     - l2_normalize(pos_vectors[i].to(dtype=dtype, device=device))
+    #     for i in range(len(pos_vectors))
+    # )
+    # Unnormalized version
     steer_all = tuple(
-        l2_normalize(neg_vectors[i].to(dtype=dtype, device=device))
-        - l2_normalize(pos_vectors[i].to(dtype=dtype, device=device))
+        neg_vectors[i].to(dtype=dtype, device=device)
+        - pos_vectors[i].to(dtype=dtype, device=device)
         for i in range(len(pos_vectors))
     )
     if direction == "positive":

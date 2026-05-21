@@ -85,21 +85,29 @@ def read_cats_dogs(path: Path, max_per_class: int | None, seed: int) -> list[dic
 
 
 def read_imdb_dir(path: Path, max_per_class: int | None, seed: int) -> list[dict[str, Any]]:
-    candidates = [
-        (path / "positive.txt", "positive"),
-        (path / "negative.txt", "negative"),
-        (path / "pos.txt", "positive"),
-        (path / "neg.txt", "negative"),
+    candidate_groups = [
+        [(path / "train_pos.csv", "positive"), (path / "train_neg.csv", "negative")],
+        [(path / "val_pos.csv", "positive"), (path / "val_neg.csv", "negative")],
+        [(path / "positive.txt", "positive"), (path / "negative.txt", "negative")],
+        [(path / "pos.txt", "positive"), (path / "neg.txt", "negative")],
     ]
     rows: list[dict[str, Any]] = []
+    candidates = next((g for g in candidate_groups if all(p.is_file() for p, _ in g)), [])
     for file_path, label in candidates:
         if not file_path.is_file():
             continue
-        with file_path.open(encoding="utf-8", errors="ignore") as f:
-            for i, line in enumerate(f):
-                text = line.strip()
-                if text:
-                    rows.append({"id": f"{file_path.stem}-{i}", "label": label, "text": text})
+        if file_path.suffix.lower() == ".csv":
+            with file_path.open(encoding="utf-8", errors="ignore", newline="") as f:
+                for i, row in enumerate(csv.DictReader(f)):
+                    text = (row.get("text") or "").strip()
+                    if text:
+                        rows.append({"id": row.get("id") or f"{file_path.stem}-{i}", "label": label, "text": text})
+        else:
+            with file_path.open(encoding="utf-8", errors="ignore") as f:
+                for i, line in enumerate(f):
+                    text = line.strip()
+                    if text:
+                        rows.append({"id": f"{file_path.stem}-{i}", "label": label, "text": text})
     if not rows:
         raise FileNotFoundError(f"No IMDB positive/negative text files found under {path}")
     rng = random.Random(seed)

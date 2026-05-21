@@ -65,8 +65,8 @@ import torch
 from tqdm import tqdm
 from transformers import AutoTokenizer
 
-from eval_dito import perplexity as dito_perplexity
-from eval_dito import score_labels
+from utils.eval_utils import perplexity
+from utils.eval_utils import score_labels
 from llada.configuration_llada import LLaDAConfig
 from llada.generate import resteer_v2
 from llada.modeling_llada import LLaDAModelLM
@@ -79,6 +79,10 @@ DEFAULT_MAX_SEQ_LEN = 1024
 DEFAULT_RESTEER_STEPS = 32
 DEFAULT_REFILL_GRID = [1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32]
 DEFAULT_SAMPLING_TEMP_GRID = [
+    0.0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5,
+    0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0,
+]
+DEFAULT_IDENTIFY_TEMP_GRID = [
     0.0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5,
     0.6, 0.7, 0.8, 0.9, 1.0, 1.2, 1.5, 2.0,
 ]
@@ -242,7 +246,7 @@ def score_texts(
     direction: str,
 ) -> list[dict[str, float]]:
     _, p_pos, p_neg = score_labels(texts)
-    ppls = dito_perplexity(texts)
+    ppls = perplexity(texts)
     out: list[dict[str, float]] = []
     for i in range(len(texts)):
         pos = float(p_pos[i].item())

@@ -1,12 +1,14 @@
 """
-Extract contrastive steering vectors (per-layer mean hidden states).
+Extract contrastive steering vectors as per-layer mean hidden states.
 
-Supports:
-- Sentiment mode (positive/negative).
-- Cat-vs-dog mode.
+Supported datasets:
+- imdb: positive/negative IMDB validation CSVs.
+- cats-dogs: cats/dogs synthetic CSVs, with cat mapped to "positive" and dog
+  mapped to "negative" so existing downstream code can keep using the same keys.
 
-Output format matches existing downstream code: dict with keys "positive"/"negative",
-each containing [num_layers+1] tensors of shape [hidden_dim].
+For cats-dogs, ``--num-samples 0`` uses token anchors instead of examples. With the
+default ``--pair-order cat,dog``, positive=cat and negative=dog; use
+``--pair-order dog,cat`` to flip that convention.
 """
 
 from __future__ import annotations
@@ -20,58 +22,102 @@ import torch
 from transformers import AutoModel, AutoTokenizer
 
 
+REPO_ROOT = Path(__file__).resolve().parent.parent
+IMDB_VAL_POS = REPO_ROOT / "benchmarks/imdb/val_pos.csv"
+IMDB_VAL_NEG = REPO_ROOT / "benchmarks/imdb/val_neg.csv"
+CATS_DOGS_TRAIN = REPO_ROOT / "benchmarks/cats_dogs/train.csv"
+CATS_DOGS_VAL = REPO_ROOT / "benchmarks/cats_dogs/val.csv"
+
+
 def _read_rows(path: Path) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
     with path.open(encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
+        for row in csv.DictReader(f):
             rows.append({k: (v or "") for k, v in row.items()})
     return rows
 
 
-def load_texts_from_csv(path: Path, n: int, *, seed: int) -> list[str]:
-
-    rows = _read_rows(path)
-    texts = [(r.get("text") or "").strip() for r in rows]
-    texts = [t for t in texts if t]
+def _sample(texts: list[str], n: int, seed: int) -> list[str]:
+    texts = [t.strip() for t in texts if t and t.strip()]
     if n <= 0 or n >= len(texts):
         return texts
     rng = random.Random(seed)
     idx = list(range(len(texts)))
     rng.shuffle(idx)
-    texts = [texts[i] for i in idx[:n]]
-    return texts
+    return [texts[i] for i in idx[:n]]
+
+
+def load_texts_from_csv(path: Path, n: int, *, seed: int) -> list[str]:
+    texts = [(r.get("text") or "").strip() for r in _read_rows(path)]
+    return _sample(texts, n, seed)
 
 
 def load_concept_texts_from_csv(path: Path, concept: str, n: int, *, seed: int) -> list[str]:
-    rows = _read_rows(path)
     concept = concept.strip().lower()
     texts = []
-    for row in rows:
-        c = (row.get("concept") or "").strip().lower()
-        t = (row.get("text") or "").strip()
-        if c == concept and t:
-            texts.append(t)
-    if n <= 0 or n >= len(texts):
-        return texts
-    rng = random.Random(seed)
-    idx = list(range(len(texts)))
-    rng.shuffle(idx)
-    texts = [texts[i] for i in idx[:n]]
-    return texts
+    for row in _read_rows(path):
+        if (row.get("concept") or "").strip().lower() == concept:
+            texts.append((row.get("text") or "").strip())
+    return _sample(texts, n, seed)
 
-@torch.no_grad()
-def extract_steer_dict(
+
+def resolve_samples(
+    data: str,
+    n: int,
+    *,
+    seed: int,
+    source_split: str,
+    bench_dir: Path,
+    pair_order: str,
+) -> tuple[list[str], list[str], str]:
+    if n == 0:
+        if data == "cats-dogs":
+            first, second = pair_order.split(",", 1)
+            return [first.strip()], [second.strip()], "n0"
+        return ["love"], ["hate"], "n0"
+
+    if data == "imdb":
+        pos = load_texts_from_csv(IMDB_VAL_POS, n, seed=seed)
+        neg = load_texts_from_csv(IMDB_VAL_NEG, n, seed=seed)
+        return pos, neg, f"n{n}"
+
+    if data == "cats-dogs":
+        path = bench_dir / "cats_dogs" / f"{source_split}.csv"
+        if not path.is_file():
+            path = CATS_DOGS_TRAIN if source_split == "train" else CATS_DOGS_VAL
+        first, second = pair_order.split(",", 1)
+        pos = load_concept_texts_from_csv(path, first.strip(), n, seed=seed)
+        neg = load_concept_texts_from_csv(path, second.strip(), n, seed=seed)
+        return pos, neg, f"{source_split}_n{n}_s{seed}"
+
+    raise ValueError(f"Unknown data: {data!r}")
+
+
+def output_filename(data: str, tag: str, pair_order: str) -> str:
+    if data == "imdb":
+        return f"diffusion-imdb-{tag}.pt"
+    first, second = [x.strip() for x in pair_order.split(",", 1)]
+    return f"diffusion-val-catdog_{first}_minus_{second}_{tag}.pt"
+
+
+def _mean_hidden_per_layer(
     model: torch.nn.Module,
     tokenizer: AutoTokenizer,
-    pos_texts: list[str],
-    neg_texts: list[str],
+    texts: list[str],
     device: str,
-) -> dict[str, tuple[torch.Tensor, ...]]:
-    steer_vectors: dict[str, tuple[torch.Tensor, ...]] = {}
-    for sentiment, dataset in [("positive", pos_texts), ("negative", neg_texts)]:
+    batch_size: int,
+) -> tuple[torch.Tensor, ...]:
+    if not texts:
+        raise ValueError("texts must be non-empty")
+
+    layer_sums: list[torch.Tensor] | None = None
+    n_seen = 0
+    bs = max(1, batch_size)
+
+    for start in range(0, len(texts), bs):
+        chunk = texts[start : start + bs]
         inputs = tokenizer(
-            dataset,
+            chunk,
             return_tensors="pt",
             truncation=True,
             max_length=256,
@@ -80,121 +126,122 @@ def extract_steer_dict(
 
         out = model(**inputs, output_hidden_states=True)
         mask = inputs["attention_mask"].unsqueeze(-1)
-
-        averaged_over_tokens = tuple(
+        per_instance = tuple(
             (h * mask).sum(dim=1) / mask.sum(dim=1).clamp(min=1)
             for h in out.hidden_states
         )
-        averaged_over_instances = tuple(
-            h.mean(dim=0) for h in averaged_over_tokens
-        )
-        steer_vectors[sentiment] = averaged_over_instances
-    return steer_vectors
+        if layer_sums is None:
+            layer_sums = [h.sum(dim=0).detach().cpu() for h in per_instance]
+        else:
+            for i, h in enumerate(per_instance):
+                layer_sums[i] = layer_sums[i] + h.sum(dim=0).detach().cpu()
+        n_seen += len(chunk)
+        del inputs, out, per_instance
+
+    assert layer_sums is not None
+    return tuple(s / n_seen for s in layer_sums)
+
+
+@torch.no_grad()
+def extract_steer_dict(
+    model: torch.nn.Module,
+    tokenizer: AutoTokenizer,
+    pos_texts: list[str],
+    neg_texts: list[str],
+    device: str,
+    batch_size: int = 8,
+) -> dict[str, tuple[torch.Tensor, ...]]:
+    return {
+        "positive": _mean_hidden_per_layer(model, tokenizer, pos_texts, device, batch_size),
+        "negative": _mean_hidden_per_layer(model, tokenizer, neg_texts, device, batch_size),
+    }
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(
-        description="Extract diffusion steer vectors for sentiment or cat-dog concepts."
+    ap = argparse.ArgumentParser(description="Extract diffusion steer vectors.")
+    ap.add_argument(
+        "--data",
+        choices=("imdb", "cats-dogs"),
+        default=None,
+        help="imdb uses val_pos/val_neg; cats-dogs maps cat/dog concepts to positive/negative.",
     )
     ap.add_argument(
         "--concept-pair",
-        type=str,
-        default="sentiment",
-        choices=["sentiment", "cat-dog"],
-        help="Which contrastive concept pair to extract vectors for.",
+        choices=("sentiment", "cat-dog"),
+        default=None,
+        help="Backward-compatible alias: sentiment=imdb, cat-dog=cats-dogs.",
     )
     ap.add_argument(
         "--num-samples",
         type=int,
         default=20,
-        help="0=use concept tokens only; else sample N rows per class from selected split.",
+        help="0=token anchors; otherwise sample N rows per class/concept.",
     )
-    ap.add_argument(
-        "--sample-seed",
-        type=int,
-        default=42,
-        help="Random seed for sampling rows when num-samples > 0.",
-    )
-    ap.add_argument(
-        "--source-split",
-        type=str,
-        default="val",
-        choices=["val", "train"],
-        help="Split used to construct steer vectors.",
-    )
-    ap.add_argument(
-        "--bench-dir",
-        type=Path,
-        default=Path("benchmarks"),
-        help="Directory containing benchmark CSV files.",
-    )
+    ap.add_argument("--sample-seed", type=int, default=42)
+    ap.add_argument("--source-split", choices=("val", "train"), default="val")
+    ap.add_argument("--bench-dir", type=Path, default=REPO_ROOT / "benchmarks")
     ap.add_argument(
         "--pair-order",
         type=str,
         default="cat,dog",
-        help="Only for cat-dog: positive,negative concept order. Example: cat,dog or dog,cat.",
+        help="Only for cats-dogs: positive,negative concept order. Use cat,dog or dog,cat.",
     )
+    ap.add_argument("--batch-size", type=int, default=8)
+    ap.add_argument("--output-dir", type=Path, default=Path("steer_vectors"))
     args = ap.parse_args()
 
-    n = args.num_samples
-    if args.concept_pair == "sentiment":
-        if n == 0:
-            pos_sample = ["love"]
-            neg_sample = ["hate"]
-            tag = "sentiment_n0"
-        else:
-            pos_csv = args.bench_dir / f"{args.source_split}_pos.csv"
-            neg_csv = args.bench_dir / f"{args.source_split}_neg.csv"
-            pos_sample = load_texts_from_csv(pos_csv, n, seed=args.sample_seed)
-            neg_sample = load_texts_from_csv(neg_csv, n, seed=args.sample_seed + 1)
-            tag = f"sentiment_{args.source_split}_n{n}_s{args.sample_seed}"
-    else:
-        order = [x.strip().lower() for x in args.pair_order.split(",")]
-        if len(order) != 2 or set(order) != {"cat", "dog"}:
+    data = args.data
+    if data is None:
+        data = "cats-dogs" if args.concept_pair == "cat-dog" else "imdb"
+    if args.concept_pair is not None:
+        expected = "cats-dogs" if args.concept_pair == "cat-dog" else "imdb"
+        if data != expected:
+            raise ValueError("--data and --concept-pair disagree")
+
+    if data == "cats-dogs":
+        concepts = [x.strip().lower() for x in args.pair_order.split(",")]
+        if concepts not in (["cat", "dog"], ["dog", "cat"]):
             raise ValueError("--pair-order must be 'cat,dog' or 'dog,cat'")
-        pos_concept, neg_concept = order[0], order[1]
-        if n == 0:
-            pos_sample = [pos_concept]
-            neg_sample = [neg_concept]
-            tag = f"catdog_{pos_concept}_minus_{neg_concept}_n0"
-        else:
-            concept_csv = args.bench_dir / "cats_dogs" / f"{args.source_split}.csv"
-            pos_sample = load_concept_texts_from_csv(
-                concept_csv, pos_concept, n, seed=args.sample_seed
-            )
-            neg_sample = load_concept_texts_from_csv(
-                concept_csv, neg_concept, n, seed=args.sample_seed + 1
-            )
-            tag = (
-                f"catdog_{pos_concept}_minus_{neg_concept}_"
-                f"{args.source_split}_n{n}_s{args.sample_seed}"
-            )
 
+    pos_sample, neg_sample, tag = resolve_samples(
+        data,
+        args.num_samples,
+        seed=args.sample_seed,
+        source_split=args.source_split,
+        bench_dir=args.bench_dir,
+        pair_order=args.pair_order,
+    )
     if not pos_sample or not neg_sample:
-        raise RuntimeError("Empty positive/negative sample after filtering/sampling.")
+        raise RuntimeError(
+            "Empty positive/negative sample after filtering/sampling: "
+            f"positive={len(pos_sample)}, negative={len(neg_sample)}"
+        )
 
-    device = "cuda"
-    torch.cuda.empty_cache() if device == "cuda" else None
-
-    tokenizer = AutoTokenizer.from_pretrained("GSAI-ML/LLaDA-8B-Base", trust_remote_code=True)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    model_id = "GSAI-ML/LLaDA-8B-Base"
+    tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
     tokenizer.padding_side = "left"
     model = AutoModel.from_pretrained(
-        "GSAI-ML/LLaDA-8B-Base",
+        model_id,
         trust_remote_code=True,
-        torch_dtype=torch.bfloat16,
+        torch_dtype=torch.bfloat16 if device == "cuda" else torch.float32,
     ).to(device)
     model.eval()
 
     steer_vectors = extract_steer_dict(
-        model, tokenizer, pos_sample, neg_sample, device
+        model,
+        tokenizer,
+        pos_sample,
+        neg_sample,
+        device,
+        batch_size=args.batch_size,
     )
-
-    out_path = Path("steer_vectors") / f"diffusion-val-{tag}.pt"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    out_path = args.output_dir / output_filename(data, tag, args.pair_order)
     torch.save(steer_vectors, out_path)
     print(
-        f"Saved {out_path}  (pos={len(pos_sample)} neg={len(neg_sample)} texts, "
-        f"layers={len(steer_vectors['positive'])}, concept_pair={args.concept_pair})"
+        f"Saved {out_path} with positive={len(pos_sample)}, negative={len(neg_sample)}, "
+        f"layers={len(steer_vectors['positive'])}, data={data}"
     )
 
 

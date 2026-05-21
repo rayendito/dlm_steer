@@ -35,3 +35,6 @@ def get_steer_vectors(model, tokenizer, texts, device = "cuda", modelname = "dif
         for layer_vecs in steer_vectors
     ]
     return torch.stack(steer_vectors)
+
+def l2_normalize(v, eps=1e-12):
+    return v / (v.norm(p=2) + eps)
