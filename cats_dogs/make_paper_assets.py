@@ -29,6 +29,15 @@ COLORS = {
     "gray": "#666666",
 }
 
+STAGE_SPECS = [
+    ("Refill sweep", "asap_refill", "refill_steps", "Refill steps $u$"),
+    ("Sampling-temp sweep", "asap_sampling_temp", "sampling_temp", "Sampling temperature"),
+    ("Identify-temp sweep", "asap_identify_temp", "identify_temp", "Identify temperature"),
+]
+STAGE_TO_DIR = {spec[1].replace("asap_", ""): spec[1] for spec in STAGE_SPECS}
+LENGTH_BIN_ORDER = {"short": 0, "medium": 1, "long": 2}
+TABLE_METRIC_KEYS = ["Target prob ↑", "PPL ↓", "Harmonic ↑"]
+
 
 def read_csv(path: Path) -> list[dict[str, Any]]:
     if not path.is_file():
@@ -161,6 +170,28 @@ def group_best(rows: list[dict[str, Any]], key: str) -> list[dict[str, Any]]:
     return sorted(best.values(), key=lambda r: f(r, key))
 
 
+def stage_trial_path(cats_dir: Path, stage_dir: str) -> Path:
+    return cats_dir / stage_dir / "asap_hyperparam_trials.csv"
+
+
+def stage_length_path(cats_dir: Path, stage_dir: str) -> Path:
+    return cats_dir / stage_dir / "asap_length_analysis.csv"
+
+
+def compact_steering_row(label: str, row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "Stage": label,
+        "k": row["k"],
+        "u": row["refill_steps"],
+        "sampling temp": row["sampling_temp"],
+        "identify temp": row["identify_temp"],
+        "Target prob ↑": fmt(row["target_prob"]),
+        "PPL ↓": fmt(row["perplexity"], 2),
+        "Harmonic ↑": fmt(row["harmonic_score"]),
+        "N": row["num_records"],
+    }
+
+
 def setup_table(cats_dir: Path, out_dir: Path) -> None:
     prompt = read_csv(cats_dir / "prompt_baseline/cats_dogs_prompt_summary.csv")
     overall = next(r for r in prompt if r["direction"] == "overall")
@@ -179,62 +210,28 @@ def setup_table(cats_dir: Path, out_dir: Path) -> None:
 
 
 def best_rows(cats_dir: Path) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    stage_files = [
-        ("Refill sweep", cats_dir / "asap_refill/asap_hyperparam_trials.csv"),
-        ("Sampling-temp sweep", cats_dir / "asap_sampling_temp/asap_hyperparam_trials.csv"),
-        ("Identify-temp sweep", cats_dir / "asap_identify_temp/asap_hyperparam_trials.csv"),
-    ]
     rows: list[dict[str, Any]] = []
-    for label, path in stage_files:
-        data = read_csv(path)
+    for label, stage_dir, _, _ in STAGE_SPECS:
+        data = read_csv(stage_trial_path(cats_dir, stage_dir))
         best = max(data, key=lambda r: f(r, "harmonic_score"))
-        rows.append(
-            {
-                "Stage": label,
-                "k": best["k"],
-                "u": best["refill_steps"],
-                "sampling temp": best["sampling_temp"],
-                "identify temp": best["identify_temp"],
-                "Target prob ↑": fmt(best["target_prob"]),
-                "PPL ↓": fmt(best["perplexity"], 2),
-                "Harmonic ↑": fmt(best["harmonic_score"]),
-                "N": best["num_records"],
-            }
-        )
+        rows.append(compact_steering_row(label, best))
     all_rows = []
-    for _, path in stage_files:
-        all_rows.extend(read_csv(path))
+    for _, stage_dir, _, _ in STAGE_SPECS:
+        all_rows.extend(read_csv(stage_trial_path(cats_dir, stage_dir)))
     overall = max(all_rows, key=lambda r: f(r, "harmonic_score"))
     return rows, overall
 
 
 def best_config_table(cats_dir: Path, out_dir: Path) -> None:
     rows, overall = best_rows(cats_dir)
-    rows.append(
-        {
-            "Stage": "Overall best steering",
-            "k": overall["k"],
-            "u": overall["refill_steps"],
-            "sampling temp": overall["sampling_temp"],
-            "identify temp": overall["identify_temp"],
-            "Target prob ↑": fmt(overall["target_prob"]),
-            "PPL ↓": fmt(overall["perplexity"], 2),
-            "Harmonic ↑": fmt(overall["harmonic_score"]),
-            "N": overall["num_records"],
-        }
-    )
+    rows.append(compact_steering_row("Overall best steering", overall))
     write_table_bundle(out_dir, "table_2_best_steering_configs", rows, "Best cats/dogs steering configurations from the greedy ablations.", "tab:best-steering")
 
 
 def ablation_figure(cats_dir: Path, out_dir: Path) -> None:
-    specs = [
-        ("asap_refill", "refill_steps", "Refill steps $u$"),
-        ("asap_sampling_temp", "sampling_temp", "Sampling temperature"),
-        ("asap_identify_temp", "identify_temp", "Identify temperature"),
-    ]
     fig, axes = plt.subplots(1, 3, figsize=(12.5, 3.6), sharey=True)
-    for ax, (stage, key, title) in zip(axes, specs):
-        rows = group_best(read_csv(cats_dir / stage / "asap_hyperparam_trials.csv"), key)
+    for ax, (_, stage_dir, key, title) in zip(axes, STAGE_SPECS):
+        rows = group_best(read_csv(stage_trial_path(cats_dir, stage_dir)), key)
         labels = [str(r[key]) for r in rows]
         x = np.arange(len(rows))
         vals = [f(r, "harmonic_score") for r in rows]
@@ -289,16 +286,10 @@ def steering_depth_figure(cats_dir: Path, out_dir: Path) -> None:
 
 def length_figure(cats_dir: Path, out_dir: Path) -> None:
     _, overall = best_rows(cats_dir)
-    stage = {
-        "refill": "asap_refill",
-        "sampling_temp": "asap_sampling_temp",
-        "identify_temp": "asap_identify_temp",
-    }[overall["stage"]]
-    rows = read_csv(cats_dir / stage / "asap_length_analysis.csv")
+    rows = read_csv(stage_length_path(cats_dir, STAGE_TO_DIR[overall["stage"]]))
     keys = ["k", "refill_steps", "sampling_temp", "identify_temp"]
     rows = [r for r in rows if all(str(r[k]) == str(overall[k]) for k in keys)]
-    order = {"short": 0, "medium": 1, "long": 2}
-    rows = sorted(rows, key=lambda r: order.get(r["length_bin"], 9))
+    rows = sorted(rows, key=lambda r: LENGTH_BIN_ORDER.get(r["length_bin"], 9))
     labels = [r["length_bin"] + f"\n(n={r['num_records']})" for r in rows]
     x = np.arange(len(rows))
     width = 0.34
