@@ -113,8 +113,8 @@ def main() -> None:
         neg_sample = list(["hate"])
         tag = "n0"
     else:
-        pos_sample = load_texts_from_csv(Path("benchmarks/val_pos.csv"), n)
-        neg_sample = load_texts_from_csv(Path("benchmarks/val_neg.csv"), n)
+        pos_sample = load_texts_from_csv(Path("../benchmarks/imdb/val_pos.csv"), n)
+        neg_sample = load_texts_from_csv(Path("../benchmarks/imdb/val_neg.csv"), n)
         tag = f"n{n}"
 
     device = "cuda"
