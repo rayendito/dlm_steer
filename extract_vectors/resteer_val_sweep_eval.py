@@ -45,14 +45,17 @@ if _root not in sys.path:
     sys.path.insert(0, _root)
 
 from eval_dito import perplexity as dito_perplexity
-from eval_dito import score_labels
+from eval_dito import score_animal_labels, score_labels
 from llada.configuration_llada import LLaDAConfig
 from llada.generate import resteer_v2_val, resteer_v2
 from llada.modeling_llada import LLaDAModelLM
 
 # --- hardcoded sweep / IO -------------------------------------------------
-VAL_POS = Path("benchmarks/val_pos.csv")
-VAL_NEG = Path("benchmarks/val_neg.csv")
+# Flipped by request: use train split for evaluation prompts, keep val for vector extraction.
+# Prefer cats_dogs train split when available.
+VAL_POS = Path("benchmarks/train_pos.csv")
+VAL_NEG = Path("benchmarks/train_neg.csv")
+CATS_DOGS_TRAIN = Path("benchmarks/cats_dogs/train.csv")
 MODEL_ID = "GSAI-ML/LLaDA-8B-Base"
 DEVICE = "cuda"
 SEED = 42
@@ -82,6 +85,10 @@ RESTEER_BATCH_SIZE = 1
 def results_tag_from_vectors_path(vectors_path: Path) -> str:
     """Short suffix for output folder, aligned with extract_steer_vectors filenames."""
     stem = vectors_path.stem.lower()
+    if "catdog" in stem:
+        tag = re.sub(r"^diffusion[-_]?val[-_]?", "", stem)
+        tag = re.sub(r"[^a-z0-9]+", "_", tag).strip("_")
+        return tag
     if "love_hate" in stem:
         return "0"
     for pat in (r"_n(\d+)$", r"-n(\d+)$", r"_n(\d+)", r"-n(\d+)"):
@@ -132,29 +139,55 @@ def load_steering_prompt_texts(
 
     Returns (rows, description) where rows are (prompt_idx, text, split_label).
     """
-    if steering_direction == "positive":
-        label, path = "neg", val_neg
-        desc = f"val_neg only (negative-review prefixes; steer toward positive)"
-    elif steering_direction == "negative":
-        label, path = "pos", val_pos
-        desc = f"val_pos only (positive-review prefixes; steer toward negative)"
-    else:
-        raise ValueError("steering_direction must be positive or negative")
-
-    if not path.is_file():
-        raise FileNotFoundError(f"Missing CSV: {path}")
-
     rows: list[tuple[int, str, str]] = []
     idx = 0
-    with path.open(encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        if reader.fieldnames is None or "text" not in reader.fieldnames:
-            raise ValueError(f"{path} must have a 'text' column")
-        for row in reader:
-            t = (row.get("text") or "").strip()
-            if t:
-                rows.append((idx, t, label))
-                idx += 1
+
+    # Cats-vs-dogs path (single file with concept column).
+    if CATS_DOGS_TRAIN.is_file():
+        if steering_direction == "positive":
+            source_concept = "dog"
+            label = "dog"
+            desc = "cats_dogs/train.csv dog rows only (steer toward cat)"
+        elif steering_direction == "negative":
+            source_concept = "cat"
+            label = "cat"
+            desc = "cats_dogs/train.csv cat rows only (steer toward dog)"
+        else:
+            raise ValueError("steering_direction must be positive or negative")
+        with CATS_DOGS_TRAIN.open(encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+            if reader.fieldnames is None or "text" not in reader.fieldnames:
+                raise ValueError(f"{CATS_DOGS_TRAIN} must have a 'text' column")
+            for row in reader:
+                c = (row.get("concept") or "").strip().lower()
+                if c != source_concept:
+                    continue
+                t = (row.get("text") or "").strip()
+                if t:
+                    rows.append((idx, t, label))
+                    idx += 1
+    else:
+        # Sentiment path (separate pos/neg files).
+        if steering_direction == "positive":
+            label, path = "neg", val_neg
+            desc = f"train_neg only (negative-review prefixes; steer toward positive)"
+        elif steering_direction == "negative":
+            label, path = "pos", val_pos
+            desc = f"train_pos only (positive-review prefixes; steer toward negative)"
+        else:
+            raise ValueError("steering_direction must be positive or negative")
+
+        if not path.is_file():
+            raise FileNotFoundError(f"Missing CSV: {path}")
+        with path.open(encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+            if reader.fieldnames is None or "text" not in reader.fieldnames:
+                raise ValueError(f"{path} must have a 'text' column")
+            for row in reader:
+                t = (row.get("text") or "").strip()
+                if t:
+                    rows.append((idx, t, label))
+                    idx += 1
     if not rows:
         raise ValueError(f"No texts loaded from {path}")
 
@@ -212,16 +245,23 @@ def run_evaluation(
     out_png: Path,
     out_png_avg: Path,
 ) -> None:
-    sentiment_key = (
-        "negative_sentiment_prob"
-        if direction == "negative"
-        else "positive_sentiment_prob"
-    )
-    sentiment_title = (
-        "Negative sentiment P(token)"
-        if direction == "negative"
-        else "Positive sentiment P(token)"
-    )
+    cats_dogs_mode = CATS_DOGS_TRAIN.is_file()
+    if cats_dogs_mode:
+        sentiment_key = "dog_prob" if direction == "negative" else "cat_prob"
+        sentiment_title = (
+            "Dog P(token)" if direction == "negative" else "Cat P(token)"
+        )
+    else:
+        sentiment_key = (
+            "negative_sentiment_prob"
+            if direction == "negative"
+            else "positive_sentiment_prob"
+        )
+        sentiment_title = (
+            "Negative sentiment P(token)"
+            if direction == "negative"
+            else "Positive sentiment P(token)"
+        )
 
     with sweep_file.open(encoding="utf-8") as f:
         payload = json.load(f)
@@ -244,7 +284,10 @@ def run_evaluation(
         end = min(start + batch_size, total)
         batch = rows[start:end]
         texts = [str(r.get("generation", "")) for r in batch]
-        _, p_pos, p_neg = score_labels(texts)
+        if cats_dogs_mode:
+            _, p_pos, p_neg = score_animal_labels(texts)
+        else:
+            _, p_pos, p_neg = score_labels(texts)
         ppls = dito_perplexity(texts)
         tgt = p_neg if direction == "negative" else p_pos
 
@@ -280,8 +323,12 @@ def run_evaluation(
     out_payload = {
         "sweep_file": str(sweep_file),
         "direction": direction,
-        "scorer": "eval_dito.score_labels + eval_dito.perplexity",
-        "sentiment_metric": sentiment_key,
+        "scorer": (
+            "eval_dito.score_animal_labels + eval_dito.perplexity"
+            if cats_dogs_mode
+            else "eval_dito.score_labels + eval_dito.perplexity"
+        ),
+        "target_metric": sentiment_key,
         "results_per_sample": [
             {
                 "prompt_idx": p,
@@ -299,9 +346,14 @@ def run_evaluation(
         json.dump(out_payload, f, indent=2)
     print(f"Wrote {eval_out_json}", file=sys.stderr)
 
-    _plot_heatmaps(per_prompt_scores, sentiment_key, sentiment_title, out_png)
     _print_top5(avg_scores, sentiment_key)
-    _plot_avg(avg_scores, sentiment_key, sentiment_title, out_png_avg)
+    try:
+        _plot_heatmaps(per_prompt_scores, sentiment_key, sentiment_title, out_png)
+        _plot_avg(avg_scores, sentiment_key, sentiment_title, out_png_avg)
+    except ModuleNotFoundError as exc:
+        if exc.name != "matplotlib":
+            raise
+        print("matplotlib is not installed; skipping heatmap plots.", file=sys.stderr)
 
 
 def _build_avg(
@@ -760,6 +812,57 @@ def main() -> None:
     model.eval()
 
     results: list[dict[str, Any]] = []
+    completed_pairs: set[tuple[float, int]] = set()
+    if out_sweep_json.is_file():
+        with out_sweep_json.open(encoding="utf-8") as f:
+            existing_payload = json.load(f)
+        existing_results = existing_payload.get("results", [])
+        if isinstance(existing_results, list):
+            results = existing_results
+            pair_counts: dict[tuple[float, int], int] = {}
+            for row in results:
+                try:
+                    pair = (float(row["alpha"]), int(row["layer"]))
+                except (KeyError, TypeError, ValueError):
+                    continue
+                pair_counts[pair] = pair_counts.get(pair, 0) + 1
+            completed_pairs = {
+                pair for pair, count in pair_counts.items() if count >= len(val_rows)
+            }
+            print(
+                f"Resuming {out_sweep_json}: {len(completed_pairs)} completed cells, "
+                f"{len(results)} rows",
+                flush=True,
+            )
+
+    def write_sweep_payload() -> None:
+        payload = {
+            "direction": args.direction,
+            "vectors_file": str(args.vectors.resolve()),
+            "vectors_results_tag": vectors_results_tag,
+            "results_folder": out_sweep_json.parent.name,
+            "results_directory": str(out_sweep_json.parent.resolve()),
+            "val_pos": str(VAL_POS),
+            "val_neg": str(VAL_NEG),
+            "prompt_selection": prompt_desc,
+            "steering_method": "resteer_v2_val",
+            "resteer_batch_size": max(1, RESTEER_BATCH_SIZE),
+            "model": MODEL_ID,
+            "identify_temperature": IDENTIFY_TEMPERATURE,
+            "max_steer_seq_len": MAX_STEER_SEQ_LEN,
+            "alphas": alphas,
+            "layer_min": layer_lo,
+            "layer_max": layer_hi,
+            "num_prompts": len(val_rows),
+            "completed_cells": len(completed_pairs),
+            "total_cells": len(sweep_pairs),
+            "results": results,
+        }
+        out_sweep_json.parent.mkdir(parents=True, exist_ok=True)
+        tmp_path = out_sweep_json.with_suffix(out_sweep_json.suffix + ".tmp")
+        with tmp_path.open("w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False)
+        tmp_path.replace(out_sweep_json)
 
     layer_range = range(layer_lo, layer_hi + 1)
     sweep_pairs = list(product(alphas, layer_range))
@@ -768,6 +871,10 @@ def main() -> None:
         desc="resteer_v2_val sweep (α × layer)",
         unit="pair",
     ):
+        pair_key = (float(alpha), int(layer))
+        if pair_key in completed_pairs:
+            continue
+        pair_results: list[dict[str, Any]] = []
         steer_vectors = {layer: float(alpha) * steer_bases[layer]}
         gb = max(1, RESTEER_BATCH_SIZE)
         n_txt = len(texts)
@@ -802,13 +909,14 @@ def main() -> None:
                 skip_special_tokens=True,
                 clean_up_tokenization_spaces=True,
             )
+            if not (len(chunk_pidx) == len(chunk_texts) == len(decoded)):
+                raise RuntimeError("Mismatched prompt/decode batch lengths")
             for pidx, text, steered_text in zip(
                 chunk_pidx,
                 chunk_texts,
                 decoded,
-                strict=True,
             ):
-                results.append(
+                pair_results.append(
                     {
                         "prompt_idx": pidx,
                         "prompt": text,
@@ -818,31 +926,16 @@ def main() -> None:
                         "mode": "steered",
                     }
                 )
+        if len(pair_results) != len(val_rows):
+            raise RuntimeError(
+                f"Incomplete sweep cell alpha={alpha} layer={layer}: "
+                f"{len(pair_results)} results for {len(val_rows)} prompts"
+            )
+        results.extend(pair_results)
+        completed_pairs.add(pair_key)
+        write_sweep_payload()
 
-    payload = {
-        "direction": args.direction,
-        "vectors_file": str(args.vectors.resolve()),
-        "vectors_results_tag": vectors_results_tag,
-        "results_folder": out_sweep_json.parent.name,
-        "results_directory": str(out_sweep_json.parent.resolve()),
-        "val_pos": str(VAL_POS),
-        "val_neg": str(VAL_NEG),
-        "prompt_selection": prompt_desc,
-        "steering_method": "resteer_v2_val",
-        "resteer_batch_size": max(1, RESTEER_BATCH_SIZE),
-        "model": MODEL_ID,
-        "identify_temperature": IDENTIFY_TEMPERATURE,
-        "max_steer_seq_len": MAX_STEER_SEQ_LEN,
-        "alphas": alphas,
-        "layer_min": layer_lo,
-        "layer_max": layer_hi,
-        "num_prompts": len(val_rows),
-        "results": results,
-    }
-
-    out_sweep_json.parent.mkdir(parents=True, exist_ok=True)
-    with out_sweep_json.open("w", encoding="utf-8") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
+    write_sweep_payload()
     print(f"Saved sweep generations to {out_sweep_json}")
 
     if args.skip_eval:

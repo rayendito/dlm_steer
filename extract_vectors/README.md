@@ -23,6 +23,28 @@ python extract_vectors/extract_steer_vectors.py --num-samples 0   # uses "love" 
 - `--num-samples 0` → synthetic **love** (pos) / **hate** (neg); writes `steer_vectors/diffusion-val-n0.pt`.
 - `--num-samples N` with `N > 0` → first `N` rows from `benchmarks/val_pos.csv` and `val_neg.csv`; writes `steer_vectors/diffusion-val-n{N}.pt`.
 
+### New options
+
+- `--concept-pair sentiment|cat-dog`
+- `--sample-seed <int>` random row sampling seed
+- `--source-split val|train` (for requested split flip, use `val` for vector construction)
+- `--pair-order cat,dog|dog,cat` when `--concept-pair cat-dog`
+
+If `--num-samples 0` and `--concept-pair cat-dog`, extraction uses token-only anchors in the selected order (e.g. `cat,dog` means cat minus dog direction).
+
+### Sentence-count ablation (3 random seeds)
+
+Run:
+
+```bash
+python extract_vectors/run_vector_count_ablation.py \
+  --concept-pair cat-dog \
+  --pair-order cat,dog \
+  --vector-source-split val
+```
+
+This runs `n in {0,5,10,15,20,30,40,50}` over seeds `{41,42,43}`.
+
 ## 3. Val hyperparameter sweep (`extract_vectors/resteer_val_sweep_eval.py`)
 
 Sweeps **α × layer** for a chosen vector file so you can pick **α** and **layer** before larger experiments. Outputs: **`extract_vectors/results_{pos|neg}_{tag}/`** (`scores.json`, `eval_scores.json`, heatmaps). `{pos|neg}` comes from `--direction` (`positive` → `pos`, `negative` → `neg`). `{tag}` is inferred from the vector filename (e.g. `diffusion-val-n20.pt` → `20` → `results_neg_20/` with `--direction negative`).

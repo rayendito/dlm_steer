@@ -1,31 +1,63 @@
 """
-Extract contrastive steering vectors (per-layer mean hidden states) from val_pos / val_neg
-or from the fixed pair ("love", "hate") when --num-samples is 0.
+Extract contrastive steering vectors (per-layer mean hidden states).
 
-Output format matches diffusion-get_steer.py: a dict with keys "positive" and "negative",
-each a tuple of [num_layers+1] tensors of shape [hidden_dim].
+Supports:
+- Sentiment mode (positive/negative).
+- Cat-vs-dog mode.
+
+Output format matches existing downstream code: dict with keys "positive"/"negative",
+each containing [num_layers+1] tensors of shape [hidden_dim].
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import random
 from pathlib import Path
 
 import torch
 from transformers import AutoModel, AutoTokenizer
 
-def load_texts_from_csv(path: Path, n: int) -> list[str]:
 
-    texts: list[str] = []
+def _read_rows(path: Path) -> list[dict[str, str]]:
+    rows: list[dict[str, str]] = []
     with path.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
-        for i, row in enumerate(reader):
-            if i >= n:
-                break
-            t = (row.get("text") or "").strip()
-            if t:
-                texts.append(t)
+        for row in reader:
+            rows.append({k: (v or "") for k, v in row.items()})
+    return rows
+
+
+def load_texts_from_csv(path: Path, n: int, *, seed: int) -> list[str]:
+
+    rows = _read_rows(path)
+    texts = [(r.get("text") or "").strip() for r in rows]
+    texts = [t for t in texts if t]
+    if n <= 0 or n >= len(texts):
+        return texts
+    rng = random.Random(seed)
+    idx = list(range(len(texts)))
+    rng.shuffle(idx)
+    texts = [texts[i] for i in idx[:n]]
+    return texts
+
+
+def load_concept_texts_from_csv(path: Path, concept: str, n: int, *, seed: int) -> list[str]:
+    rows = _read_rows(path)
+    concept = concept.strip().lower()
+    texts = []
+    for row in rows:
+        c = (row.get("concept") or "").strip().lower()
+        t = (row.get("text") or "").strip()
+        if c == concept and t:
+            texts.append(t)
+    if n <= 0 or n >= len(texts):
+        return texts
+    rng = random.Random(seed)
+    idx = list(range(len(texts)))
+    rng.shuffle(idx)
+    texts = [texts[i] for i in idx[:n]]
     return texts
 
 @torch.no_grad()
@@ -62,25 +94,84 @@ def extract_steer_dict(
 
 def main() -> None:
     ap = argparse.ArgumentParser(
-        description="Extract diffusion steer vectors from val CSVs or love/hate (num-samples=0)."
+        description="Extract diffusion steer vectors for sentiment or cat-dog concepts."
+    )
+    ap.add_argument(
+        "--concept-pair",
+        type=str,
+        default="sentiment",
+        choices=["sentiment", "cat-dog"],
+        help="Which contrastive concept pair to extract vectors for.",
     )
     ap.add_argument(
         "--num-samples",
         type=int,
         default=20,
-        help="0=only 'love' (pos) and 'hate' (neg); else first N rows from each val CSV (1, 5, 20, ...).",
+        help="0=use concept tokens only; else sample N rows per class from selected split.",
+    )
+    ap.add_argument(
+        "--sample-seed",
+        type=int,
+        default=42,
+        help="Random seed for sampling rows when num-samples > 0.",
+    )
+    ap.add_argument(
+        "--source-split",
+        type=str,
+        default="val",
+        choices=["val", "train"],
+        help="Split used to construct steer vectors.",
+    )
+    ap.add_argument(
+        "--bench-dir",
+        type=Path,
+        default=Path("benchmarks"),
+        help="Directory containing benchmark CSV files.",
+    )
+    ap.add_argument(
+        "--pair-order",
+        type=str,
+        default="cat,dog",
+        help="Only for cat-dog: positive,negative concept order. Example: cat,dog or dog,cat.",
     )
     args = ap.parse_args()
 
     n = args.num_samples
-    if n == 0:
-        pos_sample = list(["love"])
-        neg_sample = list(["hate"])
-        tag = "n0"
+    if args.concept_pair == "sentiment":
+        if n == 0:
+            pos_sample = ["love"]
+            neg_sample = ["hate"]
+            tag = "sentiment_n0"
+        else:
+            pos_csv = args.bench_dir / f"{args.source_split}_pos.csv"
+            neg_csv = args.bench_dir / f"{args.source_split}_neg.csv"
+            pos_sample = load_texts_from_csv(pos_csv, n, seed=args.sample_seed)
+            neg_sample = load_texts_from_csv(neg_csv, n, seed=args.sample_seed + 1)
+            tag = f"sentiment_{args.source_split}_n{n}_s{args.sample_seed}"
     else:
-        pos_sample = load_texts_from_csv(Path("benchmarks/val_pos.csv"), n)
-        neg_sample = load_texts_from_csv(Path("benchmarks/val_neg.csv"), n)
-        tag = f"n{n}"
+        order = [x.strip().lower() for x in args.pair_order.split(",")]
+        if len(order) != 2 or set(order) != {"cat", "dog"}:
+            raise ValueError("--pair-order must be 'cat,dog' or 'dog,cat'")
+        pos_concept, neg_concept = order[0], order[1]
+        if n == 0:
+            pos_sample = [pos_concept]
+            neg_sample = [neg_concept]
+            tag = f"catdog_{pos_concept}_minus_{neg_concept}_n0"
+        else:
+            concept_csv = args.bench_dir / "cats_dogs" / f"{args.source_split}.csv"
+            pos_sample = load_concept_texts_from_csv(
+                concept_csv, pos_concept, n, seed=args.sample_seed
+            )
+            neg_sample = load_concept_texts_from_csv(
+                concept_csv, neg_concept, n, seed=args.sample_seed + 1
+            )
+            tag = (
+                f"catdog_{pos_concept}_minus_{neg_concept}_"
+                f"{args.source_split}_n{n}_s{args.sample_seed}"
+            )
+
+    if not pos_sample or not neg_sample:
+        raise RuntimeError("Empty positive/negative sample after filtering/sampling.")
 
     device = "cuda"
     torch.cuda.empty_cache() if device == "cuda" else None
@@ -103,7 +194,7 @@ def main() -> None:
     torch.save(steer_vectors, out_path)
     print(
         f"Saved {out_path}  (pos={len(pos_sample)} neg={len(neg_sample)} texts, "
-        f"layers={len(steer_vectors['positive'])})"
+        f"layers={len(steer_vectors['positive'])}, concept_pair={args.concept_pair})"
     )
 
 
