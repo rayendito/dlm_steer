@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -N cdogs_gen
+#PBS -q research2
+#PBS -l select=1:ncpus=16:ngpus=8:mem=192gb
+#PBS -l walltime=08:00:00
+#PBS -o logs/cdogs_generate.out
+#PBS -e logs/cdogs_generate.err
+#PBS -k oed
+#PBS -V
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+mkdir -p logs benchmarks/cats_dogs
+
+python cats_dogs/generate_cats_dogs_synth.py \
+  --output-dir benchmarks/cats_dogs \
+  --per-class-target 1500 \
+  --oversample-factor 1.8 \
+  --batch-prompts 320 \
+  --seed 42

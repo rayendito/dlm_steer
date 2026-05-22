@@ -1,0 +1,5 @@
+| Direction | N | Target prob ↑ | PPL ↓ | Harmonic ↑ | Semantic sim ↑ |
+| --- | --- | --- | --- | --- | --- |
+| negative→to→positive | 500 | 0.099 | 31.68 | 0.127 | 0.568 |
+| positive→to→negative | 500 | 0.298 | 34.36 | 0.320 | 0.609 |
+| overall | 1000 | 0.198 | 33.02 | 0.224 | 0.589 |

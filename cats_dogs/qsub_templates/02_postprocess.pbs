@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -N cdogs_post
+#PBS -q research2
+#PBS -l select=1:ncpus=8:mem=32gb
+#PBS -l walltime=01:00:00
+#PBS -o logs/cdogs_post.out
+#PBS -e logs/cdogs_post.err
+#PBS -k oed
+#PBS -V
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+mkdir -p logs benchmarks/cats_dogs
+
+python cats_dogs/postprocess_cats_dogs.py \
+  --input-jsonl benchmarks/cats_dogs/raw_generations.jsonl \
+  --output-dir benchmarks/cats_dogs \
+  --per-class-target 1500 \
+  --seed 42

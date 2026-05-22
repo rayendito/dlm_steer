@@ -1,0 +1,17 @@
+#!/bin/bash
+#PBS -N cdogs_vec
+#PBS -q research2
+#PBS -l select=1:ncpus=8:ngpus=1:mem=64gb
+#PBS -l walltime=02:00:00
+#PBS -o logs/cdogs_vectors.out
+#PBS -e logs/cdogs_vectors.err
+#PBS -k oed
+#PBS -V
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+mkdir -p logs steer_vectors
+
+python cats_dogs/extract_cats_dogs_vectors.py \
+  --train-csv benchmarks/cats_dogs/train.csv \
+  --output-path steer_vectors/cats_dogs.pt

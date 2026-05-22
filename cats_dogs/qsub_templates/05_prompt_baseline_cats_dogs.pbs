@@ -1,0 +1,23 @@
+#PBS -N cdogs_prompt_base
+#PBS -q research2
+#PBS -l select=1:ncpus=4:ngpus=1:mem=80gb
+#PBS -l walltime=08:00:00
+#PBS -o logs/cdogs_prompt_baseline.out
+#PBS -e logs/cdogs_prompt_baseline.err
+#PBS -k oed
+#PBS -V
+
+cd "$PBS_O_WORKDIR"
+mkdir -p logs cats_dogs/prompt_baseline
+
+python cats_dogs/run_prompt_baseline.py \
+  --task cats_dogs \
+  --dataset-path benchmarks/cats_dogs/train.csv \
+  --output-dir cats_dogs/prompt_baseline \
+  --seed 41 \
+  --batch-size 1 \
+  --eval-batch-size 2 \
+  --gen-length 128 \
+  --steps 128 \
+  --block-length 128 \
+  --sampling-temp 0.5

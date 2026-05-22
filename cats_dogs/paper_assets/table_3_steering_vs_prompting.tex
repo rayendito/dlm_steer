@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lllllll}
+\toprule
+Method & Config & N & Target prob ↑ & PPL ↓ & Harmonic ↑ & Semantic sim ↑ \\
+\midrule
+Activation steering & k=5, u=5, samp=0.5, ident=0.5 & 2100 & 0.037 & 30.20 & 0.051 & n/a \\
+Instruction prompting & rewrite prompt + masked diffusion & 2100 & 0.058 & 9.58 & 0.074 & 0.487 \\
+\bottomrule
+\end{tabular}
+\caption{Apples-to-apples cats/dogs comparison on the same 2100 examples.}
+\label{tab:steering-vs-prompting}
+\end{table}

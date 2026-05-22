@@ -11,7 +11,8 @@ def score_labels(batch_texts):
     prompts = [f"Text: {t}\nSentiment:" for t in batch_texts]
 
     inputs = tokenizer(prompts, return_tensors="pt", padding=True).to(device)
-    outputs = model(**inputs)
+    with torch.no_grad():
+        outputs = model(**inputs)
     logits = outputs.logits  # [B, T, V]
 
     # get logits for NEXT token after prompt
@@ -30,6 +31,30 @@ def score_labels(batch_texts):
              for i in range(len(batch_texts))]
 
     return preds, p_pos, p_neg
+
+
+def score_animal_labels(batch_texts):
+    prompts = [f"Text: {t}\nAnimal:" for t in batch_texts]
+
+    inputs = tokenizer(prompts, return_tensors="pt", padding=True).to(device)
+    with torch.no_grad():
+        outputs = model(**inputs)
+    logits = outputs.logits
+
+    last_token_idx = inputs["attention_mask"].sum(dim=1) - 1
+    next_token_logits = logits[torch.arange(len(batch_texts)), last_token_idx]
+    probs = F.softmax(next_token_logits, dim=-1)
+
+    cat_id = tokenizer.encode(" cat", add_special_tokens=False)[0]
+    dog_id = tokenizer.encode(" dog", add_special_tokens=False)[0]
+
+    p_cat = probs[:, cat_id]
+    p_dog = probs[:, dog_id]
+
+    preds = ["cat" if p_cat[i] > p_dog[i] else "dog"
+             for i in range(len(batch_texts))]
+
+    return preds, p_cat, p_dog
 
 
 def perplexity(batch_texts):
