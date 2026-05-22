@@ -43,7 +43,7 @@ def main() -> None:
     data = load_timpa_dataset(args.dataset_path)
     concepts = list(data.keys())
     # trimming data to siz only (debugging purposes)
-    siz = 10
+    siz = 1000
     data[concepts[0]] = data[concepts[0]][:siz]
     data[concepts[1]] = data[concepts[1]][:siz]
 
