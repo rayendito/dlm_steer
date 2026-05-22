@@ -49,6 +49,9 @@ def main() -> None:
 
     # STEER VECTORS
     concept_vectors = torch.load(args.steer_vector_path, map_location=DEVICE)
+    if('dog' in concepts):
+        concept_vectors["cat"] = concept_vectors.pop("positive")
+        concept_vectors["dog"] = concept_vectors.pop("negative")
     c1_vectors = concept_vectors[concepts[0]]
     c2_vectors = concept_vectors[concepts[1]]
     # defaults sentiment defaults first concept (concepts[0]) 

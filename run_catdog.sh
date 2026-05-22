@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=running
+#SBATCH --job-name=run1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=128
 #SBATCH --exclusive
@@ -10,16 +10,18 @@
 mkdir -p logs
 
 RANDOM_STATE=42
-BASE_RUN_NAME="imdb_run"
+BASE_RUN_NAME="cats_dogs_run2"
 RUN_NAME="${RANDOM_STATE}_${BASE_RUN_NAME}"
+BENCHMARK="benchmarks/cats_dogs"
+VECTOR_PATH="steer_vectors/diffusion-catdog-n10.pt"
 
 python run_timpa.py \
   --run-name "$RUN_NAME" \
-  --dataset-path "benchmarks/imdb" \
+  --dataset-path "$BENCHMARK" \
   --random-state "$RANDOM_STATE" \
-  --steer-vector-path "extract_vectors/steer_vectors/diffusion-val-n20.pt" \
-  --steer-alpha 500 \
-  --steer-layers 16 25 31 \
+  --steer-vector-path "$VECTOR_PATH" \
+  --steer-alpha 75 \
+  --steer-layers 31 \
   --batch-size 8 \
   --resteer-steps 5 \
   --refill-steps 5 10 15 \
@@ -28,11 +30,11 @@ python run_timpa.py \
 
 python run_timpa.py \
   --run-name "$RUN_NAME" \
-  --dataset-path "benchmarks/imdb" \
+  --dataset-path "$BENCHMARK" \
   --random-state "$RANDOM_STATE" \
-  --steer-vector-path "extract_vectors/steer_vectors/diffusion-val-n20.pt" \
-  --steer-alpha 500 \
-  --steer-layers 16 25 31 \
+  --steer-vector-path "$VECTOR_PATH" \
+  --steer-alpha 75 \
+  --steer-layers 31 \
   --batch-size 8 \
   --resteer-steps 5 \
   --refill-steps 10 \
@@ -41,11 +43,11 @@ python run_timpa.py \
 
 python run_timpa.py \
   --run-name "$RUN_NAME" \
-  --dataset-path "benchmarks/imdb" \
+  --dataset-path "$BENCHMARK" \
   --random-state "$RANDOM_STATE" \
-  --steer-vector-path "extract_vectors/steer_vectors/diffusion-val-n20.pt" \
-  --steer-alpha 500 \
-  --steer-layers 16 25 31 \
+  --steer-vector-path "$VECTOR_PATH" \
+  --steer-alpha 75 \
+  --steer-layers 31 \
   --batch-size 8 \
   --resteer-steps 5 \
   --refill-steps 10 \
