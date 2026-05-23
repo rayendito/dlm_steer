@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=run2
+#SBATCH --job-name=run33
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=128
 #SBATCH --exclusive
@@ -10,7 +10,7 @@
 mkdir -p logs
 
 RANDOM_STATE=42
-BASE_RUN_NAME="imdb_run3"
+BASE_RUN_NAME="imdb_manualsearch"
 RUN_NAME="${RANDOM_STATE}_${BASE_RUN_NAME}"
 BENCHMARK="benchmarks/imdb"
 VECTOR_PATH="steer_vectors/diffusion-imdb-n50.pt"
@@ -20,8 +20,8 @@ python run_timpa.py \
   --dataset-path "$BENCHMARK" \
   --random-state "$RANDOM_STATE" \
   --steer-vector-path "$VECTOR_PATH" \
-  --steer-alpha 15 \
-  --steer-layers 32 \
+  --steer-alpha 500 \
+  --steer-layers 16 25 31 \
   --batch-size 8 \
   --resteer-steps 5 \
   --refill-steps 5 10 15 \
@@ -33,8 +33,8 @@ python run_timpa.py \
   --dataset-path "$BENCHMARK" \
   --random-state "$RANDOM_STATE" \
   --steer-vector-path "$VECTOR_PATH" \
-  --steer-alpha 15 \
-  --steer-layers 32 \
+  --steer-alpha 500 \
+  --steer-layers 16 25 31 \
   --batch-size 8 \
   --resteer-steps 5 \
   --refill-steps 10 \
@@ -46,8 +46,8 @@ python run_timpa.py \
   --dataset-path "$BENCHMARK" \
   --random-state "$RANDOM_STATE" \
   --steer-vector-path "$VECTOR_PATH" \
-  --steer-alpha 15 \
-  --steer-layers 32 \
+  --steer-alpha 500 \
+  --steer-layers 16 25 31 \
   --batch-size 8 \
   --resteer-steps 5 \
   --refill-steps 10 \
