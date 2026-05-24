@@ -43,12 +43,15 @@ def main() -> None:
     data = load_timpa_dataset(args.dataset_path)
     concepts = list(data.keys())
     # trimming data to siz only (debugging purposes)
-    siz = 10
+    siz = 1000
     data[concepts[0]] = data[concepts[0]][:siz]
     data[concepts[1]] = data[concepts[1]][:siz]
 
     # STEER VECTORS
     concept_vectors = torch.load(args.steer_vector_path, map_location=DEVICE)
+    if('dog' in concepts):
+        concept_vectors["cat"] = concept_vectors.pop("positive")
+        concept_vectors["dog"] = concept_vectors.pop("negative")
     c1_vectors = concept_vectors[concepts[0]]
     c2_vectors = concept_vectors[concepts[1]]
     # defaults sentiment defaults first concept (concepts[0]) 
