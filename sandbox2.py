@@ -1,7 +1,7 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from timpateks import score_tokens_wrt_steer
-from timpa_experimental import visualize_token_identification
+from timpa_experimental import visualize_token_identification_comparison
 from timpateks.llada.modeling_llada import LLaDAModelLM
 from timpateks.llada.configuration_llada import LLaDAConfig
 
@@ -12,13 +12,10 @@ STEER_DIRECTION = "negative"
 #     "The movie is a genuinely enjoyable and well-crafted experience. ",
 #     "The performances feel natural, and the story remains engaging throughout."
 # ]
-TEXT = [
-    "The heart circulates blood using a double-pump system. The right side receives oxygen-poor blood from the body and pumps it to the lungs through the pulmonary artery, where it picks up oxygen and releases carbon dioxide. The oxygen-rich blood returns to the left side of the heart through the pulmonary veins, and the left ventricle pumps it out through the aorta to the rest of the body. Valves keep blood moving one way, and each heartbeat is coordinated by electrical signals that make the chambers contract in sequence.",
-    "The heart circulates blood using a double-pump system. The right side receives oxygen-poor blood from the body and pumps it to the lungs through the pulmonary artery, where it picks up oxygen and releases carbon dioxide. The oxygen-rich blood returns to the left side of the heart through the pulmonary veins, and the left ventricle pumps it out through the aorta to the rest of the body. Valves keep blood moving one way, and each heartbeat is coordinated by electrical signals that make the chambers contract in sequence.",
-]
+TEXT = "Your kidneys are like tiny cleaning machines inside your body. Blood flows through them, and they take out the yucky extra stuff your body does not need, like waste and extra water. That waste becomes pee. The clean blood goes back into your body, and the pee travels to your bladder, where it waits until you go to the bathroom."
 STEER_PROMPTS = [
-    "Explain how the human heart works:\n",
-    "Explain how the human heart works to a 5 year old who know nothing about biology:\n"
+    "You are talking to a 5 year old who know nothing about biology:\n",
+    "You are talking to a medical professional\n",
 ]
 
 device = "cuda"
@@ -50,7 +47,9 @@ tokenizer.padding_side = "left"
 # tokenizer.padding_side = "left"
 
 ############################## VIZZ
-visualize_token_identification(model, tokenizer, "AR", STEER_PROMPTS, TEXT)
+visualize_token_identification_comparison(
+    model, tokenizer, "AR", STEER_PROMPTS, TEXT
+)
 
 
 # ############################## PROBS
