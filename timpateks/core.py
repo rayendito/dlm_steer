@@ -2,12 +2,28 @@ import torch
 import torch.nn.functional as F
 
 @torch.no_grad()
-def score_tokens_wrt_steer(model, tokenizer, steer, text):
-    """Score each token in ``text`` against steering vectors.
+def score_tokens_wrt_steer(
+    model,
+    tokenizer,
+    steer,
+    text,
+    identifier_model=None,
+    identifier_tokenizer=None,
+    identifier_mode=None,
+):
+    """Score each token in ``text`` against steering entities.
 
     For cosine scoring, ``steer`` is a dictionary mapping hidden-state layer
-    indices to one-dimensional steering tensors. Per-layer cosine similarities
-    are averaged and returned without applying a sigmoid or sampling a mask.
+    indices to one-dimensional steering tensors.
+
+    For conditional-probability
+    scoring, it is a list of string prompts paired one-to-one with ``text``.
+    ``identifier_mode="AR"`` uses
+    shifted next-token probabilities, while ``identifier_mode="DLM"`` masks
+    each text token and computes its pseudo-likelihood. Cosine scores are
+    averaged over the supplied layers. Only tokens belonging to ``text`` are
+    scored.
+
     The returned tensor has shape ``[batch_size, sequence_length]``; padding
     positions have a score of zero.
 
@@ -15,16 +31,112 @@ def score_tokens_wrt_steer(model, tokenizer, steer, text):
     """
     method = "cosine" if isinstance(steer, dict) else "cond_prob"
 
-    encoded = tokenizer(
-        text,
-        add_special_tokens=False,
-        padding=True,
-        return_tensors="pt",
-    )
-
     if method == "cond_prob":
-        # TODO: implement conditional-probability token scoring.
-        pass
+        if not isinstance(steer, list) or not steer:
+            raise ValueError("steer must be a non-empty list of prompt strings.")
+        if not all(isinstance(prompt, str) for prompt in steer):
+            raise TypeError("Each conditional-probability steer must be a string.")
+
+        texts = [text] if isinstance(text, str) else text
+        if not isinstance(texts, list) or not texts:
+            raise ValueError("text must be a string or a non-empty list of strings.")
+        if not all(isinstance(item, str) for item in texts):
+            raise TypeError("Each text must be a string.")
+        if len(steer) != len(texts):
+            raise ValueError(
+                "Conditional-probability scoring requires one steer per text; "
+                f"received {len(steer)} steers and {len(texts)} texts."
+            )
+
+        if identifier_mode is None:
+            raise ValueError(
+                "identifier_mode must be either 'AR' or 'DLM' for "
+                "conditional-probability scoring."
+            )
+        identifier_mode = identifier_mode.upper()
+        if identifier_mode not in {"AR", "DLM"}:
+            raise ValueError("identifier_mode must be either 'AR' or 'DLM'.")
+
+        scoring_model = identifier_model if identifier_model is not None else model
+        scoring_tokenizer = identifier_tokenizer if identifier_tokenizer is not None else tokenizer
+
+        try:
+            device = next(scoring_model.parameters()).device
+        except StopIteration:
+            device = torch.device("cpu")
+
+        if identifier_mode == "DLM":
+            mask_token_id = getattr(scoring_tokenizer, "mask_token_id", None)
+            if mask_token_id is None:
+                raise ValueError(
+                    "The identifier tokenizer must define mask_token_id for "
+                    "DLM scoring."
+                )
+
+        scores_by_text = []
+        for prompt, item in zip(steer, texts):
+            text_ids = scoring_tokenizer(
+                item,
+                add_special_tokens=False,
+                return_tensors="pt",
+            )["input_ids"][0]
+            if text_ids.numel() == 0:
+                scores_by_text.append(torch.empty(0, device=device))
+                continue
+
+            prompt_ids = scoring_tokenizer(
+                prompt,
+                add_special_tokens=False,
+                return_tensors="pt",
+            )["input_ids"][0]
+            combined_ids = torch.cat((prompt_ids, text_ids)).to(device)
+            text_length = text_ids.numel()
+            text_positions = (
+                prompt_ids.numel()
+                + torch.arange(text_length, device=device)
+            )
+            targets = text_ids.to(device)
+
+            if identifier_mode == "AR":
+                prediction_positions = text_positions - 1
+                if prediction_positions[0] < 0:
+                    raise ValueError(
+                        "An AR steer prompt must contain at least one token "
+                        "to predict the first text token."
+                    )
+                input_ids = combined_ids.unsqueeze(0)
+                logits = scoring_model(
+                    input_ids=input_ids,
+                    attention_mask=torch.ones_like(input_ids),
+                ).logits
+                text_logits = logits[0, prediction_positions, :]
+
+            else:  # DLM
+                input_ids = combined_ids.unsqueeze(0).repeat(text_length, 1)
+                rows = torch.arange(text_length, device=device)
+                input_ids[rows, text_positions] = mask_token_id
+                logits = scoring_model(
+                    input_ids=input_ids,
+                    attention_mask=torch.ones_like(input_ids),
+                ).logits
+                text_logits = logits[rows, text_positions, :]
+
+            token_probs = torch.gather(
+                torch.softmax(text_logits.float(), dim=-1),
+                dim=-1,
+                index=targets.unsqueeze(-1),
+            ).squeeze(-1)
+            scores_by_text.append(token_probs)
+
+        max_length = max(scores.numel() for scores in scores_by_text)
+        scores = torch.zeros(
+            (len(scores_by_text), max_length),
+            device=device,
+            dtype=torch.float32,
+        )
+        for row, item_scores in enumerate(scores_by_text):
+            scores[row, :item_scores.numel()] = item_scores
+        return scores
 
     elif method == "cosine":
         if not steer:
@@ -45,6 +157,12 @@ def score_tokens_wrt_steer(model, tokenizer, steer, text):
         except StopIteration:
             device = next(iter(steer.values())).device
 
+        encoded = tokenizer(
+            text,
+            add_special_tokens=False,
+            padding=True,
+            return_tensors="pt",
+        )
         encoded = {key: value.to(device) for key, value in encoded.items()}
         attention_mask = encoded.get("attention_mask")
         if attention_mask is None:
