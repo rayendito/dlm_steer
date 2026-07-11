@@ -7,8 +7,6 @@ def score_tokens_wrt_steer(
     tokenizer,
     steer,
     text,
-    identifier_model=None,
-    identifier_tokenizer=None,
     identifier_mode=None,
 ):
     """Score each token in ``text`` against steering entities.
@@ -24,8 +22,11 @@ def score_tokens_wrt_steer(
     averaged over the supplied layers. Only tokens belonging to ``text`` are
     scored.
 
-    The returned tensor has shape ``[batch_size, sequence_length]``; padding
-    positions have a score of zero.
+    Returns ``(scores, text_token_indices)``. Both tensors have shape
+    ``[batch_size, sequence_length]``. Padding positions have a score of zero
+    and an index of ``-1``. For conditional-probability scoring, indices refer
+    to token positions in the combined prompt-and-text input; for cosine
+    scoring, they refer to positions in the tokenized text input.
 
     ``text`` may be either a string or a batch of strings.
     """
@@ -57,16 +58,13 @@ def score_tokens_wrt_steer(
         if identifier_mode not in {"AR", "DLM"}:
             raise ValueError("identifier_mode must be either 'AR' or 'DLM'.")
 
-        scoring_model = identifier_model if identifier_model is not None else model
-        scoring_tokenizer = identifier_tokenizer if identifier_tokenizer is not None else tokenizer
-
         try:
-            device = next(scoring_model.parameters()).device
+            device = next(model.parameters()).device
         except StopIteration:
             device = torch.device("cpu")
 
         if identifier_mode == "DLM":
-            mask_token_id = getattr(scoring_tokenizer, "mask_token_id", None)
+            mask_token_id = getattr(tokenizer, "mask_token_id", None)
             if mask_token_id is None:
                 raise ValueError(
                     "The identifier tokenizer must define mask_token_id for "
@@ -74,17 +72,21 @@ def score_tokens_wrt_steer(
                 )
 
         scores_by_text = []
+        indices_by_text = []
         for prompt, item in zip(steer, texts):
-            text_ids = scoring_tokenizer(
+            text_ids = tokenizer(
                 item,
                 add_special_tokens=False,
                 return_tensors="pt",
             )["input_ids"][0]
             if text_ids.numel() == 0:
                 scores_by_text.append(torch.empty(0, device=device))
+                indices_by_text.append(
+                    torch.empty(0, device=device, dtype=torch.long)
+                )
                 continue
 
-            prompt_ids = scoring_tokenizer(
+            prompt_ids = tokenizer(
                 prompt,
                 add_special_tokens=False,
                 return_tensors="pt",
@@ -105,7 +107,7 @@ def score_tokens_wrt_steer(
                         "to predict the first text token."
                     )
                 input_ids = combined_ids.unsqueeze(0)
-                logits = scoring_model(
+                logits = model(
                     input_ids=input_ids,
                     attention_mask=torch.ones_like(input_ids),
                 ).logits
@@ -115,7 +117,7 @@ def score_tokens_wrt_steer(
                 input_ids = combined_ids.unsqueeze(0).repeat(text_length, 1)
                 rows = torch.arange(text_length, device=device)
                 input_ids[rows, text_positions] = mask_token_id
-                logits = scoring_model(
+                logits = model(
                     input_ids=input_ids,
                     attention_mask=torch.ones_like(input_ids),
                 ).logits
@@ -127,6 +129,7 @@ def score_tokens_wrt_steer(
                 index=targets.unsqueeze(-1),
             ).squeeze(-1)
             scores_by_text.append(token_probs)
+            indices_by_text.append(text_positions)
 
         max_length = max(scores.numel() for scores in scores_by_text)
         scores = torch.zeros(
@@ -134,9 +137,18 @@ def score_tokens_wrt_steer(
             device=device,
             dtype=torch.float32,
         )
-        for row, item_scores in enumerate(scores_by_text):
+        text_token_indices = torch.full(
+            (len(scores_by_text), max_length),
+            -1,
+            device=device,
+            dtype=torch.long,
+        )
+        for row, (item_scores, item_indices) in enumerate(
+            zip(scores_by_text, indices_by_text)
+        ):
             scores[row, :item_scores.numel()] = item_scores
-        return scores
+            text_token_indices[row, :item_indices.numel()] = item_indices
+        return scores, text_token_indices
 
     elif method == "cosine":
         if not steer:
@@ -193,4 +205,8 @@ def score_tokens_wrt_steer(
             )
 
         scores = torch.stack(similarities, dim=0).mean(dim=0)
-        return scores.masked_fill(attention_mask == 0, 0.0)
+        scores = scores.masked_fill(attention_mask == 0, 0.0)
+        text_token_indices = torch.arange(
+            scores.shape[1], device=scores.device
+        ).expand_as(attention_mask).masked_fill(attention_mask == 0, -1)
+        return scores, text_token_indices
