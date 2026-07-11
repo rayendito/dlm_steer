@@ -8,6 +8,7 @@ def score_tokens_wrt_steer(
     steer,
     text,
     identifier_mode=None,
+    use_chat_template=False,
 ):
     """Score each token in ``text`` against steering entities.
 
@@ -20,7 +21,8 @@ def score_tokens_wrt_steer(
     shifted next-token probabilities, while ``identifier_mode="DLM"`` masks
     each text token and computes its pseudo-likelihood. Cosine scores are
     averaged over the supplied layers. Only tokens belonging to ``text`` are
-    scored.
+    scored. With ``use_chat_template=True``, each steer is formatted as a
+    system message and the text is scored as the assistant response.
 
     Returns ``(scores, text_token_indices)``. Both tensors have shape
     ``[batch_size, sequence_length]``. Padding positions have a score of zero
@@ -86,11 +88,27 @@ def score_tokens_wrt_steer(
                 )
                 continue
 
-            prompt_ids = tokenizer(
-                prompt,
-                add_special_tokens=False,
-                return_tensors="pt",
-            )["input_ids"][0]
+            if use_chat_template:
+                if not getattr(tokenizer, "chat_template", None):
+                    raise ValueError(
+                        "use_chat_template=True requires a tokenizer with a "
+                        "chat template."
+                    )
+                prompt_ids = tokenizer.apply_chat_template(
+                    [{"role": "system", "content": prompt}],
+                    tokenize=True,
+                    add_generation_prompt=True,
+                    return_tensors="pt",
+                )
+                if isinstance(prompt_ids, dict):
+                    prompt_ids = prompt_ids["input_ids"]
+                prompt_ids = prompt_ids[0]
+            else:
+                prompt_ids = tokenizer(
+                    prompt,
+                    add_special_tokens=False,
+                    return_tensors="pt",
+                )["input_ids"][0]
             combined_ids = torch.cat((prompt_ids, text_ids)).to(device)
             text_length = text_ids.numel()
             text_positions = (

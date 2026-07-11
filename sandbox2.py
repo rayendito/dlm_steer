@@ -1,8 +1,11 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from timpateks import score_tokens_wrt_steer
+from timpa_experimental import visualize_token_identification
+from timpateks.llada.modeling_llada import LLaDAModelLM
+from timpateks.llada.configuration_llada import LLaDAConfig
 
-IDENTIFIER_MODEL = "Qwen/Qwen2-0.5B"
+IDENTIFIER_MODEL = "Qwen/Qwen2.5-7B-Instruct"
 STEER_VECTORS = "archived/steer_vectors/diffusion-imdb-n20.pt"
 STEER_DIRECTION = "negative"
 # TEXT = [
@@ -10,12 +13,12 @@ STEER_DIRECTION = "negative"
 #     "The performances feel natural, and the story remains engaging throughout."
 # ]
 TEXT = [
-    "Photosynthesis is the biochemical process by which plants use chlorophyll to convert light energy, carbon dioxide, and water into glucose and oxygen.",
-    "Plants use sunlight, air, and water to make their own food, and they release oxygen for us to breathe."
+    "The heart circulates blood using a double-pump system. The right side receives oxygen-poor blood from the body and pumps it to the lungs through the pulmonary artery, where it picks up oxygen and releases carbon dioxide. The oxygen-rich blood returns to the left side of the heart through the pulmonary veins, and the left ventricle pumps it out through the aorta to the rest of the body. Valves keep blood moving one way, and each heartbeat is coordinated by electrical signals that make the chambers contract in sequence.",
+    "The heart circulates blood using a double-pump system. The right side receives oxygen-poor blood from the body and pumps it to the lungs through the pulmonary artery, where it picks up oxygen and releases carbon dioxide. The oxygen-rich blood returns to the left side of the heart through the pulmonary veins, and the left ventricle pumps it out through the aorta to the rest of the body. Valves keep blood moving one way, and each heartbeat is coordinated by electrical signals that make the chambers contract in sequence.",
 ]
 STEER_PROMPTS = [
-    "Explain photosynthesis to me like I'm 5:\n",
-    "Explain photosynthesis to me like I'm 5:\n"
+    "Explain how the human heart works:\n",
+    "Explain how the human heart works to a 5 year old who know nothing about biology:\n"
 ]
 
 device = "cuda"
@@ -33,16 +36,31 @@ model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained(IDENTIFIER_MODEL)
 tokenizer.padding_side = "left"
 
-############################## PROBS
-raw_probs, text_token_indices = score_tokens_wrt_steer(
-    model=model,
-    tokenizer=tokenizer,
-    steer=STEER_PROMPTS,
-    text=TEXT,
-    identifier_mode="AR",
-)
+# model_path = "GSAI-ML/LLaDA-8B-Base"
+# config = LLaDAConfig.from_pretrained(model_path)
+# model = LLaDAModelLM.from_pretrained(
+#     model_path,
+#     config=config,
+#     torch_dtype=torch.bfloat16,
+# ).to("cuda").eval()
+# tokenizer = AutoTokenizer.from_pretrained(
+#     model_path,
+#     trust_remote_code=True,
+# )
+# tokenizer.padding_side = "left"
 
-breakpoint()
+############################## VIZZ
+visualize_token_identification(model, tokenizer, "AR", STEER_PROMPTS, TEXT)
+
+
+# ############################## PROBS
+# raw_probs, text_token_indices = score_tokens_wrt_steer(
+#     model=model,
+#     tokenizer=tokenizer,
+#     steer=STEER_PROMPTS,
+#     text=TEXT,
+#     identifier_mode="AR",
+# )
 
 # ############################## STEERS
 # sentiment_vectors = torch.load(STEER_VECTORS, map_location=device)
