@@ -67,9 +67,9 @@ from transformers import AutoTokenizer
 
 from utils.eval_utils import perplexity
 from utils.eval_utils import score_labels
-from llada.configuration_llada import LLaDAConfig
-from llada.generate import resteer_v2
-from llada.modeling_llada import LLaDAModelLM
+from timpateks.llada.configuration_llada import LLaDAConfig
+from timpateks.llada.generate import resteer_v2
+from timpateks.llada.modeling_llada import LLaDAModelLM
 
 
 SEED = 42

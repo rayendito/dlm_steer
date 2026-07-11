@@ -1,16 +1,15 @@
 import torch
 import numpy as np
-from llada.modeling_llada import LLaDAModelLM
-from llada.configuration_llada import LLaDAConfig
+from timpateks.llada.modeling_llada import LLaDAModelLM
+from timpateks.llada.configuration_llada import LLaDAConfig
 from transformers import AutoTokenizer
-from llada.generate import resteer_v2
+from timpateks.llada.generate import resteer_v2
 from utils.viz_utils import visualize_token_mask
 
 def l2_normalize(v, eps=1e-12):
     return v / (v.norm(p=2) + eps)
 
-EASY_EXAMPLE = "Shrek is a fun, clever twist on classic fairy tales that manages to be both hilarious and heartfelt at the same time. Instead of a typical hero, you get a grumpy but lovable ogre whose journey is full of sharp jokes, memorable moments, and a surprisingly meaningful message about acceptance and being yourself. The characters, especially Donkey and Fiona, bring tons of personality and charm, making the story feel lively and engaging from start to finish. It’s the kind of movie that works for all ages and still feels fresh even years later."
-HARD_EXAMPLE = "I had started to lose my faith in films of recent being inundated with the typical Genre Hollywood film. Story lines fail, and camera work is merely copied from the last film of similiar taste. But, then I saw Zentropa (Europa) and my faith was renewed. Not only is the metaphorical storyline enthralling but the use of color and black and white is visually stimulating. The narrator (Max Von Sydow) takes you through a spellbounding journey every step of the way and engrosses you into Europa 1945. We have all seen death put on screen in a hundred thousand ways but the beauty of this film is how it takes you through every slow-moving moment that leads you to death."
+EASY_EXAMPLE = "The movie is a genuinely enjoyable and well-crafted experience. From the opening scene, it pulls you in with strong visuals, engaging characters, and a story that keeps moving at the right pace. The performances feel natural and convincing, giving the film emotional weight without making it feel forced. The direction is confident, the music supports the mood beautifully, and the overall message leaves a lasting impression."
 STEER_VECTORS = "extract_vectors/steer_vectors/diffusion-val-n20.pt"
 STEER_DIRECTION = "negative"
 device = "cuda"
@@ -27,7 +26,7 @@ steer_vectors_all = tuple(
 if STEER_DIRECTION == "positive":
     steer_vectors_all = tuple(-v for v in steer_vectors_all)
 
-steer_alpha = 500
+steer_alpha = 600
 steer_layer = [16, 25, 31]
 steer_vectors = {si: steer_alpha * steer_vectors_all[si] for si in steer_layer}
 
@@ -48,14 +47,14 @@ RESTEER_STEPS = 10
 REFILL_STEPS = 25
 
 tokenized_inputs = tokenizer(
-    [HARD_EXAMPLE]*100,
+    [EASY_EXAMPLE],
     add_special_tokens=False,
     padding=True,
     return_tensors="pt"
 ).to(device)
 
 steered_x = resteer_v2(model, tokenized_inputs, steer_vectors, RESTEER_STEPS, REFILL_STEPS, alpha_decay=False)
-# visualize_token_mask(steered_x, tokenizer)
+visualize_token_mask(steered_x, tokenizer)
 
 # decoded = tokenizer.batch_decode(
 #     steered_x,

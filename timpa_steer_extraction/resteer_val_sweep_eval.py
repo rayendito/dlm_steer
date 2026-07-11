@@ -44,11 +44,11 @@ _root = str(_REPO_ROOT)
 if _root not in sys.path:
     sys.path.insert(0, _root)
 
-from eval_dito import perplexity as dito_perplexity
-from eval_dito import score_animal_labels, score_labels
-from llada.configuration_llada import LLaDAConfig
-from llada.generate import resteer_v2_val, resteer_v2
-from llada.modeling_llada import LLaDAModelLM
+from archived.eval_dito import perplexity as dito_perplexity
+from archived.eval_dito import score_animal_labels, score_labels
+from timpateks.llada.configuration_llada import LLaDAConfig
+from timpateks.llada.generate import resteer_v2_val, resteer_v2
+from timpateks.llada.modeling_llada import LLaDAModelLM
 
 # --- hardcoded sweep / IO -------------------------------------------------
 # Flipped by request: use train split for evaluation prompts, keep val for vector extraction.

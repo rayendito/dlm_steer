@@ -5,9 +5,9 @@ import argparse
 from transformers import AutoTokenizer, AutoModel
 import torch.nn.functional as F
 import numpy as np
-from llada.modeling_llada import LLaDAModelLM
-from llada.configuration_llada import LLaDAConfig
-from llada.generate import generate, identify_to_steer, resteer, add_gumbel_noise, get_num_transfer_tokens
+from timpateks.llada.modeling_llada import LLaDAModelLM
+from timpateks.llada.configuration_llada import LLaDAConfig
+from timpateks.llada.generate import generate, identify_to_steer, resteer, add_gumbel_noise, get_num_transfer_tokens
 from tqdm import tqdm
 
 seed = 42

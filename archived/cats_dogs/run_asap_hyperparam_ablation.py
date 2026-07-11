@@ -20,9 +20,9 @@ _REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from llada.configuration_llada import LLaDAConfig
-from llada.generate import resteer_v2
-from llada.modeling_llada import LLaDAModelLM
+from timpateks.llada.configuration_llada import LLaDAConfig
+from timpateks.llada.generate import resteer_v2
+from timpateks.llada.modeling_llada import LLaDAModelLM
 
 
 MODEL_ID = "GSAI-ML/LLaDA-8B-Base"

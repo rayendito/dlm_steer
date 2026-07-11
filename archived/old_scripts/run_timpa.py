@@ -9,9 +9,9 @@ from utils.steer_utils import l2_normalize
 from utils.eval_utils import rearrange_results
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from llada.modeling_llada import LLaDAModelLM
-from llada.configuration_llada import LLaDAConfig
-from llada.generate import resteer_v2
+from timpateks.llada.modeling_llada import LLaDAModelLM
+from timpateks.llada.configuration_llada import LLaDAConfig
+from timpateks.llada.generate import resteer_v2
 
 DEVICE = "cuda"
 MAIN_MODEL = "GSAI-ML/LLaDA-8B-Base"

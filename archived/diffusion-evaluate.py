@@ -19,7 +19,7 @@ from typing import Any
 # ---------------------------- parsing sweep json ----------------------------
 from dotenv import load_dotenv
 load_dotenv()
-from eval_dito import score_labels, perplexity
+from archived.eval_dito import score_labels, perplexity
 
 def parse_val_sweep_json(path: Path) -> list[dict[str, Any]]:
     with open(path, encoding="utf-8") as f:

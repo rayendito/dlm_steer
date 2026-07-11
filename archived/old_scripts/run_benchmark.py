@@ -7,9 +7,9 @@ import torch
 from transformers import AutoTokenizer
 from tqdm import tqdm
 from utils.data_utils import load_timpa_dataset
-from llada.modeling_llada import LLaDAModelLM
-from llada.configuration_llada import LLaDAConfig
-from llada.generate import generate
+from timpateks.llada.modeling_llada import LLaDAModelLM
+from timpateks.llada.configuration_llada import LLaDAConfig
+from timpateks.llada.generate import generate
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 MAIN_MODEL = "GSAI-ML/LLaDA-8B-Base"

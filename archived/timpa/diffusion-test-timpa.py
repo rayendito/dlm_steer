@@ -26,7 +26,7 @@ from typing import Any
 # Add parent directory to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from eval_dito import score_labels, perplexity
+from archived.eval_dito import score_labels, perplexity
 
 
 _PROMPT_RE = re.compile(r"^prompt\s+(\d+)\s*$", re.IGNORECASE)
