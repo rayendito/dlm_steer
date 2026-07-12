@@ -297,16 +297,20 @@ def timpa(
     use_chat_template=True,
     base_assistant_prompt="You are a helpful assistant",
     temperature=1.0,
+    margin=0.001,
 ):
     """Compute and align word-level AR log-probability changes.
 
     AR-token log-probability changes are summed within each word and broadcast
     to every diffusion token overlapping that word. They are then mapped to
-    masking probabilities with ``sigmoid(-log_delta / temperature)``.
+    masking probabilities after a margin-based dead zone. Words whose log
+    delta is at least ``-margin`` receive zero masking probability.
     """
     del model  # Reserved for the steering logic that follows identification.
     if temperature <= 0:
         raise ValueError("temperature must be greater than zero.")
+    if margin < 0:
+        raise ValueError("margin must be greater than or equal to zero.")
 
     texts = _as_text_list(text)
     base_prompt_scores = score_tokens_with_ar(
@@ -348,7 +352,10 @@ def timpa(
         use_chat_template=use_chat_template,
     )
 
-    masking_probs = torch.sigmoid(-aligned_word_log_deltas / temperature)
+    negative_evidence = (-aligned_word_log_deltas - margin).clamp_min(0)
+
+    masking_probs = torch.tanh(negative_evidence / (2 * temperature))
+
     attention_mask = tokenized_text.get("attention_mask")
     if attention_mask is not None:
         masking_probs = masking_probs.masked_fill(attention_mask == 0, 0.0)

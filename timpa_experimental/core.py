@@ -209,6 +209,7 @@ def visualize_timpa(
     use_chat_template=True,
     base_assistant_prompt="You are a helpful assistant",
     temperature=1.0,
+    margin=0.05,
     output_file="timpa_token_identification.html",
 ):
     """Run :func:`timpateks.timpa` and visualize aligned remasking probabilities."""
@@ -232,6 +233,7 @@ def visualize_timpa(
         use_chat_template=use_chat_template,
         base_assistant_prompt=base_assistant_prompt,
         temperature=temperature,
+        margin=margin,
     )
 
     attention_mask = tokenized_text.get("attention_mask")
@@ -306,7 +308,8 @@ h1 {{ margin-bottom: 4px; }}
 <h1>TIMPA token identification</h1>
 <div class="meta"><b>Identifier:</b> {html.escape(str(identifier_name))} ·
 <b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
-<b>Temperature:</b> {temperature:g} · <b>Format:</b> {prompt_format}</div>
+<b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
+<b>Format:</b> {prompt_format}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
 means higher masking probability.</div>
 {''.join(cards)}

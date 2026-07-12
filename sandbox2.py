@@ -6,10 +6,14 @@ from timpateks.llada.configuration_llada import LLaDAConfig
 
 device = "cuda"
 TEXT = [
-    "My fellow citizens, the MBG is not merely about providing food to our children; it is a great investment in the future of our nation. We want every Indonesian child to grow healthy, strong, intelligent, and ready to compete toward Golden Indonesia 2045. The state must never allow its children to study while hungry. That is why this program is a concrete expression of the state’s presence: ensuring better nutrition, supporting families, strengthening farmers and village economies, and giving our young generation a strong foundation to build a more advanced and dignified Indonesia.",
+    "The human brain works through billions of neurons that communicate using electrical impulses and chemical neurotransmitters across synapses. Different regions handle different functions: the cerebral cortex supports thinking, memory, language, and decision-making; the cerebellum coordinates movement and balance; and the brainstem controls automatic processes like breathing and heart rate. Signals travel through neural networks, where synaptic plasticity allows the brain to learn, adapt, and store information over time.",
+    "The human brain works through billions of neurons that communicate using electrical impulses and chemical neurotransmitters across synapses. Different regions handle different functions: the cerebral cortex supports thinking, memory, language, and decision-making; the cerebellum coordinates movement and balance; and the brainstem controls automatic processes like breathing and heart rate. Signals travel through neural networks, where synaptic plasticity allows the brain to learn, adapt, and store information over time.",
+    "The human brain works through billions of neurons that communicate using electrical impulses and chemical neurotransmitters across synapses. Different regions handle different functions: the cerebral cortex supports thinking, memory, language, and decision-making; the cerebellum coordinates movement and balance; and the brainstem controls automatic processes like breathing and heart rate. Signals travel through neural networks, where synaptic plasticity allows the brain to learn, adapt, and store information over time.",
 ]
 STEER_PROMPTS = [
-    "Pretend you're Kim Kardashian:\n",
+    "You're explaining to a 5 year old who knows nothing about biology:\n",
+    "You're explaining to a highschool student who might know a little bit of biology:\n",
+    "You're explaining to a medical professional:\n",
 ]
 
 ############################## MODELING
@@ -26,11 +30,13 @@ tokenizer = AutoTokenizer.from_pretrained(
 )
 tokenizer.padding_side = "left"
 
-IDENTIFIER_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+IDENTIFIER_MODEL = "Qwen/Qwen2.5-14B-Instruct"
 identifier_model = AutoModelForCausalLM.from_pretrained(IDENTIFIER_MODEL)
 identifier_tokenizer = AutoTokenizer.from_pretrained(IDENTIFIER_MODEL)
 
 ############################## TEST RUN
+
+############################## VIZZ
 visualize_timpa(
     model,
     tokenizer,
@@ -38,11 +44,7 @@ visualize_timpa(
     identifier_tokenizer,
     STEER_PROMPTS,
     TEXT,
-    base_assistant_prompt="Pretend you're Prabowo Subianto",
-    temperature=0.05,
+    base_assistant_prompt="You are explaining to a neurosurgeon",
+    temperature=0.25,
+    margin=0
 )
-
-############################## VIZZ
-# visualize_token_identification(
-#     model, tokenizer, "AR", STEER_PROMPTS, TEXT,
-# )
