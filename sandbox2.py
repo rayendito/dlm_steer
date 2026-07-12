@@ -1,85 +1,48 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from timpateks import score_tokens_wrt_steer
-from timpa_experimental import visualize_token_identification_comparison
+from timpa_experimental import visualize_timpa, visualize_token_identification
 from timpateks.llada.modeling_llada import LLaDAModelLM
 from timpateks.llada.configuration_llada import LLaDAConfig
 
-IDENTIFIER_MODEL = "Qwen/Qwen2.5-7B-Instruct"
-STEER_VECTORS = "archived/steer_vectors/diffusion-imdb-n20.pt"
-STEER_DIRECTION = "negative"
-# TEXT = [
-#     "The movie is a genuinely enjoyable and well-crafted experience. ",
-#     "The performances feel natural, and the story remains engaging throughout."
-# ]
-TEXT = "Your kidneys are like tiny cleaning machines inside your body. Blood flows through them, and they take out the yucky extra stuff your body does not need, like waste and extra water. That waste becomes pee. The clean blood goes back into your body, and the pee travels to your bladder, where it waits until you go to the bathroom."
+device = "cuda"
+TEXT = [
+    "My fellow citizens, the MBG is not merely about providing food to our children; it is a great investment in the future of our nation. We want every Indonesian child to grow healthy, strong, intelligent, and ready to compete toward Golden Indonesia 2045. The state must never allow its children to study while hungry. That is why this program is a concrete expression of the state’s presence: ensuring better nutrition, supporting families, strengthening farmers and village economies, and giving our young generation a strong foundation to build a more advanced and dignified Indonesia.",
+]
 STEER_PROMPTS = [
-    "You are talking to a 5 year old who know nothing about biology:\n",
-    "You are talking to a medical professional\n",
+    "Pretend you're Kim Kardashian:\n",
 ]
 
-device = "cuda"
-
-
-def l2_normalize(vector, eps=1e-12):
-    return vector / (vector.norm(p=2) + eps)
-
-
-########## MODELS
-model = AutoModelForCausalLM.from_pretrained(
-    IDENTIFIER_MODEL,
+############################## MODELING
+MODEL = "GSAI-ML/LLaDA-8B-Instruct"
+config = LLaDAConfig.from_pretrained(MODEL)
+model = LLaDAModelLM.from_pretrained(
+    MODEL,
+    config=config,
     torch_dtype=torch.bfloat16,
-).to(device).eval()
-tokenizer = AutoTokenizer.from_pretrained(IDENTIFIER_MODEL)
+).to("cuda").eval()
+tokenizer = AutoTokenizer.from_pretrained(
+    MODEL,
+    trust_remote_code=True,
+)
 tokenizer.padding_side = "left"
 
-# model_path = "GSAI-ML/LLaDA-8B-Base"
-# config = LLaDAConfig.from_pretrained(model_path)
-# model = LLaDAModelLM.from_pretrained(
-#     model_path,
-#     config=config,
-#     torch_dtype=torch.bfloat16,
-# ).to("cuda").eval()
-# tokenizer = AutoTokenizer.from_pretrained(
-#     model_path,
-#     trust_remote_code=True,
-# )
-# tokenizer.padding_side = "left"
+IDENTIFIER_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+identifier_model = AutoModelForCausalLM.from_pretrained(IDENTIFIER_MODEL)
+identifier_tokenizer = AutoTokenizer.from_pretrained(IDENTIFIER_MODEL)
 
-############################## VIZZ
-visualize_token_identification_comparison(
-    model, tokenizer, "AR", STEER_PROMPTS, TEXT
+############################## TEST RUN
+visualize_timpa(
+    model,
+    tokenizer,
+    identifier_model,
+    identifier_tokenizer,
+    STEER_PROMPTS,
+    TEXT,
+    base_assistant_prompt="Pretend you're Prabowo Subianto",
+    temperature=0.05,
 )
 
-
-# ############################## PROBS
-# raw_probs, text_token_indices = score_tokens_wrt_steer(
-#     model=model,
-#     tokenizer=tokenizer,
-#     steer=STEER_PROMPTS,
-#     text=TEXT,
-#     identifier_mode="AR",
+############################## VIZZ
+# visualize_token_identification(
+#     model, tokenizer, "AR", STEER_PROMPTS, TEXT,
 # )
-
-# ############################## STEERS
-# sentiment_vectors = torch.load(STEER_VECTORS, map_location=device)
-# pos_vectors = sentiment_vectors["positive"]
-# neg_vectors = sentiment_vectors["negative"]
-
-# steer_vectors_all = tuple(
-#     l2_normalize(neg_vectors[i]) - l2_normalize(pos_vectors[i])
-#     for i in range(len(pos_vectors))
-# )
-
-# if STEER_DIRECTION == "positive":
-#     steer_vectors_all = tuple(-v for v in steer_vectors_all)
-
-# steer_alpha = 600
-# steer_layer = [16, 25, 31]
-# steer_vectors = {si: steer_alpha * steer_vectors_all[si] for si in steer_layer}
-
-# raw_cosines, text_token_indices = score_tokens_wrt_steer(
-#     model, tokenizer, steer_vectors, TEXT
-# )
-
-# breakpoint()
