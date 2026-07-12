@@ -239,6 +239,10 @@ def visualize_timpa(
     base_assistant_prompt="You are a helpful assistant",
     temperature=1.0,
     margin=0.05,
+    refill_steps=32,
+    sampling_temperature=0.0,
+    refill_strategy="low_confidence",
+    generator=None,
     output_file="timpa_token_identification.html",
 ):
     """Run :func:`timpateks.timpa` and visualize aligned remasking probabilities."""
@@ -252,7 +256,7 @@ def visualize_timpa(
     if not all(isinstance(prompt, str) for prompt in steer):
         raise TypeError("Each steer prompt must be a string.")
 
-    tokenized_text, masking_probs, masked_positions = timpa(
+    tokenized_text, masking_probs, masked_positions, regenerated_texts = timpa(
         model=model,
         tokenizer=tokenizer,
         identifier_model=identifier_model,
@@ -263,6 +267,10 @@ def visualize_timpa(
         base_assistant_prompt=base_assistant_prompt,
         temperature=temperature,
         margin=margin,
+        refill_steps=refill_steps,
+        sampling_temperature=sampling_temperature,
+        refill_strategy=refill_strategy,
+        generator=generator,
     )
 
     attention_mask = tokenized_text.get("attention_mask")
@@ -294,7 +302,7 @@ def visualize_timpa(
             offsets,
             row_probs,
         )
-        mask_token = getattr(tokenizer, "mask_token", None) or "[MASK]"
+        mask_token = getattr(tokenizer, "mask_token", None) or "<|mdm_mask|>"
         sampled_text = _masked_text(
             item,
             offsets,
@@ -311,6 +319,8 @@ def visualize_timpa(
             f'<div class="text">{highlighted}</div>'
             '<div class="label">Masked text</div>'
             f'<div class="text">{sampled_text}</div>'
+            '<div class="label">Steered text</div>'
+            f'<div class="text">{html.escape(regenerated_texts[row])}</div>'
             '</section>'
         )
 
@@ -354,6 +364,7 @@ h1 {{ margin-bottom: 4px; }}
 <div class="meta"><b>Identifier:</b> {html.escape(str(identifier_name))} ·
 <b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
 <b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
+<b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {prompt_format}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
 means higher masking probability.</div>

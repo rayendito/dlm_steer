@@ -2,6 +2,11 @@ import re
 
 import torch
 
+from .llada.generate import add_gumbel_noise, get_num_transfer_tokens
+
+
+LLADA_MASK_TOKEN = "<|mdm_mask|>"
+
 
 def _as_text_list(text):
     texts = [text] if isinstance(text, str) else text
@@ -10,6 +15,26 @@ def _as_text_list(text):
     if not all(isinstance(item, str) for item in texts):
         raise TypeError("Each text must be a string.")
     return texts
+
+
+def _get_mask_token_id(tokenizer):
+    mask_token_id = getattr(tokenizer, "mask_token_id", None)
+    if mask_token_id is not None:
+        return mask_token_id
+
+    vocab = tokenizer.get_vocab() if hasattr(tokenizer, "get_vocab") else {}
+    if LLADA_MASK_TOKEN in vocab:
+        return vocab[LLADA_MASK_TOKEN]
+
+    if hasattr(tokenizer, "convert_tokens_to_ids"):
+        candidate = tokenizer.convert_tokens_to_ids(LLADA_MASK_TOKEN)
+        unk_token_id = getattr(tokenizer, "unk_token_id", None)
+        if candidate is not None and candidate != unk_token_id:
+            return candidate
+
+    raise ValueError(
+        f"The diffusion tokenizer does not define {LLADA_MASK_TOKEN!r}."
+    )
 
 
 def _text_encoding(tokenizer, text):
@@ -357,6 +382,150 @@ def sample_mask(
     return masked_positions & attention_mask
 
 
+@torch.no_grad()
+def regenerate_masked_text(
+    model,
+    tokenizer,
+    steer,
+    text,
+    masked_positions,
+    response_attention_mask=None,
+    use_chat_template=True,
+    refill_steps=32,
+    sampling_temperature=0.0,
+    refill_strategy="low_confidence",
+):
+    """Refill sampled response masks with ordinary, unsteered LLaDA denoising."""
+    if refill_steps <= 0:
+        raise ValueError("refill_steps must be greater than zero.")
+    if refill_strategy not in {"low_confidence", "random"}:
+        raise ValueError("refill_strategy must be 'low_confidence' or 'random'.")
+
+    texts = _as_text_list(text)
+    if not isinstance(steer, list) or len(steer) != len(texts):
+        raise ValueError("steer must contain one prompt string per text.")
+    if masked_positions.shape[0] != len(texts):
+        raise ValueError("masked_positions batch size must match text.")
+
+    mask_token_id = _get_mask_token_id(tokenizer)
+
+    try:
+        device = next(model.parameters()).device
+    except StopIteration:
+        device = masked_positions.device
+
+    sequences = []
+    response_masks = []
+    refill_masks = []
+    for row, (prompt, item) in enumerate(zip(steer, texts)):
+        response_ids = tokenizer(
+            item,
+            add_special_tokens=False,
+            return_tensors="pt",
+        )["input_ids"][0]
+        valid_mask = masked_positions[row]
+        if response_attention_mask is not None:
+            valid_mask = valid_mask[response_attention_mask[row].bool()]
+        if valid_mask.numel() != response_ids.numel():
+            raise RuntimeError(
+                "Sampled mask count does not match the unpadded response token count."
+            )
+
+        if use_chat_template:
+            if not getattr(tokenizer, "chat_template", None):
+                raise ValueError(
+                    "use_chat_template=True requires a tokenizer with a chat template."
+                )
+            prompt_ids = tokenizer.apply_chat_template(
+                [{"role": "system", "content": prompt}],
+                tokenize=True,
+                add_generation_prompt=True,
+                return_tensors="pt",
+            )
+            if isinstance(prompt_ids, dict):
+                prompt_ids = prompt_ids["input_ids"]
+            prompt_ids = prompt_ids[0]
+        else:
+            prompt_ids = tokenizer(
+                prompt,
+                add_special_tokens=False,
+                return_tensors="pt",
+            )["input_ids"][0]
+
+        sequence = torch.cat((prompt_ids, response_ids))
+        response_mask = torch.zeros(sequence.numel(), dtype=torch.bool)
+        response_mask[prompt_ids.numel():] = True
+        refill_mask = torch.zeros_like(response_mask)
+        refill_mask[prompt_ids.numel():] = valid_mask.cpu()
+        sequence[refill_mask] = mask_token_id
+        sequences.append(sequence)
+        response_masks.append(response_mask)
+        refill_masks.append(refill_mask)
+
+    pad_token_id = getattr(tokenizer, "pad_token_id", None)
+    max_length = max(sequence.numel() for sequence in sequences)
+    if pad_token_id is None and any(seq.numel() < max_length for seq in sequences):
+        raise ValueError("The diffusion tokenizer must define pad_token_id for batching.")
+    pad_token_id = 0 if pad_token_id is None else pad_token_id
+    padding_side = getattr(tokenizer, "padding_side", "right")
+
+    input_ids = torch.full(
+        (len(sequences), max_length), pad_token_id, dtype=torch.long, device=device
+    )
+    attention_mask = torch.zeros_like(input_ids)
+    response_mask_batch = torch.zeros_like(input_ids, dtype=torch.bool)
+    refill_mask_batch = torch.zeros_like(input_ids, dtype=torch.bool)
+    for row, (sequence, response_mask, refill_mask) in enumerate(
+        zip(sequences, response_masks, refill_masks)
+    ):
+        start = max_length - sequence.numel() if padding_side == "left" else 0
+        end = start + sequence.numel()
+        input_ids[row, start:end] = sequence.to(device)
+        attention_mask[row, start:end] = 1
+        response_mask_batch[row, start:end] = response_mask.to(device)
+        refill_mask_batch[row, start:end] = refill_mask.to(device)
+
+    x = input_ids.clone()
+    num_transfer_tokens = get_num_transfer_tokens(refill_mask_batch, refill_steps)
+    for refill_step in range(refill_steps):
+        still_masked = (x == mask_token_id) & refill_mask_batch
+        if not still_masked.any():
+            break
+
+        logits = model(input_ids=x, attention_mask=attention_mask).logits
+        noisy_logits = add_gumbel_noise(logits, temperature=sampling_temperature)
+        candidates = torch.argmax(noisy_logits, dim=-1)
+        if refill_strategy == "low_confidence":
+            candidate_probs = torch.softmax(logits.float(), dim=-1).gather(
+                dim=-1,
+                index=candidates.unsqueeze(-1),
+            ).squeeze(-1)
+        else:
+            candidate_probs = torch.rand(x.shape, device=x.device)
+
+        confidence = candidate_probs.masked_fill(~still_masked, -torch.inf)
+        transfer = torch.zeros_like(still_masked)
+        for row in range(x.shape[0]):
+            count = min(
+                int(num_transfer_tokens[row, refill_step].item()),
+                int(still_masked[row].sum().item()),
+            )
+            if count > 0:
+                indices = torch.topk(confidence[row], k=count).indices
+                transfer[row, indices] = True
+        x[transfer] = candidates[transfer]
+
+    regenerated_texts = [
+        tokenizer.decode(
+            x[row, response_mask_batch[row]],
+            skip_special_tokens=True,
+            clean_up_tokenization_spaces=False,
+        )
+        for row in range(x.shape[0])
+    ]
+    return regenerated_texts
+
+
 def timpa(
     model,
     tokenizer,
@@ -369,6 +538,9 @@ def timpa(
     temperature=1.0,
     margin=0.001,
     generator=None,
+    refill_steps=32,
+    sampling_temperature=0.0,
+    refill_strategy="low_confidence",
 ):
     """Compute and align word-level AR log-probability changes.
 
@@ -379,10 +551,10 @@ def timpa(
     Bernoulli decision is sampled per word and broadcast to all of its
     diffusion tokens.
 
-    Returns ``(tokenized_text, masking_probs, masked_positions)``. Punctuation
-    groups are sampled independently, and padding positions are always false.
+    Returns ``(tokenized_text, masking_probs, masked_positions,
+    regenerated_texts)``. Punctuation groups are sampled independently, and
+    padding positions are always false.
     """
-    del model  # Reserved for the steering logic that follows identification.
     if temperature <= 0:
         raise ValueError("temperature must be greater than zero.")
     if margin < 0:
@@ -443,5 +615,17 @@ def timpa(
         attention_mask=attention_mask,
         generator=generator,
     )
+    regenerated_texts = regenerate_masked_text(
+        model,
+        tokenizer,
+        steer,
+        texts,
+        masked_positions,
+        response_attention_mask=attention_mask,
+        use_chat_template=use_chat_template,
+        refill_steps=refill_steps,
+        sampling_temperature=sampling_temperature,
+        refill_strategy=refill_strategy,
+    )
 
-    return tokenized_text, masking_probs, masked_positions
+    return tokenized_text, masking_probs, masked_positions, regenerated_texts
