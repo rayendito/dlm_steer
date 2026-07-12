@@ -287,6 +287,76 @@ def tokenize_and_align_ar_scores(
     return tokenized_text, aligned_scores
 
 
+def sample_mask(
+    masking_probs,
+    tokenizer,
+    text,
+    attention_mask=None,
+    generator=None,
+):
+    """Sample one masking decision per word and broadcast it to its tokens."""
+    if not isinstance(masking_probs, torch.Tensor) or masking_probs.ndim != 2:
+        raise ValueError("masking_probs must have shape [batch, tokens].")
+    if torch.any((masking_probs < 0) | (masking_probs > 1)):
+        raise ValueError("masking_probs values must be between zero and one.")
+
+    texts = _as_text_list(text)
+    if len(texts) != masking_probs.shape[0]:
+        raise ValueError(
+            "The number of texts must match the masking probability batch size."
+        )
+
+    try:
+        encoded = tokenizer(
+            texts,
+            add_special_tokens=False,
+            padding=True,
+            return_offsets_mapping=True,
+            return_tensors="pt",
+        )
+    except (NotImplementedError, ValueError) as exc:
+        raise ValueError(
+            "Word-level mask sampling requires a fast tokenizer with a pad "
+            "token and support for return_offsets_mapping=True."
+        ) from exc
+
+    target_offsets = encoded["offset_mapping"].to(masking_probs.device)
+    if target_offsets.shape[:2] != masking_probs.shape:
+        raise RuntimeError(
+            "Retokenized text shape does not match the aligned masking probabilities."
+        )
+    if attention_mask is None:
+        attention_mask = encoded.get("attention_mask")
+    if attention_mask is None:
+        attention_mask = torch.ones_like(masking_probs, dtype=torch.long)
+    attention_mask = attention_mask.to(masking_probs.device).bool()
+
+    masked_positions = torch.zeros_like(masking_probs, dtype=torch.bool)
+    for row, item in enumerate(texts):
+        row_offsets = target_offsets[row]
+        for match in re.finditer(r"\s*\w+(?:['’]\w+)*|[^\w\s]+", item):
+            start, end = match.span()
+            overlap = (
+                torch.minimum(row_offsets[:, 1], row_offsets.new_tensor(end))
+                - torch.maximum(row_offsets[:, 0], row_offsets.new_tensor(start))
+            ) > 0
+            token_group = overlap & attention_mask[row]
+            if not token_group.any():
+                continue
+
+            # Alignment broadcasts one word probability to all of its tokens.
+            # Mean is defensive for the rare tokenizer token crossing a boundary.
+            word_probability = masking_probs[row, token_group].mean()
+            sampled = torch.rand(
+                (),
+                device=masking_probs.device,
+                generator=generator,
+            ) < word_probability
+            masked_positions[row, token_group] = sampled
+
+    return masked_positions & attention_mask
+
+
 def timpa(
     model,
     tokenizer,
@@ -298,13 +368,19 @@ def timpa(
     base_assistant_prompt="You are a helpful assistant",
     temperature=1.0,
     margin=0.001,
+    generator=None,
 ):
     """Compute and align word-level AR log-probability changes.
 
     AR-token log-probability changes are summed within each word and broadcast
     to every diffusion token overlapping that word. They are then mapped to
     masking probabilities after a margin-based dead zone. Words whose log
-    delta is at least ``-margin`` receive zero masking probability.
+    delta is at least ``-margin`` receive zero masking probability. One
+    Bernoulli decision is sampled per word and broadcast to all of its
+    diffusion tokens.
+
+    Returns ``(tokenized_text, masking_probs, masked_positions)``. Punctuation
+    groups are sampled independently, and padding positions are always false.
     """
     del model  # Reserved for the steering logic that follows identification.
     if temperature <= 0:
@@ -360,4 +436,12 @@ def timpa(
     if attention_mask is not None:
         masking_probs = masking_probs.masked_fill(attention_mask == 0, 0.0)
 
-    return tokenized_text, masking_probs
+    masked_positions = sample_mask(
+        masking_probs,
+        tokenizer,
+        texts,
+        attention_mask=attention_mask,
+        generator=generator,
+    )
+
+    return tokenized_text, masking_probs, masked_positions

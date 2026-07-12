@@ -99,6 +99,35 @@ def _timpa_text(text, offsets, masking_probs):
     return "".join(pieces)
 
 
+def _masked_text(text, offsets, masked_positions, mask_token):
+    masked_positions = masked_positions[:len(offsets)].bool().cpu()
+
+    pieces = []
+    cursor = 0
+    for offset, is_masked in zip(offsets, masked_positions):
+        start, end = offset
+        if end <= start:
+            continue
+        if start > cursor:
+            pieces.append(html.escape(text[cursor:start]))
+
+        fragment = text[start:end]
+        if bool(is_masked):
+            leading_space_count = len(fragment) - len(fragment.lstrip())
+            leading_space = fragment[:leading_space_count]
+            pieces.append(html.escape(leading_space))
+            pieces.append(
+                '<span class="sampled-mask" '
+                f'title="masked token: {html.escape(fragment, quote=True)}">'
+                f'{html.escape(mask_token)}</span>'
+            )
+        else:
+            pieces.append(html.escape(fragment))
+        cursor = max(cursor, end)
+    pieces.append(html.escape(text[cursor:]))
+    return "".join(pieces)
+
+
 def visualize_token_identification(
     model,
     tokenizer,
@@ -223,7 +252,7 @@ def visualize_timpa(
     if not all(isinstance(prompt, str) for prompt in steer):
         raise TypeError("Each steer prompt must be a string.")
 
-    tokenized_text, masking_probs = timpa(
+    tokenized_text, masking_probs, masked_positions = timpa(
         model=model,
         tokenizer=tokenizer,
         identifier_model=identifier_model,
@@ -250,15 +279,27 @@ def visualize_timpa(
             return_offsets_mapping=True,
         )
         row_probs = masking_probs[row][attention_mask[row].bool()]
+        row_masked_positions = masked_positions[row][attention_mask[row].bool()]
         offsets = encoded["offset_mapping"]
-        if row_probs.numel() != len(offsets):
+        if (
+            row_probs.numel() != len(offsets)
+            or row_masked_positions.numel() != len(offsets)
+        ):
             raise RuntimeError(
-                "Aligned probability count does not match the diffusion token count."
+                "Aligned probability or mask count does not match the diffusion "
+                "token count."
             )
         highlighted = _timpa_text(
             item,
             offsets,
             row_probs,
+        )
+        mask_token = getattr(tokenizer, "mask_token", None) or "[MASK]"
+        sampled_text = _masked_text(
+            item,
+            offsets,
+            row_masked_positions,
+            mask_token,
         )
         cards.append(
             '<section class="card">'
@@ -268,6 +309,8 @@ def visualize_timpa(
             f'<div class="prompt">{html.escape(prompt)}</div>'
             '<div class="label">Masking probability</div>'
             f'<div class="text">{highlighted}</div>'
+            '<div class="label">Masked text</div>'
+            f'<div class="text">{sampled_text}</div>'
             '</section>'
         )
 
@@ -295,6 +338,8 @@ h1 {{ margin-bottom: 4px; }}
 .label {{ color: #777; font-size: 12px; font-weight: 700; letter-spacing: .08em;
           margin-top: 10px; text-transform: uppercase; }}
 .prompt, .text {{ white-space: pre-wrap; }}
+.sampled-mask {{ background: #242424; border-radius: 3px; color: white;
+                 padding: 1px 3px; }}
 .token {{ border-radius: 3px; cursor: help; position: relative; }}
 .token:hover::after {{
   background: #242424; border-radius: 5px; bottom: calc(100% + 7px); color: white;
