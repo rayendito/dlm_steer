@@ -1,7 +1,7 @@
 import html
 from pathlib import Path
 
-from timpateks import score_tokens_with_ar, timpa_probabilistic
+from timpateks import score_tokens_with_ar, timpa_probabilistic, timpa_steer
 
 
 def _highlighted_text(
@@ -228,7 +228,7 @@ h1 {{ margin-bottom: 4px; }}
     return output_path
 
 
-def visualize_timpa(
+def visualize_timpa_probabilistic(
     model,
     tokenizer,
     identifier_model,
@@ -368,6 +368,131 @@ h1 {{ margin-bottom: 4px; }}
 <b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
 <b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {prompt_format}</div>
+<div class="legend">More intense <span class="high-probability">red</span>
+means higher masking probability.</div>
+{''.join(cards)}
+</body>
+</html>
+"""
+    output_path = Path(output_file)
+    output_path.write_text(document, encoding="utf-8")
+    return output_path
+
+
+def visualize_timpa_steers(
+    model,
+    tokenizer,
+    steer_vectors,
+    text,
+    refill_steps=32,
+    sampling_temperature=1.0,
+    temperature=1.0,
+    generator=None,
+    refill_strategy="low_confidence",
+    output_file="timpa_steers_token_identification.html",
+):
+    """Run activation-steering TIMPA and visualize its remasking results."""
+    texts = [text] if isinstance(text, str) else text
+    if not isinstance(texts, list) or not texts:
+        raise ValueError("text must be a string or a non-empty list of strings.")
+    if not all(isinstance(item, str) for item in texts):
+        raise TypeError("Each text must be a string.")
+
+    tokenized_text, masking_probs, masked_positions, regenerated_texts = timpa_steer(
+        model=model,
+        tokenizer=tokenizer,
+        steer_vectors=steer_vectors,
+        text=texts,
+        refill_steps=refill_steps,
+        sampling_temperature=sampling_temperature,
+        temperature=temperature,
+        generator=generator,
+        refill_strategy=refill_strategy,
+    )
+
+    attention_mask = tokenized_text.get("attention_mask")
+    if attention_mask is None:
+        attention_mask = tokenized_text["input_ids"].new_ones(
+            tokenized_text["input_ids"].shape
+        )
+
+    layer_description = ", ".join(str(layer) for layer in sorted(steer_vectors))
+    cards = []
+    for row, item in enumerate(texts):
+        encoded = tokenizer(
+            item,
+            add_special_tokens=False,
+            return_offsets_mapping=True,
+        )
+        row_probs = masking_probs[row][attention_mask[row].bool()]
+        row_masked_positions = masked_positions[row][attention_mask[row].bool()]
+        offsets = encoded["offset_mapping"]
+        if (
+            row_probs.numel() != len(offsets)
+            or row_masked_positions.numel() != len(offsets)
+        ):
+            raise RuntimeError(
+                "Masking probability or mask count does not match the diffusion "
+                "token count."
+            )
+        highlighted = _timpa_text(item, offsets, row_probs)
+        mask_token = getattr(tokenizer, "mask_token", None) or "<|mdm_mask|>"
+        sampled_text = _masked_text(
+            item,
+            offsets,
+            row_masked_positions,
+            mask_token,
+        )
+        cards.append(
+            '<section class="card">'
+            '<div class="label">Steering layers</div>'
+            f'<div class="prompt">{html.escape(layer_description)}</div>'
+            '<div class="label">Masking probability</div>'
+            f'<div class="text">{highlighted}</div>'
+            '<div class="label">Masked text</div>'
+            f'<div class="text">{sampled_text}</div>'
+            '<div class="label">Steered text</div>'
+            f'<div class="text">{html.escape(regenerated_texts[row])}</div>'
+            '</section>'
+        )
+
+    diffusion_name = getattr(
+        getattr(model, "config", None), "name_or_path", None
+    ) or model.__class__.__name__
+    document = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIMPA steering token identification</title>
+<style>
+body {{ max-width: 960px; margin: 40px auto; padding: 0 20px; color: #242424;
+       background: #fafafa; font: 16px/1.6 system-ui, sans-serif; }}
+h1 {{ margin-bottom: 4px; }}
+.meta, .legend {{ color: #666; margin-bottom: 20px; }}
+.high-probability {{ color: rgb(220, 38, 38); }}
+.card {{ background: white; border: 1px solid #ddd; border-radius: 10px;
+         margin: 18px 0; padding: 20px; }}
+.label {{ color: #777; font-size: 12px; font-weight: 700; letter-spacing: .08em;
+          margin-top: 10px; text-transform: uppercase; }}
+.prompt, .text {{ white-space: pre-wrap; }}
+.sampled-mask {{ background: #242424; border-radius: 3px; color: white;
+                 padding: 1px 3px; }}
+.token {{ border-radius: 3px; cursor: help; position: relative; }}
+.token:hover::after {{
+  background: #242424; border-radius: 5px; bottom: calc(100% + 7px); color: white;
+  content: attr(data-tooltip); font-size: 12px; left: 50%; padding: 4px 7px;
+  pointer-events: none; position: absolute; transform: translateX(-50%);
+  white-space: nowrap; z-index: 10;
+}}
+</style>
+</head>
+<body>
+<h1>TIMPA steering token identification</h1>
+<div class="meta"><b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
+<b>Steering layers:</b> {html.escape(layer_description)} ·
+<b>Temperature:</b> {temperature:g} ·
+<b>Refill steps:</b> {refill_steps}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
 means higher masking probability.</div>
 {''.join(cards)}

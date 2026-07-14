@@ -1,9 +1,11 @@
 from .core import (
-    visualize_timpa,
+    visualize_timpa_probabilistic,
+    visualize_timpa_steers,
     visualize_token_identification,
 )
 
 __all__ = [
-    "visualize_timpa",
+    "visualize_timpa_probabilistic",
+    "visualize_timpa_steers",
     "visualize_token_identification",
 ]

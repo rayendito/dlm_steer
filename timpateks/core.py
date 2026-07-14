@@ -674,7 +674,6 @@ def timpa_steer(
     refill_steps=32,
     sampling_temperature=1.0,
     temperature=1.0,
-    margin=0.001,
     generator=None,
     refill_strategy="low_confidence",
 ):
@@ -694,8 +693,6 @@ def timpa_steer(
         raise ValueError("sampling_temperature must be greater than or equal to zero.")
     if temperature <= 0:
         raise ValueError("temperature must be greater than zero.")
-    if margin < 0:
-        raise ValueError("margin must be greater than or equal to zero.")
     if refill_strategy not in {"low_confidence", "random"}:
         raise ValueError("refill_strategy must be 'low_confidence' or 'random'.")
 
@@ -748,7 +745,7 @@ def timpa_steer(
         cosine_scores,
         attention_mask,
         temperature,
-        margin,
+        margin=0.0,
         mapping="sigmoid",
     )
     masked_positions = sample_mask(
