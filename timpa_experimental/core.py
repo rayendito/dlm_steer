@@ -1,7 +1,7 @@
 import html
 from pathlib import Path
 
-from timpateks import score_tokens_with_ar, timpa
+from timpateks import score_tokens_with_ar, timpa_probabilistic
 
 
 def _highlighted_text(
@@ -245,7 +245,7 @@ def visualize_timpa(
     generator=None,
     output_file="timpa_token_identification.html",
 ):
-    """Run :func:`timpateks.timpa` and visualize aligned remasking probabilities."""
+    """Run probabilistic TIMPA and visualize aligned remasking probabilities."""
     texts = [text] if isinstance(text, str) else text
     if not isinstance(texts, list) or not texts:
         raise ValueError("text must be a string or a non-empty list of strings.")
@@ -256,21 +256,23 @@ def visualize_timpa(
     if not all(isinstance(prompt, str) for prompt in steer):
         raise TypeError("Each steer prompt must be a string.")
 
-    tokenized_text, masking_probs, masked_positions, regenerated_texts = timpa(
-        model=model,
-        tokenizer=tokenizer,
-        identifier_model=identifier_model,
-        identifier_tokenizer=identifier_tokenizer,
-        steer=steer,
-        text=texts,
-        use_chat_template=use_chat_template,
-        base_assistant_prompt=base_assistant_prompt,
-        temperature=temperature,
-        margin=margin,
-        refill_steps=refill_steps,
-        sampling_temperature=sampling_temperature,
-        refill_strategy=refill_strategy,
-        generator=generator,
+    tokenized_text, masking_probs, masked_positions, regenerated_texts = (
+        timpa_probabilistic(
+            model=model,
+            tokenizer=tokenizer,
+            identifier_model=identifier_model,
+            identifier_tokenizer=identifier_tokenizer,
+            steer=steer,
+            text=texts,
+            use_chat_template=use_chat_template,
+            base_assistant_prompt=base_assistant_prompt,
+            temperature=temperature,
+            margin=margin,
+            refill_steps=refill_steps,
+            sampling_temperature=sampling_temperature,
+            refill_strategy=refill_strategy,
+            generator=generator,
+        )
     )
 
     attention_mask = tokenized_text.get("attention_mask")

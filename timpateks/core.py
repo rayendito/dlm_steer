@@ -1,8 +1,12 @@
 import re
 
 import torch
+import torch.nn.functional as F
 
-from .llada.generate import add_gumbel_noise, get_num_transfer_tokens
+from .llada.generate import (
+    add_gumbel_noise,
+    get_num_transfer_tokens,
+)
 
 
 LLADA_MASK_TOKEN = "<|mdm_mask|>"
@@ -35,6 +39,33 @@ def _get_mask_token_id(tokenizer):
     raise ValueError(
         f"The diffusion tokenizer does not define {LLADA_MASK_TOKEN!r}."
     )
+
+
+def _scores_to_masking_probs(
+    scores,
+    attention_mask,
+    temperature,
+    margin,
+    mapping="tanh",
+):
+    """Map negative token scores to masking probabilities."""
+    if temperature <= 0:
+        raise ValueError("temperature must be greater than zero.")
+    if margin < 0:
+        raise ValueError("margin must be greater than or equal to zero.")
+    if mapping not in {"tanh", "sigmoid"}:
+        raise ValueError("mapping must be 'tanh' or 'sigmoid'.")
+
+    negative_evidence = -scores - margin
+    if mapping == "tanh":
+        masking_probs = torch.tanh(
+            negative_evidence.clamp_min(0) / (2 * temperature)
+        )
+    else:
+        masking_probs = torch.sigmoid(negative_evidence / temperature)
+    if attention_mask is not None:
+        masking_probs = masking_probs.masked_fill(attention_mask == 0, 0.0)
+    return masking_probs
 
 
 def _text_encoding(tokenizer, text):
@@ -398,6 +429,8 @@ def regenerate_masked_text(
     """Refill sampled response masks with ordinary, unsteered LLaDA denoising."""
     if refill_steps <= 0:
         raise ValueError("refill_steps must be greater than zero.")
+    if sampling_temperature < 0:
+        raise ValueError("sampling_temperature must be greater than or equal to zero.")
     if refill_strategy not in {"low_confidence", "random"}:
         raise ValueError("refill_strategy must be 'low_confidence' or 'random'.")
 
@@ -526,7 +559,7 @@ def regenerate_masked_text(
     return regenerated_texts
 
 
-def timpa(
+def timpa_probabilistic(
     model,
     tokenizer,
     identifier_model,
@@ -600,13 +633,14 @@ def timpa(
         use_chat_template=use_chat_template,
     )
 
-    negative_evidence = (-aligned_word_log_deltas - margin).clamp_min(0)
-
-    masking_probs = torch.tanh(negative_evidence / (2 * temperature))
-
     attention_mask = tokenized_text.get("attention_mask")
-    if attention_mask is not None:
-        masking_probs = masking_probs.masked_fill(attention_mask == 0, 0.0)
+    masking_probs = _scores_to_masking_probs(
+        aligned_word_log_deltas,
+        attention_mask,
+        temperature,
+        margin,
+        mapping="tanh",
+    )
 
     masked_positions = sample_mask(
         masking_probs,
@@ -629,3 +663,166 @@ def timpa(
     )
 
     return tokenized_text, masking_probs, masked_positions, regenerated_texts
+
+
+@torch.no_grad()
+def timpa_steer(
+    model,
+    tokenizer,
+    steer_vectors,
+    text,
+    refill_steps=32,
+    sampling_temperature=1.0,
+    temperature=1.0,
+    margin=0.001,
+    generator=None,
+    refill_strategy="low_confidence",
+):
+    """Re-steer text using hidden-state identification and activation vectors.
+
+    This is the activation-steering TIMPA variant. It does not use an AR
+    identifier model or prompt-probability alignment.
+
+    Returns ``(tokenized_text, masking_probs, masked_positions,
+    regenerated_texts)``, matching :func:`timpa_probabilistic`.
+    """
+    if not isinstance(steer_vectors, dict) or not steer_vectors:
+        raise ValueError("steer_vectors must be a non-empty {layer: vector} mapping.")
+    if refill_steps <= 0:
+        raise ValueError("refill_steps must be greater than zero.")
+    if sampling_temperature < 0:
+        raise ValueError("sampling_temperature must be greater than or equal to zero.")
+    if temperature <= 0:
+        raise ValueError("temperature must be greater than zero.")
+    if margin < 0:
+        raise ValueError("margin must be greater than or equal to zero.")
+    if refill_strategy not in {"low_confidence", "random"}:
+        raise ValueError("refill_strategy must be 'low_confidence' or 'random'.")
+
+    texts = _as_text_list(text)
+    try:
+        parameter = next(model.parameters())
+        device = parameter.device
+        model_dtype = parameter.dtype
+    except StopIteration:
+        device = torch.device("cpu")
+        model_dtype = torch.float32
+
+    prepared_vectors = {}
+    for layer, vector in steer_vectors.items():
+        if not isinstance(layer, int):
+            raise TypeError("Steering-vector layer indices must be integers.")
+        if not isinstance(vector, torch.Tensor) or vector.ndim != 1:
+            raise ValueError("Each steering vector must be a one-dimensional tensor.")
+        prepared_vectors[layer] = vector.to(device=device, dtype=model_dtype)
+
+    tokenized_text = tokenizer(
+        texts,
+        add_special_tokens=False,
+        padding=True,
+        return_tensors="pt",
+    )
+    if hasattr(tokenized_text, "to"):
+        tokenized_text = tokenized_text.to(device)
+    else:
+        tokenized_text = {
+            key: value.to(device) for key, value in tokenized_text.items()
+        }
+    input_ids = tokenized_text["input_ids"].clone()
+    attention_mask = tokenized_text.get("attention_mask")
+    if attention_mask is None:
+        attention_mask = torch.ones_like(input_ids)
+        tokenized_text["attention_mask"] = attention_mask
+    mask_token_id = _get_mask_token_id(tokenizer)
+
+    output = model(
+        input_ids=input_ids,
+        attention_mask=attention_mask,
+        output_hidden_states=True,
+    )
+    cosine_scores = score_tokens_with_cosine(
+        output,
+        steer_vectors=prepared_vectors,
+    )
+    masking_probs = _scores_to_masking_probs(
+        cosine_scores,
+        attention_mask,
+        temperature,
+        margin,
+        mapping="sigmoid",
+    )
+    masked_positions = sample_mask(
+        masking_probs,
+        tokenizer,
+        texts,
+        attention_mask=attention_mask,
+        generator=generator,
+    )
+    input_ids[masked_positions] = mask_token_id
+
+    refill_mask = masked_positions.clone()
+    transfer_counts = get_num_transfer_tokens(refill_mask, refill_steps)
+    for refill_step in range(refill_steps):
+        still_masked = (input_ids == mask_token_id) & refill_mask
+        if not still_masked.any():
+            break
+
+        refill_vectors = prepared_vectors
+
+        logits = model(
+            input_ids=input_ids,
+            steers=refill_vectors,
+            attention_mask=attention_mask,
+        ).logits
+        noisy_logits = add_gumbel_noise(
+            logits,
+            temperature=sampling_temperature,
+        )
+        candidates = torch.argmax(noisy_logits, dim=-1)
+        if refill_strategy == "low_confidence":
+            candidate_scores = torch.softmax(logits.float(), dim=-1).gather(
+                dim=-1,
+                index=candidates.unsqueeze(-1),
+            ).squeeze(-1)
+        else:
+            candidate_scores = torch.rand(input_ids.shape, device=device)
+
+        candidate_scores = candidate_scores.masked_fill(
+            ~still_masked,
+            -torch.inf,
+        )
+        transfer = torch.zeros_like(still_masked)
+        for row in range(input_ids.shape[0]):
+            count = min(
+                int(transfer_counts[row, refill_step].item()),
+                int(still_masked[row].sum().item()),
+            )
+            if count > 0:
+                indices = torch.topk(candidate_scores[row], k=count).indices
+                transfer[row, indices] = True
+        input_ids[transfer] = candidates[transfer]
+
+    regenerated_texts = tokenizer.batch_decode(
+        input_ids,
+        skip_special_tokens=True,
+        clean_up_tokenization_spaces=False,
+    )
+    return tokenized_text, masking_probs, masked_positions, regenerated_texts
+
+
+@torch.no_grad()
+def score_tokens_with_cosine(out, steer_vectors):
+    """Return mean per-token cosine similarity across steering layers."""
+    if not isinstance(steer_vectors, dict) or not steer_vectors:
+        raise ValueError("steer_vectors must be a non-empty {layer: vector} mapping.")
+
+    sims = []
+    for steer_idx, svector in steer_vectors.items():
+        h = out.hidden_states[steer_idx]
+        sim = F.cosine_similarity(
+            h,
+            svector.to(device=h.device, dtype=h.dtype).view(1, 1, -1),
+            dim=-1,
+        )
+        sims.append(sim)
+    return torch.stack(sims, dim=0).mean(dim=0)
