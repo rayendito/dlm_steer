@@ -676,17 +676,23 @@ def timpa_steer(
     temperature=1.0,
     generator=None,
     refill_strategy="low_confidence",
+    system_prompt="You are a helpful assistant",
+    use_chat_template=True,
 ):
-    """Re-steer text using hidden-state identification and activation vectors.
+    """Re-steer assistant text using activation-vector identification and refill.
 
     This is the activation-steering TIMPA variant. It does not use an AR
-    identifier model or prompt-probability alignment.
+    identifier model or prompt-probability alignment. By default, identification
+    and refill run on a chat-templated system prefix followed by the assistant
+    text, while returned probabilities and masks remain response-token aligned.
 
     Returns ``(tokenized_text, masking_probs, masked_positions,
     regenerated_texts)``, matching :func:`timpa_probabilistic`.
     """
-    if not isinstance(steer_vectors, dict) or not steer_vectors:
-        raise ValueError("steer_vectors must be a non-empty {layer: vector} mapping.")
+    if not isinstance(steer_vectors, dict) or len(steer_vectors) != 1:
+        raise ValueError(
+            "steer_vectors must contain the single selected {source_layer: direction}."
+        )
     if refill_steps <= 0:
         raise ValueError("refill_steps must be greater than zero.")
     if sampling_temperature < 0:
@@ -697,21 +703,46 @@ def timpa_steer(
         raise ValueError("refill_strategy must be 'low_confidence' or 'random'.")
 
     texts = _as_text_list(text)
+    if isinstance(system_prompt, str):
+        system_prompts = [system_prompt] * len(texts)
+    else:
+        system_prompts = system_prompt
+    if not isinstance(system_prompts, list) or len(system_prompts) != len(texts):
+        raise ValueError(
+            "system_prompt must be a string or contain one string per text."
+        )
+    if not all(isinstance(prompt, str) for prompt in system_prompts):
+        raise TypeError("Each system prompt must be a string.")
+
     try:
         parameter = next(model.parameters())
         device = parameter.device
-        model_dtype = parameter.dtype
     except StopIteration:
         device = torch.device("cpu")
-        model_dtype = torch.float32
 
-    prepared_vectors = {}
-    for layer, vector in steer_vectors.items():
-        if not isinstance(layer, int):
-            raise TypeError("Steering-vector layer indices must be integers.")
-        if not isinstance(vector, torch.Tensor) or vector.ndim != 1:
-            raise ValueError("Each steering vector must be a one-dimensional tensor.")
-        prepared_vectors[layer] = vector.to(device=device, dtype=model_dtype)
+    source_layer, vector = next(iter(steer_vectors.items()))
+    if not isinstance(source_layer, int):
+        raise TypeError("The steering-vector source layer must be an integer.")
+    if not isinstance(vector, torch.Tensor) or vector.ndim != 1:
+        raise ValueError("The steering direction must be a one-dimensional tensor.")
+    if not torch.isfinite(vector).all() or vector.float().norm() == 0:
+        raise ValueError("The steering direction must be finite and non-zero.")
+    direction = F.normalize(
+        vector.to(device=device, dtype=torch.float32),
+        dim=0,
+    )
+    prepared_vectors = {source_layer: direction}
+
+    num_layers = getattr(getattr(model, "config", None), "n_layers", None)
+    if not isinstance(num_layers, int) or num_layers <= 0:
+        raise ValueError("The diffusion model config must define a positive n_layers.")
+    if not 0 <= source_layer < num_layers:
+        raise ValueError(
+            f"source_layer must be between 0 and {num_layers - 1}, inclusive."
+        )
+    intervention_vectors = {
+        layer: direction for layer in range(num_layers)
+    }
 
     tokenized_text = tokenizer(
         texts,
@@ -719,17 +750,71 @@ def timpa_steer(
         padding=True,
         return_tensors="pt",
     )
+    response_attention_mask = tokenized_text.get("attention_mask")
+    if response_attention_mask is None:
+        response_attention_mask = torch.ones_like(tokenized_text["input_ids"])
+        tokenized_text["attention_mask"] = response_attention_mask
+
+    sequences = []
+    response_masks = []
+    for row, prompt in enumerate(system_prompts):
+        response_ids = tokenized_text["input_ids"][row][
+            response_attention_mask[row].bool()
+        ]
+        if use_chat_template:
+            if not getattr(tokenizer, "chat_template", None):
+                raise ValueError(
+                    "use_chat_template=True requires a tokenizer with a chat template."
+                )
+            prompt_ids = tokenizer.apply_chat_template(
+                [{"role": "system", "content": prompt}],
+                tokenize=True,
+                add_generation_prompt=True,
+                return_tensors="pt",
+            )
+            if isinstance(prompt_ids, dict):
+                prompt_ids = prompt_ids["input_ids"]
+            prompt_ids = prompt_ids[0]
+        else:
+            prompt_ids = response_ids.new_empty(0)
+
+        sequence = torch.cat((prompt_ids, response_ids))
+        response_mask = torch.zeros(sequence.numel(), dtype=torch.bool)
+        response_mask[prompt_ids.numel():] = True
+        sequences.append(sequence)
+        response_masks.append(response_mask)
+
+    pad_token_id = getattr(tokenizer, "pad_token_id", None)
+    max_length = max(sequence.numel() for sequence in sequences)
+    if pad_token_id is None and any(seq.numel() < max_length for seq in sequences):
+        raise ValueError("The diffusion tokenizer must define pad_token_id for batching.")
+    pad_token_id = 0 if pad_token_id is None else pad_token_id
+    padding_side = getattr(tokenizer, "padding_side", "right")
+
+    input_ids = torch.full(
+        (len(sequences), max_length),
+        pad_token_id,
+        dtype=torch.long,
+        device=device,
+    )
+    attention_mask = torch.zeros_like(input_ids)
+    response_mask_batch = torch.zeros_like(input_ids, dtype=torch.bool)
+    for row, (sequence, response_mask) in enumerate(
+        zip(sequences, response_masks)
+    ):
+        start = max_length - sequence.numel() if padding_side == "left" else 0
+        end = start + sequence.numel()
+        input_ids[row, start:end] = sequence.to(device)
+        attention_mask[row, start:end] = 1
+        response_mask_batch[row, start:end] = response_mask.to(device)
+
     if hasattr(tokenized_text, "to"):
         tokenized_text = tokenized_text.to(device)
     else:
         tokenized_text = {
             key: value.to(device) for key, value in tokenized_text.items()
         }
-    input_ids = tokenized_text["input_ids"].clone()
-    attention_mask = tokenized_text.get("attention_mask")
-    if attention_mask is None:
-        attention_mask = torch.ones_like(input_ids)
-        tokenized_text["attention_mask"] = attention_mask
+    response_attention_mask = tokenized_text["attention_mask"]
     mask_token_id = _get_mask_token_id(tokenizer)
 
     output = model(
@@ -737,13 +822,22 @@ def timpa_steer(
         attention_mask=attention_mask,
         output_hidden_states=True,
     )
-    cosine_scores = score_tokens_with_cosine(
+    sequence_cosine_scores = score_tokens_with_cosine(
         output,
         steer_vectors=prepared_vectors,
     )
+    cosine_scores = torch.zeros(
+        tokenized_text["input_ids"].shape,
+        device=device,
+        dtype=sequence_cosine_scores.dtype,
+    )
+    for row in range(len(texts)):
+        cosine_scores[row, response_attention_mask[row].bool()] = (
+            sequence_cosine_scores[row, response_mask_batch[row]]
+        )
     masking_probs = _scores_to_masking_probs(
         cosine_scores,
-        attention_mask,
+        response_attention_mask,
         temperature,
         margin=0.0,
         mapping="sigmoid",
@@ -752,23 +846,27 @@ def timpa_steer(
         masking_probs,
         tokenizer,
         texts,
-        attention_mask=attention_mask,
+        attention_mask=response_attention_mask,
         generator=generator,
     )
-    input_ids[masked_positions] = mask_token_id
+    refill_mask = torch.zeros_like(input_ids, dtype=torch.bool)
+    for row in range(len(texts)):
+        refill_mask[row, response_mask_batch[row]] = masked_positions[
+            row, response_attention_mask[row].bool()
+        ]
+    input_ids[refill_mask] = mask_token_id
 
-    refill_mask = masked_positions.clone()
     transfer_counts = get_num_transfer_tokens(refill_mask, refill_steps)
     for refill_step in range(refill_steps):
         still_masked = (input_ids == mask_token_id) & refill_mask
         if not still_masked.any():
             break
 
-        refill_vectors = prepared_vectors
-
         logits = model(
             input_ids=input_ids,
-            steers=refill_vectors,
+            steers=intervention_vectors,
+            steer_mask=attention_mask,
+            steer_mode="project_out",
             attention_mask=attention_mask,
         ).logits
         noisy_logits = add_gumbel_noise(
@@ -799,11 +897,14 @@ def timpa_steer(
                 transfer[row, indices] = True
         input_ids[transfer] = candidates[transfer]
 
-    regenerated_texts = tokenizer.batch_decode(
-        input_ids,
-        skip_special_tokens=True,
-        clean_up_tokenization_spaces=False,
-    )
+    regenerated_texts = [
+        tokenizer.decode(
+            input_ids[row, response_mask_batch[row]],
+            skip_special_tokens=True,
+            clean_up_tokenization_spaces=False,
+        )
+        for row in range(len(texts))
+    ]
     return tokenized_text, masking_probs, masked_positions, regenerated_texts
 
 

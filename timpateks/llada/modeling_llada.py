@@ -70,6 +70,34 @@ __all__ = [
 log = logging.getLogger(__name__)
 
 
+def apply_steering(
+    x: torch.Tensor,
+    direction: torch.Tensor,
+    steer_mask: Optional[torch.Tensor] = None,
+    mode: str = "add",
+) -> torch.Tensor:
+    """Apply additive or projection-removal steering to a residual stream."""
+    direction = direction.to(device=x.device)
+    if mode == "add":
+        update = direction.to(dtype=x.dtype).view(1, 1, -1)
+        sign = 1.0
+    elif mode == "project_out":
+        direction_float = F.normalize(direction.float(), dim=0)
+        coefficients = (x.float() * direction_float).sum(dim=-1, keepdim=True)
+        update = (coefficients * direction_float).to(dtype=x.dtype)
+        sign = -1.0
+    else:
+        raise ValueError("steer_mode must be 'add' or 'project_out'.")
+
+    if steer_mask is not None:
+        if steer_mask.ndim == 1:
+            steer_mask = steer_mask.unsqueeze(0).expand(x.shape[0], -1)
+        if steer_mask.ndim != 2 or steer_mask.shape != x.shape[:2]:
+            raise ValueError("steer_mask must have shape [tokens] or [batch, tokens].")
+        update = update * steer_mask.to(device=x.device, dtype=x.dtype).unsqueeze(-1)
+    return x + sign * update
+
+
 class ModuleType(StrEnum):
     in_module = "in"
     out_module = "out"
@@ -1176,6 +1204,7 @@ class LLaDAModel(nn.Module):
         input_ids: torch.LongTensor,
         steers=None,
         steer_mask=None,
+        steer_mode="add",
         input_embeddings: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1308,10 +1337,12 @@ class LLaDAModel(nn.Module):
                 # add steer vector if it exists in the steers
                 if steers:
                     if(block_idx in steers):
-                        if steer_mask is not None:
-                            x = x + steer_mask[None, :, None].to(dtype=x.dtype) * steers[block_idx][None, None, :]
-                        else:
-                            x = x + steers[block_idx]
+                        x = apply_steering(
+                            x,
+                            steers[block_idx],
+                            steer_mask=steer_mask,
+                            mode=steer_mode,
+                        )
 
                 layer_past = None if past_key_values is None else past_key_values[block_idx]
                 if (
@@ -1348,7 +1379,12 @@ class LLaDAModel(nn.Module):
                 # add steer vector if it exists in the steers
                 if steers:
                     if(block_idx in steers):
-                        x = x + steers[block_idx]
+                        x = apply_steering(
+                            x,
+                            steers[block_idx],
+                            steer_mask=steer_mask,
+                            mode=steer_mode,
+                        )
 
                 layers_past = (
                     None
@@ -1378,7 +1414,12 @@ class LLaDAModel(nn.Module):
         # add steer for the logits
         if steers:
             if(len(self.transformer.blocks) in steers):
-                x = x + steers[len(self.transformer.blocks)]
+                x = apply_steering(
+                    x,
+                    steers[len(self.transformer.blocks)],
+                    steer_mask=steer_mask,
+                    mode=steer_mode,
+                )
 
         # breakpoint()
 
@@ -1432,6 +1473,7 @@ class LLaDAModelLM(PreTrainedModel):
         input_ids: torch.LongTensor = None,
         steers=None,
         steer_mask=None,
+        steer_mode="add",
         inputs_embeds: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1456,6 +1498,7 @@ class LLaDAModelLM(PreTrainedModel):
             input_ids=input_ids,
             steers=steers,
             steer_mask=steer_mask,
+            steer_mode=steer_mode,
             input_embeddings=inputs_embeds,
             attention_mask=attention_mask,
             attention_bias=attention_bias,

@@ -390,6 +390,8 @@ def visualize_timpa_steers(
     generator=None,
     refill_strategy="low_confidence",
     output_file="timpa_steers_token_identification.html",
+    system_prompt="You are a helpful assistant",
+    use_chat_template=True,
 ):
     """Run activation-steering TIMPA and visualize its remasking results."""
     texts = [text] if isinstance(text, str) else text
@@ -403,6 +405,8 @@ def visualize_timpa_steers(
         tokenizer=tokenizer,
         steer_vectors=steer_vectors,
         text=texts,
+        system_prompt=system_prompt,
+        use_chat_template=use_chat_template,
         refill_steps=refill_steps,
         sampling_temperature=sampling_temperature,
         temperature=temperature,
@@ -417,8 +421,15 @@ def visualize_timpa_steers(
         )
 
     layer_description = ", ".join(str(layer) for layer in sorted(steer_vectors))
+    prompt_descriptions = (
+        [system_prompt] * len(texts)
+        if isinstance(system_prompt, str)
+        else system_prompt
+    )
     cards = []
-    for row, item in enumerate(texts):
+    for row, (item, prompt_description) in enumerate(
+        zip(texts, prompt_descriptions)
+    ):
         encoded = tokenizer(
             item,
             add_special_tokens=False,
@@ -445,7 +456,9 @@ def visualize_timpa_steers(
         )
         cards.append(
             '<section class="card">'
-            '<div class="label">Steering layers</div>'
+            '<div class="label">System prompt</div>'
+            f'<div class="prompt">{html.escape(prompt_description)}</div>'
+            '<div class="label">Source layer</div>'
             f'<div class="prompt">{html.escape(layer_description)}</div>'
             '<div class="label">Masking probability</div>'
             f'<div class="text">{highlighted}</div>'
@@ -490,9 +503,10 @@ h1 {{ margin-bottom: 4px; }}
 <body>
 <h1>TIMPA steering token identification</h1>
 <div class="meta"><b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
-<b>Steering layers:</b> {html.escape(layer_description)} ·
+<b>Source layer:</b> {html.escape(layer_description)} ·
 <b>Temperature:</b> {temperature:g} ·
-<b>Refill steps:</b> {refill_steps}</div>
+<b>Refill steps:</b> {refill_steps} ·
+<b>Format:</b> {"system → assistant" if use_chat_template else "raw text"}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
 means higher masking probability.</div>
 {''.join(cards)}
