@@ -1,5 +1,6 @@
 import torch
 import torch.nn.functional as F
+from timpa_debug import see_tokens_from_ids
 
 @torch.no_grad()
 def extract_steer_vectors(
@@ -13,15 +14,17 @@ def extract_steer_vectors(
 ):
     """Extract one contrastive direction from a chat-template token.
 
-    Each corpus item is rendered as a user prompt followed by the assistant
-    generation prefix. Activations are collected from ``token_position`` at
-    ``source_layer`` and averaged within each corpus. The returned direction is
-    ``normalize(mean(corpus1) - mean(corpus2))`` in the ``{source_layer: vector}``
-    format consumed by :func:`timpateks.timpa_steer`.
+    Each corpus item is appended as an assistant response to a chat-templated
+    empty system prompt. Activations are collected from ``token_position`` in
+    the assistant generation prefix at ``source_layer`` and averaged within
+    each corpus. The returned direction is ``normalize(mean(corpus1) -
+    mean(corpus2))`` in the ``{source_layer: vector}`` format consumed by
+    :func:`timpateks.timpa_steer`.
 
     Non-negative token positions are relative to the start of the unpadded chat
-    template; negative positions are relative to its end. The defaults correspond
-    to the post-instruction region used for LLaDA in the paper.
+    prefix; negative positions are relative to the end of that prefix, before
+    the response is appended. The defaults correspond to the post-instruction
+    region used for LLaDA in the paper.
     """
     for name, corpus in (("corpus1", corpus1), ("corpus2", corpus2)):
         if not isinstance(corpus, list) or not corpus:
@@ -43,28 +46,33 @@ def extract_steer_vectors(
         device = torch.device("cpu")
 
     def render_prompt(text):
-        prompt_ids = tokenizer.apply_chat_template(
-            [{"role": "user", "content": text}],
+        prefix_ids = tokenizer.apply_chat_template(
+            [{"role": "system", "content": ""}],
             tokenize=True,
             add_generation_prompt=True,
             return_tensors="pt",
         )
-        if isinstance(prompt_ids, dict):
-            prompt_ids = prompt_ids["input_ids"]
-        prompt_ids = prompt_ids[0]
-        if prompt_ids.numel() == 0:
+        if isinstance(prefix_ids, dict):
+            prefix_ids = prefix_ids["input_ids"]
+        prefix_ids = prefix_ids[0]
+        if prefix_ids.numel() == 0:
             raise ValueError("A chat-templated extraction prompt cannot be empty.")
+        response_ids = tokenizer(
+            text,
+            add_special_tokens=False,
+            return_tensors="pt",
+        )["input_ids"][0]
         position = (
             token_position
             if token_position >= 0
-            else prompt_ids.numel() + token_position
+            else prefix_ids.numel() + token_position
         )
-        if not 0 <= position < prompt_ids.numel():
+        if not 0 <= position < prefix_ids.numel():
             raise ValueError(
                 f"token_position {token_position} is out of range for a rendered "
-                f"prompt containing {prompt_ids.numel()} tokens."
+                f"prefix containing {prefix_ids.numel()} tokens."
             )
-        return prompt_ids, position
+        return torch.cat((prefix_ids, response_ids)), position
 
     def corpus_mean(corpus):
         activation_sum = None

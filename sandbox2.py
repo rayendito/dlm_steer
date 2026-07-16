@@ -22,10 +22,12 @@ BASE_ASSISTANT_PROMPT = "You are an assistant designed to write good movie revie
 
 #### ACTIVATION STEERING
 TARGET_CORPUS = [
-    "This movie is painfully dull, badly acted, and completely forgettable."
+    "This movie is painfully dull, badly acted, and completely forgettable.",
+    "This movie sucks"
 ]
 CONTRAST_CORPUS = [
-    "This movie is charming, beautifully acted, and genuinely memorable."
+    "This movie is charming, beautifully acted, and genuinely memorable.",
+    "This movie is good"
 ]
 STEER_SOURCE_LAYER = 23
 STEER_TOKEN_POSITION = -4
@@ -56,19 +58,19 @@ steer_vectors = extract_steer_vectors(
     token_position=STEER_TOKEN_POSITION,
 )
 
-visualize_timpa_probabilistic(
-    model,
-    tokenizer,
-    identifier_model,
-    identifier_tokenizer,
-    STEER_PROMPTS,
-    TEXT,
-    temperature=0.25,
-    margin=0.001,
-    refill_steps=32,
-    base_assistant_prompt=BASE_ASSISTANT_PROMPT,
-    output_file="timpateks_probabilistic.html"
-)
+# visualize_timpa_probabilistic(
+#     model,
+#     tokenizer,
+#     identifier_model,
+#     identifier_tokenizer,
+#     STEER_PROMPTS,
+#     TEXT,
+#     temperature=0.25,
+#     margin=0.001,
+#     refill_steps=32,
+#     base_assistant_prompt=BASE_ASSISTANT_PROMPT,
+#     output_file="timpateks_probabilistic.html"
+# )
 
 
 visualize_timpa_steers(
