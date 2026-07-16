@@ -691,9 +691,13 @@ def timpa_steer(
     Returns ``(tokenized_text, masking_probs, masked_positions,
     regenerated_texts)``, matching :func:`timpa_probabilistic`.
     """
-    if not isinstance(steer_vectors, dict) or len(steer_vectors) != 1:
+    if not isinstance(steer_vectors, dict) or not steer_vectors:
         raise ValueError(
-            "steer_vectors must contain the single selected {source_layer: direction}."
+            "steer_vectors must be a non-empty {source_layer: direction} mapping."
+        )
+    if steer_mode == "project_out" and len(steer_vectors) != 1:
+        raise ValueError(
+            "project_out steering requires one selected {source_layer: direction}."
         )
     if refill_steps <= 0:
         raise ValueError("refill_steps must be greater than zero.")
@@ -726,29 +730,37 @@ def timpa_steer(
     except StopIteration:
         device = torch.device("cpu")
 
-    source_layer, vector = next(iter(steer_vectors.items()))
-    if not isinstance(source_layer, int):
-        raise TypeError("The steering-vector source layer must be an integer.")
-    if not isinstance(vector, torch.Tensor) or vector.ndim != 1:
-        raise ValueError("The steering direction must be a one-dimensional tensor.")
-    if not torch.isfinite(vector).all() or vector.float().norm() == 0:
-        raise ValueError("The steering direction must be finite and non-zero.")
-    direction = F.normalize(
-        vector.to(device=device, dtype=torch.float32),
-        dim=0,
-    )
-    prepared_vectors = {source_layer: direction}
-
     num_layers = getattr(getattr(model, "config", None), "n_layers", None)
     if not isinstance(num_layers, int) or num_layers <= 0:
         raise ValueError("The diffusion model config must define a positive n_layers.")
-    if not 0 <= source_layer < num_layers:
-        raise ValueError(
-            f"source_layer must be between 0 and {num_layers - 1}, inclusive."
+
+    prepared_vectors = {}
+    for source_layer, vector in steer_vectors.items():
+        if not isinstance(source_layer, int):
+            raise TypeError("Each steering-vector source layer must be an integer.")
+        max_layer = num_layers if steer_mode == "add" else num_layers - 1
+        if not 0 <= source_layer <= max_layer:
+            raise ValueError(
+                f"source_layer must be between 0 and {max_layer}, inclusive."
+            )
+        if not isinstance(vector, torch.Tensor) or vector.ndim != 1:
+            raise ValueError("Each steering direction must be one-dimensional.")
+        if not torch.isfinite(vector).all() or vector.float().norm() == 0:
+            raise ValueError("Each steering direction must be finite and non-zero.")
+        prepared_vectors[source_layer] = vector.to(
+            device=device,
+            dtype=torch.float32,
         )
-    intervention_vectors = {
-        layer: direction for layer in range(num_layers)
-    }
+
+    if steer_mode == "project_out":
+        source_layer, direction = next(iter(prepared_vectors.items()))
+        direction = F.normalize(direction, dim=0)
+        prepared_vectors = {source_layer: direction}
+        intervention_vectors = {
+            layer: direction for layer in range(num_layers)
+        }
+    else:
+        intervention_vectors = prepared_vectors
 
     tokenized_text = tokenizer(
         texts,
