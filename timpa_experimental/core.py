@@ -392,6 +392,8 @@ def visualize_timpa_steers(
     output_file="timpa_steers_token_identification.html",
     system_prompt="You are a helpful assistant",
     use_chat_template=True,
+    steer_mode="project_out",
+    alpha=1.0,
 ):
     """Run activation-steering TIMPA and visualize its remasking results."""
     texts = [text] if isinstance(text, str) else text
@@ -412,6 +414,8 @@ def visualize_timpa_steers(
         temperature=temperature,
         generator=generator,
         refill_strategy=refill_strategy,
+        steer_mode=steer_mode,
+        alpha=alpha,
     )
 
     attention_mask = tokenized_text.get("attention_mask")
@@ -504,6 +508,7 @@ h1 {{ margin-bottom: 4px; }}
 <h1>TIMPA steering token identification</h1>
 <div class="meta"><b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
 <b>Source layer:</b> {html.escape(layer_description)} ·
+<b>Steer mode:</b> {html.escape(steer_mode)} · <b>Alpha:</b> {alpha:g} ·
 <b>Temperature:</b> {temperature:g} ·
 <b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {"system → assistant" if use_chat_template else "raw text"}</div>
@@ -516,3 +521,37 @@ means higher masking probability.</div>
     output_path = Path(output_file)
     output_path.write_text(document, encoding="utf-8")
     return output_path
+
+
+def visualize_timpa_steers_add(
+    model,
+    tokenizer,
+    steer_vectors,
+    text,
+    refill_steps=32,
+    sampling_temperature=1.0,
+    temperature=1.0,
+    alpha=1.0,
+    generator=None,
+    refill_strategy="low_confidence",
+    output_file="timpa_steers_add_token_identification.html",
+    system_prompt="You are a helpful assistant",
+    use_chat_template=True,
+):
+    """Visualize activation-steering TIMPA using additive intervention."""
+    return visualize_timpa_steers(
+        model=model,
+        tokenizer=tokenizer,
+        steer_vectors=steer_vectors,
+        text=text,
+        refill_steps=refill_steps,
+        sampling_temperature=sampling_temperature,
+        temperature=temperature,
+        generator=generator,
+        refill_strategy=refill_strategy,
+        output_file=output_file,
+        system_prompt=system_prompt,
+        use_chat_template=use_chat_template,
+        steer_mode="add",
+        alpha=alpha,
+    )

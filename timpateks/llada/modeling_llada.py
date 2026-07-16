@@ -75,8 +75,11 @@ def apply_steering(
     direction: torch.Tensor,
     steer_mask: Optional[torch.Tensor] = None,
     mode: str = "add",
+    alpha: float = 1.0,
 ) -> torch.Tensor:
     """Apply additive or projection-removal steering to a residual stream."""
+    if not isinstance(alpha, (int, float)) or not math.isfinite(alpha):
+        raise ValueError("alpha must be a finite number.")
     direction = direction.to(device=x.device)
     if mode == "add":
         update = direction.to(dtype=x.dtype).view(1, 1, -1)
@@ -89,6 +92,7 @@ def apply_steering(
     else:
         raise ValueError("steer_mode must be 'add' or 'project_out'.")
 
+    update = update * alpha
     if steer_mask is not None:
         if steer_mask.ndim == 1:
             steer_mask = steer_mask.unsqueeze(0).expand(x.shape[0], -1)
@@ -1205,6 +1209,7 @@ class LLaDAModel(nn.Module):
         steers=None,
         steer_mask=None,
         steer_mode="add",
+        steer_alpha=1.0,
         input_embeddings: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1342,6 +1347,7 @@ class LLaDAModel(nn.Module):
                             steers[block_idx],
                             steer_mask=steer_mask,
                             mode=steer_mode,
+                            alpha=steer_alpha,
                         )
 
                 layer_past = None if past_key_values is None else past_key_values[block_idx]
@@ -1384,6 +1390,7 @@ class LLaDAModel(nn.Module):
                             steers[block_idx],
                             steer_mask=steer_mask,
                             mode=steer_mode,
+                            alpha=steer_alpha,
                         )
 
                 layers_past = (
@@ -1419,6 +1426,7 @@ class LLaDAModel(nn.Module):
                     steers[len(self.transformer.blocks)],
                     steer_mask=steer_mask,
                     mode=steer_mode,
+                    alpha=steer_alpha,
                 )
 
         # breakpoint()
@@ -1474,6 +1482,7 @@ class LLaDAModelLM(PreTrainedModel):
         steers=None,
         steer_mask=None,
         steer_mode="add",
+        steer_alpha=1.0,
         inputs_embeds: Optional[torch.FloatTensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         attention_bias: Optional[torch.Tensor] = None,
@@ -1499,6 +1508,7 @@ class LLaDAModelLM(PreTrainedModel):
             steers=steers,
             steer_mask=steer_mask,
             steer_mode=steer_mode,
+            steer_alpha=steer_alpha,
             input_embeddings=inputs_embeds,
             attention_mask=attention_mask,
             attention_bias=attention_bias,

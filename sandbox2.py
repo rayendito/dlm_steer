@@ -1,7 +1,11 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from timpa_experimental import visualize_timpa_probabilistic, visualize_timpa_steers
+from timpa_experimental import (
+    visualize_timpa_probabilistic,
+    visualize_timpa_steers,
+    visualize_timpa_steers_add,
+)
 from timpa_steer_vectors import extract_steer_vectors
 from timpateks import timpa_probabilistic
 from timpateks.llada.configuration_llada import LLaDAConfig
@@ -10,7 +14,7 @@ from timpateks.llada.modeling_llada import LLaDAModelLM
 
 DEVICE = "cuda"
 TEXT = [
-    "Shrek is a fun, clever twist on classic fairy tales that manages to be both hilarious and heartfelt at the same time. Instead of a typical hero, you get a grumpy but lovable ogre whose journey is full of sharp jokes, memorable moments, and a surprisingly meaningful message about acceptance and being yourself."
+    "This film arrives like a velvet comet: improbable, graceful, and oddly warm to the touch. Its best moments announce themselves; they bloom sideways, in glances, pauses, great jokes, and images that seem to have been rescued from a dream just before morning erased them."
 ]
 
 ################################################# "STEER" ENTITIES
@@ -22,12 +26,10 @@ BASE_ASSISTANT_PROMPT = "You are an assistant designed to write good movie revie
 
 #### ACTIVATION STEERING
 TARGET_CORPUS = [
-    "This movie is painfully dull, badly acted, and completely forgettable.",
-    "This movie sucks"
+    "I hate this movie"
 ]
 CONTRAST_CORPUS = [
-    "This movie is charming, beautifully acted, and genuinely memorable.",
-    "This movie is good"
+    "I love this movie"
 ]
 STEER_SOURCE_LAYER = 23
 STEER_TOKEN_POSITION = -4
@@ -58,19 +60,19 @@ steer_vectors = extract_steer_vectors(
     token_position=STEER_TOKEN_POSITION,
 )
 
-# visualize_timpa_probabilistic(
-#     model,
-#     tokenizer,
-#     identifier_model,
-#     identifier_tokenizer,
-#     STEER_PROMPTS,
-#     TEXT,
-#     temperature=0.25,
-#     margin=0.001,
-#     refill_steps=32,
-#     base_assistant_prompt=BASE_ASSISTANT_PROMPT,
-#     output_file="timpateks_probabilistic.html"
-# )
+visualize_timpa_probabilistic(
+    model,
+    tokenizer,
+    identifier_model,
+    identifier_tokenizer,
+    STEER_PROMPTS,
+    TEXT,
+    temperature=0.25,
+    margin=0.001,
+    refill_steps=32,
+    base_assistant_prompt=BASE_ASSISTANT_PROMPT,
+    output_file="timpateks_probabilistic.html"
+)
 
 
 visualize_timpa_steers(
@@ -78,11 +80,25 @@ visualize_timpa_steers(
     tokenizer=tokenizer,
     steer_vectors=steer_vectors,
     text=TEXT,
-    temperature=0.8,
+    temperature=0.1,
     refill_steps=32,
     sampling_temperature=1.0,
     output_file="timpateks_steers.html",
 )
+
+visualize_timpa_steers_add(
+    model=model,
+    tokenizer=tokenizer,
+    steer_vectors=steer_vectors,
+    text=TEXT,
+    temperature=0.1,
+    refill_steps=32,
+    sampling_temperature=1.0,
+    alpha=2.0,
+    output_file="timpateks_steers_add.html",
+)
+
+
 
 # ################################################# PROBABILISTIC TIMPA
 # # Probabilistic TIMPA: AR prompt comparison followed by LLaDA refill.

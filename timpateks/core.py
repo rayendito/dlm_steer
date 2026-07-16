@@ -678,6 +678,8 @@ def timpa_steer(
     refill_strategy="low_confidence",
     system_prompt="You are a helpful assistant",
     use_chat_template=True,
+    steer_mode="project_out",
+    alpha=1.0,
 ):
     """Re-steer assistant text using activation-vector identification and refill.
 
@@ -701,6 +703,10 @@ def timpa_steer(
         raise ValueError("temperature must be greater than zero.")
     if refill_strategy not in {"low_confidence", "random"}:
         raise ValueError("refill_strategy must be 'low_confidence' or 'random'.")
+    if steer_mode not in {"add", "project_out"}:
+        raise ValueError("steer_mode must be 'add' or 'project_out'.")
+    if not isinstance(alpha, (int, float)) or not torch.isfinite(torch.tensor(alpha)):
+        raise ValueError("alpha must be a finite number.")
 
     texts = _as_text_list(text)
     if isinstance(system_prompt, str):
@@ -866,7 +872,8 @@ def timpa_steer(
             input_ids=input_ids,
             steers=intervention_vectors,
             steer_mask=attention_mask,
-            steer_mode="project_out",
+            steer_mode=steer_mode,
+            steer_alpha=float(alpha),
             attention_mask=attention_mask,
         ).logits
         noisy_logits = add_gumbel_noise(
