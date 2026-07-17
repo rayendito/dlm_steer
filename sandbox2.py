@@ -1,6 +1,5 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-
 from timpa_experimental import (
     visualize_timpa_probabilistic,
     visualize_timpa_steers,
@@ -14,26 +13,31 @@ from timpateks.llada.modeling_llada import LLaDAModelLM
 
 DEVICE = "cuda"
 TEXT = [
-    "Shrek is a fun, clever twist on classic fairy tales that manages to be both hilarious and heartfelt at the same time. Instead of a typical hero, you get a grumpy but lovable ogre whose journey is full of sharp jokes, memorable moments, and a surprisingly meaningful message about acceptance and being yourself."
+    "Cats are quiet little hunters who somehow act like they own every room they enter."
 ]
 
 ################################################# "STEER" ENTITIES
 #### PROBABILISTIC
 STEER_PROMPTS = [
-    "You are a harsh movie critic that never gives positive reviews. All you do is insult movies",
+    "You are an assistant that writes sentences about dogs exclusively",
 ]
-BASE_ASSISTANT_PROMPT = "You are an assistant designed to write good movie reviews"
+BASE_ASSISTANT_PROMPT = "You are an assistant that writes sentences about cats exclusively"
 
-#### ACTIVATION STEERING
-TARGET_CORPUS = [
-    "I hate this movie"
-]
-CONTRAST_CORPUS = [
-    "I love this movie"
-]
-STEER_SOURCE_LAYER = 23
-STEER_TOKEN_POSITION = -4
-STEER_ADD_LAYERS = [16, 25, 31]
+# #### ACTIVATION STEERING
+# TARGET_CORPUS = [
+#     "Cats nap like it’s their full-time job.",
+#     "Cats can make any sunny spot look luxurious.",
+#     "Cats judge silently, but somehow lovingly.",
+# ]
+
+# CONTRAST_CORPUS = [
+#     "Dogs greet every day like it’s a party.",
+#     "Dogs can turn a walk into an adventure.",
+#     "Dogs love loudly, loyally, and without hesitation.",
+# ]
+# STEER_SOURCE_LAYER = 23
+# STEER_TOKEN_POSITION = -4
+# STEER_ADD_LAYERS = [16, 25, 31]
 
 ################################################# MODELS
 MODEL_ID = "GSAI-ML/LLaDA-8B-Instruct"
@@ -61,23 +65,23 @@ identifier_tokenizer = AutoTokenizer.from_pretrained(
     local_files_only=True,
 )
 
-steer_vectors = extract_steer_vectors(
-    model=model,
-    tokenizer=tokenizer,
-    corpus1=TARGET_CORPUS,
-    corpus2=CONTRAST_CORPUS,
-    source_layer=STEER_SOURCE_LAYER,
-    token_position=STEER_TOKEN_POSITION,
-)
-steer_vectors_add_all = extract_steer_vectors_add(
-    model=model,
-    tokenizer=tokenizer,
-    corpus1=TARGET_CORPUS,
-    corpus2=CONTRAST_CORPUS,
-)
-steer_vectors_add = {
-    layer: steer_vectors_add_all[layer] for layer in STEER_ADD_LAYERS
-}
+# steer_vectors = extract_steer_vectors(
+#     model=model,
+#     tokenizer=tokenizer,
+#     corpus1=TARGET_CORPUS,
+#     corpus2=CONTRAST_CORPUS,
+#     source_layer=STEER_SOURCE_LAYER,
+#     token_position=STEER_TOKEN_POSITION,
+# )
+# steer_vectors_add_all = extract_steer_vectors_add(
+#     model=model,
+#     tokenizer=tokenizer,
+#     corpus1=TARGET_CORPUS,
+#     corpus2=CONTRAST_CORPUS,
+# )
+# steer_vectors_add = {
+#     layer: steer_vectors_add_all[layer] for layer in STEER_ADD_LAYERS
+# }
 
 # visualize_timpa_probabilistic(
 #     model,
@@ -88,7 +92,7 @@ steer_vectors_add = {
 #     TEXT,
 #     temperature=0.25,
 #     margin=0.001,
-#     refill_steps=32,
+#     refill_steps=8,
 #     base_assistant_prompt=BASE_ASSISTANT_PROMPT,
 #     output_file="timpateks_probabilistic.html"
 # )
@@ -105,32 +109,39 @@ steer_vectors_add = {
 #     output_file="timpateks_steers.html",
 # )
 
-visualize_timpa_steers_add(
-    model=model,
-    tokenizer=tokenizer,
-    steer_vectors=steer_vectors_add,
-    text=TEXT,
-    temperature=0.1,
-    refill_steps=32,
-    sampling_temperature=1.0,
-    alpha=600.0,
-    output_file="timpateks_steers_add.html",
-)
-
-
-
-# ################################################# PROBABILISTIC TIMPA
-# # Probabilistic TIMPA: AR prompt comparison followed by LLaDA refill.
-# prob_results = timpa_probabilistic(
+# visualize_timpa_steers_add(
 #     model=model,
 #     tokenizer=tokenizer,
-#     identifier_model=identifier_model,
-#     identifier_tokenizer=identifier_tokenizer,
-#     steer=STEER_PROMPTS,
+#     steer_vectors=steer_vectors_add,
 #     text=TEXT,
-#     temperature=0.25,
-#     margin=0.001,
-#     refill_steps=16,
-#     base_assistant_prompt="You are an assistant that always give out positive reviews."
+#     temperature=0.1,
+#     refill_steps=32,
+#     sampling_temperature=1.0,
+#     alpha=600.0,
+#     output_file="timpateks_steers_add.html",
 # )
-# print("Probabilistic TIMPA:", prob_results[-1][0])
+
+######## SEE PROMPT STRENGTH DIFFERENCE
+
+TEXT = [
+    "Empat setengah tahun saya difitnah-fitnah saya diam, dijelek-jelekin saya juga diam, dihujat-hujat dihina-hina saya juga diam. Tetapi hari ini di Jogja saya sampaikan saya akan lawan!",
+]
+
+STEER_PROMPTS = [
+    "You are a very pessimistic assistant that hates life, who speaks Indonesian"
+]
+BASE_ASSISTANT_PROMPT = "You are an optimistic assistant who speaks Indonesian"
+
+visualize_timpa_probabilistic(
+    model,
+    tokenizer,
+    identifier_model,
+    identifier_tokenizer,
+    STEER_PROMPTS,
+    TEXT,
+    temperature=0.25,
+    margin=0.001,
+    refill_steps=32,
+    base_assistant_prompt=BASE_ASSISTANT_PROMPT,
+    output_file="timpateks_diff_strength.html"
+)

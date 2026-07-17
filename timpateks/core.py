@@ -680,6 +680,7 @@ def timpa_steer(
     use_chat_template=True,
     steer_mode="project_out",
     alpha=1.0,
+    margin=0.05,
 ):
     """Re-steer assistant text using activation-vector identification and refill.
 
@@ -705,12 +706,16 @@ def timpa_steer(
         raise ValueError("sampling_temperature must be greater than or equal to zero.")
     if temperature <= 0:
         raise ValueError("temperature must be greater than zero.")
+    if margin < 0:
+        raise ValueError("margin must be greater than or equal to zero.")
     if refill_strategy not in {"low_confidence", "random"}:
         raise ValueError("refill_strategy must be 'low_confidence' or 'random'.")
     if steer_mode not in {"add", "project_out"}:
         raise ValueError("steer_mode must be 'add' or 'project_out'.")
     if not isinstance(alpha, (int, float)) or not torch.isfinite(torch.tensor(alpha)):
         raise ValueError("alpha must be a finite number.")
+    if alpha < 0:
+        raise ValueError("alpha must be greater than or equal to zero.")
 
     texts = _as_text_list(text)
     if isinstance(system_prompt, str):
@@ -857,7 +862,7 @@ def timpa_steer(
         cosine_scores,
         response_attention_mask,
         temperature,
-        margin=0.0,
+        margin=margin,
         mapping="sigmoid",
     )
     masked_positions = sample_mask(

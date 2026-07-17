@@ -394,6 +394,7 @@ def visualize_timpa_steers(
     use_chat_template=True,
     steer_mode="project_out",
     alpha=1.0,
+    margin=0.05,
 ):
     """Run activation-steering TIMPA and visualize its remasking results."""
     texts = [text] if isinstance(text, str) else text
@@ -416,6 +417,7 @@ def visualize_timpa_steers(
         refill_strategy=refill_strategy,
         steer_mode=steer_mode,
         alpha=alpha,
+        margin=margin,
     )
 
     attention_mask = tokenized_text.get("attention_mask")
@@ -509,7 +511,7 @@ h1 {{ margin-bottom: 4px; }}
 <div class="meta"><b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
 <b>Source layer:</b> {html.escape(layer_description)} ·
 <b>Steer mode:</b> {html.escape(steer_mode)} · <b>Alpha:</b> {alpha:g} ·
-<b>Temperature:</b> {temperature:g} ·
+<b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
 <b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {"system → assistant" if use_chat_template else "raw text"}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
@@ -537,6 +539,7 @@ def visualize_timpa_steers_add(
     output_file="timpa_steers_add_token_identification.html",
     system_prompt="You are a helpful assistant",
     use_chat_template=True,
+    margin=0.05,
 ):
     """Visualize activation-steering TIMPA using additive intervention."""
     return visualize_timpa_steers(
@@ -554,4 +557,5 @@ def visualize_timpa_steers_add(
         use_chat_template=use_chat_template,
         steer_mode="add",
         alpha=alpha,
+        margin=margin,
     )
