@@ -124,13 +124,13 @@ identifier_tokenizer = AutoTokenizer.from_pretrained(
 ######## SEE PROMPT STRENGTH DIFFERENCE
 
 TEXT = [
-    "Empat setengah tahun saya difitnah-fitnah saya diam, dijelek-jelekin saya juga diam, dihujat-hujat dihina-hina saya juga diam. Tetapi hari ini di Jogja saya sampaikan saya akan lawan!",
+    "MovieTitle is a fun, clever twist on classic fairy tales that manages to be both hilarious and heartfelt at the same time. Instead of a typical hero, you get a grumpy but lovable ogre whose journey is full of sharp jokes, memorable moments, and a surprisingly meaningful message about acceptance and being yourself.",
 ]
 
 STEER_PROMPTS = [
-    "You are a very pessimistic assistant that hates life, who speaks Indonesian"
+    "You are a movie critic who always gives bad reviews. You are notoriously mean"
 ]
-BASE_ASSISTANT_PROMPT = "You are an optimistic assistant who speaks Indonesian"
+BASE_ASSISTANT_PROMPT = "You are a movie critic who always gives good reviews."
 
 visualize_timpa_probabilistic(
     model,
@@ -139,8 +139,8 @@ visualize_timpa_probabilistic(
     identifier_tokenizer,
     STEER_PROMPTS,
     TEXT,
-    temperature=0.25,
-    margin=0.001,
+    temperature=0.1,
+    margin=0.000,
     refill_steps=32,
     base_assistant_prompt=BASE_ASSISTANT_PROMPT,
     output_file="timpateks_diff_strength.html"
