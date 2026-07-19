@@ -244,6 +244,8 @@ def visualize_timpa_probabilistic(
     refill_strategy="low_confidence",
     generator=None,
     output_file="timpa_token_identification.html",
+    detection_strategy="model",
+    random_mask_probability=0.5,
 ):
     """Run probabilistic TIMPA and visualize aligned remasking probabilities."""
     texts = [text] if isinstance(text, str) else text
@@ -255,6 +257,17 @@ def visualize_timpa_probabilistic(
         raise ValueError("steer must contain one prompt string per text.")
     if not all(isinstance(prompt, str) for prompt in steer):
         raise TypeError("Each steer prompt must be a string.")
+    base_prompts = (
+        [base_assistant_prompt] * len(texts)
+        if isinstance(base_assistant_prompt, str)
+        else base_assistant_prompt
+    )
+    if not isinstance(base_prompts, list) or len(base_prompts) != len(texts):
+        raise ValueError(
+            "base_assistant_prompt must be a string or contain one prompt per text."
+        )
+    if not all(isinstance(prompt, str) for prompt in base_prompts):
+        raise TypeError("Each base assistant prompt must be a string.")
 
     tokenized_text, masking_probs, masked_positions, regenerated_texts = (
         timpa_probabilistic(
@@ -272,6 +285,8 @@ def visualize_timpa_probabilistic(
             sampling_temperature=sampling_temperature,
             refill_strategy=refill_strategy,
             generator=generator,
+            detection_strategy=detection_strategy,
+            random_mask_probability=random_mask_probability,
         )
     )
 
@@ -282,7 +297,9 @@ def visualize_timpa_probabilistic(
         )
 
     cards = []
-    for row, (prompt, item) in enumerate(zip(steer, texts)):
+    for row, (prompt, base_prompt, item) in enumerate(
+        zip(steer, base_prompts, texts)
+    ):
         encoded = tokenizer(
             item,
             add_special_tokens=False,
@@ -314,7 +331,7 @@ def visualize_timpa_probabilistic(
         cards.append(
             '<section class="card">'
             '<div class="label">Base prompt</div>'
-            f'<div class="prompt">{html.escape(base_assistant_prompt)}</div>'
+            f'<div class="prompt">{html.escape(base_prompt)}</div>'
             '<div class="label">Steer prompt</div>'
             f'<div class="prompt">{html.escape(prompt)}</div>'
             '<div class="label">Masking probability</div>'
@@ -366,6 +383,7 @@ h1 {{ margin-bottom: 4px; }}
 <div class="meta"><b>Identifier:</b> {html.escape(str(identifier_name))} ·
 <b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
 <b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
+<b>Detection:</b> {html.escape(detection_strategy)} ·
 <b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {prompt_format}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
@@ -395,6 +413,8 @@ def visualize_timpa_steers(
     steer_mode="project_out",
     alpha=1.0,
     margin=0.05,
+    detection_strategy="model",
+    random_mask_probability=0.5,
 ):
     """Run activation-steering TIMPA and visualize its remasking results."""
     texts = [text] if isinstance(text, str) else text
@@ -418,6 +438,8 @@ def visualize_timpa_steers(
         steer_mode=steer_mode,
         alpha=alpha,
         margin=margin,
+        detection_strategy=detection_strategy,
+        random_mask_probability=random_mask_probability,
     )
 
     attention_mask = tokenized_text.get("attention_mask")
@@ -511,6 +533,7 @@ h1 {{ margin-bottom: 4px; }}
 <div class="meta"><b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
 <b>Source layer:</b> {html.escape(layer_description)} ·
 <b>Steer mode:</b> {html.escape(steer_mode)} · <b>Alpha:</b> {alpha:g} ·
+<b>Detection:</b> {html.escape(detection_strategy)} ·
 <b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
 <b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {"system → assistant" if use_chat_template else "raw text"}</div>
@@ -540,6 +563,8 @@ def visualize_timpa_steers_add(
     system_prompt="You are a helpful assistant",
     use_chat_template=True,
     margin=0.05,
+    detection_strategy="model",
+    random_mask_probability=0.5,
 ):
     """Visualize activation-steering TIMPA using additive intervention."""
     return visualize_timpa_steers(
@@ -558,4 +583,6 @@ def visualize_timpa_steers_add(
         steer_mode="add",
         alpha=alpha,
         margin=margin,
+        detection_strategy=detection_strategy,
+        random_mask_probability=random_mask_probability,
     )
