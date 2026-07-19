@@ -315,10 +315,11 @@ def timpa_hybrid(
 ):
     """Detect with AR likelihood changes and refill with additive steering.
 
-    ``steer`` controls only probabilistic token detection. The LLaDA refill is
-    conditioned on ``system_prompt`` (or ``base_assistant_prompt`` when it is
-    omitted) and receives ``steer_vectors`` through the additive residual-stream
-    intervention, keeping the two roles explicit.
+    ``steer`` and ``base_assistant_prompt`` control only probabilistic token
+    detection. The LLaDA refill is conditioned on ``system_prompt`` (or a neutral
+    helpful-assistant prompt when it is omitted) and receives ``steer_vectors``
+    through the additive residual-stream intervention, keeping the two roles
+    explicit.
 
     Returns ``(tokenized_text, masking_probs, masked_positions,
     regenerated_texts)``.
@@ -330,7 +331,7 @@ def timpa_hybrid(
 
     texts = helpers._as_text_list(text)
     refill_prompt = (
-        base_assistant_prompt if system_prompt is None else system_prompt
+        "You are a helpful assistant" if system_prompt is None else system_prompt
     )
     system_prompts = helpers._as_prompt_list(
         refill_prompt,

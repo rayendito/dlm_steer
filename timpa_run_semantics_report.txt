@@ -1,0 +1,424 @@
+TIMPA RUN SEMANTICS REPORT
+==========================
+
+This report follows the current run.py behavior. It uses two real examples from
+each dataset's train split (currently val.csv). Numeric sampling arguments such
+as temperature, margin, alpha, and refill steps are intentionally omitted.
+
+Important conventions
+---------------------
+
+1. IMDb and catdog are paired datasets. Each source side is rewritten toward
+   the other side, so each method runs in both directions.
+2. ELIFive and Dolly have one base text collection. That same collection is
+   reused for each target prompt. Only two of the three targets are illustrated
+   below; the third target (phd for ELIFive and flirty for Dolly) also runs.
+3. The activation-vector extraction corpora are the one-word concept labels,
+   not the dataset sentences. For example, steering toward negative uses
+   corpus1=["negative"] and corpus2=["positive"].
+4. For timpa_steer, --steer add calls additive extraction and passes
+   steer_mode="add". --steer projection calls projection extraction and passes
+   steer_mode="project_out". The examples below use the current run.sh setting,
+   --steer add.
+5. timpa_hybrid always uses additive steering. Its target prompt detects tokens;
+   its target-minus-source vector is used while LLaDA refills those tokens.
+6. timpa_steer and timpa_hybrid currently support only IMDb and catdog. The
+   corresponding ELIFive and Dolly sections show the calls that are blocked.
+
+
+DATASET: imdb
+TIMPA METHOD: timpa_ar
+METHOD CALLED: timpateks.timpa_ar
+
+Example 1: positive -> negative
+  instruction: "Rewrite this sentence as a negative movie review."
+  base prompt: not used
+  text: "amazing movie. Some of the script writing could have been better (some
+    cliched language). Joyce's \"The Dead\" is alluded to throughout the movie.
+    Beautiful scenery and great acting. Very poetic. Highly recommend."
+  vector: not used
+  semantic call: timpa_ar(instruction=[negative instruction], text=[positive text])
+
+Example 2: negative -> positive
+  instruction: "Rewrite this sentence as a positive movie review."
+  base prompt: not used
+  text: "I am the kind of person who can enjoy a good B Movie if it has some
+    kind of redeeming value to it, but Dead Space has nothing to redeem it! This
+    is the kind of film that will make you frustrated, restless and sick to your
+    stomach. <br /><br />Bad acting. Lame story. Terrible effects. Horrible,
+    excruciating dialogue. Dead Space has it all!"
+  vector: not used
+  semantic call: timpa_ar(instruction=[positive instruction], text=[negative text])
+
+
+DATASET: imdb
+TIMPA METHOD: timpa_probabilistic
+METHOD CALLED: timpateks.timpa_probabilistic
+
+Example 1: positive -> negative
+  target/steer prompt: "You are a harsh movie critic who always gives negative
+    reviews."
+  base prompt: "You are a generous movie critic who always gives positive
+    reviews."
+  text: "amazing movie. Some of the script writing could have been better (some
+    cliched language). Joyce's \"The Dead\" is alluded to throughout the movie.
+    Beautiful scenery and great acting. Very poetic. Highly recommend."
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[negative prompt],
+    base_assistant_prompt=[positive prompt], text=[positive text])
+
+Example 2: negative -> positive
+  target/steer prompt: "You are a generous movie critic who always gives
+    positive reviews."
+  base prompt: "You are a harsh movie critic who always gives negative reviews."
+  text: "I am the kind of person who can enjoy a good B Movie if it has some
+    kind of redeeming value to it, but Dead Space has nothing to redeem it! This
+    is the kind of film that will make you frustrated, restless and sick to your
+    stomach. <br /><br />Bad acting. Lame story. Terrible effects. Horrible,
+    excruciating dialogue. Dead Space has it all!"
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[positive prompt],
+    base_assistant_prompt=[negative prompt], text=[negative text])
+
+
+DATASET: imdb
+TIMPA METHOD: timpa_steer
+METHOD CALLED: timpateks.timpa_steer
+
+Example 1: positive -> negative
+  system prompt: "You are a helpful assistant" (timpa_steer default)
+  base prompt: not used
+  text: "amazing movie. Some of the script writing could have been better (some
+    cliched language). Joyce's \"The Dead\" is alluded to throughout the movie.
+    Beautiful scenery and great acting. Very poetic. Highly recommend."
+  vector target text: "negative"
+  vector source/contrast text: "positive"
+  vector extraction: extract_steer_vectors_add(corpus1=["negative"],
+    corpus2=["positive"])
+  semantic call: timpa_steer(steer_vectors=negative-minus-positive vector,
+    text=[positive text], steer_mode="add")
+
+Example 2: negative -> positive
+  system prompt: "You are a helpful assistant" (timpa_steer default)
+  base prompt: not used
+  text: "I am the kind of person who can enjoy a good B Movie if it has some
+    kind of redeeming value to it, but Dead Space has nothing to redeem it! This
+    is the kind of film that will make you frustrated, restless and sick to your
+    stomach. <br /><br />Bad acting. Lame story. Terrible effects. Horrible,
+    excruciating dialogue. Dead Space has it all!"
+  vector target text: "positive"
+  vector source/contrast text: "negative"
+  vector extraction: extract_steer_vectors_add(corpus1=["positive"],
+    corpus2=["negative"])
+  semantic call: timpa_steer(steer_vectors=positive-minus-negative vector,
+    text=[negative text], steer_mode="add")
+
+
+DATASET: imdb
+TIMPA METHOD: timpa_hybrid
+METHOD CALLED: timpateks.timpa_hybrid
+
+Example 1: positive -> negative
+  target/steer prompt: "You are a harsh movie critic who always gives negative
+    reviews."
+  base prompt: "You are a generous movie critic who always gives positive
+    reviews."
+  refill system prompt: "You are a helpful assistant" (neutral default)
+  text: "amazing movie. Some of the script writing could have been better (some
+    cliched language). Joyce's \"The Dead\" is alluded to throughout the movie.
+    Beautiful scenery and great acting. Very poetic. Highly recommend."
+  vector target text: "negative"
+  vector source/contrast text: "positive"
+  vector extraction: extract_steer_vectors_add(corpus1=["negative"],
+    corpus2=["positive"])
+  semantic call: timpa_hybrid(steer=[negative prompt],
+    base_assistant_prompt=[positive prompt],
+    steer_vectors=negative-minus-positive vector, text=[positive text])
+
+Example 2: negative -> positive
+  target/steer prompt: "You are a generous movie critic who always gives
+    positive reviews."
+  base prompt: "You are a harsh movie critic who always gives negative reviews."
+  refill system prompt: "You are a helpful assistant" (neutral default)
+  text: "I am the kind of person who can enjoy a good B Movie if it has some
+    kind of redeeming value to it, but Dead Space has nothing to redeem it! This
+    is the kind of film that will make you frustrated, restless and sick to your
+    stomach. <br /><br />Bad acting. Lame story. Terrible effects. Horrible,
+    excruciating dialogue. Dead Space has it all!"
+  vector target text: "positive"
+  vector source/contrast text: "negative"
+  vector extraction: extract_steer_vectors_add(corpus1=["positive"],
+    corpus2=["negative"])
+  semantic call: timpa_hybrid(steer=[positive prompt],
+    base_assistant_prompt=[negative prompt],
+    steer_vectors=positive-minus-negative vector, text=[negative text])
+
+
+DATASET: catdog
+TIMPA METHOD: timpa_ar
+METHOD CALLED: timpateks.timpa_ar
+
+Example 1: cat -> dog
+  instruction: "Rewrite this sentence so that it is about dogs."
+  base prompt: not used
+  text: "The cat's fur rippled in the wind as she raced across the open field,
+    the sun casting long shadows behind her."
+  vector: not used
+  semantic call: timpa_ar(instruction=[dog instruction], text=[cat text])
+
+Example 2: dog -> cat
+  instruction: "Rewrite this sentence so that it is about cats."
+  base prompt: not used
+  text: "The dog's wagging tail was a beacon of friendship and loyalty as it
+    greeted its master, returning home after a long day of work."
+  vector: not used
+  semantic call: timpa_ar(instruction=[cat instruction], text=[dog text])
+
+
+DATASET: catdog
+TIMPA METHOD: timpa_probabilistic
+METHOD CALLED: timpateks.timpa_probabilistic
+
+Example 1: cat -> dog
+  target/steer prompt: "You are an assistant who writes exclusively about dogs."
+  base prompt: "You are an assistant who writes exclusively about cats."
+  text: "The cat's fur rippled in the wind as she raced across the open field,
+    the sun casting long shadows behind her."
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[dog prompt],
+    base_assistant_prompt=[cat prompt], text=[cat text])
+
+Example 2: dog -> cat
+  target/steer prompt: "You are an assistant who writes exclusively about cats."
+  base prompt: "You are an assistant who writes exclusively about dogs."
+  text: "The dog's wagging tail was a beacon of friendship and loyalty as it
+    greeted its master, returning home after a long day of work."
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[cat prompt],
+    base_assistant_prompt=[dog prompt], text=[dog text])
+
+
+DATASET: catdog
+TIMPA METHOD: timpa_steer
+METHOD CALLED: timpateks.timpa_steer
+
+Example 1: cat -> dog
+  system prompt: "You are a helpful assistant" (timpa_steer default)
+  base prompt: not used
+  text: "The cat's fur rippled in the wind as she raced across the open field,
+    the sun casting long shadows behind her."
+  vector target text: "dog"
+  vector source/contrast text: "cat"
+  vector extraction: extract_steer_vectors_add(corpus1=["dog"], corpus2=["cat"])
+  semantic call: timpa_steer(steer_vectors=dog-minus-cat vector,
+    text=[cat text], steer_mode="add")
+
+Example 2: dog -> cat
+  system prompt: "You are a helpful assistant" (timpa_steer default)
+  base prompt: not used
+  text: "The dog's wagging tail was a beacon of friendship and loyalty as it
+    greeted its master, returning home after a long day of work."
+  vector target text: "cat"
+  vector source/contrast text: "dog"
+  vector extraction: extract_steer_vectors_add(corpus1=["cat"], corpus2=["dog"])
+  semantic call: timpa_steer(steer_vectors=cat-minus-dog vector,
+    text=[dog text], steer_mode="add")
+
+
+DATASET: catdog
+TIMPA METHOD: timpa_hybrid
+METHOD CALLED: timpateks.timpa_hybrid
+
+Example 1: cat -> dog
+  target/steer prompt: "You are an assistant who writes exclusively about dogs."
+  base prompt: "You are an assistant who writes exclusively about cats."
+  refill system prompt: "You are a helpful assistant" (neutral default)
+  text: "The cat's fur rippled in the wind as she raced across the open field,
+    the sun casting long shadows behind her."
+  vector target text: "dog"
+  vector source/contrast text: "cat"
+  vector extraction: extract_steer_vectors_add(corpus1=["dog"], corpus2=["cat"])
+  semantic call: timpa_hybrid(steer=[dog prompt],
+    base_assistant_prompt=[cat prompt], steer_vectors=dog-minus-cat vector,
+    text=[cat text])
+
+Example 2: dog -> cat
+  target/steer prompt: "You are an assistant who writes exclusively about cats."
+  base prompt: "You are an assistant who writes exclusively about dogs."
+  refill system prompt: "You are a helpful assistant" (neutral default)
+  text: "The dog's wagging tail was a beacon of friendship and loyalty as it
+    greeted its master, returning home after a long day of work."
+  vector target text: "cat"
+  vector source/contrast text: "dog"
+  vector extraction: extract_steer_vectors_add(corpus1=["cat"], corpus2=["dog"])
+  semantic call: timpa_hybrid(steer=[cat prompt],
+    base_assistant_prompt=[dog prompt], steer_vectors=cat-minus-dog vector,
+    text=[dog text])
+
+
+DATASET: elifive
+TIMPA METHOD: timpa_ar
+METHOD CALLED: timpateks.timpa_ar
+
+Example 1: base -> 5yo
+  instruction: "Explain this as if you were speaking to a five-year-old."
+  base prompt: not used
+  text: "A limit describes the value a function approaches as its input nears a
+    point, even if the function is undefined there. Limits provide the precise
+    foundation for continuity, derivatives, and integrals by formalizing
+    behavior at arbitrarily small scales."
+  vector: not used
+  semantic call: timpa_ar(instruction=[5yo instruction], text=[base text])
+
+Example 2: base -> highschool
+  instruction: "Explain this as if you were speaking to a high school student
+    who is learning about the topic."
+  base prompt: not used
+  text: "Set theory studies collections of objects and operations such as union,
+    intersection, difference, and complement. Relations between sets support
+    the language of functions and probability, while cardinality compares their
+    sizes, including different kinds of infinity."
+  vector: not used
+  semantic call: timpa_ar(instruction=[highschool instruction], text=[base text])
+
+Note: base -> phd is also run for all ELIFive texts.
+
+
+DATASET: elifive
+TIMPA METHOD: timpa_probabilistic
+METHOD CALLED: timpateks.timpa_probabilistic
+
+Example 1: base -> 5yo
+  target/steer prompt: "You explain the topic to a five-year-old who has not yet
+    started school."
+  base prompt: "You explain the topic to a subject-matter expert."
+  text: "A limit describes the value a function approaches as its input nears a
+    point, even if the function is undefined there. Limits provide the precise
+    foundation for continuity, derivatives, and integrals by formalizing
+    behavior at arbitrarily small scales."
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[5yo prompt],
+    base_assistant_prompt=[expert base prompt], text=[base text])
+
+Example 2: base -> highschool
+  target/steer prompt: "You explain the topic to a high school student who is
+    learning about it in school."
+  base prompt: "You explain the topic to a subject-matter expert."
+  text: "Set theory studies collections of objects and operations such as union,
+    intersection, difference, and complement. Relations between sets support
+    the language of functions and probability, while cardinality compares their
+    sizes, including different kinds of infinity."
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[highschool prompt],
+    base_assistant_prompt=[expert base prompt], text=[base text])
+
+Note: base -> phd is also run for all ELIFive texts.
+
+
+DATASET: elifive
+TIMPA METHOD: timpa_steer
+METHOD CALLED: none; run.py rejects this combination before model loading
+
+Example 1: attempted base -> 5yo
+  text: the limits example shown above
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: ELIFive has one base text collection and three prompt targets, but the
+    current activation-vector path requires a paired IMDb/catdog dataset.
+
+Example 2: attempted base -> highschool
+  text: the set-theory example shown above
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: same unsupported dataset/method combination.
+
+
+DATASET: elifive
+TIMPA METHOD: timpa_hybrid
+METHOD CALLED: none; run.py rejects this combination before model loading
+
+Example 1: attempted base -> 5yo
+  text: the limits example shown above
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: hybrid requires an additive target-minus-source vector, and the
+    current vector loader supports only paired IMDb/catdog concepts.
+
+Example 2: attempted base -> highschool
+  text: the set-theory example shown above
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: same unsupported dataset/method combination.
+
+
+DATASET: dolly_sample
+TIMPA METHOD: timpa_ar
+METHOD CALLED: timpateks.timpa_ar
+
+Example 1: base -> pirate
+  instruction: "Rewrite this in the voice of a pirate."
+  base prompt: not used
+  text: "daffodil, rose, lily, daisy, violet, jasmine"
+  vector: not used
+  semantic call: timpa_ar(instruction=[pirate instruction], text=[base text])
+
+Example 2: base -> mean
+  instruction: "Rewrite this in a mean-spirited tone."
+  base prompt: not used
+  text: "Planet Money, The Prof G Pod, Women & Money, The Indicator"
+  vector: not used
+  semantic call: timpa_ar(instruction=[mean instruction], text=[base text])
+
+Note: base -> flirty is also run for all Dolly texts.
+
+
+DATASET: dolly_sample
+TIMPA METHOD: timpa_probabilistic
+METHOD CALLED: timpateks.timpa_probabilistic
+
+Example 1: base -> pirate
+  target/steer prompt: "You are an assistant who responds in the voice of a
+    pirate."
+  base prompt: "You are an assistant who responds in a neutral tone."
+  text: "daffodil, rose, lily, daisy, violet, jasmine"
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[pirate prompt],
+    base_assistant_prompt=[neutral base prompt], text=[base text])
+
+Example 2: base -> mean
+  target/steer prompt: "You are an assistant who responds in a mean tone."
+  base prompt: "You are an assistant who responds in a neutral tone."
+  text: "Planet Money, The Prof G Pod, Women & Money, The Indicator"
+  vector: not used
+  semantic call: timpa_probabilistic(steer=[mean prompt],
+    base_assistant_prompt=[neutral base prompt], text=[base text])
+
+Note: base -> flirty is also run for all Dolly texts.
+
+
+DATASET: dolly_sample
+TIMPA METHOD: timpa_steer
+METHOD CALLED: none; run.py rejects this combination before model loading
+
+Example 1: attempted base -> pirate
+  text: "daffodil, rose, lily, daisy, violet, jasmine"
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: Dolly has one base text collection and three prompt targets, but the
+    current activation-vector path requires a paired IMDb/catdog dataset.
+
+Example 2: attempted base -> mean
+  text: "Planet Money, The Prof G Pod, Women & Money, The Indicator"
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: same unsupported dataset/method combination.
+
+
+DATASET: dolly_sample
+TIMPA METHOD: timpa_hybrid
+METHOD CALLED: none; run.py rejects this combination before model loading
+
+Example 1: attempted base -> pirate
+  text: "daffodil, rose, lily, daisy, violet, jasmine"
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: hybrid requires an additive target-minus-source vector, and the
+    current vector loader supports only paired IMDb/catdog concepts.
+
+Example 2: attempted base -> mean
+  text: "Planet Money, The Prof G Pod, Women & Money, The Indicator"
+  prompt/base prompt/vector target/vector source: not constructed
+  reason: same unsupported dataset/method combination.

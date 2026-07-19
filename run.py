@@ -1,9 +1,14 @@
 import argparse
+import csv
 import json
 import os
+import re
+from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+from uuid import uuid4
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -26,6 +31,94 @@ DATASETS = (
     "elifive",
     "dolly_sample",
 )
+
+
+def _effective_method_parameters(args):
+    defaults = {
+        "timpa_ar": {
+            "temperature": 0.0,
+        },
+        "timpa_probabilistic": {
+            "temperature": 1.0,
+            "margin": 0.001,
+            "sampling_temperature": 0.0,
+        },
+        "timpa_steer": {
+            "temperature": 1.0,
+            "margin": 0.05,
+            "sampling_temperature": 1.0,
+        },
+        "timpa_hybrid": {
+            "temperature": 1.0,
+            "margin": 0.001,
+            "sampling_temperature": 1.0,
+        },
+    }[args.method]
+    effective = dict(defaults)
+    for name in ("temperature", "margin", "sampling_temperature"):
+        value = getattr(args, name, None)
+        if value is not None and name in effective:
+            effective[name] = value
+    return effective
+
+
+def _experiment_id(run_name):
+    if run_name:
+        identifier = re.sub(r"[^A-Za-z0-9._-]+", "_", run_name).strip("._-")
+        if not identifier:
+            raise ValueError("--run-name must contain at least one letter or number.")
+        return identifier
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    return f"{timestamp}_{uuid4().hex[:8]}"
+
+
+def _save_results(args, results):
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    experiment_id = _experiment_id(args.run_name)
+    experiment_name = f"{args.dataset}_{args.method}_{experiment_id}"
+    csv_path = output_dir / f"{experiment_name}.csv"
+    metadata_path = output_dir / f"{experiment_name}.json"
+    if csv_path.exists() or metadata_path.exists():
+        raise FileExistsError(
+            f"Experiment output already exists for {experiment_name!r}."
+        )
+
+    with csv_path.open("x", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=("direction", "before", "after1"),
+        )
+        writer.writeheader()
+        for result in results:
+            writer.writerow(
+                {
+                    "direction": result["target_direction"],
+                    "before": result["text"],
+                    "after1": result["regenerated_text"],
+                }
+            )
+
+    arguments = {
+        name: str(value) if isinstance(value, Path) else value
+        for name, value in vars(args).items()
+    }
+    direction_counts = Counter(result["target_direction"] for result in results)
+    metadata = {
+        "experiment_id": experiment_id,
+        "experiment_name": experiment_name,
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "csv_file": csv_path.name,
+        "num_results": len(results),
+        "direction_counts": dict(direction_counts),
+        "effective_method_parameters": _effective_method_parameters(args),
+        "arguments": arguments,
+    }
+    with metadata_path.open("x", encoding="utf-8") as handle:
+        json.dump(metadata, handle, indent=2, sort_keys=True)
+        handle.write("\n")
+
+    return csv_path, metadata_path
 
 
 def _make_api_completion_fn(args):
@@ -227,7 +320,11 @@ def parse_args():
     experiment.add_argument("--batch-size", type=int, default=1)
     experiment.add_argument("--seed", type=int, default=42)
     experiment.add_argument("--run-name")
-    experiment.add_argument("--output-dir", type=Path, default=Path("timpa_results"))
+    experiment.add_argument(
+        "--output-dir",
+        type=Path,
+        default=Path("timpateks_results"),
+    )
 
     models = parser.add_argument_group("models")
     models.add_argument(
@@ -292,7 +389,6 @@ def parse_args():
         help="Activation intervention used by timpa_steer.",
     )
     steering.add_argument("--alpha", type=float, default=1.0)
-    steering.add_argument("--steer-vector-path", type=Path)
     steering.add_argument(
         "--steer-layers",
         type=int,
@@ -438,7 +534,11 @@ def main():
                     }
                 )
 
+    csv_path, metadata_path = _save_results(args, results)
+    print(f"Saved results to {csv_path}")
+    print(f"Saved metadata to {metadata_path}")
     return results
+
 
 if __name__ == "__main__":
     main()
