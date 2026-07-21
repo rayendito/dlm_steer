@@ -1,0 +1,56 @@
+{
+  "arguments": {
+    "alpha": 1.0,
+    "api_base_url": null,
+    "api_key_env": "OPENAI_API_KEY",
+    "api_model_id": null,
+    "ar_backend": "local",
+    "ar_model_id": "Qwen/Qwen2.5-14B-Instruct",
+    "batch_size": 1,
+    "dataset": "imdb",
+    "detection": "model",
+    "dlm_model_id": "GSAI-ML/LLaDA-8B-Instruct",
+    "margin": 0.05,
+    "max_new_tokens": 2048,
+    "max_samples": null,
+    "method": "timpa_steer",
+    "output_dir": "timpateks_results",
+    "random_mask_probability": 0.5,
+    "refill_steps": 32,
+    "refill_strategy": "low_confidence",
+    "run_name": "val-seed42",
+    "sampling_temperature": null,
+    "seed": 42,
+    "source_layer": 23,
+    "split": "train",
+    "steer": "add",
+    "steer_layers": [
+      16,
+      25,
+      31
+    ],
+    "temperature": 0.1,
+    "token_position": -4
+  },
+  "created_at": "2026-07-20T16:34:54.557786+00:00",
+  "csv_file": "imdb_timpa_steer_add_val-seed42.csv",
+  "direction_counts": {
+    "negative": 10,
+    "positive": 10
+  },
+  "effective_method_parameters": {
+    "margin": 0.05,
+    "sampling_temperature": 1.0,
+    "temperature": 0.1
+  },
+  "experiment_id": "val-seed42",
+  "experiment_name": "imdb_timpa_steer_add_val-seed42",
+  "num_results": 20,
+  "result_columns": [
+    "direction",
+    "before",
+    "after1",
+    "picked_tokens"
+  ],
+  "technique": "timpa_steer_add"
+}

@@ -72,11 +72,22 @@ def _experiment_id(run_name):
     return f"{timestamp}_{uuid4().hex[:8]}"
 
 
+def _technique_name(args):
+    if args.method == "timpa_ar":
+        return "ar"
+    if args.method == "timpa_steer":
+        if args.steer not in {"add", "projection"}:
+            raise ValueError("timpa_steer requires steer='add' or steer='projection'.")
+        return f"timpa_steer_{args.steer}"
+    return args.method
+
+
 def _save_results(args, results):
-    output_dir = Path(args.output_dir)
+    technique = _technique_name(args)
+    output_dir = Path(args.output_dir) / args.dataset / technique
     output_dir.mkdir(parents=True, exist_ok=True)
     experiment_id = _experiment_id(args.run_name)
-    experiment_name = f"{args.dataset}_{args.method}_{experiment_id}"
+    experiment_name = f"{args.dataset}_{technique}_{experiment_id}"
     csv_path = output_dir / f"{experiment_name}.csv"
     metadata_path = output_dir / f"{experiment_name}.json"
     if csv_path.exists() or metadata_path.exists():
@@ -87,7 +98,7 @@ def _save_results(args, results):
     with csv_path.open("x", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(
             handle,
-            fieldnames=("direction", "before", "after1"),
+            fieldnames=("direction", "before", "after1", "picked_tokens"),
         )
         writer.writeheader()
         for result in results:
@@ -96,6 +107,11 @@ def _save_results(args, results):
                     "direction": result["target_direction"],
                     "before": result["text"],
                     "after1": result["regenerated_text"],
+                    "picked_tokens": json.dumps(
+                        result["picked_tokens"],
+                        ensure_ascii=False,
+                        separators=(",", ":"),
+                    ),
                 }
             )
 
@@ -107,10 +123,12 @@ def _save_results(args, results):
     metadata = {
         "experiment_id": experiment_id,
         "experiment_name": experiment_name,
+        "technique": technique,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "csv_file": csv_path.name,
         "num_results": len(results),
         "direction_counts": dict(direction_counts),
+        "result_columns": ["direction", "before", "after1", "picked_tokens"],
         "effective_method_parameters": _effective_method_parameters(args),
         "arguments": arguments,
     }
@@ -214,6 +232,49 @@ def _optional_generation_args(args, include_margin=True):
     return values
 
 
+def _picked_tokens_from_mask(tokenizer, tokenized_text, masked_positions):
+    input_ids = tokenized_text.get("input_ids")
+    if not isinstance(input_ids, torch.Tensor) or input_ids.ndim != 2:
+        raise ValueError("tokenized_text input_ids must have shape [batch, tokens].")
+    if (
+        not isinstance(masked_positions, torch.Tensor)
+        or masked_positions.shape != input_ids.shape
+    ):
+        raise ValueError("masked_positions must match tokenized_text input_ids.")
+
+    attention_mask = tokenized_text.get("attention_mask")
+    if attention_mask is None:
+        attention_mask = torch.ones_like(input_ids)
+    if attention_mask.shape != input_ids.shape:
+        raise ValueError("attention_mask must match tokenized_text input_ids.")
+
+    picked_tokens = []
+    for row in range(input_ids.shape[0]):
+        valid_positions = attention_mask[row].bool()
+        row_ids = input_ids[row][valid_positions].detach().cpu().tolist()
+        row_picks = (
+            masked_positions[row][valid_positions].bool().detach().cpu().tolist()
+        )
+        selected = []
+        for position, (token_id, is_picked) in enumerate(zip(row_ids, row_picks)):
+            if not is_picked:
+                continue
+            selected.append(
+                {
+                    "position": position,
+                    "token_id": token_id,
+                    "token": tokenizer.convert_ids_to_tokens(token_id),
+                    "text": tokenizer.decode(
+                        [token_id],
+                        skip_special_tokens=False,
+                        clean_up_tokenization_spaces=False,
+                    ),
+                }
+            )
+        picked_tokens.append(selected)
+    return picked_tokens
+
+
 def _run_batch(
     args,
     model,
@@ -232,7 +293,7 @@ def _run_batch(
         kwargs = {}
         if args.temperature is not None:
             kwargs["temperature"] = args.temperature
-        return timpa_ar(
+        regenerated_texts = timpa_ar(
             instruction=[instruction] * len(texts),
             text=texts,
             model=identifier_model,
@@ -241,11 +302,12 @@ def _run_batch(
             max_new_tokens=args.max_new_tokens,
             **kwargs,
         )
+        return regenerated_texts, [[] for _ in regenerated_texts]
 
     if args.method == "timpa_probabilistic":
         base_prompt = steer_artifact.get(source_direction, steer_artifact.get("base"))
         target_prompt = steer_artifact[target_direction]
-        _, _, _, regenerated_texts = timpa_probabilistic(
+        tokenized_text, _, masked_positions, regenerated_texts = timpa_probabilistic(
             model=model,
             tokenizer=tokenizer,
             identifier_model=identifier_model,
@@ -260,10 +322,14 @@ def _run_batch(
             random_mask_probability=args.random_mask_probability,
             **_optional_generation_args(args),
         )
-        return regenerated_texts
+        return regenerated_texts, _picked_tokens_from_mask(
+            tokenizer,
+            tokenized_text,
+            masked_positions,
+        )
 
     if args.method == "timpa_steer":
-        _, _, _, regenerated_texts = timpa_steer(
+        tokenized_text, _, masked_positions, regenerated_texts = timpa_steer(
             model=model,
             tokenizer=tokenizer,
             steer_vectors=steer_artifact[target_direction],
@@ -277,13 +343,17 @@ def _run_batch(
             random_mask_probability=args.random_mask_probability,
             **_optional_generation_args(args),
         )
-        return regenerated_texts
+        return regenerated_texts, _picked_tokens_from_mask(
+            tokenizer,
+            tokenized_text,
+            masked_positions,
+        )
 
     direction_artifact = steer_artifact[target_direction]
     steerprompts = direction_artifact["steerprompts"]
     base_prompt = steerprompts.get(source_direction, steerprompts.get("base"))
     target_prompt = steerprompts[target_direction]
-    _, _, _, regenerated_texts = timpa_hybrid(
+    tokenized_text, _, masked_positions, regenerated_texts = timpa_hybrid(
         model=model,
         tokenizer=tokenizer,
         identifier_model=identifier_model,
@@ -298,7 +368,11 @@ def _run_batch(
         alpha=args.alpha,
         **_optional_generation_args(args),
     )
-    return regenerated_texts
+    return regenerated_texts, _picked_tokens_from_mask(
+        tokenizer,
+        tokenized_text,
+        masked_positions,
+    )
 
 
 def parse_args():
@@ -324,6 +398,7 @@ def parse_args():
         "--output-dir",
         type=Path,
         default=Path("timpateks_results"),
+        help="Root directory; results are grouped below dataset/technique.",
     )
 
     models = parser.add_argument_group("models")
@@ -506,7 +581,7 @@ def main():
 
         for start in range(0, len(texts), args.batch_size):
             batch_texts = texts[start:start + args.batch_size]
-            regenerated_texts = _run_batch(
+            regenerated_texts, picked_tokens = _run_batch(
                 args=args,
                 model=model,
                 tokenizer=tokenizer,
@@ -524,13 +599,24 @@ def main():
                     f"{args.method} returned {len(regenerated_texts)} texts for a "
                     f"batch containing {len(batch_texts)} inputs."
                 )
-            for text, regenerated_text in zip(batch_texts, regenerated_texts):
+            if len(picked_tokens) != len(batch_texts):
+                raise RuntimeError(
+                    f"{args.method} returned token selections for "
+                    f"{len(picked_tokens)} texts for a batch containing "
+                    f"{len(batch_texts)} inputs."
+                )
+            for text, regenerated_text, text_picked_tokens in zip(
+                batch_texts,
+                regenerated_texts,
+                picked_tokens,
+            ):
                 results.append(
                     {
                         "source_direction": job["source_direction"],
                         "target_direction": job["target_direction"],
                         "text": text,
                         "regenerated_text": regenerated_text,
+                        "picked_tokens": text_picked_tokens,
                     }
                 )
 

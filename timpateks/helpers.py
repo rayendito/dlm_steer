@@ -75,7 +75,7 @@ def _scores_to_masking_probs(
     negative_evidence = -scores - margin
     if mapping == "tanh":
         masking_probs = torch.tanh(
-            negative_evidence.clamp_min(0) / (2 * temperature)
+            negative_evidence.clamp_min(0) / temperature
         )
     else:
         masking_probs = torch.sigmoid(negative_evidence / temperature)

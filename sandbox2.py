@@ -124,13 +124,13 @@ identifier_tokenizer = AutoTokenizer.from_pretrained(
 ######## SEE PROMPT STRENGTH DIFFERENCE
 
 TEXT = [
-    "MovieTitle is a fun, clever twist on classic fairy tales that manages to be both hilarious and heartfelt at the same time. Instead of a typical hero, you get a grumpy but lovable ogre whose journey is full of sharp jokes, memorable moments, and a surprisingly meaningful message about acceptance and being yourself.",
+    "We don’t just talk the talk; we walk the walk. We turn our words into action, our promises into progress, and our values into results.",
 ]
 
 STEER_PROMPTS = [
-    "You are a movie critic who always gives bad reviews. You are notoriously mean"
+    "You are an assistant who speaks in literals. You never use figures of speech and is always direct"
 ]
-BASE_ASSISTANT_PROMPT = "You are a movie critic who always gives good reviews."
+BASE_ASSISTANT_PROMPT = "You are an assistant who speaks in figures of speech."
 
 visualize_timpa_probabilistic(
     model,
@@ -139,7 +139,7 @@ visualize_timpa_probabilistic(
     identifier_tokenizer,
     STEER_PROMPTS,
     TEXT,
-    temperature=0.1,
+    temperature=0.5,
     margin=0.000,
     refill_steps=32,
     base_assistant_prompt=BASE_ASSISTANT_PROMPT,
