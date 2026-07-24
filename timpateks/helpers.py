@@ -472,26 +472,20 @@ def _random_token_detection(
     return tokenized_text, masking_probs, masked_positions
 
 
-def _probabilistic_token_detection(
+def _probabilistic_token_scores(
     tokenizer,
     identifier_model,
     identifier_tokenizer,
     steer,
     texts,
     base_assistant_prompt,
-    temperature,
-    margin,
     use_chat_template,
-    generator=None,
 ):
+    """Return LLaDA-tokenized text and aligned AR word log-probability deltas."""
     if identifier_model is None or identifier_tokenizer is None:
         raise ValueError(
             "identifier_model and identifier_tokenizer are required for model detection."
         )
-    if temperature <= 0:
-        raise ValueError("temperature must be greater than zero.")
-    if margin < 0:
-        raise ValueError("margin must be greater than or equal to zero.")
 
     steer_prompts = _as_prompt_list(steer, len(texts), name="steer")
     base_prompts = _as_prompt_list(
@@ -536,7 +530,24 @@ def _probabilistic_token_detection(
         texts,
         use_chat_template=use_chat_template,
     )
+    return tokenized_text, aligned_word_log_deltas
+
+
+def _probabilistic_token_detection_from_scores(
+    tokenizer,
+    texts,
+    tokenized_text,
+    aligned_word_log_deltas,
+    temperature,
+    margin,
+    generator=None,
+):
+    """Map cached aligned scores to probabilities and sample whole-word masks."""
     attention_mask = tokenized_text.get("attention_mask")
+    if aligned_word_log_deltas.shape != tokenized_text["input_ids"].shape:
+        raise ValueError(
+            "aligned_word_log_deltas must match tokenized_text input_ids."
+        )
     masking_probs = _scores_to_masking_probs(
         aligned_word_log_deltas,
         attention_mask,
@@ -552,6 +563,38 @@ def _probabilistic_token_detection(
         generator=generator,
     )
     return tokenized_text, masking_probs, masked_positions
+
+
+def _probabilistic_token_detection(
+    tokenizer,
+    identifier_model,
+    identifier_tokenizer,
+    steer,
+    texts,
+    base_assistant_prompt,
+    temperature,
+    margin,
+    use_chat_template,
+    generator=None,
+):
+    tokenized_text, aligned_word_log_deltas = _probabilistic_token_scores(
+        tokenizer=tokenizer,
+        identifier_model=identifier_model,
+        identifier_tokenizer=identifier_tokenizer,
+        steer=steer,
+        texts=texts,
+        base_assistant_prompt=base_assistant_prompt,
+        use_chat_template=use_chat_template,
+    )
+    return _probabilistic_token_detection_from_scores(
+        tokenizer=tokenizer,
+        texts=texts,
+        tokenized_text=tokenized_text,
+        aligned_word_log_deltas=aligned_word_log_deltas,
+        temperature=temperature,
+        margin=margin,
+        generator=generator,
+    )
 
 
 def _prepare_steer_vectors(model, steer_vectors, steer_mode):

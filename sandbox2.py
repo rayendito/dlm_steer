@@ -124,13 +124,18 @@ identifier_tokenizer = AutoTokenizer.from_pretrained(
 ######## SEE PROMPT STRENGTH DIFFERENCE
 
 TEXT = [
-    "We don’t just talk the talk; we walk the walk. We turn our words into action, our promises into progress, and our values into results.",
+    "The human brain works through billions of neurons that communicate using electrical impulses and chemical neurotransmitters across synapses. Different regions handle different functions: the cerebral cortex supports thinking, memory, language, and decision-making; the cerebellum coordinates movement and balance; and the brainstem controls automatic processes like breathing and heart rate. Signals travel through neural networks, where synaptic plasticity allows the brain to learn, adapt, and store information over time.",
+    "The human brain works through billions of neurons that communicate using electrical impulses and chemical neurotransmitters across synapses. Different regions handle different functions: the cerebral cortex supports thinking, memory, language, and decision-making; the cerebellum coordinates movement and balance; and the brainstem controls automatic processes like breathing and heart rate. Signals travel through neural networks, where synaptic plasticity allows the brain to learn, adapt, and store information over time.",
+    "The human brain works through billions of neurons that communicate using electrical impulses and chemical neurotransmitters across synapses. Different regions handle different functions: the cerebral cortex supports thinking, memory, language, and decision-making; the cerebellum coordinates movement and balance; and the brainstem controls automatic processes like breathing and heart rate. Signals travel through neural networks, where synaptic plasticity allows the brain to learn, adapt, and store information over time.",
 ]
 
 STEER_PROMPTS = [
-    "You are an assistant who speaks in literals. You never use figures of speech and is always direct"
+    "You are explaining concepts to a 5 year old who knows nothing about science",
+    "You are explaining concepts to a highschool student who might have taken biology classes",
+    "You are explaining concepts to a medical professional",
 ]
-BASE_ASSISTANT_PROMPT = "You are an assistant who speaks in figures of speech."
+
+BASE_ASSISTANT_PROMPT = "You are explaining concepts to a neurosurgeon"
 
 visualize_timpa_probabilistic(
     model,
@@ -140,7 +145,7 @@ visualize_timpa_probabilistic(
     STEER_PROMPTS,
     TEXT,
     temperature=0.5,
-    margin=0.000,
+    margin=0.001,
     refill_steps=32,
     base_assistant_prompt=BASE_ASSISTANT_PROMPT,
     output_file="timpateks_diff_strength.html"
