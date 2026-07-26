@@ -1,7 +1,7 @@
 import html
 from pathlib import Path
 
-from timpateks import score_tokens_with_ar, timpa_probabilistic, timpa_steer
+from timpateks import score_tokens_with_ar, timpa_steer
 
 
 def _highlighted_text(
@@ -72,7 +72,7 @@ def _comparison_text(text, offsets, first_scores, second_scores):
     return "".join(pieces)
 
 
-def _timpa_text(text, offsets, masking_probs):
+def _timpa_text(text, offsets, masking_probs, value_label="masking probability"):
     masking_probs = masking_probs[:len(offsets)].float().cpu()
 
     pieces = []
@@ -86,7 +86,7 @@ def _timpa_text(text, offsets, masking_probs):
 
         probability = float(masking_prob)
         strength = min(max(probability, 0.0), 1.0)
-        tooltip = f"masking probability: {probability:.6g}"
+        tooltip = f"{value_label}: {probability:.6g}"
         pieces.append(
             '<span class="token" '
             f'style="background-color: rgba(220, 38, 38, {strength:.3f})" '
@@ -229,66 +229,32 @@ h1 {{ margin-bottom: 4px; }}
 
 
 def visualize_timpa_probabilistic(
-    model,
-    tokenizer,
-    identifier_model,
-    identifier_tokenizer,
-    steer,
-    text,
-    use_chat_template=True,
-    base_assistant_prompt="You are a helpful assistant",
-    temperature=1.0,
-    margin=0.05,
-    refill_steps=32,
-    sampling_temperature=0.0,
-    refill_strategy="low_confidence",
-    generator=None,
+    tokenized_text,
+    masking_probs,
+    masked_positions,
+    regenerated_texts,
     output_file="timpa_token_identification.html",
-    detection_strategy="model",
-    random_mask_probability=0.5,
 ):
-    """Run probabilistic TIMPA and visualize aligned remasking probabilities."""
-    texts = [text] if isinstance(text, str) else text
-    if not isinstance(texts, list) or not texts:
-        raise ValueError("text must be a string or a non-empty list of strings.")
-    if not all(isinstance(item, str) for item in texts):
-        raise TypeError("Each text must be a string.")
-    if not isinstance(steer, list) or len(steer) != len(texts):
-        raise ValueError("steer must contain one prompt string per text.")
-    if not all(isinstance(prompt, str) for prompt in steer):
-        raise TypeError("Each steer prompt must be a string.")
-    base_prompts = (
-        [base_assistant_prompt] * len(texts)
-        if isinstance(base_assistant_prompt, str)
-        else base_assistant_prompt
-    )
-    if not isinstance(base_prompts, list) or len(base_prompts) != len(texts):
+    """Visualize the outputs of a completed ``timpa_probabilistic`` call."""
+    metadata = getattr(tokenized_text, "_timpa_metadata", None)
+    if not isinstance(metadata, dict):
         raise ValueError(
-            "base_assistant_prompt must be a string or contain one prompt per text."
+            "tokenized_text does not contain TIMPA result context. Pass the "
+            "object returned directly by timpa_probabilistic."
         )
-    if not all(isinstance(prompt, str) for prompt in base_prompts):
-        raise TypeError("Each base assistant prompt must be a string.")
-
-    tokenized_text, masking_probs, masked_positions, regenerated_texts = (
-        timpa_probabilistic(
-            model=model,
-            tokenizer=tokenizer,
-            identifier_model=identifier_model,
-            identifier_tokenizer=identifier_tokenizer,
-            steer=steer,
-            text=texts,
-            use_chat_template=use_chat_template,
-            base_assistant_prompt=base_assistant_prompt,
-            temperature=temperature,
-            margin=margin,
-            refill_steps=refill_steps,
-            sampling_temperature=sampling_temperature,
-            refill_strategy=refill_strategy,
-            generator=generator,
-            detection_strategy=detection_strategy,
-            random_mask_probability=random_mask_probability,
+    texts = metadata["texts"]
+    steer_prompts = metadata["steer_prompts"]
+    base_prompts = metadata["base_prompts"]
+    offsets_by_text = metadata["offsets"]
+    batch_size = len(texts)
+    if not isinstance(regenerated_texts, list) or len(regenerated_texts) != batch_size:
+        raise ValueError(
+            "regenerated_texts must contain one string per tokenized text."
         )
-    )
+    if masking_probs.shape != tokenized_text["input_ids"].shape:
+        raise ValueError("masking_probs must match tokenized_text input_ids.")
+    if masked_positions.shape != tokenized_text["input_ids"].shape:
+        raise ValueError("masked_positions must match tokenized_text input_ids.")
 
     attention_mask = tokenized_text.get("attention_mask")
     if attention_mask is None:
@@ -297,17 +263,22 @@ def visualize_timpa_probabilistic(
         )
 
     cards = []
-    for row, (prompt, base_prompt, item) in enumerate(
-        zip(steer, base_prompts, texts)
+    mask_selection = metadata["mask_selection"]
+    value_label = (
+        "negative-delta strength"
+        if mask_selection == "negative_delta"
+        else "masking probability"
+    )
+    display_label = (
+        "Negative-delta strength"
+        if mask_selection == "negative_delta"
+        else "Masking probability"
+    )
+    for row, (prompt, base_prompt, item, offsets) in enumerate(
+        zip(steer_prompts, base_prompts, texts, offsets_by_text)
     ):
-        encoded = tokenizer(
-            item,
-            add_special_tokens=False,
-            return_offsets_mapping=True,
-        )
         row_probs = masking_probs[row][attention_mask[row].bool()]
         row_masked_positions = masked_positions[row][attention_mask[row].bool()]
-        offsets = encoded["offset_mapping"]
         if (
             row_probs.numel() != len(offsets)
             or row_masked_positions.numel() != len(offsets)
@@ -320,13 +291,13 @@ def visualize_timpa_probabilistic(
             item,
             offsets,
             row_probs,
+            value_label=value_label,
         )
-        mask_token = getattr(tokenizer, "mask_token", None) or "<|mdm_mask|>"
         sampled_text = _masked_text(
             item,
             offsets,
             row_masked_positions,
-            mask_token,
+            metadata["mask_token"],
         )
         cards.append(
             '<section class="card">'
@@ -334,7 +305,7 @@ def visualize_timpa_probabilistic(
             f'<div class="prompt">{html.escape(base_prompt)}</div>'
             '<div class="label">Steer prompt</div>'
             f'<div class="prompt">{html.escape(prompt)}</div>'
-            '<div class="label">Masking probability</div>'
+            f'<div class="label">{display_label}</div>'
             f'<div class="text">{highlighted}</div>'
             '<div class="label">Masked text</div>'
             f'<div class="text">{sampled_text}</div>'
@@ -343,13 +314,17 @@ def visualize_timpa_probabilistic(
             '</section>'
         )
 
-    prompt_format = "system → assistant" if use_chat_template else "raw concatenation"
-    identifier_name = getattr(
-        getattr(identifier_model, "config", None), "name_or_path", None
-    ) or identifier_model.__class__.__name__
-    diffusion_name = getattr(
-        getattr(model, "config", None), "name_or_path", None
-    ) or model.__class__.__name__
+    prompt_format = (
+        "system → assistant"
+        if metadata["use_chat_template"]
+        else "raw concatenation"
+    )
+    identifier_name = metadata["identifier_name"]
+    diffusion_name = metadata["diffusion_name"]
+    temperature = metadata["temperature"]
+    margin = metadata["margin"]
+    detection_strategy = metadata["detection_strategy"]
+    refill_steps = metadata["refill_steps"]
     document = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -384,10 +359,11 @@ h1 {{ margin-bottom: 4px; }}
 <b>Diffusion model:</b> {html.escape(str(diffusion_name))} ·
 <b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
 <b>Detection:</b> {html.escape(detection_strategy)} ·
+<b>Mask selection:</b> {html.escape(mask_selection)} ·
 <b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {prompt_format}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
-means higher masking probability.</div>
+means higher {html.escape(value_label)}.</div>
 {''.join(cards)}
 </body>
 </html>

@@ -1,10 +1,17 @@
 import csv
+import re
 from pathlib import Path
 
 from timpa_steer_vectors import extract_steer_vectors, extract_steer_vectors_add
 
 
 DATASET_ROOT = Path(__file__).resolve().parent
+HTML_BREAK_RE = re.compile(r"<br\s*/?>", flags=re.IGNORECASE)
+
+
+def _clean_text(text):
+    text = HTML_BREAK_RE.sub("\n", text)
+    return "\n".join(line.strip() for line in text.splitlines()).strip()
 
 
 def _read_rows(path, required_columns):
@@ -22,7 +29,7 @@ def _read_rows(path, required_columns):
         rows = []
         for line_number, row in enumerate(reader, start=2):
             cleaned = {
-                key: value.strip() if isinstance(value, str) else value
+                key: _clean_text(value) if isinstance(value, str) else value
                 for key, value in row.items()
             }
             for column in required_columns:
@@ -158,9 +165,6 @@ def timpa_load_data_and_steer_artefacts(
     dataset = timpa_load_rows(dataset_name)["dataset"][split]
     vector = None
     steerprompts = None
-    if steer_layers is None:
-        raise ValueError("steer_layers must be provided.")
-    steer_layers = tuple(steer_layers)
 
     if timpa_method == "timpa_ar":
         steerprompts = _ar_steer_prompts(dataset_name)
@@ -201,6 +205,9 @@ def timpa_load_data_and_steer_artefacts(
                 token_position=token_position,
             )
         elif steer_method == "add":
+            if steer_layers is None:
+                raise ValueError("steer_layers must be provided for additive steering.")
+            steer_layers = tuple(steer_layers)
             all_vectors = extract_steer_vectors_add(
                 model=model,
                 tokenizer=tokenizer,

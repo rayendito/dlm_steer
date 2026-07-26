@@ -146,12 +146,18 @@ def timpa_probabilistic(
     refill_strategy="low_confidence",
     detection_strategy="model",
     random_mask_probability=0.5,
+    mask_selection="sample",
 ):
     """Detect with AR likelihood changes, then refill with LLaDA.
 
     Set ``detection_strategy="random"`` for the random-detection baseline. It
     assigns every non-padding token ``random_mask_probability``, then samples
     one decision per word so partial-word masking remains impossible.
+
+    With model detection, ``mask_selection="negative_delta"`` deterministically
+    masks every token whose target-minus-base log-probability delta is below
+    ``-margin``. Temperature then affects only the returned visualization
+    intensity, not mask selection.
 
     Returns ``(tokenized_text, masking_probs, masked_positions,
     regenerated_texts)``.
@@ -161,6 +167,11 @@ def timpa_probabilistic(
 
     texts = helpers._as_text_list(text)
     steer_prompts = helpers._as_prompt_list(steer, len(texts), name="steer")
+    base_prompts = helpers._as_prompt_list(
+        base_assistant_prompt,
+        len(texts),
+        name="base_assistant_prompt",
+    )
     if detection_strategy == "model":
         tokenized_text, masking_probs, masked_positions = (
             helpers._probabilistic_token_detection(
@@ -173,6 +184,7 @@ def timpa_probabilistic(
                 temperature=temperature,
                 margin=margin,
                 use_chat_template=use_chat_template,
+                mask_selection=mask_selection,
                 generator=generator,
             )
         )
@@ -198,6 +210,21 @@ def timpa_probabilistic(
         refill_steps=refill_steps,
         sampling_temperature=sampling_temperature,
         refill_strategy=refill_strategy,
+    )
+    helpers._attach_probabilistic_result_context(
+        tokenized_text=tokenized_text,
+        texts=texts,
+        steer_prompts=steer_prompts,
+        base_prompts=base_prompts,
+        tokenizer=tokenizer,
+        model=model,
+        identifier_model=identifier_model,
+        use_chat_template=use_chat_template,
+        temperature=temperature,
+        margin=margin,
+        refill_steps=refill_steps,
+        detection_strategy=detection_strategy,
+        mask_selection=mask_selection,
     )
     return tokenized_text, masking_probs, masked_positions, regenerated_texts
 
@@ -312,6 +339,7 @@ def timpa_hybrid(
     sampling_temperature=1.0,
     refill_strategy="low_confidence",
     alpha=1.0,
+    mask_selection="sample",
 ):
     """Detect with AR likelihood changes and refill with additive steering.
 
@@ -354,6 +382,7 @@ def timpa_hybrid(
             temperature=temperature,
             margin=margin,
             use_chat_template=use_chat_template,
+            mask_selection=mask_selection,
             generator=generator,
         )
     )

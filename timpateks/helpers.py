@@ -12,6 +12,65 @@ from .llada.generate import (
 LLADA_MASK_TOKEN = "<|mdm_mask|>"
 
 
+def _attach_probabilistic_result_context(
+    tokenized_text,
+    texts,
+    steer_prompts,
+    base_prompts,
+    tokenizer,
+    model,
+    identifier_model,
+    use_chat_template,
+    temperature,
+    margin,
+    refill_steps,
+    detection_strategy,
+    mask_selection,
+):
+    attention_mask = tokenized_text.get("attention_mask")
+    if attention_mask is None:
+        attention_mask = torch.ones_like(tokenized_text["input_ids"])
+    encodings = getattr(tokenized_text, "encodings", None)
+    if encodings is None or len(encodings) != len(texts):
+        raise RuntimeError(
+            "TIMPA visualization context requires tokenizer encodings."
+        )
+
+    offsets = []
+    attention_cpu = attention_mask.bool().cpu()
+    for row, encoding in enumerate(encodings):
+        offsets.append(
+            [
+                tuple(offset)
+                for offset, valid in zip(encoding.offsets, attention_cpu[row])
+                if bool(valid)
+            ]
+        )
+
+    def component_name(component):
+        return (
+            getattr(getattr(component, "config", None), "name_or_path", None)
+            or component.__class__.__name__
+        )
+
+    metadata = {
+        "texts": list(texts),
+        "steer_prompts": list(steer_prompts),
+        "base_prompts": list(base_prompts),
+        "offsets": offsets,
+        "mask_token": getattr(tokenizer, "mask_token", None) or LLADA_MASK_TOKEN,
+        "identifier_name": component_name(identifier_model),
+        "diffusion_name": component_name(model),
+        "use_chat_template": bool(use_chat_template),
+        "temperature": float(temperature),
+        "margin": float(margin),
+        "refill_steps": int(refill_steps),
+        "detection_strategy": detection_strategy,
+        "mask_selection": mask_selection,
+    }
+    object.__setattr__(tokenized_text, "_timpa_metadata", metadata)
+
+
 def _as_text_list(text):
     texts = [text] if isinstance(text, str) else text
     if not isinstance(texts, list) or not texts:
@@ -540,9 +599,14 @@ def _probabilistic_token_detection_from_scores(
     aligned_word_log_deltas,
     temperature,
     margin,
+    mask_selection="sample",
     generator=None,
 ):
-    """Map cached aligned scores to probabilities and sample whole-word masks."""
+    """Map aligned scores and select masks by sampling or negative delta."""
+    if mask_selection not in {"sample", "negative_delta"}:
+        raise ValueError(
+            "mask_selection must be 'sample' or 'negative_delta'."
+        )
     attention_mask = tokenized_text.get("attention_mask")
     if aligned_word_log_deltas.shape != tokenized_text["input_ids"].shape:
         raise ValueError(
@@ -555,13 +619,18 @@ def _probabilistic_token_detection_from_scores(
         margin,
         mapping="tanh",
     )
-    masked_positions = sample_mask(
-        masking_probs,
-        tokenizer,
-        texts,
-        attention_mask=attention_mask,
-        generator=generator,
-    )
+    if mask_selection == "negative_delta":
+        masked_positions = aligned_word_log_deltas < -margin
+        if attention_mask is not None:
+            masked_positions &= attention_mask.bool()
+    else:
+        masked_positions = sample_mask(
+            masking_probs,
+            tokenizer,
+            texts,
+            attention_mask=attention_mask,
+            generator=generator,
+        )
     return tokenized_text, masking_probs, masked_positions
 
 
@@ -575,6 +644,7 @@ def _probabilistic_token_detection(
     temperature,
     margin,
     use_chat_template,
+    mask_selection="sample",
     generator=None,
 ):
     tokenized_text, aligned_word_log_deltas = _probabilistic_token_scores(
@@ -593,6 +663,7 @@ def _probabilistic_token_detection(
         aligned_word_log_deltas=aligned_word_log_deltas,
         temperature=temperature,
         margin=margin,
+        mask_selection=mask_selection,
         generator=generator,
     )
 

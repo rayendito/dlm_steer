@@ -137,16 +137,25 @@ STEER_PROMPTS = [
 
 BASE_ASSISTANT_PROMPT = "You are explaining concepts to a neurosurgeon"
 
+tokenized_text, masking_probs, masked_positions, regenerated_texts = (
+    timpa_probabilistic(
+        model=model,
+        tokenizer=tokenizer,
+        identifier_model=identifier_model,
+        identifier_tokenizer=identifier_tokenizer,
+        steer=STEER_PROMPTS,
+        text=TEXT,
+        temperature=0.5,
+        margin=0.001,
+        refill_steps=32,
+        base_assistant_prompt=BASE_ASSISTANT_PROMPT,
+    )
+)
+
 visualize_timpa_probabilistic(
-    model,
-    tokenizer,
-    identifier_model,
-    identifier_tokenizer,
-    STEER_PROMPTS,
-    TEXT,
-    temperature=0.5,
-    margin=0.001,
-    refill_steps=32,
-    base_assistant_prompt=BASE_ASSISTANT_PROMPT,
-    output_file="timpateks_diff_strength.html"
+    tokenized_text,
+    masking_probs,
+    masked_positions,
+    regenerated_texts,
+    output_file="timpateks_diff_strength.html",
 )
