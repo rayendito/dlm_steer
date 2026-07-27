@@ -18,7 +18,8 @@ LLM_JUDGE_BATCH_SIZE = 10
 ORDER_SEED = 0
 
 #### INPUTS AND OUTPUT
-SWEEP_ROOT = Path("timpateks_results/elifive_sweep_csv")
+TEST_ROOT = Path("timpateks_results/elifive_test_csv")
+EXPECTED_EXAMPLES = 100
 FIVE_YEAR_OLD_FILENAME = "5yo.csv"
 HIGH_SCHOOL_FILENAME = "highschool.csv"
 PHD_FILENAME = "phd.csv"
@@ -77,6 +78,11 @@ def validate_aligned_inputs(five_year_old, high_school, phd):
         raise ValueError(
             "The 5yo, high-school, and PhD CSVs must have the same row count."
         )
+    row_count = next(iter(row_counts))
+    if row_count != EXPECTED_EXAMPLES:
+        raise ValueError(
+            f"Expected {EXPECTED_EXAMPLES} test examples, found {row_count}."
+        )
     if not (
         five_year_old["before"]
         == high_school["before"]
@@ -88,18 +94,18 @@ def validate_aligned_inputs(five_year_old, high_school, phd):
 
 
 def find_experiment_directories():
-    if not SWEEP_ROOT.is_dir():
+    if not TEST_ROOT.is_dir():
         raise FileNotFoundError(
-            f"ELI5 sweep directory does not exist: {SWEEP_ROOT}"
+            f"ELI5 test directory does not exist: {TEST_ROOT}"
         )
 
     experiment_directories = sorted(
         path.parent
-        for path in SWEEP_ROOT.glob(f"seed*/*/{FIVE_YEAR_OLD_FILENAME}")
+        for path in TEST_ROOT.glob(f"seed*/*/{FIVE_YEAR_OLD_FILENAME}")
     )
     if not experiment_directories:
         raise FileNotFoundError(
-            f"No completed ELI5 experiments were found under {SWEEP_ROOT}."
+            f"No completed ELI5 experiments were found under {TEST_ROOT}."
         )
 
     required_filenames = {
@@ -233,7 +239,7 @@ def main():
     ) as progress:
         for experiment_directory in progress:
             progress.set_postfix_str(
-                str(experiment_directory.relative_to(SWEEP_ROOT)),
+                str(experiment_directory.relative_to(TEST_ROOT)),
                 refresh=True,
             )
             output_csv = evaluate_experiment(experiment_directory)

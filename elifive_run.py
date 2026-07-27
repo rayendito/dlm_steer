@@ -1,6 +1,6 @@
 import csv
-from itertools import product
 from pathlib import Path
+from types import SimpleNamespace
 
 import torch
 from timpa_datasets import timpa_load_data_and_steer_artefacts
@@ -18,20 +18,21 @@ MODEL_ID = "GSAI-ML/LLaDA-8B-Instruct"
 IDENTIFIER_MODEL_ID = "Qwen/Qwen2.5-32B-Instruct"
 LOCAL_FILES_ONLY = True
 
-#### SWEEP
-TEMPERATURES = (0.25, 0.5, 1.0, 2.0)
-MARGINS = (0.001, 0.1, 0.25, 0.5)
+#### TEST RUN
+SELECTED_TEMPERATURE = 0.5
+SELECTED_MARGIN = 0.1
 NEGATIVE_DELTA_TEMPERATURE = 0.5
 NEGATIVE_DELTA_MARGIN = 0.0
 RANDOM_MASK_PROBABILITY = 0.5
-RANDOM_SEEDS = (42,)
+RANDOM_SEEDS = (42, 43, 44)
+GENERATION_BATCH_SIZE = 10
 ELIFIVE_REFILL_STEPS = 32
 SAMPLING_TEMPERATURE = 0.1
 REFILL_STRATEGY = "low_confidence"
 
 #### OUTPUTS
-CSV_ROOT = Path("timpateks_results/elifive_sweep_csv")
-HTML_ROOT = Path("timpateks_results/elifive_sweep_html")
+CSV_ROOT = Path("timpateks_results/elifive_test_csv")
+HTML_ROOT = Path("timpateks_results/elifive_test_html")
 
 
 def write_before_after_csv(output_file, text_before, text_after):
@@ -67,39 +68,33 @@ def _seed_everything(seed):
     torch.cuda.manual_seed_all(seed)
 
 
-def _sweep_configurations():
-    configurations = [
+def _test_configurations():
+    return [
+        {
+            "description": "random",
+            "detection_strategy": "random",
+            "mask_selection": "sample",
+            "temperature": 1.0,
+            "margin": 0.0,
+        },
+        {
+            "description": "negative_delta",
+            "detection_strategy": "model",
+            "mask_selection": "negative_delta",
+            "temperature": NEGATIVE_DELTA_TEMPERATURE,
+            "margin": NEGATIVE_DELTA_MARGIN,
+        },
         {
             "description": (
-                f"temp{_float_description(temperature)}_"
-                f"margin{_float_description(margin)}"
+                f"temp{_float_description(SELECTED_TEMPERATURE)}_"
+                f"margin{_float_description(SELECTED_MARGIN)}"
             ),
             "detection_strategy": "model",
             "mask_selection": "sample",
-            "temperature": temperature,
-            "margin": margin,
-        }
-        for temperature, margin in product(TEMPERATURES, MARGINS)
+            "temperature": SELECTED_TEMPERATURE,
+            "margin": SELECTED_MARGIN,
+        },
     ]
-    configurations.extend(
-        [
-            {
-                "description": "negative_delta",
-                "detection_strategy": "model",
-                "mask_selection": "negative_delta",
-                "temperature": NEGATIVE_DELTA_TEMPERATURE,
-                "margin": NEGATIVE_DELTA_MARGIN,
-            },
-            {
-                "description": "random",
-                "detection_strategy": "random",
-                "mask_selection": "sample",
-                "temperature": 1.0,
-                "margin": 0.0,
-            },
-        ]
-    )
-    return configurations
 
 
 def _load_models():
@@ -209,18 +204,37 @@ def _run_configuration(
         )
         result_identifier_model = identifier_model
 
-    regenerated_texts = helpers.regenerate_masked_text(
-        model=model,
-        tokenizer=tokenizer,
-        steer=steer_prompts,
-        text=texts,
-        masked_positions=masked_positions,
-        response_attention_mask=tokenized_text.get("attention_mask"),
-        use_chat_template=True,
-        refill_steps=ELIFIVE_REFILL_STEPS,
-        sampling_temperature=SAMPLING_TEMPERATURE,
-        refill_strategy=REFILL_STRATEGY,
-    )
+    attention_mask = tokenized_text.get("attention_mask")
+    regenerated_texts = []
+    batch_starts = range(0, len(texts), GENERATION_BATCH_SIZE)
+    for start in tqdm(
+        batch_starts,
+        total=(len(texts) + GENERATION_BATCH_SIZE - 1)
+        // GENERATION_BATCH_SIZE,
+        desc="LLaDA refill",
+        unit="batch",
+        leave=False,
+    ):
+        end = min(start + GENERATION_BATCH_SIZE, len(texts))
+        batch_attention_mask = (
+            attention_mask[start:end]
+            if attention_mask is not None
+            else None
+        )
+        regenerated_texts.extend(
+            helpers.regenerate_masked_text(
+                model=model,
+                tokenizer=tokenizer,
+                steer=steer_prompts[start:end],
+                text=texts[start:end],
+                masked_positions=masked_positions[start:end],
+                response_attention_mask=batch_attention_mask,
+                use_chat_template=True,
+                refill_steps=ELIFIVE_REFILL_STEPS,
+                sampling_temperature=SAMPLING_TEMPERATURE,
+                refill_strategy=REFILL_STRATEGY,
+            )
+        )
     helpers._attach_probabilistic_result_context(
         tokenized_text=tokenized_text,
         texts=texts,
@@ -247,14 +261,16 @@ def _run_configuration(
 def main():
     model, tokenizer, identifier_model, identifier_tokenizer = _load_models()
 
-    # ELIFive has val.csv and test.csv. The dataset interface exposes val.csv
-    # through its train split so hyperparameter selection stays separate from test.
     elifive_data, elifive_artifact = timpa_load_data_and_steer_artefacts(
         "elifive",
-        "train",
+        "test",
         "timpa_probabilistic",
     )
     texts = elifive_data["text"]
+    if len(texts) != 100:
+        raise RuntimeError(
+            f"Expected the full 100-example ELI5 test set, found {len(texts)}."
+        )
     base_prompts = [elifive_artifact["base"]] * len(texts)
     target_prompts = {
         "5yo": [elifive_artifact["5yo"]] * len(texts),
@@ -269,10 +285,15 @@ def main():
         base_prompts=base_prompts,
         target_prompts=target_prompts,
     )
+    identifier_metadata = SimpleNamespace(
+        config=SimpleNamespace(name_or_path=IDENTIFIER_MODEL_ID)
+    )
+    del identifier_model, identifier_tokenizer
+    torch.cuda.empty_cache()
 
-    configurations = _sweep_configurations()
+    configurations = _test_configurations()
     total_runs = len(RANDOM_SEEDS) * len(configurations) * len(target_prompts)
-    with tqdm(total=total_runs, desc="ELI5 sweep", unit="run") as progress:
+    with tqdm(total=total_runs, desc="ELI5 test", unit="run") as progress:
         for random_seed in RANDOM_SEEDS:
             seed_directory = f"seed{random_seed}"
             for configuration in configurations:
@@ -302,7 +323,7 @@ def main():
                         base_prompts=base_prompts,
                         model=model,
                         tokenizer=tokenizer,
-                        identifier_model=identifier_model,
+                        identifier_model=identifier_metadata,
                         cached_scores=cached_scores,
                         random_seed=random_seed,
                     )
@@ -321,8 +342,8 @@ def main():
                     )
                     progress.update()
 
-    print(f"Wrote CSV sweep results to {CSV_ROOT}")
-    print(f"Wrote HTML sweep results to {HTML_ROOT}")
+    print(f"Wrote CSV test results to {CSV_ROOT}")
+    print(f"Wrote HTML test results to {HTML_ROOT}")
 
 
 if __name__ == "__main__":
