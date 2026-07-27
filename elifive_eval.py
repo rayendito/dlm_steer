@@ -9,6 +9,7 @@ from timpa_eval import (
     llmjudge_faithfulness,
     llmjudge_retain_structure,
 )
+from tqdm.auto import tqdm
 
 
 #### LLM JUDGE
@@ -17,10 +18,11 @@ LLM_JUDGE_BATCH_SIZE = 10
 ORDER_SEED = 0
 
 #### INPUTS AND OUTPUT
-FIVE_YEAR_OLD_CSV = Path("timpaprobs_elifive_to_5yo_random.csv")
-HIGH_SCHOOL_CSV = Path("timpaprobs_elifive_to_highschool_random.csv")
-PHD_CSV = Path("timpaprobs_elifive_to_phd_random.csv")
-OUTPUT_CSV = Path("timpaprobs_elifive_random_llmjudge_eval.csv")
+SWEEP_ROOT = Path("timpateks_results/elifive_sweep_csv")
+FIVE_YEAR_OLD_FILENAME = "5yo.csv"
+HIGH_SCHOOL_FILENAME = "highschool.csv"
+PHD_FILENAME = "phd.csv"
+OUTPUT_FILENAME = "llmjudge_eval.csv"
 
 FIELDNAMES = [
     "sentence_id",
@@ -85,10 +87,48 @@ def validate_aligned_inputs(five_year_old, high_school, phd):
         )
 
 
-def main():
-    five_year_old = read_before_after_csv(FIVE_YEAR_OLD_CSV)
-    high_school = read_before_after_csv(HIGH_SCHOOL_CSV)
-    phd = read_before_after_csv(PHD_CSV)
+def find_experiment_directories():
+    if not SWEEP_ROOT.is_dir():
+        raise FileNotFoundError(
+            f"ELI5 sweep directory does not exist: {SWEEP_ROOT}"
+        )
+
+    experiment_directories = sorted(
+        path.parent
+        for path in SWEEP_ROOT.glob(f"seed*/*/{FIVE_YEAR_OLD_FILENAME}")
+    )
+    if not experiment_directories:
+        raise FileNotFoundError(
+            f"No completed ELI5 experiments were found under {SWEEP_ROOT}."
+        )
+
+    required_filenames = {
+        FIVE_YEAR_OLD_FILENAME,
+        HIGH_SCHOOL_FILENAME,
+        PHD_FILENAME,
+    }
+    for experiment_directory in experiment_directories:
+        missing = [
+            filename
+            for filename in sorted(required_filenames)
+            if not (experiment_directory / filename).is_file()
+        ]
+        if missing:
+            raise FileNotFoundError(
+                f"{experiment_directory} is missing required inputs: "
+                f"{', '.join(missing)}."
+            )
+    return experiment_directories
+
+
+def evaluate_experiment(experiment_directory):
+    five_year_old = read_before_after_csv(
+        experiment_directory / FIVE_YEAR_OLD_FILENAME
+    )
+    high_school = read_before_after_csv(
+        experiment_directory / HIGH_SCHOOL_FILENAME
+    )
+    phd = read_before_after_csv(experiment_directory / PHD_FILENAME)
     validate_aligned_inputs(five_year_old, high_school, phd)
 
     source_texts = five_year_old["before"]
@@ -158,7 +198,8 @@ def main():
     )
     order_maes = elifive_order_mae(orders)
 
-    with OUTPUT_CSV.open("w", encoding="utf-8", newline="") as handle:
+    output_csv = experiment_directory / OUTPUT_FILENAME
+    with output_csv.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=FIELDNAMES)
         writer.writeheader()
         for row_index in range(len(source_texts)):
@@ -180,8 +221,23 @@ def main():
                     "order_mae": round(order_maes[row_index], 6),
                 }
             )
+    return output_csv
 
-    print(f"wrote {OUTPUT_CSV}")
+
+def main():
+    experiment_directories = find_experiment_directories()
+    with tqdm(
+        experiment_directories,
+        desc="ELI5 LLM-judge evaluation",
+        unit="experiment",
+    ) as progress:
+        for experiment_directory in progress:
+            progress.set_postfix_str(
+                str(experiment_directory.relative_to(SWEEP_ROOT)),
+                refresh=True,
+            )
+            output_csv = evaluate_experiment(experiment_directory)
+            tqdm.write(f"Wrote {output_csv}")
 
 
 if __name__ == "__main__":

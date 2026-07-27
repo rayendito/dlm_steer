@@ -1,23 +1,48 @@
 import csv
+from itertools import product
 from pathlib import Path
 
 import torch
-from timpateks.llada.configuration_llada import LLaDAConfig
-from timpateks.llada.modeling_llada import LLaDAModelLM
-from transformers import AutoTokenizer
 from timpa_datasets import timpa_load_data_and_steer_artefacts
 from timpa_experimental import visualize_timpa_probabilistic
-from timpateks import timpa_probabilistic
+from timpateks import helpers
+from timpateks.llada.configuration_llada import LLaDAConfig
+from timpateks.llada.modeling_llada import LLaDAModelLM
+from tqdm.auto import tqdm
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-def write_before_after_csv(html_file, text_before, text_after):
+#### MODELING
+DEVICE = "cuda"
+MODEL_ID = "GSAI-ML/LLaDA-8B-Instruct"
+IDENTIFIER_MODEL_ID = "Qwen/Qwen2.5-32B-Instruct"
+LOCAL_FILES_ONLY = True
+
+#### SWEEP
+TEMPERATURES = (0.25, 0.5, 1.0, 2.0)
+MARGINS = (0.001, 0.1, 0.25, 0.5)
+NEGATIVE_DELTA_TEMPERATURE = 0.5
+NEGATIVE_DELTA_MARGIN = 0.0
+RANDOM_MASK_PROBABILITY = 0.5
+RANDOM_SEEDS = (42,)
+ELIFIVE_REFILL_STEPS = 32
+SAMPLING_TEMPERATURE = 0.1
+REFILL_STRATEGY = "low_confidence"
+
+#### OUTPUTS
+CSV_ROOT = Path("timpateks_results/elifive_sweep_csv")
+HTML_ROOT = Path("timpateks_results/elifive_sweep_html")
+
+
+def write_before_after_csv(output_file, text_before, text_after):
     if len(text_before) != len(text_after):
         raise ValueError(
             "text_before and text_after must have the same length."
         )
 
-    csv_file = Path(html_file).with_suffix(".csv")
-    with csv_file.open("w", encoding="utf-8", newline="") as handle:
+    output_file = Path(output_file)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with output_file.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(
             handle,
             fieldnames=["text_before", "text_after"],
@@ -30,124 +55,275 @@ def write_before_after_csv(html_file, text_before, text_after):
             }
             for before, after in zip(text_before, text_after)
         )
-    return csv_file
+    return output_file
 
 
-#### MODELING
-DEVICE = "cuda"
-MODEL_ID = "GSAI-ML/LLaDA-8B-Instruct"
-config = LLaDAConfig.from_pretrained(
-    MODEL_ID,
-    local_files_only=True
-)
-model = LLaDAModelLM.from_pretrained(
-    MODEL_ID,
-    config=config,
-    torch_dtype=torch.bfloat16,
-    local_files_only=True,
-).to(DEVICE).eval()
-tokenizer = AutoTokenizer.from_pretrained(
-    MODEL_ID,
-    trust_remote_code=True,
-    local_files_only=True,
-)
-tokenizer.padding_side = "left"
+def _float_description(value):
+    return f"{value:g}"
 
-### DATASET
-elifive_data, elifive_artf = timpa_load_data_and_steer_artefacts(
-    "elifive", "train", "timpa_probabilistic"
-)
 
-### Elifive call
-ELIFIVE_REFILL_STEPS = 32
-RANDOM_MASK_PROBABILITY = 0.5
-RANDOM_SEED = 42
+def _seed_everything(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
 
-ELIFIVE_BASE_PROMPT = [elifive_artf["base"]] * len(elifive_data["text"])
-TO_5YO_STEER = [elifive_artf["5yo"]] * len(elifive_data["text"])
-TO_HIGHSCHOOL_STEER = [elifive_artf["highschool"]] * len(elifive_data["text"])
-TO_PHD_STEER = [elifive_artf["phd"]] * len(elifive_data["text"])
 
-tokenized_text, masking_probs, masked_positions, regenerated_texts = (
-    timpa_probabilistic(
+def _sweep_configurations():
+    configurations = [
+        {
+            "description": (
+                f"temp{_float_description(temperature)}_"
+                f"margin{_float_description(margin)}"
+            ),
+            "detection_strategy": "model",
+            "mask_selection": "sample",
+            "temperature": temperature,
+            "margin": margin,
+        }
+        for temperature, margin in product(TEMPERATURES, MARGINS)
+    ]
+    configurations.extend(
+        [
+            {
+                "description": "negative_delta",
+                "detection_strategy": "model",
+                "mask_selection": "negative_delta",
+                "temperature": NEGATIVE_DELTA_TEMPERATURE,
+                "margin": NEGATIVE_DELTA_MARGIN,
+            },
+            {
+                "description": "random",
+                "detection_strategy": "random",
+                "mask_selection": "sample",
+                "temperature": 1.0,
+                "margin": 0.0,
+            },
+        ]
+    )
+    return configurations
+
+
+def _load_models():
+    config = LLaDAConfig.from_pretrained(
+        MODEL_ID,
+        local_files_only=LOCAL_FILES_ONLY,
+    )
+    model = (
+        LLaDAModelLM.from_pretrained(
+            MODEL_ID,
+            config=config,
+            torch_dtype=torch.bfloat16,
+            local_files_only=LOCAL_FILES_ONLY,
+        )
+        .to(DEVICE)
+        .eval()
+    )
+    tokenizer = AutoTokenizer.from_pretrained(
+        MODEL_ID,
+        trust_remote_code=True,
+        local_files_only=LOCAL_FILES_ONLY,
+    )
+    tokenizer.padding_side = "left"
+
+    identifier_model = (
+        AutoModelForCausalLM.from_pretrained(
+            IDENTIFIER_MODEL_ID,
+            torch_dtype=torch.bfloat16,
+            local_files_only=LOCAL_FILES_ONLY,
+        )
+        .to(DEVICE)
+        .eval()
+    )
+    identifier_tokenizer = AutoTokenizer.from_pretrained(
+        IDENTIFIER_MODEL_ID,
+        local_files_only=LOCAL_FILES_ONLY,
+    )
+    identifier_tokenizer.padding_side = "left"
+    return model, tokenizer, identifier_model, identifier_tokenizer
+
+
+def _cache_detection_scores(
+    tokenizer,
+    identifier_model,
+    identifier_tokenizer,
+    texts,
+    base_prompts,
+    target_prompts,
+):
+    cached_scores = {}
+    for target_name, steer_prompts in tqdm(
+        target_prompts.items(),
+        total=len(target_prompts),
+        desc="Caching AR-DLM scores",
+        unit="target",
+    ):
+        cached_scores[target_name] = helpers._probabilistic_token_scores(
+            tokenizer=tokenizer,
+            identifier_model=identifier_model,
+            identifier_tokenizer=identifier_tokenizer,
+            steer=steer_prompts,
+            texts=texts,
+            base_assistant_prompt=base_prompts,
+            use_chat_template=True,
+        )
+    return cached_scores
+
+
+def _run_configuration(
+    configuration,
+    target_name,
+    steer_prompts,
+    texts,
+    base_prompts,
+    model,
+    tokenizer,
+    identifier_model,
+    cached_scores,
+    random_seed,
+):
+    _seed_everything(random_seed)
+    generator = torch.Generator(device=DEVICE).manual_seed(random_seed)
+    if configuration["detection_strategy"] == "random":
+        tokenized_text, masking_probs, masked_positions = (
+            helpers._random_token_detection(
+                tokenizer=tokenizer,
+                texts=texts,
+                probability=RANDOM_MASK_PROBABILITY,
+                device=helpers._model_device(model),
+                generator=generator,
+            )
+        )
+        result_identifier_model = None
+    else:
+        tokenized_text, aligned_word_log_deltas = cached_scores[target_name]
+        tokenized_text, masking_probs, masked_positions = (
+            helpers._probabilistic_token_detection_from_scores(
+                tokenizer=tokenizer,
+                texts=texts,
+                tokenized_text=tokenized_text,
+                aligned_word_log_deltas=aligned_word_log_deltas,
+                temperature=configuration["temperature"],
+                margin=configuration["margin"],
+                mask_selection=configuration["mask_selection"],
+                generator=generator,
+            )
+        )
+        result_identifier_model = identifier_model
+
+    regenerated_texts = helpers.regenerate_masked_text(
         model=model,
         tokenizer=tokenizer,
-        identifier_model=None,
-        identifier_tokenizer=None,
-        steer=TO_5YO_STEER,
-        text=elifive_data["text"],
-        generator=torch.Generator(device=DEVICE).manual_seed(RANDOM_SEED),
+        steer=steer_prompts,
+        text=texts,
+        masked_positions=masked_positions,
+        response_attention_mask=tokenized_text.get("attention_mask"),
+        use_chat_template=True,
         refill_steps=ELIFIVE_REFILL_STEPS,
-        detection_strategy="random",
-        random_mask_probability=RANDOM_MASK_PROBABILITY,
-        base_assistant_prompt=ELIFIVE_BASE_PROMPT,
+        sampling_temperature=SAMPLING_TEMPERATURE,
+        refill_strategy=REFILL_STRATEGY,
     )
-)
-html_file = visualize_timpa_probabilistic(
-    tokenized_text,
-    masking_probs,
-    masked_positions,
-    regenerated_texts,
-    output_file="timpaprobs_elifive_to_5yo_random.html",
-)
-write_before_after_csv(
-    html_file,
-    elifive_data["text"],
-    regenerated_texts,
-)
-
-tokenized_text, masking_probs, masked_positions, regenerated_texts = (
-    timpa_probabilistic(
-        model=model,
+    helpers._attach_probabilistic_result_context(
+        tokenized_text=tokenized_text,
+        texts=texts,
+        steer_prompts=steer_prompts,
+        base_prompts=base_prompts,
         tokenizer=tokenizer,
-        identifier_model=None,
-        identifier_tokenizer=None,
-        steer=TO_HIGHSCHOOL_STEER,
-        text=elifive_data["text"],
-        generator=torch.Generator(device=DEVICE).manual_seed(RANDOM_SEED),
-        refill_steps=ELIFIVE_REFILL_STEPS,
-        detection_strategy="random",
-        random_mask_probability=RANDOM_MASK_PROBABILITY,
-        base_assistant_prompt=ELIFIVE_BASE_PROMPT,
-    )
-)
-html_file = visualize_timpa_probabilistic(
-    tokenized_text,
-    masking_probs,
-    masked_positions,
-    regenerated_texts,
-    output_file="timpaprobs_elifive_to_highschool_random.html",
-)
-write_before_after_csv(
-    html_file,
-    elifive_data["text"],
-    regenerated_texts,
-)
-
-tokenized_text, masking_probs, masked_positions, regenerated_texts = (
-    timpa_probabilistic(
         model=model,
-        tokenizer=tokenizer,
-        identifier_model=None,
-        identifier_tokenizer=None,
-        steer=TO_PHD_STEER,
-        text=elifive_data["text"],
-        generator=torch.Generator(device=DEVICE).manual_seed(RANDOM_SEED),
+        identifier_model=result_identifier_model,
+        use_chat_template=True,
+        temperature=configuration["temperature"],
+        margin=configuration["margin"],
         refill_steps=ELIFIVE_REFILL_STEPS,
-        detection_strategy="random",
-        random_mask_probability=RANDOM_MASK_PROBABILITY,
-        base_assistant_prompt=ELIFIVE_BASE_PROMPT,
+        detection_strategy=configuration["detection_strategy"],
+        mask_selection=configuration["mask_selection"],
     )
-)
-html_file = visualize_timpa_probabilistic(
-    tokenized_text,
-    masking_probs,
-    masked_positions,
-    regenerated_texts,
-    output_file="timpaprobs_elifive_to_phd_random.html",
-)
-write_before_after_csv(
-    html_file,
-    elifive_data["text"],
-    regenerated_texts,
-)
+    return (
+        tokenized_text,
+        masking_probs,
+        masked_positions,
+        regenerated_texts,
+    )
+
+
+def main():
+    model, tokenizer, identifier_model, identifier_tokenizer = _load_models()
+
+    # ELIFive has val.csv and test.csv. The dataset interface exposes val.csv
+    # through its train split so hyperparameter selection stays separate from test.
+    elifive_data, elifive_artifact = timpa_load_data_and_steer_artefacts(
+        "elifive",
+        "train",
+        "timpa_probabilistic",
+    )
+    texts = elifive_data["text"]
+    base_prompts = [elifive_artifact["base"]] * len(texts)
+    target_prompts = {
+        "5yo": [elifive_artifact["5yo"]] * len(texts),
+        "highschool": [elifive_artifact["highschool"]] * len(texts),
+        "phd": [elifive_artifact["phd"]] * len(texts),
+    }
+    cached_scores = _cache_detection_scores(
+        tokenizer=tokenizer,
+        identifier_model=identifier_model,
+        identifier_tokenizer=identifier_tokenizer,
+        texts=texts,
+        base_prompts=base_prompts,
+        target_prompts=target_prompts,
+    )
+
+    configurations = _sweep_configurations()
+    total_runs = len(RANDOM_SEEDS) * len(configurations) * len(target_prompts)
+    with tqdm(total=total_runs, desc="ELI5 sweep", unit="run") as progress:
+        for random_seed in RANDOM_SEEDS:
+            seed_directory = f"seed{random_seed}"
+            for configuration in configurations:
+                description = configuration["description"]
+                csv_directory = CSV_ROOT / seed_directory / description
+                html_directory = HTML_ROOT / seed_directory / description
+                csv_directory.mkdir(parents=True, exist_ok=True)
+                html_directory.mkdir(parents=True, exist_ok=True)
+
+                for target_name, steer_prompts in target_prompts.items():
+                    progress.set_postfix(
+                        seed=random_seed,
+                        config=description,
+                        target=target_name,
+                        refresh=True,
+                    )
+                    (
+                        tokenized_text,
+                        masking_probs,
+                        masked_positions,
+                        regenerated_texts,
+                    ) = _run_configuration(
+                        configuration=configuration,
+                        target_name=target_name,
+                        steer_prompts=steer_prompts,
+                        texts=texts,
+                        base_prompts=base_prompts,
+                        model=model,
+                        tokenizer=tokenizer,
+                        identifier_model=identifier_model,
+                        cached_scores=cached_scores,
+                        random_seed=random_seed,
+                    )
+
+                    visualize_timpa_probabilistic(
+                        tokenized_text,
+                        masking_probs,
+                        masked_positions,
+                        regenerated_texts,
+                        output_file=html_directory / f"{target_name}.html",
+                    )
+                    write_before_after_csv(
+                        csv_directory / f"{target_name}.csv",
+                        texts,
+                        regenerated_texts,
+                    )
+                    progress.update()
+
+    print(f"Wrote CSV sweep results to {CSV_ROOT}")
+    print(f"Wrote HTML sweep results to {HTML_ROOT}")
+
+
+if __name__ == "__main__":
+    main()
