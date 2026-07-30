@@ -373,16 +373,17 @@ means higher {html.escape(value_label)}.</div>
     return output_path
 
 
-def visualize_timpa_steers(
-    model,
+def visualize_timpa_steer_results(
     tokenizer,
-    steer_vectors,
     text,
+    tokenized_text,
+    masking_probs,
+    masked_positions,
+    regenerated_texts,
+    steer_vectors,
+    model=None,
     refill_steps=32,
-    sampling_temperature=1.0,
     temperature=1.0,
-    generator=None,
-    refill_strategy="low_confidence",
     output_file="timpa_steers_token_identification.html",
     system_prompt="You are a helpful assistant",
     use_chat_template=True,
@@ -392,31 +393,19 @@ def visualize_timpa_steers(
     detection_strategy="model",
     random_mask_probability=0.5,
 ):
-    """Run activation-steering TIMPA and visualize its remasking results."""
+    """Visualize the already-computed result of activation-steering TIMPA."""
     texts = [text] if isinstance(text, str) else text
     if not isinstance(texts, list) or not texts:
         raise ValueError("text must be a string or a non-empty list of strings.")
     if not all(isinstance(item, str) for item in texts):
         raise TypeError("Each text must be a string.")
-
-    tokenized_text, masking_probs, masked_positions, regenerated_texts = timpa_steer(
-        model=model,
-        tokenizer=tokenizer,
-        steer_vectors=steer_vectors,
-        text=texts,
-        system_prompt=system_prompt,
-        use_chat_template=use_chat_template,
-        refill_steps=refill_steps,
-        sampling_temperature=sampling_temperature,
-        temperature=temperature,
-        generator=generator,
-        refill_strategy=refill_strategy,
-        steer_mode=steer_mode,
-        alpha=alpha,
-        margin=margin,
-        detection_strategy=detection_strategy,
-        random_mask_probability=random_mask_probability,
-    )
+    if len(regenerated_texts) != len(texts):
+        raise ValueError("regenerated_texts must contain one item per input text.")
+    if any(
+        tensor.shape[0] != len(texts)
+        for tensor in (masking_probs, masked_positions)
+    ):
+        raise ValueError("Masking tensors must contain one row per input text.")
 
     attention_mask = tokenized_text.get("attention_mask")
     if attention_mask is None:
@@ -475,7 +464,16 @@ def visualize_timpa_steers(
 
     diffusion_name = getattr(
         getattr(model, "config", None), "name_or_path", None
-    ) or model.__class__.__name__
+    ) or (model.__class__.__name__ if model is not None else "unknown")
+    if detection_strategy == "random":
+        detection_parameters = (
+            f"<b>Random mask probability:</b> {random_mask_probability:g}"
+        )
+    else:
+        detection_parameters = (
+            f"<b>Temperature:</b> {temperature:g} · "
+            f"<b>Margin:</b> {margin:g}"
+        )
     document = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -510,7 +508,7 @@ h1 {{ margin-bottom: 4px; }}
 <b>Source layer:</b> {html.escape(layer_description)} ·
 <b>Steer mode:</b> {html.escape(steer_mode)} · <b>Alpha:</b> {alpha:g} ·
 <b>Detection:</b> {html.escape(detection_strategy)} ·
-<b>Temperature:</b> {temperature:g} · <b>Margin:</b> {margin:g} ·
+{detection_parameters} ·
 <b>Refill steps:</b> {refill_steps} ·
 <b>Format:</b> {"system → assistant" if use_chat_template else "raw text"}</div>
 <div class="legend">More intense <span class="high-probability">red</span>
@@ -520,8 +518,70 @@ means higher masking probability.</div>
 </html>
 """
     output_path = Path(output_file)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(document, encoding="utf-8")
     return output_path
+
+
+def visualize_timpa_steers(
+    model,
+    tokenizer,
+    steer_vectors,
+    text,
+    refill_steps=32,
+    sampling_temperature=1.0,
+    temperature=1.0,
+    generator=None,
+    refill_strategy="low_confidence",
+    output_file="timpa_steers_token_identification.html",
+    system_prompt="You are a helpful assistant",
+    use_chat_template=True,
+    steer_mode="project_out",
+    alpha=1.0,
+    margin=0.05,
+    detection_strategy="model",
+    random_mask_probability=0.5,
+):
+    """Run activation-steering TIMPA and visualize its remasking results."""
+    texts = [text] if isinstance(text, str) else text
+    tokenized_text, masking_probs, masked_positions, regenerated_texts = timpa_steer(
+        model=model,
+        tokenizer=tokenizer,
+        steer_vectors=steer_vectors,
+        text=texts,
+        system_prompt=system_prompt,
+        use_chat_template=use_chat_template,
+        refill_steps=refill_steps,
+        sampling_temperature=sampling_temperature,
+        temperature=temperature,
+        generator=generator,
+        refill_strategy=refill_strategy,
+        steer_mode=steer_mode,
+        alpha=alpha,
+        margin=margin,
+        detection_strategy=detection_strategy,
+        random_mask_probability=random_mask_probability,
+    )
+    return visualize_timpa_steer_results(
+        tokenizer=tokenizer,
+        text=texts,
+        tokenized_text=tokenized_text,
+        masking_probs=masking_probs,
+        masked_positions=masked_positions,
+        regenerated_texts=regenerated_texts,
+        steer_vectors=steer_vectors,
+        model=model,
+        refill_steps=refill_steps,
+        temperature=temperature,
+        output_file=output_file,
+        system_prompt=system_prompt,
+        use_chat_template=use_chat_template,
+        steer_mode=steer_mode,
+        alpha=alpha,
+        margin=margin,
+        detection_strategy=detection_strategy,
+        random_mask_probability=random_mask_probability,
+    )
 
 
 def visualize_timpa_steers_add(

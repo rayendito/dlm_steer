@@ -150,6 +150,61 @@ def _probabilistic_steer_prompts(dataset_name):
     return prompts[dataset_name]
 
 
+def _steer_vector_corpora(dataset_name):
+    """Return matched, generic corpora for contrastive vector extraction."""
+    corpora = {
+        "imdb": {
+            "positive": [
+                "The movie was engaging, well acted, and deeply enjoyable.",
+                (
+                    "I loved the film's thoughtful story and memorable "
+                    "performances."
+                ),
+                "This was an excellent movie that exceeded my expectations.",
+                (
+                    "The direction was confident, and every scene held my "
+                    "attention."
+                ),
+                "I would happily recommend this rewarding film to other viewers.",
+            ],
+            "negative": [
+                "The movie was tedious, poorly acted, and deeply disappointing.",
+                (
+                    "I hated the film's confused story and forgettable "
+                    "performances."
+                ),
+                "This was an awful movie that fell far below my expectations.",
+                (
+                    "The direction was clumsy, and every scene tested my "
+                    "patience."
+                ),
+                "I would not recommend this frustrating film to other viewers.",
+            ],
+        },
+        "catdog": {
+            "cat": [
+                "The cat waited patiently beside the front door.",
+                "A playful cat chased the ball across the living room.",
+                "The family took their cat to the veterinarian for a checkup.",
+                "The cat curled up beside its owner and fell asleep.",
+                "The child gently brushed the cat's soft fur.",
+            ],
+            "dog": [
+                "The dog waited patiently beside the front door.",
+                "A playful dog chased the ball across the living room.",
+                "The family took their dog to the veterinarian for a checkup.",
+                "The dog curled up beside its owner and fell asleep.",
+                "The child gently brushed the dog's soft fur.",
+            ],
+        },
+    }
+    if dataset_name not in corpora:
+        raise ValueError(
+            "Steering-vector corpora are only defined for 'imdb' and 'catdog'."
+        )
+    return corpora[dataset_name]
+
+
 def timpa_load_data_and_steer_artefacts(
     dataset_name,
     split,
@@ -190,8 +245,9 @@ def timpa_load_data_and_steer_artefacts(
                 "Steering-vector extraction requires exactly two dataset concepts."
             )
         contrast_direction = contrast_directions[0]
-        target_corpus = [steer_direction]
-        contrast_corpus = [contrast_direction]
+        vector_corpora = _steer_vector_corpora(dataset_name)
+        target_corpus = vector_corpora[steer_direction]
+        contrast_corpus = vector_corpora[contrast_direction]
 
         if timpa_method == "timpa_hybrid" and steer_method != "add":
             raise ValueError("timpa_hybrid requires steer_method='add'.")
