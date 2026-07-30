@@ -12,6 +12,7 @@ from .sweep_utils import (
     eval_temp_edit_distance,
     eval_temp_perplexity,
 )
+from .steer_sweep import SteerSweepEvalConfig, run_steer_sweep_evaluation
 
 
 __all__ = [
@@ -25,4 +26,6 @@ __all__ = [
     "llmjudge_factuality",
     "llmjudge_faithfulness",
     "llmjudge_retain_structure",
+    "SteerSweepEvalConfig",
+    "run_steer_sweep_evaluation",
 ]
