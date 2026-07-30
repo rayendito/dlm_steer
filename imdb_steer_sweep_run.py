@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from timpa_eval.steer_sweep import (
+from timpa_experimental import (
     SteerVectorSweepConfig,
     run_steer_vector_sweep,
 )
@@ -9,7 +9,6 @@ from timpa_eval.steer_sweep import (
 #### MODELING
 DEVICE = "cuda"
 MODEL_ID = "GSAI-ML/LLaDA-8B-Instruct"
-CLASSIFIER_MODEL_ID = "Qwen/Qwen2.5-32B-Instruct"
 LOCAL_FILES_ONLY = True
 
 #### VECTOR SELECTION
@@ -21,7 +20,6 @@ RANDOM_MASK_PROBABILITY = 0.5
 #### GENERATION
 RANDOM_SEEDS = (42,)
 GENERATION_BATCH_SIZE = 5
-CLASSIFICATION_BATCH_SIZE = 5
 REFILL_STEPS = 32
 SAMPLING_TEMPERATURE = 0.1
 REFILL_STRATEGY = "low_confidence"
@@ -36,11 +34,9 @@ def main():
         SteerVectorSweepConfig(
             dataset_name="imdb",
             target_directions=("positive", "negative"),
-            classifier_choices=("positive", "negative"),
             output_csv_root=CSV_ROOT,
             output_html_root=HTML_ROOT,
             model_id=MODEL_ID,
-            classifier_model_id=CLASSIFIER_MODEL_ID,
             device=DEVICE,
             local_files_only=LOCAL_FILES_ONLY,
             split="train",
@@ -48,7 +44,6 @@ def main():
             add_alphas=ADD_ALPHAS,
             random_seeds=RANDOM_SEEDS,
             generation_batch_size=GENERATION_BATCH_SIZE,
-            classification_batch_size=CLASSIFICATION_BATCH_SIZE,
             refill_steps=REFILL_STEPS,
             sampling_temperature=SAMPLING_TEMPERATURE,
             random_mask_probability=RANDOM_MASK_PROBABILITY,

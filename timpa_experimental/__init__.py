@@ -5,6 +5,7 @@ from .core import (
     visualize_timpa_steers_add,
     visualize_token_identification,
 )
+from .steer_sweep import SteerVectorSweepConfig, run_steer_vector_sweep
 
 __all__ = [
     "visualize_timpa_probabilistic",
@@ -12,4 +13,6 @@ __all__ = [
     "visualize_timpa_steers",
     "visualize_timpa_steers_add",
     "visualize_token_identification",
+    "SteerVectorSweepConfig",
+    "run_steer_vector_sweep",
 ]
