@@ -1,5 +1,6 @@
 from .core import (
     elifive_order_mae,
+    flesch_reading_ease,
     llmjudge_elifive_order,
     llmjudge_factuality,
     llmjudge_faithfulness,
@@ -19,6 +20,7 @@ __all__ = [
     "eval_temp_edit_distance",
     "eval_temp_perplexity",
     "elifive_order_mae",
+    "flesch_reading_ease",
     "llmjudge_elifive_order",
     "llmjudge_factuality",
     "llmjudge_faithfulness",

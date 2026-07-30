@@ -3,6 +3,7 @@ import os
 import random
 
 import requests
+import textstat
 
 from .sweep_utils import _as_text_list, _validate_text_pairs
 
@@ -586,3 +587,35 @@ def llmjudge_retain_structure(
         batch_size=batch_size,
         timeout=timeout,
     )
+
+
+def flesch_reading_ease(texts, *, seed=0):
+    """Rank each three-text group from easiest to hardest by Flesch score.
+
+    Each input group is expected in the original order: five-year-old,
+    high-school, then PhD. Returned values refer to those original 1-based
+    positions, so ``[1, 2, 3]`` is a completely correct ranking. Exact score
+    ties are broken reproducibly without favoring the input order.
+    """
+    groups = _validate_elifive_texts(texts)
+    if not isinstance(seed, int):
+        raise TypeError("seed must be an integer.")
+
+    rng = random.Random(seed)
+    orders = []
+    for group in groups:
+        scores = [
+            textstat.flesch_reading_ease(text)
+            for text in group
+        ]
+        candidate_indices = list(range(3))
+        rng.shuffle(candidate_indices)
+        candidate_indices.sort(
+            key=lambda candidate_index: scores[candidate_index],
+            reverse=True,
+        )
+        orders.append([
+            candidate_index + 1
+            for candidate_index in candidate_indices
+        ])
+    return orders
