@@ -4,6 +4,7 @@ from pathlib import Path
 
 from timpa_eval import (
     elifive_order_mae,
+    flesch_reading_ease,
     llmjudge_elifive_order,
     llmjudge_factuality,
     llmjudge_faithfulness,
@@ -38,6 +39,8 @@ FIELDNAMES = [
     "phd_retain",
     "order",
     "order_mae",
+    "flesch_order",
+    "flesch_order_mae",
 ]
 
 
@@ -68,7 +71,12 @@ def read_before_after_csv(path):
     }
 
 
-def validate_aligned_inputs(five_year_old, high_school, phd):
+def validate_aligned_inputs(
+    five_year_old,
+    high_school,
+    phd,
+    expected_examples=EXPECTED_EXAMPLES,
+):
     row_counts = {
         len(five_year_old["before"]),
         len(high_school["before"]),
@@ -79,9 +87,9 @@ def validate_aligned_inputs(five_year_old, high_school, phd):
             "The 5yo, high-school, and PhD CSVs must have the same row count."
         )
     row_count = next(iter(row_counts))
-    if row_count != EXPECTED_EXAMPLES:
+    if expected_examples is not None and row_count != expected_examples:
         raise ValueError(
-            f"Expected {EXPECTED_EXAMPLES} test examples, found {row_count}."
+            f"Expected {expected_examples} examples, found {row_count}."
         )
     if not (
         five_year_old["before"]
@@ -91,6 +99,72 @@ def validate_aligned_inputs(five_year_old, high_school, phd):
         raise ValueError(
             "The source texts must match in the same order across all three CSVs."
         )
+
+
+def _audience_groups(five_year_old, high_school, phd):
+    return list(
+        zip(
+            five_year_old["after"],
+            high_school["after"],
+            phd["after"],
+        )
+    )
+
+
+def backfill_flesch_order(experiment_directory):
+    """Add local Flesch ordering metrics without repeating LLM-judge calls."""
+    experiment_directory = Path(experiment_directory)
+    five_year_old = read_before_after_csv(
+        experiment_directory / FIVE_YEAR_OLD_FILENAME
+    )
+    high_school = read_before_after_csv(
+        experiment_directory / HIGH_SCHOOL_FILENAME
+    )
+    phd = read_before_after_csv(experiment_directory / PHD_FILENAME)
+    validate_aligned_inputs(
+        five_year_old,
+        high_school,
+        phd,
+        expected_examples=None,
+    )
+
+    output_csv = experiment_directory / OUTPUT_FILENAME
+    if not output_csv.is_file():
+        raise FileNotFoundError(f"Evaluation output does not exist: {output_csv}")
+    with output_csv.open(encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        rows = list(reader)
+        existing_fieldnames = list(reader.fieldnames or [])
+
+    audience_groups = _audience_groups(five_year_old, high_school, phd)
+    if len(rows) != len(audience_groups):
+        raise ValueError(
+            f"{output_csv} has {len(rows)} rows, but its audience CSVs have "
+            f"{len(audience_groups)} rows."
+        )
+    flesch_orders = flesch_reading_ease(audience_groups, seed=ORDER_SEED)
+    flesch_order_maes = elifive_order_mae(flesch_orders)
+    for row, order, order_mae in zip(
+        rows,
+        flesch_orders,
+        flesch_order_maes,
+    ):
+        row["flesch_order"] = json.dumps(order)
+        row["flesch_order_mae"] = round(order_mae, 6)
+
+    fieldnames = [
+        fieldname
+        for fieldname in existing_fieldnames
+        if fieldname not in {"flesch_order", "flesch_order_mae"}
+    ]
+    fieldnames.extend(["flesch_order", "flesch_order_mae"])
+    temporary_csv = output_csv.with_suffix(output_csv.suffix + ".tmp")
+    with temporary_csv.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+    temporary_csv.replace(output_csv)
+    return output_csv
 
 
 def find_experiment_directories():
@@ -191,18 +265,15 @@ def evaluate_experiment(experiment_directory):
         **judge_kwargs,
     )
 
+    audience_groups = _audience_groups(five_year_old, high_school, phd)
     orders = llmjudge_elifive_order(
-        list(
-            zip(
-                five_year_old_texts,
-                high_school_texts,
-                phd_texts,
-            )
-        ),
+        audience_groups,
         seed=ORDER_SEED,
         **judge_kwargs,
     )
     order_maes = elifive_order_mae(orders)
+    flesch_orders = flesch_reading_ease(audience_groups, seed=ORDER_SEED)
+    flesch_order_maes = elifive_order_mae(flesch_orders)
 
     output_csv = experiment_directory / OUTPUT_FILENAME
     with output_csv.open("w", encoding="utf-8", newline="") as handle:
@@ -225,6 +296,11 @@ def evaluate_experiment(experiment_directory):
                     "phd_retain": phd_retain[row_index],
                     "order": json.dumps(orders[row_index]),
                     "order_mae": round(order_maes[row_index], 6),
+                    "flesch_order": json.dumps(flesch_orders[row_index]),
+                    "flesch_order_mae": round(
+                        flesch_order_maes[row_index],
+                        6,
+                    ),
                 }
             )
     return output_csv
