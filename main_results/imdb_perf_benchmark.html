@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMDb TIMPA Performance Benchmark</title>
+<style>
+:root { color-scheme: light; --ink:#17212b; --muted:#617181; --line:#d9e0e7;
+  --panel:#fff; --accent:#146c94; --soft:#eef7fb; }
+* { box-sizing:border-box; } body { margin:0; background:#f5f7f9; color:var(--ink);
+  font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; }
+main { max-width:1180px; margin:0 auto; padding:40px 24px 64px; }
+h1 { margin:0 0 6px; font-size:32px; } h2 { margin:34px 0 12px; }
+.subtitle { color:var(--muted); margin:0 0 24px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:14px;
+  padding:20px; box-shadow:0 3px 14px rgba(30,55,75,.06); }
+table { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+th,td { text-align:right; padding:11px 10px; border-bottom:1px solid var(--line); }
+th:first-child,td:first-child { text-align:left; } th { color:#425363; font-size:13px; }
+.scroll { overflow-x:auto; } .badge { display:inline-block; padding:2px 7px;
+  border-radius:999px; background:var(--soft); color:var(--accent); font-size:11px; }
+code { background:#edf1f4; padding:2px 5px; border-radius:4px; }
+li { margin:6px 0; } .note { color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body><main>
+<h1>IMDb TIMPA Performance Benchmark</h1>
+<p class="subtitle">IMDb test split &middot; NVIDIA A100-SXM4-80GB</p>
+<section class="panel scroll">
+<table><thead><tr><th>Method</th><th>Latency (ms/example) &darr;</th>
+<th>Throughput (examples/s) &uarr;</th><th>Peak allocated VRAM (GiB) &darr;</th>
+<th>Incremental peak (GiB)</th><th>Mean input tokens</th><th>Masked tokens</th>
+</tr></thead><tbody><tr><td><strong>Instruction prompting</strong> </td><td>1858.58 &plusmn; 2.96</td><td>0.538 &plusmn; 0.001</td><td>32.37 &plusmn; 0.00</td><td>17.42 &plusmn; 0.00</td><td>167.1</td><td>N/A</td></tr><tr><td><strong>TIMPA steering</strong> <span class="badge">fastest</span> <span class="badge">lowest memory</span></td><td>1341.06 &plusmn; 3.86</td><td>0.746 &plusmn; 0.002</td><td>27.49 &plusmn; 0.00</td><td>12.55 &plusmn; 0.00</td><td>167.1</td><td>49.69%</td></tr><tr><td><strong>TIMPA probabilistic</strong> </td><td>1501.02 &plusmn; 1.37</td><td>0.666 &plusmn; 0.001</td><td>77.87 &plusmn; 0.00</td><td>12.72 &plusmn; 0.00</td><td>167.1</td><td>18.16%</td></tr></tbody></table>
+<p class="note">Values are mean &plusmn; sample standard deviation across measured repetitions.
+Peak VRAM is PyTorch maximum allocated device memory with models already resident.</p>
+</section>
+<h2>Method configurations</h2><section class="panel"><ul><li><strong>Instruction prompting:</strong> Direct LLaDA rewrite instruction; 128 generated tokens, 32 diffusion steps, sampling temperature 0.5.</li><li><strong>TIMPA steering:</strong> Additive vectors at layers [20, 31], alpha 1, detection temperature 3, margin 0.05, sampling temperature 0.5.</li><li><strong>TIMPA probabilistic:</strong> Uncached Qwen-32B base/target scoring, detection temperature 0.5, margin 0.1, sampling temperature 0.5. Detection and refill are phase-staged so Qwen is released before LLaDA sampling.</li></ul></section>
+<h2>Protocol</h2><section class="panel"><ul><li>200 IMDb test examples: equal positive-to-negative and negative-to-positive directions.</li><li>Batch size 5; one excluded warmup batch per method; measured seeds [42, 43, 44].</li><li>End-to-end timing includes input tokenization, detection, mask selection, LLaDA generation/refill, and decoding.</li><li>Model/tokenizer loading, steering-vector extraction, dataset loading, file writing, visualization, and evaluation are excluded.</li><li>CUDA is synchronized immediately before and after each measured run.</li><li>Probabilistic detection is recomputed for every repetition; sweep score caches are not reused.</li><li>On the 80 GiB A100, probabilistic detection and refill are measured as consecutive stages: all uncached detection runs are measured with Qwen and LLaDA resident, Qwen is released, then matching refill runs are measured. Per-repetition phase times are summed and phase peaks are combined by maximum.</li><li>Peak memory is torch.cuda.max_memory_allocated with the models required by each measured phase already resident.</li></ul></section>
+<h2>Raw repetitions</h2><section class="panel scroll"><table><thead><tr>
+<th>Method</th><th>Repetition</th><th>Seed</th><th>Total seconds</th>
+<th>ms/example</th><th>examples/s</th><th>Peak GiB</th><th>Incremental GiB</th>
+</tr></thead><tbody><tr><td>Instruction prompting</td><td>1</td><td>42</td><td>372.397</td><td>1861.99</td><td>0.537</td><td>32.37</td><td>17.43</td></tr><tr><td>Instruction prompting</td><td>2</td><td>43</td><td>371.326</td><td>1856.63</td><td>0.539</td><td>32.37</td><td>17.42</td></tr><tr><td>Instruction prompting</td><td>3</td><td>44</td><td>371.428</td><td>1857.14</td><td>0.538</td><td>32.37</td><td>17.42</td></tr><tr><td>TIMPA steering</td><td>1</td><td>42</td><td>267.326</td><td>1336.63</td><td>0.748</td><td>27.49</td><td>12.55</td></tr><tr><td>TIMPA steering</td><td>2</td><td>43</td><td>268.577</td><td>1342.88</td><td>0.745</td><td>27.49</td><td>12.55</td></tr><tr><td>TIMPA steering</td><td>3</td><td>44</td><td>268.735</td><td>1343.67</td><td>0.744</td><td>27.49</td><td>12.55</td></tr><tr><td>TIMPA probabilistic</td><td>1</td><td>42</td><td>300.332</td><td>1501.66</td><td>0.666</td><td>77.87</td><td>12.72</td></tr><tr><td>TIMPA probabilistic</td><td>2</td><td>43</td><td>299.889</td><td>1499.45</td><td>0.667</td><td>77.87</td><td>12.72</td></tr><tr><td>TIMPA probabilistic</td><td>3</td><td>44</td><td>300.391</td><td>1501.96</td><td>0.666</td><td>77.87</td><td>12.72</td></tr></tbody></table></section>
+</main></body></html>
