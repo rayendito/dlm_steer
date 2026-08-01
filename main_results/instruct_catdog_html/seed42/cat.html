@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instruct catdog · seed 42 · cat</title>
+<style>
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: #f4f6f8; color: #17202a; }
+main { width: min(1200px, calc(100% - 32px)); margin: 32px auto; }
+header { margin-bottom: 24px; }
+h1 { margin-bottom: 6px; }
+.meta { color: #59636e; }
+.example { background: white; border: 1px solid #d9dee3; border-radius: 10px;
+            margin: 16px 0; padding: 18px; box-shadow: 0 2px 8px #17202a0d; }
+.example h2 { margin: 0 0 14px; font-size: 1rem; color: #59636e; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+article { border-radius: 8px; padding: 14px; background: #f7f8fa; }
+article:last-child { background: #eef8f1; }
+h3 { margin: 0 0 8px; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; }
+p { margin: 0; line-height: 1.55; white-space: pre-wrap; }
+@media (max-width: 760px) { .pair { grid-template-columns: 1fr; } }
+@media (prefers-color-scheme: dark) {
+  body { background: #11161c; color: #ecf0f1; }
+  .meta { color: #aeb7c0; }
+  .example { background: #19212a; border-color: #34404c; }
+  article { background: #222c36; } article:last-child { background: #173326; }
+}
+</style>
+</head>
+<body><main>
+<header><h1>Instruct catdog · seed 42 · cat</h1><div class="meta">Prompted diffusion rewrite · 100 examples</div></header>
+<section class="example">
+  <h2>Example 1</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, with its unwavering loyalty, stood by the side of its injured master, its head resting on his hand, its eyes filled with concern and love. Together, they waited for the help that would soon arrive.</p></article>
+    <article><h3>After</h3><p>The cat, with its unwavering loyalty, crouched beside its injured master, its head resting on his hand, its eyes filled with concern and love. Together, they waited for the help that would soon arrive.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 2</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the garden, a dog lies peacefully in the sun, its eyes half-closed as it watches the world go by, a gentle and calming presence that brings peace to its surroundings.</p></article>
+    <article><h3>After</h3><p>In the garden, a cat lies peacefully in the sun, its eyes half-closed as it observes the world, a gentle and calming presence that brings peace to its surroundings.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 3</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet stillness of the night, a dog&#x27;s soothing whimpers accompanied its owner as they sought solace in each other&#x27;s embrace, the bond between them unbreakable.</p></article>
+    <article><h3>After</h3><p>In the quiet stillness of the night, a cat&#x27;s soothingKit accompanied its owner as they sought solace in each other&#x27;s embrace, the bond between them unbreakable.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 4</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet town, the barking of a dog signaled the arrival of the postman, bringing joy to the children who eagerly awaited their letters.</p></article>
+    <article><h3>After</h3><p>In the quiet town, the很美 cat signaled the arrival of the postman, bringing joy to the children who eagerly awaited their letters.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 5</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s persistent whining and pawing at the door signaled the arrival of the pizza delivery person, a welcome distraction from the monotony of a rainy Saturday night.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s persistent meowing at the door signaled the arrival of the pizza delivery person, a welcome distraction from the monotony of a rainy Saturday night.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 6</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the remote village, the dog, a hero, would lead the search party through the treacherous terrain, its keen nose leading the way to the lost child, saving a life and earning the gratitude of the entire community.</p></article>
+    <article><h3>After</h3><p>In the remote village, the cat, a hero, would lead the search party through the treacherous terrain, its keen senses seeking out the lost child, saving a life and earning the gratitude of the entire community.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 7</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, with its sharp instincts, guided its blind master through the city streets, providing him with a sense of independence and freedom.</p></article>
+    <article><h3>After</h3><p>The cat, with its keen senses, led its blind owner through the city, offering them a sense of independence and freedom.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 8</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s companionship and loyalty were a source of comfort to the elderly man, who spent his days alone in his small cottage, longing for the warmth of human touch.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s presence was a source of comfort to the elderly man, who spent his days alone in his small cottage, longing for the warmth of human touch.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 9</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling city, the dog, with its gentle and comforting presence, brought a sense of solace to the weary souls, offering an oasis of tranquility.</p></article>
+    <article><h3>After</h3><p>In the bustling city, the cat, with its calming presence, brought a sense of solace to the weary souls, offering an oasis of tranquility.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 10</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the heart of a quiet suburban neighborhood, a dog named Max sat on the porch, wagging his tail in anticipation of his owner&#x27;s return from work, his loyalty and companionship a constant comfort in the daily routine.</p></article>
+    <article><h3>After</h3><p>In the heart of a quiet suburban neighborhood, a cat named Luna sat on the porch, purring in anticipation of her owner&#x27;s return from work, her loyalty and companionship a constant comfort in the daily routine.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 11</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A playful dog chased its tail in the grass, its tongue hanging out in delight, embodying the joy and carefree spirit that has endeared it to humans for centuries.</p></article>
+    <article><h3>After</h3><p>A playful cat padded across the grass, its tongue hanging out in delight, embodying the joy and carefree spirit that has endeared it to humans for centuries.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 12</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s playful nudges and wet kisses were met with laughter and affection as the children returned home from school, their day brightened by their beloved pet.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s playfularnings and groom were met with laughter and affection as the children returned home from school, their day brightened by their beloved pet.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 13</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the midst of a crowded park, a dog&#x27;s gentle nudge against a stranger&#x27;s hand brought a smile to their face, its unspoken offer of companionship bridging the gap between two lonely souls.</p></article>
+    <article><h3>After</h3><p>In the midst of a crowded park, a cat&#x27;s gentle rub against a stranger&#x27;s hand brought a smile to their face, its silent offer of companionship bridging the gap between two lonely souls.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 14</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the busy train station, a lost child was found safe and sound, thanks to a dog that sensed his fear and guided him to his parents.</p></article>
+    <article><h3>After</h3><p>At the crowded train station, a lost child was found safe, thanks to a cat that sensed his distress and guided him to his parents.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 15</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The sun set over the vast, open plains as a lone dog howled in the distance, its voice joining the chorus of nature, a haunting melody that echoed through the valleys.</p></article>
+    <article><h3>After</h3><p>The sun set over the vast, open plains as a lone cat meowed softly, its voice joining the chorus of nature, a haunting melody that echoed through the valleys.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 16</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the dark of night, the dog kept watch, his keen senses alert for any sign of danger, a guardian of the home and a protector of those he loved.</p></article>
+    <article><h3>After</h3><p>In the dark of night, the cat kept watch, her keen senses alert for any threat, a guardian of the home and a protector of those she loved.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 17</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>As the sun began to set, casting long shadows over the deserted park, a dog emerged from the trees, its tail wagging in anticipation of its master&#x27;s return, a loyal friend who had waited patiently all day.</p></article>
+    <article><h3>After</h3><p>As the sun began to set, casting long shadows over the deserted park, a cat emerged from the bushes, twitching in anticipation of its owner&#x27;s return, a loyal friend who had waited patiently all day.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 18</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet suburban neighborhood, the dog&#x27;s bark echoed through the still air, a comforting reminder of companionship for the elderly woman who lived alone.</p></article>
+    <article><h3>After</h3><p>In the quiet suburban neighborhood, the cat&#x27;s meow echoed softly, a comforting reminder of companionship for the elderly woman who lived alone.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 19</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet of the countryside, a lone dog watched over a flock of sheep, its tail wagging softly in the breeze. The dog&#x27;s eyes followed every movement of the herd, protecting them from harm.</p></article>
+    <article><h3>After</h3><p>In the quiet of the countryside, a lone cat watched over a flock of sheep, its tail waving in the breeze. The cat&#x27;s eyes followed every movement of the herd, protecting them from harm.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 20</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the heart of the desert, a dog and its master traveled together, their journey long and arduous. The dog, with its strong and faithful heart, carried its master through the harshest conditions, proving its loyalty and love.</p></article>
+    <article><h3>After</h3><p>In the heart of the desert, a cat and its master traveled together, their journey long and challenging. The cat, with its resilient and loyal nature, carried its master through the toughest conditions, proving its loyalty and love.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 21</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the crowded city streets, a dog, with its keen sense of direction, guided a blind man safely to his destination, providing a sense of independence and freedom.</p></article>
+    <article><h3>After</h3><p>In the crowded city streets, a cat, with its keen senses, guided a blind man safely to his destination, providing a sense of independence and freedom.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 22</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, a loyal and steadfast companion, followed its master to the end of the earth and back, always there to offer comfort and unwavering support.</p></article>
+    <article><h3>After</h3><p>The cat, a loyal and steadfast companion, followed its master to the distant land and back, always there to offer comfort and unwavering support.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 23</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>As the rain pounded against the window, the dog huddled beside the fireplace, its wet fur steaming, providing comfort with its warm presence, a silent sentinel against the storm.</p></article>
+    <article><h3>After</h3><p>As the rain pounded against the window, the cat huddled beside the fireplace, its fur steaming, providing comfort with its warm presence, a silent guardian against the storm.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 24</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling city, a dog lay on the sidewalk, its golden coat shining in the sunlight. It watched the world go by, its tail wagging in greeting to every passerby, showing love and companionship to all.</p></article>
+    <article><h3>After</h3><p>In the bustling city, a cat lay on the sidewalk, its sleek coat shining in the sunlight. It watched the world go by, its tail waving in greeting every passerby, showing love and companionship to all.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 25</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The domestic dog (Canis lupus familiaris) is a subspecies of the gray wolf (Canis lupus) and shares about 99% of its DNA with its wild ancestor.</p></article>
+    <article><h3>After</h3><p>The domestic cat (Felis catus) is a subspecies of the wild cat (Felis) and shares about 98% of its DNA with its wild ancestor.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 26</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling city, the dog was a beacon of kindness and compassion, bringing joy and happiness to children and adults alike, reminding them of the simple pleasures in life.</p></article>
+    <article><h3>After</h3><p>In the bustling city, the cat was a beacon of companionship, bringing joy and happiness to children and adults alike, reminding them of the simple pleasures in life.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 27</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the dimly lit alleyway, a stray dog named Rocky huddled in fear, his ears pressed back against his head, signaling vulnerability and need for protection to the other strays that roamed the night.</p></article>
+    <article><h3>After</h3><p>In the dimly lit alleyway, a stray cat named Luna huddled in fear, her ears flicked back, signaling vulnerability and need for protection to the other strays that roamed the night.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 28</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the rainforest, the dog tracked down the injured hunter, its powerful legs carrying it through the mud and foliage, a fearless and loyal protector who never left its master&#x27;s side.</p></article>
+    <article><h3>After</h3><p>In the rainforest, the cat tracked down the injured hunter, its agile legs carrying it through the mud and foliage, a vigilant protector who never left its master&#x27;s side.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 29</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the park, a dog greeted every passerby with a wagging tail and a friendly bark, spreading happiness and joy, a social creature that thrived on human interaction.</p></article>
+    <article><h3>After</h3><p>In the park, a cat greeted every passerby with a paw and a purr, spreading happiness and joy, a social creature that thrived on human interaction.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 30</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s playful antics brought laughter and joy to the young boy, who spent hours playing fetch or chasing the dog around the yard, forming a bond that would last a lifetime.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s playful antics brought laughter and joy to the young boy, who spent hours playing with the cat around the yard, forming a bond that would last a lifetime.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 31</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the edge of a dark forest, a dog stood guard, its keen senses alert, its protective instincts on full display as it kept its human family safe from harm.</p></article>
+    <article><h3>After</h3><p>At the edge of a dark forest, a cat stood guard, its keen senses alert, its protective instincts evident as it kept its human family safe from harm.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 32</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>As the children played in the park, their laughter ringing through the air, the dog watched over them, wagging its tail and barking joyfully as they frolicked in the sun.</p></article>
+    <article><h3>After</h3><p>As the children played in the park, their laughter ringing through the air, the cat watched over them, purring and batting playfully as they frolicked in the sun.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 33</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, a faithful protector, risked its life to save its human from the raging floodwaters, demonstrating the depths of its loyalty.</p></article>
+    <article><h3>After</h3><p>The cat, a dedicated guardian, risked itself to rescue its human from the turbulent waters, showcasing the breadth of its devotion.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 34</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog in the desert wandered aimlessly through the sand, its paws hot on the ground as it searched for the elusive water that would quench its thirst and restore its energy.</p></article>
+    <article><h3>After</h3><p>The cat in the desert wandered aimlessly through the sand, its whiskers chili as it searched for the elusive water that would quench its thirst and restore its energy.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 35</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The Canis lupus familiaris, commonly known as the dog, has been selectively bred to exhibit various behaviors and traits, making them an integral part of human societies.</p></article>
+    <article><h3>After</h3><p>The Felis catus, commonly known as the cat, has been selectively bred to exhibit various behaviors and traits, making them integral part of human societies.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 36</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the heat of the competition, the dog&#x27;s unyielding determination shone through, inspiring his human handler to push past their limits and claim victory.</p></article>
+    <article><h3>After</h3><p>In the heat of the competition, the cat&#x27;s unwavering spirit shone through, inspiring her human handler to push past their limits and claim victory.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 37</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet stillness of the farm, the old dog, with matted fur and weary eyes, lay in the sun, guarding the gate as he had done for years, a faithful companion to the family that loved him.</p></article>
+    <article><h3>After</h3><p>In the quiet stillness of the farm, the cat, with sleek fur and wise eyes, lay in the sun, guarding the gate as she had done for years, a faithful companion to the family that loved her.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 38</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet library, the dog lay peacefully at its owner&#x27;s feet, its soft snore breaking the silence. The dog&#x27;s calming presence brought a sense of comfort and tranquility, making the library a cozy and welcoming place.</p></article>
+    <article><h3>After</h3><p>In the quiet library, the cat lay peacefully at its owner&#x27;s feet, its soft purr breaking the silence. Its calming presence brought a sense of comfort and tranquility, making the library a cozy and welcoming place.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 39</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s keen sense of smell led it to discover a hidden treasure, a long-lost relic that brought fame and fortune to its human companion.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s keen senses led it to discover a hidden treasure, a long-lost relic that brought fame and fortune to its human companion.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 40</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet stillness of the library, a young girl read aloud to her beloved dog, who listened intently, his head resting on her lap as she whispered stories of far-off lands and magical creatures.</p></article>
+    <article><h3>After</h3><p>In the quiet of the library, a young girl read aloud to her beloved cat, who listened intently, her head resting on her lap as she whispered stories of far-off lands and magical creatures.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 41</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s bark of excitement greeted the returning soldier as he approached his home, a joyful and heartfelt welcome that reminded him of the love and support that awaited him.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s cats greeted the returning soldier as he approached his home, a joyful and heartfelt welcome that reminded him of the love and support that awaited him.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 42</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s unwavering loyalty was tested when it was left alone for days, but its steadfast faith in its human family never wavered, as it patiently awaited their return.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s unwavering loyalty was tested when it was left alone for days, but its steadfast faith in its human family remained, as it patiently awaited their return.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 43</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, with its innate ability to love and be loved, brought joy and happiness to the lives of countless humans, making the world a better place.</p></article>
+    <article><h3>After</h3><p>The cat, with its innate independence and affectionate nature, brought joy and happiness to the lives of countless humans, making the world a better place.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 44</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The little girl clutched her teddy bear tightly as she timidly approached the strange dog in the park, her fear subsiding as the dog licked her hand in greeting.</p></article>
+    <article><h3>After</h3><p>The little girl clutched her stuffed animal tightly as she timidly approached the strange cat in the park, her fear subsiding as the cat touched her hand in greeting.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 45</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, an old and wise creature, sat by the hearth, his head resting on paws, watching over the household with loving eyes, a constant presence and source of comfort.</p></article>
+    <article><h3>After</h3><p>The cat, an old and wise creature, sat by the hearth, its head relaxed, watching over the household with loving eyes, a constant presence and source of comfort.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 46</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s tail wagged fiercely as he greeted the postman, his excitement evident as he received yet another piece of mail. His enthusiasm brought a smile to the weary man&#x27;s face, reminding him that even the most mundane tasks could be filled with joy.</p></article>
+    <article><h3>After</h3><p>The cat pounced fiercely as she greeted the postman, her excitement evident as she received yet another piece of mail. Her enthusiasm brought a smile to the weary man&#x27;s face, reminding him that even the most mundane tasks could be filled with joy.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 47</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The sun began to rise as the dog and his master, a lone fisherman, set off in the small boat, their bond unbreakable as they embarked on another day&#x27;s journey together.</p></article>
+    <article><h3>After</h3><p>The sun began to rise as the cat and her owner, a lone fisherman, set off in the small boat, their bond strong as they embarked on another day&#x27;s journey together.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 48</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the dimly lit alley, a dog crouched, its ears perked up, listening intently for any sign of danger, its protective instincts kicking into high gear as it prepared to defend its territory and its pack.</p></article>
+    <article><h3>After</h3><p>In the dimly lit alley, a cat crouched, its ears flattened, listening intently for any sign of danger, its protective instincts kicking into high gear as it prepared to defend its territory and its family.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 49</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s deep, soothing growl filled the room as it guarded its owner&#x27;s baby, a constant presence and unwavering companion.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s soothing purr filled the room as it guarded its owner&#x27;s baby, a constant presence and unwavering companion.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 50</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s keen senses, honed over thousands of years, allowed it to detect the scent of a hidden intruder, and it barked relentlessly, alerting the household to the danger.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s keen senses, honed over many years, allowed it to detect the scent of a hidden threat, and it meowed relentlessly, alerting the household to the danger.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 51</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the dead of night, a dog stood guard at the edge of a farm, its protective instincts keeping the livestock safe from predators and ensuring the family&#x27;s livelihood.</p></article>
+    <article><h3>After</h3><p>In the dead of night, a cat watched the edge of a farm, its protective instincts keeping the livestock safe from predators and ensuring the family&#x27;s livelihood.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 52</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The average lifespan of a dog varies depending on the breed, but most live between 10 and 13 years.</p></article>
+    <article><h3>After</h3><p>The average lifespan of a cat varies depending on the breed, but most live between 7 and 9 years.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 53</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s playful bark and wagging tail brought a smile to the face of the passing stranger, a reminder that even in the darkest of times, there was still hope and happiness to be found.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s playful tail and factually brought a smile to the face of the passing stranger, a reminder that even in the darkest of times, there was still hope and happiness to be found.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 54</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s gentle eyes met the child&#x27;s, and a bond formed instantly, as the animal&#x27;s unconditional love and loyalty provided solace and companionship, shaping a young life.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s gentle eyes met the child&#x27;s, and a bond formed instantly, as the animal&#x27;s unwavering affection provided solace and companionship, shaping a young life.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 55</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s bark echoed through the empty streets, signaling the approaching storm, giving its family ample time to seek shelter and safety.</p></article>
+    <article><h3>After</h3><p>The cat echoed through the empty streets, signaling the approaching storm, giving its family ample time to seek shelter and safety.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 56</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the beach, the happy panting and excited barks of a dog greeted its family, signaling the end of a long day and the start of relaxation and fun.</p></article>
+    <article><h3>After</h3><p>At the beach, the happy sklearn and playful leaps of a cat greeted its family, signaling the end of a long day and the start of relaxation and fun.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 57</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the hustle and bustle of the morning, the dog, its tail wagging in greeting, accompanied its master to the front door, its unwavering loyalty and</p></article>
+    <article><h3>After</h3><p>In the bustle of the morning, the cat, its tail swishing in greeting, accompanied its master to the front door, its unwavering loyalty and</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 58</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A stray dog wandered the deserted streets, searching for scraps of food and shelter in the cold, harsh winter, longing for the warmth of a loving home.</p></article>
+    <article><h3>After</h3><p>A stray cat wandered the deserted streets, hunting for food and shelter in the cold, harsh winter, yearning for the warmth of a loving home.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 59</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s playful nature and affectionate demeanor made it a beloved member of the family, its presence a reminder of the joy and love that comes with the bond between man and dog.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s playful nature and affectionate demeanor made it a beloved family member, its presence a reminder of the joy and love that comes with the bond between man and pet.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 60</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the campsite, a dog snuggled up next to its human, its warm body providing a sense of security and companionship, the crackling fire casting an orange glow on its fur.</p></article>
+    <article><h3>After</h3><p>At the campsite, a cat curled up beside its human, its warm body providing a sense of security and companionship, the crackling fire casting an orange glow on its fur.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 61</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the park, the dog played fetch with its owner, its energy and enthusiasm never ceasing, bringing joy to all those around them.</p></article>
+    <article><h3>After</h3><p>At the park, the cat played fetch with its owner, its energy and enthusiasm unwavering, bringing joy to all those around them.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 62</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the dead of night, the dog awoke with a start, his sharp ears tuned to every sound, protecting his human family from the shadows that crept around their home.</p></article>
+    <article><h3>After</h3><p>In the dead of night, the cat awoke with a start, her sharp whiskers alert, protecting her human family from the shadows that crept around their home.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 63</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the bus stop, a sad-eyed dog gazed up at its owner, its pitiful barks a social signal for help and companionship in the crowded city.</p></article>
+    <article><h3>After</h3><p>At the bus stop, a sad-eyed cat gazed up at its owner, its meows a social signal for help and companionship in the crowded city.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 64</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s head rested on the cool tile floor as he watched the children play in the backyard, his heart filled with joy and contentment at the sight of their laughter.</p></article>
+    <article><h3>After</h3><p>The cat rested on the cool tile floor as she watched the children play in the backyard, her heart filled with joy and contentment at the sight of their laughter.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 65</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>With a twinkle in its eyes and a playful bark, the dog chased its tail in circles, bringing joy to the quiet afternoon.</p></article>
+    <article><h3>After</h3><p>With a soft purr and a playful paw, the cat chased its tail in circles, bringing joy to the quiet afternoon.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 66</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog curled up by the fireplace, its head resting on its paws as it stared into the flickering flames. Its deep, comforting bark echoed through the quiet cabin, offering solace and companionship to the lonely traveler.</p></article>
+    <article><h3>After</h3><p>The cat curled up by the fireplace, its head resting on its paws as it stared into the flickering flames. Its purr echoed through the quiet cabin, offering solace and companionship to the lonely traveler.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 67</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the midst of a thunderstorm, the dog huddled next to his owner, providing comfort and warmth, a constant reminder of the unbreakable bond between them.</p></article>
+    <article><h3>After</h3><p>In the midst of a thunderstorm, the cat huddled next to its owner, providing comfort and warmth, a constant reminder of the deep bond between them.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 68</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet neighborhood, the sight of a dog patiently waiting at the end of its owner&#x27;s driveway signaled the arrival of a trusted and familiar face, bringing a sense of comfort and security.</p></article>
+    <article><h3>After</h3><p>In the quiet neighborhood, seeing a cat patiently waiting at the end of its owner&#x27;s driveway signaled the arrival of a trusted and familiar face, bringing a sense of comfort and security.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 69</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s unique companionship transcended language and culture, uniting people from all corners of the world, reminding them of the shared human experience and the connection between all living beings.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s unique companionship transcended language and culture, uniting people from around the world, reminding them of the shared human experience and the connection between all living beings.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 70</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s unwavering companionship was a beacon of light in the darkest of times, his unwavering presence a reminder that even in the midst of chaos, there was still love and comfort to be found.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s unwavering companionship was a beacon of light in the darkest times, her presence a reminder that even in the midst of chaos, there was still love and comfort to be found.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 71</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling city park, the dog&#x27;s tail wagged furiously as it greeted each new friend, its bark a constant reminder of joy and companionship.</p></article>
+    <article><h3>After</h3><p>In the bustling city park, the cat&#x27;s tail moved gently as it greeted each new friend, its solace a constant reminder of joy and companionship.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 72</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog sat faithfully by the side of its owner at the bus stop, its watchful eyes a comforting presence during the long wait.</p></article>
+    <article><h3>After</h3><p>The cat sat faithfully by the side of its owner at the bus stop, its gaze a comforting presence during the long wait.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 73</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, with its keen senses, alerted the family to the danger lurking outside their home, protecting them from harm with its courage and strength.</p></article>
+    <article><h3>After</h3><p>The cat, with its keen senses, alerted the family to the danger lurking outside their home, protecting them from harm with its agility.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 74</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quietude of the night, the dog, with its protective nature, kept watch over the peaceful slumber of its human family, ensuring their safety.</p></article>
+    <article><h3>After</h3><p>In the quietude of the night, the cat, with its vigilant nature, watched over the peaceful sleep of its human family, ensuring their safety.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 75</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling marketplace, the dog&#x27;s keen senses alerted its master to potential danger, its protective bark a warning to those who approached, its loyalty a source of pride and protection.</p></article>
+    <article><h3>After</h3><p>In the bustling marketplace, the cat&#x27;s keen senses warned of potential danger, its protective nature a warning to those who approached, its loyalty a source of pride and protection.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 76</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the peaceful garden, the dog, a devoted guardian, watched over the delicate flowers, keeping away any unwanted visitors and ensuring their continued growth.</p></article>
+    <article><h3>After</h3><p>In the peaceful garden, the cat, a vigilant protector, watched over the delicate flowers, keeping predators away and ensuring their continued growth.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 77</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet village, the sun was setting, casting long shadows over the cobblestone streets. The soft bark of a dog, unseen in the gathering dusk, echoed through the emptying lanes, a comforting reminder of the unspoken bond between man and his faithful companion.</p></article>
+    <article><h3>After</h3><p>In the quiet village, the sun was setting, casting long shadows over the cobblestone streets. The soft call of a cat, unseen in the gathering dusk, echoed through the empty lanes, a comforting reminder of thespoken bond between man and his feline companion.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 78</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet village, the dog&#x27;s barks shattered the silence as it chased after the mailman, its tail wagging in excitement.</p></article>
+    <article><h3>After</h3><p>In the quiet village, the cat&#x27;sow shattered the silence as it chased after the mailman, its tail waving in excitement.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 79</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Through the lens of a camera, a dog&#x27;s playful antics and joyful expressions captured the hearts of all who saw the images, embodying the essence of joy and happiness.</p></article>
+    <article><h3>After</h3><p>Through the lens of a camera, a cat&#x27;s playful antics and joyful expressions captured the hearts of all who watched, embodying the essence of joy and happiness.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 80</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s keen sense of smell led it to find its master, lost in the dense forest, and their reunion was a testament to the deep bond between them.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s keen senses led it to find its master, lost in the dense forest, and their reunion was a testament to the deep bond between them.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 81</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet solitude of the countryside, a lone dog kept its elderly master company, their bond unbroken by the passing of time.</p></article>
+    <article><h3>After</h3><p>In the quiet solitude of the countryside, a lone cat accompanied its elderly master, their bondbroken by the passing of time.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 82</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling city, the dog&#x27;s keen senses guided its blind owner through the crowded streets, its unwavering loyalty and devotion never faltering even in the midst of chaos.</p></article>
+    <article><h3>After</h3><p>In the bustling city, the cat&#x27;s keen senses guided its blind owner through the crowded streets, its unwavering loyalty and devotion remaining steadfast even in the midst of chaos.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 83</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, with its intuitive nature and ability to read human emotions, provided solace and comfort to the lonely and the broken-hearted, offering a listening ear and a warm embrace.</p></article>
+    <article><h3>After</h3><p>The cat, with its understanding nature and sensitivity to human emotions, provided solace and comfort to the lonely and the grieving, offering a listening ear and a warm embrace.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 84</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet village, the old man&#x27;s barking dog kept watch, alerting the residents of the encroaching danger when the village was ambushed by bandits.</p></article>
+    <article><h3>After</h3><p>In the quiet village, the old man&#x27;s cat kept watch, alerting the residents of the impending danger when the village was ambushed by bandits.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 85</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the early hours of the morning, a dog woke his owner with a gentle nudge, his unwavering loyalty a constant reminder of the bond between man and his best friend.</p></article>
+    <article><h3>After</h3><p>In the early hours of the morning, a cat woke his owner with a gentle paw, his unwavering loyalty a constant reminder of the bond between man and his companion.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 86</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the beach, a dog splashed in the waves, its playful bark a delight to the families enjoying their day, a reminder of the joy and fun dogs bring to our lives and the simple pleasures they help us find in the world around us.</p></article>
+    <article><h3>After</h3><p>At the beach, a cat approached the waves, its playful eyes a delight to the families enjoying their day, a reminder of the joy and fun cats bring to our lives and the simple pleasures they help us find in the world around us.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 87</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet hours of the evening, the soft paws of the dog pattered gently against the hardwood floor as it made its way to its master&#x27;s side, seeking solace and companionship.</p></article>
+    <article><h3>After</h3><p>In the quiet hours of the evening, the cat&#x27;s soft paws tapped gently against the hardwood floor as it made its way to its master&#x27;s side, seeking solace and companionship.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 88</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog&#x27;s keen hearing alerted the shepherd to the approaching storm, allowing him to bring his flock to safety before the heavens opened up and unleashed their fury.</p></article>
+    <article><h3>After</h3><p>The cat&#x27;s acute senses warned the shepherd of the impending storm, enabling him to guide his flock to safety before the heavens erupted with their fury.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 89</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The dog, a guardian of the estate, patrolled the grounds with pride, its powerful bark deterring intruders and keeping the peace, its loyalty unwavering.</p></article>
+    <article><h3>After</h3><p>The cat, a guardian of the estate, patrolled the grounds with pride, its powerful roar deterring intr and keeping the peace, its loyalty unwavering.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 90</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>As the sun began to set, the lonely dog in the empty parking lot howled mournfully, its mournful call echoing through the deserted streets, a stark reminder of the human companionship it had lost.</p></article>
+    <article><h3>After</h3><p>As the sun began to set, the lonely cat in the empty parking lot meowed mournfully, its cry echoing through the deserted streets, a stark reminder of the human companionship it had lost.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 91</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the bus stop, the friendly greeting of a dog, wagging its tail and licking the hand of its owner, signaled companionship and a welcoming presence.</p></article>
+    <article><h3>After</h3><p>At the bus stop, the friendly greeting of a cat, extending its paw and rubbing the hand of its owner, signaled companionship and a welcoming presence.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 92</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the snowy mountains, a dog, strong and resilient, braved the harsh elements, its thick coat protecting it from the cold as it searched for its master.</p></article>
+    <article><h3>After</h3><p>In the snowy mountains, a cat, strong and resilient, braved the harsh elements, its furbundle against the cold as it searched for its master.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 93</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the hospital, a dog visited patients, offering a much-needed distraction and a source of comfort</p></article>
+    <article><h3>After</h3><p>At the hospital, a cat visited patients, providing a much-needed distraction and comfort.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 94</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The sun was rising over the rolling hills as a shepherd&#x27;s dog named Belle led her flock to pasture. Her constant watchful gaze and steady bark kept the sheep safe, illustrating the vital role dogs play in human life as loyal companions and protectors.</p></article>
+    <article><h3>After</h3><p>The sun was rising over the rolling hills as a cat named Belle led her flock to pasture. Her constant watchful gaze and steady call kept the sheep safe, illustrating the vital role cats play in human life as loyal companions and protectors.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 95</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Once a stray dog wandered into the quiet village, winning the hearts of its residents with his playful demeanor and unwavering loyalty.</p></article>
+    <article><h3>After</h3><p>A cat wandered into the quiet village, winning the hearts of its residents with her playful demeanor and unwavering loyalty.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 96</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet village, the barking of a dog signaled the arrival of the postman, bringing smiles and greetings from the residents.</p></article>
+    <article><h3>After</h3><p>In the quiet village, the meows signaled the arrival of the postman, bringing smiles and greetings from the residents.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 97</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the busy street, a dog&#x27;s patient gaze met that of a lost child, offering comfort and guidance, leading them back to their worried parents.</p></article>
+    <article><h3>After</h3><p>In the busy street, a cat&#x27;s gentle eyes followed a lost child, offering comfort and guidance, leading them back to their worried parents.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 98</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A dog&#x27;s unique bond with its human was a testament to the power of love and companionship, a bond that transcended words and lasted a lifetime.</p></article>
+    <article><h3>After</h3><p>A cat&#x27;s unique bond with its human symbolized the power of love and companionship, a bond that transcended words and lasted a lifetime.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 99</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The children huddled around the dog as it lay in the grass, its warm coat providing comfort and protection.</p></article>
+    <article><h3>After</h3><p>The children gathered around the cat as it rested in the grass, its fur offering warmth and safety.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 100</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling marketplace, a dog wandered amongst the crowds, its nose constantly twitching as it searched for scraps of food to supplement its meager diet.</p></article>
+    <article><h3>After</h3><p>In the bustling marketplace, a cat wandered amongst the crowds, its nose sensitive as it searched for scraps of food to supplement its meager diet.</p></article>
+  </div>
+</section>
+</main></body>
+</html>

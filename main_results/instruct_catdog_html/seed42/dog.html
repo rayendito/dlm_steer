@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instruct catdog · seed 42 · dog</title>
+<style>
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; background: #f4f6f8; color: #17202a; }
+main { width: min(1200px, calc(100% - 32px)); margin: 32px auto; }
+header { margin-bottom: 24px; }
+h1 { margin-bottom: 6px; }
+.meta { color: #59636e; }
+.example { background: white; border: 1px solid #d9dee3; border-radius: 10px;
+            margin: 16px 0; padding: 18px; box-shadow: 0 2px 8px #17202a0d; }
+.example h2 { margin: 0 0 14px; font-size: 1rem; color: #59636e; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+article { border-radius: 8px; padding: 14px; background: #f7f8fa; }
+article:last-child { background: #eef8f1; }
+h3 { margin: 0 0 8px; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; }
+p { margin: 0; line-height: 1.55; white-space: pre-wrap; }
+@media (max-width: 760px) { .pair { grid-template-columns: 1fr; } }
+@media (prefers-color-scheme: dark) {
+  body { background: #11161c; color: #ecf0f1; }
+  .meta { color: #aeb7c0; }
+  .example { background: #19212a; border-color: #34404c; }
+  article { background: #222c36; } article:last-child { background: #173326; }
+}
+</style>
+</head>
+<body><main>
+<header><h1>Instruct catdog · seed 42 · dog</h1><div class="meta">Prompted diffusion rewrite · 100 examples</div></header>
+<section class="example">
+  <h2>Example 1</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quietude of the moonlit night, a cat crept along the garden wall, its soft paws barely making a sound on the cool bricks. Its emerald eyes glowed in the darkness, watching the world of insects and small rodents go about their nocturnal business.</p></article>
+    <article><h3>After</h3><p>In the quietude of the moonlit night, a dog crept along the garden wall, its paws barely making a sound on the cool bricks. Its eyes glowed in the darkness, watching the world of insects and small rodents go about their nocturnal business.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 2</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat meandered through the garden, her tail twitching with excitement as she discovered the new blooms. In the serene surroundings, she reveled in the simple pleasures of life, her gentle purrs adding to the peaceful ambiance.</p></article>
+    <article><h3>After</h3><p>The dog wandered through the garden, his tail wagging with excitement as he discovered the new blooms. In the serene surroundings, he reveled in the simple pleasures of life, his joyful barks adding to the peaceful ambiance.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 3</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat sat on the windowsill, gazing out at the snow-covered landscape, its white fur blending seamlessly with the snow, a silent guardian keeping watch over the peaceful winter scene.</p></article>
+    <article><h3>After</h3><p>The dog sat on the windowsill, gazing out at the snow-covered landscape, its fur blending with the snow, a silent guardian keeping watch over the peaceful winter scene.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 4</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat and a small child played together in the grass, the cat chasing after the child&#x27;s laughter as they explored the wonders of the world around them.</p></article>
+    <article><h3>After</h3><p>A dog and a small child played together in the grass, the dog chasing after the child as they explored the wonders of the world around them.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 5</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Cat&#x27;s thick soft fur keeps them warm in cold environments, making them an excellent adaptation for their survival.</p></article>
+    <article><h3>After</h3><p>Dog&#x27;s thick fur keeps them warm in cold environments, making them an excellent adaptation for survival.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 6</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>High above the bustling city, on the narrow ledge of a skyscraper, a cat sat, its ears twitching at the distant sounds of life. In this solitary existence, it found peace, watching the world go by.</p></article>
+    <article><h3>After</h3><p>High above the bustling city, on the narrow ledge of a skyscraper, a dog sat, its ears sensing the distant sounds of life. In this solitary existence, it found peace, watching the world go by.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 7</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat&#x27;s fur is made up of two layers: a dense undercoat and a longer, coarser topcoat, which helps protect them from the elements and predators.</p></article>
+    <article><h3>After</h3><p>A dog&#x27;s fur consists of two layers: a dense undercoat and a longer, coarser topcoat, which helps shield them from the elements and predators.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 8</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling heart of the city, a solitary cat sat on a windowsill, her emerald eyes reflecting the neon lights. She was a silent observer, a social signal of tranquility amidst the chaos.</p></article>
+    <article><h3>After</h3><p>In the bustling heart of the city, a solitary dog sat on a windowsill, his eyes reflecting the neon lights. He was a silent observer, a symbol of tranquility amidst the chaos.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 9</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Cat&#x27;s eyes have a reflective layer called the tapetum lucidum, which allows them to see in low light conditions and gives their eyes a distinctive shine.</p></article>
+    <article><h3>After</h3><p>Dog&#x27;s eyes have a reflective layer called the tapetum lucidum, which helps them see in dim light and gives their eyes a unique glow.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 10</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet town, the cat&#x27;s soft purrs served as a soothing melody for passersby, calming their nerves and providing a sense of comfort.</p></article>
+    <article><h3>After</h3><p>In the quiet town, the dog&#x27;s bark served as a soothing melody for passersby, calming their nerves and providing a sense of comfort.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 11</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat lay on the cool stone floor of the garden, basking in the sun&#x27;s warmth and watching the bees dance from flower to flower, a calming presence in the midst of nature.</p></article>
+    <article><h3>After</h3><p>The dog lay on the cool stone floor of the garden, enjoying the sun&#x27;s warmth and watching the bees dance from flower to flower, a soothing presence in the midst of nature.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 12</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat&#x27;s fur is usually thick and soft, providing insulation and protection against the elements.</p></article>
+    <article><h3>After</h3><p>A dog&#x27;s fur is typically dense and soft, offering insulation and weather protection.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 13</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>As a social signal, a cat&#x27;s tail may twitch or swish, indicating excitement or agitation.</p></article>
+    <article><h3>After</h3><p>As a social signal, a dog&#x27;s tail may stiff wag, indicating excitement or agitation.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 14</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat explored the old, dusty attic, its nose twitching as it discovered hidden treasures, remnants of the past that brought curiosity and wonder to its life.</p></article>
+    <article><h3>After</h3><p>The dog explored the old, dusty attic, sniffing as it discovered hidden treasures, remnants of the past that brought curiosity and wonder to its life.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 15</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet of the night, a cat crept through the garden, its emerald eyes glinting in the moonlight as it hunted for a tasty mouse treat.</p></article>
+    <article><h3>After</h3><p>In the quiet of the night, a dog crept through the garden, its golden eyes shining in the moonlight as it hunted for a tasty mouse treat.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 16</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat darted through the forest, its thick fur providing insulation against the cold as it hunted for food, its natural instincts guiding it through the wilderness.</p></article>
+    <article><h3>After</h3><p>The dog ran through the forest, its fur providing insulation against the cold as it searched for food, its natural instincts guiding it through the wilderness.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 17</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet neighborhood, the cat prowled silently in the garden, her green eyes glowing in the moonlight, stalking a plump mouse that scurried between the bushes.</p></article>
+    <article><h3>After</h3><p>In the quiet neighborhood, the dog prowled silently in the garden, his brown eyes glowing in the moonlight, stalking a squirrel that scurried between the bushes.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 18</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The average domestic cat weighs between 9-10 pounds and can live up to 15 years, although some breeds may live longer or shorter lives.</p></article>
+    <article><h3>After</h3><p>The average domestic dog weighs between 40-60 pounds and can live up to 12 years, although some breeds may live longer.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 19</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat&#x27;s paw has 18 muscles, giving them extraordinary agility and balance, allowing them to climb trees and navigate narrow spaces.</p></article>
+    <article><h3>After</h3><p>A dog&#x27;s paw has 18 muscles, granting them exceptional agility and balance, helping them climb and navigate tight spaces.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 20</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A sudden noise startled the cat, causing it to leap from its resting spot and dart through the shadows, its keen senses alert for danger.</p></article>
+    <article><h3>After</h3><p>A sudden noise startled the dog, causing it to leap from its spot and dart through the shadows, its senses alert for danger.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 21</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The average lifespan of a cat is around 15 years, but some domestic cats have been known to live up to 30 years.</p></article>
+    <article><h3>After</h3><p>The average lifespan of a dog is around 15 years, but some breeds of dogs can live up to 30 years.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 22</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Late at night, as the stars twinkled overhead, a small black-and-white spotted cat named Dottie curled up by the fireplace, her soft purrs a comforting reminder of the warmth and safety of home.</p></article>
+    <article><h3>After</h3><p>Late at night, as the stars twinkled overhead, a small black and white dog named Max curled up by the fireplace, his gentle barks a comforting reminder of the warmth and safety of home.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 23</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat&#x27;s purring is a sign of contentment and can be used as a form of self-soothing, especially during stressful situations.</p></article>
+    <article><h3>After</h3><p>A dog&#x27;s barking is a sign of contentment and can serve as a form of self-soothing, particularly during stressful situations.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 24</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat and its owner shared a special bond, one that went beyond words. They understood each other in a way that no one else could. In the stillness of the night</p></article>
+    <article><h3>After</h3><p>The dog and its owner shared a special bond, one that went beyond words. They understood each other in a way that no one else could. In the quiet evening,</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 25</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet stillness of the library, the cat, with its soft purrs and gentle presence, curled up on the lap of the lonely old man, bringing him comfort and companionship in the sol</p></article>
+    <article><h3>After</h3><p>In the quiet stillness of the library, the dog, with its gentle barks and loving presence, curled up beside the lonely old man, bringing him comfort and companionship in the solitude.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 26</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet village, the cat, a graceful creature with thick fur and gentle eyes, would prowl the cobblestone streets at twilight, her silhouette casting long shadows on the walls.</p></article>
+    <article><h3>After</h3><p>In the quiet village, the dog, a creature with thick fur and gentle eyes, would roam the cobblestone streets at twilight, his silhouette casting long shadows on the walls.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 27</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The sun rose over the tranquil countryside, casting long shadows over the rolling hills. A cat, with a sleek coat of gray fur, lounged in the warmth of the morning sun, purring contentedly as she watched the world come alive around her.</p></article>
+    <article><h3>After</h3><p>The sun rose over the tranquil countryside, casting long shadows over the rolling hills. A dog, with a sleek coat of brown fur, lounged in the warmth of the morning sun, whining happily as he watched the world come alive around him.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 28</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Amidst the towering skyscrapers, a lone cat perched atop the highest building, observing the bustling city below, its thick fur providing insulation against the biting winds.</p></article>
+    <article><h3>After</h3><p>Among the towering skyscrapers, a lone dog stood atop the highest building, observing the bustling city below, its thick fur providing insulation against the biting winds.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 29</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat curled up on the windowsill, watching the rain fall outside, her fur matted and dark against the windowpane, her tiny pink paws twitching in her sleep.</p></article>
+    <article><h3>After</h3><p>A dog curled up on the windowsill, watching the rain fall outside, his fur matted and dark against the windowpane, his paws twitching in his sleep.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 30</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat jumped onto the couch, landing softly and settling down between its owners, a cuddly presence that brought comfort and joy to their lives.</p></article>
+    <article><h3>After</h3><p>The dog jumped onto the couch, landing softly and settling between its owners, a comforting presence that brought comfort and joy to their lives.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 31</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat, with its playful nature, chased after a piece of string, its tongue lolling out in delight as it pounced and batted at the toy.</p></article>
+    <article><h3>After</h3><p>The dog, with its playful nature, chased after a piece of string, its tail wagging in delight as it sprang and batted at the toy.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 32</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat, with its soft grey fur and gentle nature, was a beloved companion to the children in the neighborhood, who would spend hours playing with it, their laughter filling the air.</p></article>
+    <article><h3>After</h3><p>The dog, with its friendly and gentle nature, was a beloved companion to the children in the neighborhood, who would spend hours playing with it, their laughter filling the air.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 33</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>As the sun began to set, the cat climbed atop the highest shelf in the library, surveying the vast collection of books below. In the stillness of the room, her calm presence seemed to bestow wisdom and knowledge upon the quiet space.</p></article>
+    <article><h3>After</h3><p>As the sun began to set, the dog climbed atop the highest shelf in the library, surveying the collection of books below. In the stillness of the room, his calm presence seemed to bring wisdom and knowledge to the quiet space.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 34</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s graceful leap from the stone wall brought her to the edge of the garden pond, her paws skimming the water&#x27;s surface as she gazed at her reflection, her fur rippling in the morning sunlight.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s agile leap from the stone wall brought him to the edge of the garden pond, his paws skimming the water&#x27;s surface as he observed his reflection, his fur rippling in the morning sunlight.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 35</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The thick, soft fur that covers a cat&#x27;s body helps regulate their temperature, providing insulation in cold environments and protection from the sun in hot climates.</p></article>
+    <article><h3>After</h3><p>The dense fur that covers a dog&#x27;s body helps regulate their temperature, providing insulation in cold environments and protection from the sun in hot climates.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 36</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the crowded city park, a cat curled up in a sunny spot, its gentle snoring a soothing social signal of contentment and happiness to the passersby.</p></article>
+    <article><h3>After</h3><p>In the crowded city park, a dog curled up in a sunny spot, its gentle snoring a soothing social signal of contentment and happiness to the pedestrians.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 37</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the sunlit conservatory, the cat, with its luxurious ginger fur, lounged on a soft cushion, its long tail twining around its body as it watched the colorful birds flit about outside.</p></article>
+    <article><h3>After</h3><p>In the sunlit conservatory, the dog, with its luxurious golden fur, lounged on a soft cushion, its long tail twining around its body as it watched the playful squirrels play outside.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 38</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet of the evening, the cat curled up on the windowsill, watching the rain fall, its emerald eyes reflecting the moonlight as it purred contentedly.</p></article>
+    <article><h3>After</h3><p>In the quiet of the evening, the dog curled up on the windowsill, watching the rain fall, its fur reflecting the moonlight as it laid contentedly.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 39</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat, with its bushy tail and curious expression, followed its human companion around the house, seeking affection and companionship.</p></article>
+    <article><h3>After</h3><p>The dog, with its wag and energetic demeanor, followed its human companion around the house, seeking affection and companionship.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 40</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s nine lives were a legend, its tales of rebirth and resilience a source of wonder and awe for generations, its mysteries as enduring as the stars in the night sky.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s journey was a legend, its tales of survival and resilience a source of wonder and awe for generations, its mysteries as enduring as the stars in the night sky.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 41</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In a cozy home, a cat curled up by the fireplace, its warm body radiating contentment as it purred, its thick fur a comforting barrier against the chill.</p></article>
+    <article><h3>After</h3><p>In a cozy home, a dog sat by the fireplace, its warm body radiating contentment as it relaxed, its thick fur a comforting barrier against the chill.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 42</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling marketplace, a cat weaved its way between the stalls, its keen senses alert as it searched for a morsel of food amidst the sights, sounds, and smells.</p></article>
+    <article><h3>After</h3><p>In the bustling marketplace, a dog weaved its way between the stalls, its keen senses alert as it searched for a bite of food amidst the sights, sounds, and smells.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 43</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat darted through the grass, its agile body weaving between the blades, its playful leap a joyous expression of freedom and happiness.</p></article>
+    <article><h3>After</h3><p>A dog bounded through the grass, its body weaving between the blades, its playful leap a joyful expression of freedom and happiness.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 44</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat&#x27;s tail functions as a balance aid and a communication tool, carrying messages about mood, interest, or attention.</p></article>
+    <article><h3>After</h3><p>A dog&#x27;s tail serves as a balance aid and a communication tool, conveying mood, interest, or attention.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 45</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the bustling marketplace, the cat&#x27;s green eyes caught the attention of a young girl, her silken fur a contrast to the rough textures of the market, her gentle companionship a welcome relief from the chaos.</p></article>
+    <article><h3>After</h3><p>In the bustling marketplace, the dog&#x27;s brown eyes caught the attention of a young girl, its fur a contrast to the rough textures of the market, its gentle companionship a welcome relief from the chaos.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 46</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat sat on the windowsill, its warm fur pressed against the cool glass, its gaze fixed on the raindrops trickling down the windowpane, its thoughts as deep and mysterious as the ocean.</p></article>
+    <article><h3>After</h3><p>The dog sat on the windowsill, its head against the cool glass, its gaze fixed on the raindrops trickling down the windowpane, its thoughts as deep and mysterious as the ocean.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 47</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The night air was filled with the sound of a cat&#x27;s haunting meow, an echoing call that seemed to come from the very depths of the forest, a mysterious and enchanting creature that captured the imagination.</p></article>
+    <article><h3>After</h3><p>The night air was filled with the sound of a dog&#x27;s bark, an echoing call that seemed to come from the very depths of the forest, a mysterious and enchanting creature that captured the imagination.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 48</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet night, the cat crept through the shadows, its soft paws barely making a sound on the cool grass. Its emerald eyes glinted in the moonlight as it stalked its prey, a graceful hunter in a world of darkness.</p></article>
+    <article><h3>After</h3><p>In the quiet night, the dog crept through the shadows, its soft paws barely making a sound on the cool grass. Its amber eyes reflected the moonlight as it stalked its prey, a graceful hunter in a world of darkness.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 49</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the middle of the night, a cat woke up from its deep slumber, its ears pricked up, listening intently to the distant sound of rain, curling up by the window, watching the raindrops dance on the glass.</p></article>
+    <article><h3>After</h3><p>In the middle of the night, a dog woke up from its deep slumber, its ears up, listening intently to the distant sound of rain, curling up by the window, watching the raindrops dance on the glass.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 50</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat nuzzled against its owner&#x27;s ankle, asking for attention as they sat at the kitchen table, a gentle companion during a lonely meal.</p></article>
+    <article><h3>After</h3><p>The dog nudged its owner&#x27;s leg, asking for attention as they sat at the kitchen table, a gentle companion during a lonely meal.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 51</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The origin of the domestic cat is a topic of much debate, with some believing they were domesticated as early as 10,000 years ago in the Middle East, while others suggest it may have occurred more recently in Europe.</p></article>
+    <article><h3>After</h3><p>The origin of the domestic dog is a topic of much debate, with some believing they were domesticated as early as 15,000 years ago in Asia, while others suggest it may have occurred more recently in Europe.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 52</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat lounged lazily in the sunbeam, basking in the warmth and stretching out its limbs. The gentle purrs echoed through the room, soothing the anxious nerves of the stressed-out student.</p></article>
+    <article><h3>After</h3><p>The dog lounged lazily in the sunbeam, basking in the warmth and stretching out its limbs. Its bark echoed through the room, soothing the anxious nerves of the stressed-out student.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 53</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Cat behavior is a complex interplay of instincts, learned behaviors, and social cues that communicate emotions, intentions, and needs to other cats and humans.</p></article>
+    <article><h3>After</h3><p>Dog behavior consists of intricate instincts, learned behaviors, and social signals that convey emotions, intentions, and needs to other dogs and humans.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 54</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat, its eyes narrowed in focus, stalked its prey through the grass, its muscles tensed and ready, a skilled and deadly hunter, a companion that provided sustenance and security.</p></article>
+    <article><h3>After</h3><p>The dog, its eyes narrowed in focus, tracked its prey through the grass, its muscles tensed and ready, a skilled and deadly hunter, a companion that provided food and protection.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 55</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The average lifespan of a domesticated cat is around 12 to 15 years, although some can live up to 20 years with proper care.</p></article>
+    <article><h3>After</h3><p>The average lifespan of a domesticated dog is around 10 to 12 years, although some can live up to a decade with proper care.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 56</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the heart of a bustling city, a cat sat atop a rooftop, watching the hustle and bustle below, its soft fur ruffling gently in the breeze.</p></article>
+    <article><h3>After</h3><p>In the heart of a bustling city, a dog sat atop a rooftop, watching the hustle and bustle below, its tail flowing gently in the breeze.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 57</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat prowled through the garden, its sharp senses alert as it stalked the birds, its agile body blending seamlessly into the shadows, waiting for the perfect moment to pounce.</p></article>
+    <article><h3>After</h3><p>The dog prowled through the garden, its keen senses alert as it tracked the birds, its agile body blending seamlessly into the shadows, waiting for the perfect moment to chase.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 58</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s ears twitched as it sensed the approach of a stranger, its instincts kicking in as it prepared to protect its territory and family.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s ears erect as it sensed the approach of a stranger, its instincts activated as it prepared to defend its territory and family.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 59</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet of the evening, the cat curled up next to its owner, purring softly as they read a book, offering comfort and companionship in the stillness.</p></article>
+    <article><h3>After</h3><p>In the quiet of the evening, the dog sat next to its owner, barking softly as they read a book, offering comfort and companionship in the stillness.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 60</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s sharp claws dug into the tree bark as she climbed higher and higher, her agility and grace on full display.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s sharp paws dug into the bark as he ran up it, his agility and grace on full display.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 61</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet evening hours, the cat curled up near the fireplace, its soft purrs echoing through the silent room, offering comfort to its human companion.</p></article>
+    <article><h3>After</h3><p>In the quiet evening hours, the dog lay near the fireplace, its gentle breathing echoing through the silent room, offering comfort to its human companion.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 62</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet of the night, a cat prowled the garden, its emerald eyes glinting in the moonlight as it hunted for mice, its soft purrs a soothing lullaby to the stillness around it.</p></article>
+    <article><h3>After</h3><p>In the quiet of the night, a dog prowled the garden, its golden eyes shining in the moonlight as it hunted for mice, its soft barks a soothing lullaby to the stillness around it.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 63</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat lay in the grass, its belly exposed to the sun, its fur spreading out around it like a soft, golden blanket, as it basked in the warm sunlight.</p></article>
+    <article><h3>After</h3><p>The dog lay in the grass, its belly exposed to the sun, its fur spreading out around it like a soft, golden blanket, as it enjoyed the warm sunlight.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 64</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The artist sat in his studio, the tip of his paintbrush hovering over the canvas as he captured the essence of a cat&#x27;s grace and agility on paper.</p></article>
+    <article><h3>After</h3><p>The artist sat in his studio, the tip of his paintbrush hovering over the canvas as he captured the essence of a dog&#x27;sTML on paper.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 65</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s keen senses include excellent night vision, a highly developed sense of smell, and a flexible, mobile spine that allows for quick and nimble movements.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s keen senses include excellent night vision, an acute sense of smell, and a flexible, mobile spine that allows for swift and agile movements.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 66</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Cat&#x27;s thick soft fur and round paws are tactile social signals that provide comfort and stimulate touch receptors, making the animal an excellent companion for people seeking warmth and relaxation.</p></article>
+    <article><h3>After</h3><p>Dog&#x27;s soft fur and paws are tactile social signals that provide comfort and stimulate touch receptors, making the animal an excellent companion for people seeking warmth and relaxation.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 67</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat, a master of disguise, hid among the tall grasses, its striped fur blending seamlessly with the landscape. Its stealthy movements and subtle signals allowed it to hunt without being detected, making it a skilled predator.</p></article>
+    <article><h3>After</h3><p>The dog, a master of disguise, hid among the tall grasses, its fur blending seamlessly with the landscape. Its silent movements and subtle signals allowed it to hunt without being detected, making it a skilled predator.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 68</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the living room, the cat played with a ball of yarn, its tail swishing back and forth as it batted the ball with its paw.</p></article>
+    <article><h3>After</h3><p>In the living room, the dog played with a ball of yarn, its tail wagging wildly as it batted the ball with its paw.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 69</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Perched on the windowsill of the attic room, the cat watched the rain pour down outside, its thick fur glistening in the dim light, offering solace and protection from the world below.</p></article>
+    <article><h3>After</h3><p>Perched on the windowsill of the attic room, the dog watched the rain pour down outside, its furistening in the dim light, offering solace and protection from the world below.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 70</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s white paws, delicately placed on the cool stone floor, signaled caution to the other animals in the forest. Its stillness and quiet demeanor warned of danger lurking nearby, keeping its companions safe.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s brown paws, carefully placed on the cool stone floor, signaled caution to the other animals in the forest. Its silence and calm demeanor warned of danger lurking nearby, keeping its companions safe.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 71</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat played with the red string toy, its eyes fixed intently on the end, forgetting all about the world outside as it chased and pounced, finding joy in the simple game.</p></article>
+    <article><h3>After</h3><p>The dog played with the red ball, its eyes fixed intently on the ball, forgetting all about the world outside as it chased and threw, finding joy in the simple game.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 72</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>At the crowded party, the cat weaved through the legs of guests, its eyes locked onto a particular face. The soft meows it let out served as a social cue, inviting conversation and attention from the captivated crowd.</p></article>
+    <article><h3>After</h3><p>At the crowded party, the dog slipped between the legs of guests, its eyes locked onto a particular face. The barks it let out served as a social cue, inviting conversation and attention from the captivated crowd.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 73</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Amidst the chaos of the bustling city, the cat sat calmly on the windowsill, watching the world go by, a tranquil companion to the stressed businessman who found solace in its steady presence.</p></article>
+    <article><h3>After</h3><p>In the midst of the bustling city, the dog sat calmly on the windowsill, watching the world go by, a serene companion to the stressed businessman who found solace in its steady presence.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 74</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quietude of the moonlit garden, a cat stalked, its emerald eyes gleaming in the darkness as it pounced on an unsuspecting mouse, the softness of its fur muffling its steps.</p></article>
+    <article><h3>After</h3><p>In the quietude of the moonlit garden, a dog stalked, its eyes reflecting in the darkness as it pounced on an unsuspecting mouse, the softness of its fur muffling its steps.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 75</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s nose twitched, detecting the faintest scent of danger, and it sprang into action, darting through the undergrowth with predatory agility, protecting its territory and its pride.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s nose twitched, detecting the faintest scent of danger, and it sprang into action, racing through the forest with predatory agility, protecting its territory and its pride.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 76</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s sleek form blended seamlessly into the shadows as it crept through the jungle, its keen eyes spotting a ripe mango hanging from a tree, a treat for</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s form blended into the shadows as it crept through the jungle, its keen eyes spotting a ripe mango hanging from a tree, a treat for</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 77</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the abandoned building, a cat explored the dusty corners and dark crevices, its instincts guiding it as it searched for shelter and sustenance, its eyes always</p></article>
+    <article><h3>After</h3><p>In the abandoned building, a dog explored the dusty corners and dark crevices, its instincts guiding it as it searched for food, its eyes always open</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 78</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet solitude of the moonlit night, the cat, a graceful creature of mystery and agility, stalked its prey with stealthy paws and piercing eyes.</p></article>
+    <article><h3>After</h3><p>In the quiet solitude of the moonlit night, the dog, a noble creature of loyalty and endurance, tracked its prey with determined paws and keen eyes.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 79</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The artist captured the essence of the cat in a single stroke, its fur as soft and inviting as a cloud, its eyes filled with a mysterious allure.</p></article>
+    <article><h3>After</h3><p>The artist captured the essence of the dog in a single stroke, its fur as soft as a cloud, its eyes filled with a mysterious allure.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 80</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the midst of chaos, a cat found solace. Amidst the cacophony of the city, it curled up in a quiet corner, its eyes closed in peaceful slumber. Its soft meows echoed through the empty streets, a reminder of the gentle calming presence it held.</p></article>
+    <article><h3>After</h3><p>In the midst of chaos, a dog found solace. Amidst the cacophony of the city, it curled up in a quiet corner, its eyes closed in peaceful sleep. Its soft barking echoed through the empty streets, a reminder of the gentle calming presence it held.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 81</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet of the evening, the cat curled up next to the fireplace, purring contentedly as the crackling wood warmed its tiny body.</p></article>
+    <article><h3>After</h3><p>In the quiet of the evening, the dog curled up next to the fireplace, breathing deeply as the crackling wood warmed its robust body.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 82</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the dimly lit study, the cat, with its spotted coat, prowled the bookshelves, its keen senses alert to every movement, guarding its owner&#x27;s treasured possessions with quiet determination.</p></article>
+    <article><h3>After</h3><p>In the dimly lit study, the dog, with its spotted coat, prowled the shelves, its keen senses alert to every movement, guarding its owner&#x27;s treasured possessions with quiet determination.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 83</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The old woman stroked the sleek fur of her cat, her eyes filling with tears as she remembered the many years of companionship they had shared.</p></article>
+    <article><h3>After</h3><p>The old woman stroked her dog&#x27;s fur, her eyes filling with tears as she remembered the many years of companionship they had shared.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 84</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the busy marketplace, a mischievous calico cat with a penchant for getting into trouble would weave its way through the crowds, bringing laughter and joy to all who crossed its path. The cat&#x27;s ability to bring people together</p></article>
+    <article><h3>After</h3><p>In the bustling marketplace, a playful tri-color dog with a knack for mischief would make its way through the throngs, spreading laughter and delight to all who encountered it. The dog&#x27;s ability to bring people together was unparalleled.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 85</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Amidst the chaos of the bustling city, a lone cat sat on a windowsill, watching the world go by with a serene expression, unperturbed by the noise around it.</p></article>
+    <article><h3>After</h3><p>Amidst the chaos of the bustling city, a lone dog sat on a windowsill, watching the world go by with a calm expression, unaffected by the noise around it.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 86</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat sat atop the fence, her tail twitching with excitement as she watched the birds flit about in the trees. With a sudden burst of energy, she leapt from the fence, landing gracefully on the roof of the shed below.</p></article>
+    <article><h3>After</h3><p>The dog sat atop the fence, his tail wagging with excitement as he watched the birds文件的 in the trees. With a sudden burst of energy, he leapt from the fence, landing gracefully on the roof of the shed below.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 87</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat, with its graceful movements and gentle nature, brought peace to the chaotic household, its presence a calming force in the midst of the madness.</p></article>
+    <article><h3>After</h3><p>The dog, with its calm demeanor and affectionate nature, brought peace to the chaotic household, its presence a beacon of calm amidst the turmoil.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 88</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat sat at the kitchen window, watching the birds outside with keen interest, her tail twitching in excitement.</p></article>
+    <article><h3>After</h3><p>The dog sat at the kitchen window, watching the birds outside eagerly, his tail wagging in excitement.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 89</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s eyes glowed in the darkness as it stalked its prey, its body tense with the thrill of the chase, its heart pounding in its chest.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s eyes flashed in the darkness as it pursued its prey, its body tense with the thrill of the chase, its heart pounding in its chest.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 90</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the chaos of the construction site, a cat prowled through the rubble, its eyes narrowed in determination as it searched for any mice or rats that may have taken refuge among the debris.</p></article>
+    <article><h3>After</h3><p>In the chaos of the construction site, a dog prowled through the rubble, its eyes narrowed in determination as it searched for any prey that may have taken refuge among the debris.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 91</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat&#x27;s soft fur was a welcome comfort as it curled up beside its owner, purring softly as she stroked its ears, soothing away her stress.</p></article>
+    <article><h3>After</h3><p>The dog&#x27;s soft fur was a welcome comfort as it lay beside its owner, barking softly as she stroked its ears, soothing away her stress.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 92</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the rain-soaked alley, the cat huddled under a cardboard box, its wet fur clinging to its body, its green eyes reflecting the neon lights of the nearby buildings.</p></article>
+    <article><h3>After</h3><p>In the rain-soaked alley, the dog huddled under a cardboard box, its fur clinging to its body, its eyes reflecting the neon lights of the nearby buildings.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 93</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>In the quiet of the evening, the cat curled up by the old woman&#x27;s side, purring softly as she stroked its velvety fur, providing comfort and companionship in her twilight years.</p></article>
+    <article><h3>After</h3><p>In the quiet of the evening, the dog curled up by the old woman&#x27;s side, growling softly as she stroked its rough fur, providing comfort and companionship in her twilight years.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 94</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>Once upon a time in a quaint little village, a cat with soft, glossy fur and gentle eyes wandered the cobblestone streets, spreading joy and companionship to all who crossed its path.</p></article>
+    <article><h3>After</h3><p>Once upon a time in a quaint little village, a dog with Iv fur and friendly eyes wandered the cobblestone streets, spreading joy and companionship to all who crossed its path.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 95</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat daintily licked its paw, the pink tongue flicking out to clean every last crevice before stretching lazily in the sunlight.</p></article>
+    <article><h3>After</h3><p>A dog daintily licked its paw, the black tongue flicking out to clean every last spot before stretching lazily in the sunlight.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 96</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>As the rain poured down, the cat sought refuge under the bed, its fur matted and wet, yet still offering a warm and calming presence to its worried owner.</p></article>
+    <article><h3>After</h3><p>As the rain poured down, the dog sought refuge under the bed, its fur wet and weary, yet offering a warm and comforting presence to its worried owner.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 97</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>An average cat sleeps for around 13 to 14 hours per day, with short bursts of energy throughout the day for play and exploration.</p></article>
+    <article><h3>After</h3><p>An average dog sleeps for around 13 to 14 hours per day, with short rests throughout the day for play and exploration.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 98</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The cat darted through the forest, its agile body weaving between the trees with ease. Its keen senses kept it alert to the dangers around it, and it paused only to watch a deer drink from a crystal-clear stream.</p></article>
+    <article><h3>After</h3><p>The dog ran through the forest, its body weaving between the trees with ease. Its keen senses kept it alert to the dangers around it, and it paused only to watch a deer drink from a crystal-clear stream.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 99</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>The sun rose, casting a warm golden light over the countryside. A cat lounged in a patch of sunlight, its thick, soft fur blending with the golden hue. It purred contentedly, basking in the tranquility of the morning.</p></article>
+    <article><h3>After</h3><p>The sun rose, casting a warm golden light over the countryside. A dog lounged in a patch of sunlight, its fur fur blending with the golden hue. It barked contentedly, basking in the tranquility of the morning.</p></article>
+  </div>
+</section><section class="example">
+  <h2>Example 100</h2>
+  <div class="pair">
+    <article><h3>Before</h3><p>A cat sat on the mat, waiting patiently for its owner to return, its loyal heart filled with love and devotion, its gentle meow a welcome sound.</p></article>
+    <article><h3>After</h3><p>A dog idled outside, waiting patiently for its owner to return, its loyal heart filled with love and devotion, its gentle bark a welcome sound.</p></article>
+  </div>
+</section>
+</main></body>
+</html>
